@@ -1,0 +1,39 @@
+#! C:/Program Files/Nuke6.3v8/Nuke6.3.exe -nx
+version 6.3 v8
+
+BackdropNode {
+ inputs 0
+ name Automatic_Write_Node_Output_Path
+ label "OPEN THIS - Copy & Paste into Write node.\n\n\[file dirname \[value root.name]]/Comp/\[lindex \[split \[basename \[value root.name]] .] 0]_####.exr"
+ note_font_size 7
+ xpos -435
+ ypos -94
+ bdwidth 345
+ bdheight 67
+}
+Write {
+ inputs 0
+ file "\[file dirname \[value root.name]]/Comp/\[lindex \[split \[basename \[value root.name]] .] 0]_####.exr"
+ file_type exr
+ name Write1
+ xpos -213
+ ypos 107
+}
+Text {
+ message "\[value input.name]\n\n\n\[value \[value input.name].file]\n\n\n\[knob \[value input.name].file]\n"
+ font C:/Windows/Fonts/arial.ttf
+ size 25
+ yjustify bottom
+ Transform 1
+ box {0 0 1920 1080}
+ center {960 540}
+ name Text1
+ xpos -213
+ ypos 163
+}
+Viewer {
+ input_process false
+ name Viewer1
+ xpos -213
+ ypos 197
+}

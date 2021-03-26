@@ -1,0 +1,32 @@
+set cut_paste_input [stack 0]
+version 6.3 v8
+BackdropNode {
+ inputs 0
+ name TargetCameraRig
+ label "2-Node Camera"
+ note_font_size 38
+ selected true
+ xpos -256
+ ypos -275
+ bdwidth 282
+ bdheight 241
+}
+push $cut_paste_input
+Camera2 {
+ translate {0 0 3}
+ rotate {{degrees(atan((Target.translate.y-translate.y)/sqrt(pow2(sqrt(pow2(Target.translate.x-translate.x)+pow2(Target.translate.z-translate.z)))))) i} {"Target.translate.x-translate.x >= 0 ? 270-degrees(atan((Target.translate.z-translate.z)/(Target.translate.x-translate.x))): -degrees(atan((Target.translate.z-translate.z)/(Target.translate.x-translate.x)))-270" i} 0}
+ focal_point {{sqrt(pow2(sqrt(pow2(sqrt(pow2(Target.translate.x-translate.x)+pow2(Target.translate.z-translate.z)))))+pow2(Target.translate.y-translate.y)) i}}
+ name TargetCamera
+ tile_color 0xff0000ff
+ selected true
+ xpos -210
+ ypos -168
+}
+Axis2 {
+ inputs 0
+ translate {0 0 -3}
+ name Target
+ selected true
+ xpos -88
+ ypos -167
+}

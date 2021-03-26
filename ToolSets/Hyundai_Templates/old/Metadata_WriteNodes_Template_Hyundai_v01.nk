@@ -1,0 +1,372 @@
+#! C:/Program Files/Nuke6.3v6/Nuke6.3.exe -nx
+version 6.3 v6
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="0" w="1936" h="1200" screen="0">
+        <splitter orientation="1">
+            <split size="1771"/>
+            <splitter orientation="1">
+                <split size="67"/>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"/>
+                </dock>
+                <split size="1700"/>
+                <splitter orientation="2">
+                    <split size="421"/>
+                    <dock id="" activePageId="Viewer.2">
+                        <page id="Viewer.1"/>
+                        <page id="Viewer.2"/>
+                    </dock>
+                    <split size="716"/>
+                    <dock id="" activePageId="DAG.1">
+                        <page id="Curve Editor.1"/>
+                        <page id="DAG.1"/>
+                        <page id="DopeSheet.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="145"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name N:/Jobs/Innocean/Common/Metadata_WriteNodes_Template_Hyundai_v01.nk
+ frame 41
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x434343ff
+ label Metadata
+ note_font_size 42
+ xpos 3562
+ ypos 6494
+ bdwidth 421
+ bdheight 161
+}
+BackdropNode {
+ inputs 0
+ name Chroma_Ab2
+ tile_color 0x342222ff
+ xpos 3561
+ ypos 6671
+ bdwidth 433
+ bdheight 560
+}
+StickyNote {
+ inputs 0
+ name StickyNote4
+ label HyundaiUSA.com
+ note_font_size 50
+ xpos 3142
+ ypos 7388
+}
+StickyNote {
+ inputs 0
+ name StickyNote3
+ label TheTube
+ note_font_size 50
+ xpos 4127
+ ypos 7399
+}
+NoOp {
+ inputs 0
+ name MasterSwitch
+ tile_color 0x930000ff
+ note_font Tahoma
+ note_font_size 50
+ note_font_color 0xecf264ff
+ xpos 3734
+ ypos 7358
+ addUserKnob {20 User}
+ addUserKnob {4 Trim M {"0 Base" "1 Tech"}}
+ addUserKnob {26 ""}
+ addUserKnob {4 Color M {"0 Camel" "1 GraphiteBlack" "2 ChestnutBrown" "" "" "" "" ""}}
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant2
+ xpos 3732
+ ypos 6384
+}
+ModifyMetaData {
+ metadata {
+  {set vehicle Azera}
+  {set year 2012}
+  {set trim "\[lrange \[knob MasterSwitch.Trim] 1 1]"}
+  {set version v01}
+  {set color "\[lrange \[knob MasterSwitch.Color] 1 1]"}
+  {set outputdir Comp}
+  {set extension jpg}
+  {set framepadding _###}
+  {set INT_EXT _INT}
+ }
+ name ModifyMetaData4
+ xpos 3732
+ ypos 6582
+}
+ViewMetaData {
+ name ViewMetaData4
+ xpos 3732
+ ypos 6606
+}
+Dot {
+ name Dot1
+ xpos 3766
+ ypos 6674
+}
+Remove {
+ operation keep
+ channels rgb
+ name Remove1
+ xpos 3732
+ ypos 6728
+}
+Crop {
+ box {0 0 1920 1080}
+ name Crop1
+ xpos 3732
+ ypos 6752
+}
+Dot {
+ name Dot2
+ xpos 3766
+ ypos 6817
+}
+set N87a54e0 [stack 0]
+push $N87a54e0
+Shuffle {
+ green red
+ name r1
+ xpos 3587
+ ypos 6853
+}
+Transform {
+ scale 1.002
+ center {960 540}
+ name Transform1
+ xpos 3587
+ ypos 6877
+}
+push $N87a54e0
+Shuffle {
+ red green
+ name g1
+ xpos 3679
+ ypos 6853
+}
+Transform {
+ scale 1.001
+ center {960 540}
+ name Transform5
+ xpos 3679
+ ypos 6877
+}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 rgba.red
+ name ChromaAb1
+ xpos 3635
+ ypos 6915
+}
+Copy {
+ inputs 2
+ from0 rgba.blue
+ to0 rgba.blue
+ name Copy1
+ xpos 3732
+ ypos 6915
+}
+Crop {
+ box {0 0 1920 1080}
+ name Crop2
+ xpos 3732
+ ypos 6949
+}
+set N87e20f0 [stack 0]
+Reformat {
+ format "800 452 0 0 800 452 1 Innocean 360s"
+ name Reformat1
+ label 800x452
+ xpos 3609
+ ypos 7026
+}
+Colorspace {
+ colorspace_in sRGB
+ colorspace_out HSV
+ name Colorspace1
+ xpos 3609
+ ypos 7074
+}
+Sharpen {
+ channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+ amount 0.5
+ size 1.84
+ name Sharpen3
+ xpos 3609
+ ypos 7098
+}
+Colorspace {
+ colorspace_in HSV
+ colorspace_out sRGB
+ name Colorspace2
+ xpos 3609
+ ypos 7132
+}
+Clamp {
+ channels rgba
+ name Clamp1
+ xpos 3609
+ ypos 7156
+}
+ModifyMetaData {
+ metadata {
+  {set resolution2 _COM}
+  {set resolution1 HyundaiUSA}
+ }
+ name ModifyMetaData5
+ xpos 3609
+ ypos 7180
+}
+ViewMetaData {
+ name ViewMetaData5
+ xpos 3436
+ ypos 7180
+}
+Dot {
+ name Dot3
+ xpos 3312
+ ypos 7183
+}
+Write {
+ file "\[file dirname \[file dirname \[value root.name]]]/\[metadata outputdir]/\[metadata version]/\[metadata resolution1]/\[metadata year]/\[metadata vehicle]/\[metadata trim]/\[metadata color]/\[metadata year]_\[metadata vehicle]_\[metadata trim]_\[metadata color]\[metadata INT_EXT]\[metadata framepadding]\[metadata resolution2].\[metadata extension]"
+ frame_mode "start at"
+ frame 41
+ file_type jpeg
+ _jpeg_quality 1
+ checkHashOnRead false
+ version 30
+ beforeFrameRender "def createWriteDirs():\n  import nuke, os, errno\n  file = nuke.filename(nuke.thisNode())\n  dir = os.path.dirname( file )\n  osdir = nuke.callbacks.filenameFilter( dir )\n  try:\n    os.makedirs( osdir )\n  except OSError, e:\n    if e.errno != errno.EEXIST:\n      raise\nnuke.addBeforeFrameRender(createWriteDirs)"
+ name Write4
+ selected true
+ xpos 3278
+ ypos 7231
+}
+Text {
+ message "\[value input.name]\n\n\n\n\[value \[value input.name].file]\n\n\n\n\n\[knob \[value input.name].file]\n"
+ font C:/Windows/Fonts/arial.ttf
+ size 15
+ yjustify center
+ Transform 1
+ box {0 0 800 452}
+ center {400 226}
+ name Text2
+ xpos 3025
+ ypos 7237
+}
+Viewer {
+ input_process false
+ name Viewer1
+ xpos 3025
+ ypos 7305
+}
+push $N87e20f0
+Transform {
+ translate {0 -20}
+ center {960 540}
+ name Transform6
+ xpos 3864
+ ypos 7005
+}
+Reformat {
+ format "1371 575 0 0 1371 575 1 Innocean 360s Lg"
+ name Reformat2
+ label 1371x575
+ xpos 3864
+ ypos 7029
+}
+Colorspace {
+ colorspace_in sRGB
+ colorspace_out HSV
+ name Colorspace7
+ xpos 3864
+ ypos 7075
+}
+Sharpen {
+ channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+ amount 0.5
+ size 1.84
+ name Sharpen4
+ xpos 3864
+ ypos 7099
+}
+Colorspace {
+ colorspace_in HSV
+ colorspace_out sRGB
+ name Colorspace8
+ xpos 3864
+ ypos 7133
+}
+Clamp {
+ channels rgba
+ name Clamp2
+ xpos 3864
+ ypos 7157
+}
+ModifyMetaData {
+ metadata {
+  {set resolution2 _TUBE}
+  {set resolution1 TheTube}
+ }
+ name ModifyMetaData6
+ xpos 3864
+ ypos 7181
+}
+ViewMetaData {
+ name ViewMetaData6
+ xpos 4036
+ ypos 7181
+}
+Dot {
+ name Dot4
+ xpos 4209
+ ypos 7184
+}
+Write {
+ file "\[file dirname \[file dirname \[value root.name]]]/\[metadata outputdir]/\[metadata version]/\[metadata resolution1]/\[metadata year]/\[metadata vehicle]/\[metadata trim]/\[metadata color]/\[metadata year]_\[metadata vehicle]_\[metadata trim]_\[metadata color]\[metadata INT_EXT]\[metadata framepadding]\[metadata resolution2].\[metadata extension]"
+ frame_mode "start at"
+ frame 49
+ file_type jpeg
+ _jpeg_quality 1
+ checkHashOnRead false
+ version 30
+ beforeFrameRender "def createWriteDirs():\n  import nuke, os, errno\n  file = nuke.filename(nuke.thisNode())\n  dir = os.path.dirname( file )\n  osdir = nuke.callbacks.filenameFilter( dir )\n  try:\n    os.makedirs( osdir )\n  except OSError, e:\n    if e.errno != errno.EEXIST:\n      raise\nnuke.addBeforeFrameRender(createWriteDirs)"
+ name Write1
+ xpos 4175
+ ypos 7240
+}
+Text {
+ message "\[value input.name]\n\n\n\n\[value \[value input.name].file]\n\n\n\n\n\[knob \[value input.name].file]\n"
+ font C:/Windows/Fonts/arial.ttf
+ size 25
+ yjustify center
+ Transform 1
+ box {0 0 1371 575}
+ center {685.5 287.5}
+ name Text1
+ xpos 4454
+ ypos 7246
+}
+Viewer {
+ input_process false
+ name Viewer2
+ xpos 4454
+ ypos 7343
+}

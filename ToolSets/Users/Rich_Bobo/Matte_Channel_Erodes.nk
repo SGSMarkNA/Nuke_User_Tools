@@ -1,0 +1,286 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ tile_color 0x1e1e1eff
+ label "Matte Channel Erodes"
+ note_font_size 30
+ selected true
+ xpos 417
+ ypos -1204
+ bdwidth 1402
+ bdheight 314
+}
+push $cut_paste_input
+Dot {
+ name Dot32
+ selected true
+ xpos 534
+ ypos -1270
+}
+add_layer {mI_1 mI_1.red mI_1.green mI_1.blue}
+Erode {
+ channels {mI_1.red -mI_1.green -mI_1.blue}
+ name Erode1
+ selected true
+ xpos 500
+ ypos -1131
+ disable true
+}
+add_layer {mI_2 mI_2.red mI_2.green mI_2.blue}
+Erode {
+ channels {-mI_2.red mI_2.green -mI_2.blue}
+ name Erode2
+ selected true
+ xpos 500
+ ypos -1064
+ disable true
+}
+Erode {
+ channels {-mI_1.red -mI_1.green mI_1.blue}
+ name Erode3
+ selected true
+ xpos 500
+ ypos -988
+ disable true
+}
+Dot {
+ name Dot18
+ selected true
+ xpos 609
+ ypos -979
+}
+Dot {
+ name Dot19
+ selected true
+ xpos 609
+ ypos -1123
+}
+Erode {
+ channels {mI_2.red -mI_2.green -mI_2.blue}
+ name Erode4
+ selected true
+ xpos 669
+ ypos -1132
+ disable true
+}
+Erode {
+ channels {-mI_2.red mI_2.green -mI_2.blue}
+ name Erode5
+ selected true
+ xpos 669
+ ypos -1065
+ disable true
+}
+Erode {
+ channels {-mI_2.red -mI_2.green mI_2.blue}
+ name Erode6
+ selected true
+ xpos 669
+ ypos -988
+ disable true
+}
+Dot {
+ name Dot20
+ selected true
+ xpos 786
+ ypos -979
+}
+Dot {
+ name Dot21
+ selected true
+ xpos 786
+ ypos -1123
+}
+add_layer {mI_3 mI_3.red mI_3.green mI_3.blue}
+Erode {
+ channels {mI_3.red -mI_3.green -mI_3.blue}
+ name Erode7
+ selected true
+ xpos 846
+ ypos -1132
+ disable true
+}
+Erode {
+ channels {-mI_3.red mI_3.green -mI_3.blue}
+ name Erode8
+ selected true
+ xpos 846
+ ypos -1064
+ disable true
+}
+Erode {
+ channels {-mI_3.red -mI_3.green mI_3.blue}
+ name Erode9
+ selected true
+ xpos 846
+ ypos -988
+ disable true
+}
+Dot {
+ name Dot22
+ selected true
+ xpos 985
+ ypos -979
+}
+Dot {
+ name Dot23
+ selected true
+ xpos 985
+ ypos -1123
+}
+add_layer {mI_4 mI_4.red mI_4.green mI_4.blue}
+Erode {
+ channels {mI_4.red -mI_4.green -mI_4.blue}
+ name Erode10
+ selected true
+ xpos 1045
+ ypos -1132
+ disable true
+}
+Erode {
+ channels {-mI_4.red mI_4.green -mI_4.blue}
+ name Erode11
+ selected true
+ xpos 1045
+ ypos -1064
+ disable true
+}
+Erode {
+ channels {-mI_4.red -mI_4.green mI_4.blue}
+ name Erode12
+ selected true
+ xpos 1045
+ ypos -988
+ disable true
+}
+Dot {
+ name Dot24
+ selected true
+ xpos 1181
+ ypos -979
+}
+Dot {
+ name Dot25
+ selected true
+ xpos 1181
+ ypos -1123
+}
+add_layer {mI_5 mI_5.red mI_5.green mI_5.blue}
+Erode {
+ channels {mI_5.red -mI_5.green -mI_5.blue}
+ name Erode13
+ selected true
+ xpos 1241
+ ypos -1132
+ disable true
+}
+Erode {
+ channels {-mI_5.red mI_5.green -mI_5.blue}
+ name Erode14
+ selected true
+ xpos 1241
+ ypos -1064
+ disable true
+}
+Erode {
+ channels {-mI_5.red -mI_5.green mI_5.blue}
+ name Erode15
+ selected true
+ xpos 1241
+ ypos -988
+ disable true
+}
+Dot {
+ name Dot26
+ selected true
+ xpos 1375
+ ypos -979
+}
+Dot {
+ name Dot27
+ selected true
+ xpos 1375
+ ypos -1123
+}
+add_layer {mI_6 mI_6.red mI_6.green mI_6.blue}
+Erode {
+ channels {mI_6.red -mI_6.green -mI_6.blue}
+ name Erode16
+ selected true
+ xpos 1435
+ ypos -1132
+ disable true
+}
+Erode {
+ channels {-mI_6.red mI_6.green -mI_6.blue}
+ name Erode17
+ selected true
+ xpos 1435
+ ypos -1064
+ disable true
+}
+Erode {
+ channels {-mI_6.red -mI_6.green mI_6.blue}
+ name Erode18
+ selected true
+ xpos 1435
+ ypos -988
+ disable true
+}
+Dot {
+ name Dot28
+ selected true
+ xpos 1567
+ ypos -979
+}
+Dot {
+ name Dot29
+ selected true
+ xpos 1567
+ ypos -1123
+}
+add_layer {mI_7 mI_7.red mI_7.green mI_7.blue}
+Erode {
+ channels {mI_7.red -mI_7.green -mI_7.blue}
+ name Erode19
+ selected true
+ xpos 1641
+ ypos -1132
+ disable true
+}
+Erode {
+ channels {-mI_7.red mI_7.green -mI_7.blue}
+ name Erode20
+ selected true
+ xpos 1641
+ ypos -1064
+ disable true
+}
+Erode {
+ channels {-mI_7.red -mI_7.green mI_7.blue}
+ name Erode21
+ selected true
+ xpos 1641
+ ypos -988
+ disable true
+}
+Dot {
+ name Dot31
+ selected true
+ xpos 1675
+ ypos -930
+}
+Dot {
+ name Dot30
+ selected true
+ xpos 534
+ ypos -930
+}
+Dot {
+ name Dot33
+ selected true
+ xpos 534
+ ypos -865
+}

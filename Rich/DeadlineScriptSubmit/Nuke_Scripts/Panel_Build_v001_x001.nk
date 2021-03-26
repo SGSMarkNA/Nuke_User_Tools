@@ -1,0 +1,75 @@
+#! /Applications/Nuke9.0v7/Nuke9.0v7.app/Contents/MacOS/libnuke-9.0.7.dylib -nx
+version 9.0 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="2552" y="22" w="2560" h="1414" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="2238"/>
+            <splitter orientation="1">
+                <split size="1828"/>
+                <dock id="" activePageId="uk.co.thefoundry.scripteditor.1" focus="true">
+                    <page id="uk.co.thefoundry.scripteditor.1"/>
+                </dock>
+                <split size="406"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+            <split size="318"/>
+            <splitter orientation="2">
+                <split size="694"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="694"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/richbobo/Dropbox/CODE_aw_projects/aw_projects/DeadlineScriptSubmit/Nuke_Scripts/Panel_Build_v001_x001.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+Viewer {
+ inputs 0
+ frame 1
+ frame_range 1-100
+ name Viewer1
+ xpos -290
+ ypos -457
+}
+NoOp {
+ inputs 0
+ name Multi_Script_Submit
+ xpos -315
+ ypos -562
+ hide_input true
+ addUserKnob {20 multi_submit_tab l "Submission Settings"}
+ addUserKnob {1 submit_name l Name:}
+ submit_name __Multiple_Nuke_Scripts__
+ addUserKnob {1 comment l Comment:}
+ comment testing...
+ addUserKnob {1 department l Department:}
+ department Comp
+ addUserKnob {4 pool l Pool: M {aw thr3d critical test none}}
+ addUserKnob {4 secondary_pool l "Secondary Pool:" M {aw thr3d critical test none}}
+ secondary_pool thr3d
+ addUserKnob {4 group l Group: M {64gb 128gb}}
+ addUserKnob {3 priority l Priority:}
+ priority 50
+ addUserKnob {3 concurrent_tasks l "Concurrent Tasks"}
+ concurrent_tasks 1
+ addUserKnob {4 limits l Limits: M {nuke nuke_thr3d}}
+ addUserKnob {26 ""}
+ addUserKnob {22 select_nuke_scripts l "Select Nuke Scripts" T "import DeadlineScriptSubmit.DeadlineScriptSubmit\nDeadlineScriptSubmit.DeadlineScriptSubmit.multi_submit.select_nuke_scripts()" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 ""}
+ addUserKnob {22 submit l "Submit to Deadline!" T "import DeadlineScriptSubmit.DeadlineScriptSubmit\nDeadlineScriptSubmit.DeadlineScriptSubmit.multi_submit.submit_to_deadline()\n\nnuke.message('Submission in progress...')" +STARTLINE}
+}

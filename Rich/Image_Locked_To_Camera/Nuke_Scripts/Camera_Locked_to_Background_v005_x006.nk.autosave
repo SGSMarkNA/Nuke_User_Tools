@@ -1,0 +1,431 @@
+#! /Applications/Nuke9.0v7/Nuke9.0v7.app/Contents/MacOS/libnuke-9.0.7.dylib -nx
+version 9.0 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="22" w="2560" h="1414" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="1092"/>
+            <splitter orientation="2">
+                <split size="1210"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="178"/>
+                <dock id="" activePageId="Curve Editor.1">
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="1464"/>
+            <splitter orientation="2">
+                <split size="64"/>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"/>
+                </dock>
+                <split size="1324"/>
+                <splitter orientation="1">
+                    <split size="803"/>
+                    <dock id="" hideTitles="1" activePageId="DAG.1" focus="true">
+                        <page id="DAG.1"/>
+                    </dock>
+                    <split size="657"/>
+                    <dock id="" activePageId="Properties.1">
+                        <page id="Properties.1"/>
+                        <page id="uk.co.thefoundry.scripteditor.1"/>
+                    </dock>
+                </splitter>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/richbobo/Dropbox/CODE_aw_projects/aw_projects/Image_Locked_To_Camera/Nuke_Scripts/Camera_Locked_to_Background_v005_x006.nk
+ frame 1029
+ first_frame 1001
+ last_frame 1036
+ lock_range true
+ format "2314 868 0 0 2314 868 1 "
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ addUserKnob {1 CustomFrameList l customFrameList}
+ addUserKnob {1 Department l department}
+ addUserKnob {1 Pool l pool}
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ addUserKnob {1 Group l group}
+ addUserKnob {1 Priority l priority}
+ addUserKnob {1 MachineLimit l machineLimit}
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ addUserKnob {1 ChunkSize l chunkSize}
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ addUserKnob {1 Threads l threads}
+ addUserKnob {1 SubmitScene l submitScene}
+ addUserKnob {1 BatchMode l batchMode}
+ addUserKnob {1 ContinueOnError l continueOnError}
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ addUserKnob {1 UseGpu l useGpu}
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ addUserKnob {1 ProxyMode l proxyMode}
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+ addUserKnob {1 CreateUploadMovie l createUploadMovie}
+ addUserKnob {1 CreateUploadFilmStrip l createUploadFilmStrip}
+ addUserKnob {1 UseDraft l useDraft}
+ addUserKnob {1 DraftTemplate l draftTemplate}
+ addUserKnob {1 DraftUser l draftUser}
+ addUserKnob {1 DraftEntity l draftEntity}
+ addUserKnob {1 DraftVersion l draftVersion}
+ addUserKnob {1 DraftExtraArgs l draftExtraArgs}
+ addUserKnob {1 ProjectManagement l projectManagement}
+ addUserKnob {1 DeadlineSGData l shotgunKVPs}
+ addUserKnob {1 DeadlineFTData l ftrackKVPs}
+ addUserKnob {4 cameras l "Select Camera: " M {Camera_50mm Camera_100mm Camera1}}
+ addUserKnob {6 checkbox l "Check it out!" -STARTLINE}
+ addUserKnob {4 format_names l "Format Sizes :" M {"1920 x 1080"}}
+}
+Read {
+ inputs 0
+ file D:/rbobo/Dropbox/richbobo/NUKE/IMAGES/FLOWERS/Flowering-Bushes-1.jpg
+ format "500 332 0 0 500 332 1 "
+ origset true
+ name Read1
+ label "\[expression width/height]\n\[expression Camera1.haperture/Camera1.vaperture]"
+ xpos -787
+ ypos -838
+}
+Read {
+ inputs 0
+ file X:/AW/ARMW-16-003_Innocean_Photogramity_Test/work/s04_Turn/img/plate/maya_plates/EXR/s04_bkg.####.exr
+ cacheLocal always
+ format "2218 1140 0 0 2218 1140 0.999563 "
+ first 1220
+ last 1366
+ origfirst 1220
+ origlast 1366
+ origset true
+ name Read8
+ label "\[expression width/height]\n\[expression Camera1.haperture/Camera1.vaperture]"
+ xpos -612
+ ypos -850
+}
+Read {
+ inputs 0
+ file X:/Chobani/CHOB-17-005_Chobani_Drinks-Spring_2017/work/chobani/_common/img/comp/apple_cucumber/v001/apple_cucumber_drink_v001_FULL.psd
+ format "12000 12000 0 0 12000 12000 1 "
+ origset true
+ name Read5
+ xpos -337
+ ypos -848
+}
+Reformat {
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ name Reformat1
+ xpos -337
+ ypos -762
+}
+Read {
+ inputs 0
+ file X:/Innocean/INNO-17-026_2018_G80_CG_Assets/work/s01_360/img/ren/v04/Sport/g80_Sport_####.exr
+ format "2000 1125 0 0 2000 1125 1 "
+ last 36
+ origlast 36
+ origset true
+ name Read4
+ label "\[expression width/height]\n\[expression Camera1.haperture/Camera1.vaperture]"
+ xpos -1092
+ ypos -812
+}
+Read {
+ inputs 0
+ file X:/AW/ARMW-16-003_Innocean_Photogramity_Test/work/s04_Turn/img/ren/v04/G90_Main_Beauty/G90_G90_Main_Beauty_####.exr
+ cacheLocal always
+ format "2218 1140 0 0 2218 1140 0.999563 "
+ first 1220
+ last 1366
+ origfirst 1220
+ origlast 1366
+ origset true
+ name Read2
+ label "\[expression width/height]\n\[expression Camera1.haperture/Camera1.vaperture]"
+ xpos -910
+ ypos -846
+}
+Read {
+ inputs 0
+ file X:/Innocean/INNO-17-036_2018_Elantra_Ext_HDRI_360-180_frames/work/s01_HDRI-360/img/ren/v01/ValueEdition/Elantra_ValueEdition_####.exr
+ format "2000 1280 0 0 2000 1280 1 "
+ last 180
+ origlast 180
+ origset true
+ name Read3
+ label "\[expression width/height]\n\[expression Camera1.haperture/Camera1.vaperture]"
+ xpos -478
+ ypos -845
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ACES_WORKFLOW/dfulmer/elantra_test/white.exr
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ origset true
+ name Read7
+ xpos -448
+ ypos -629
+}
+Read {
+ inputs 0
+ file /Volumes/Chicago/Clearcut_FX/FOOTAGE/cf_0098_2430_v0001_bg/2880x2160/cf_0098_2430_v0001_bg.####.exr
+ first 1001
+ last 1036
+ origfirst 1001
+ origlast 1036
+ origset true
+ name Read9
+ xpos -628
+ ypos -467
+}
+Reformat {
+ format "2314 868 0 0 2314 868 1 "
+ resize distort
+ name Reformat2
+ xpos -628
+ ypos -387
+}
+push 0
+Camera2 {
+ inputs 0
+ translate {{curve x1220 1197.14209} {curve x1220 46.4621048} {curve x1220 6.26329422}}
+ rotate {{curve x1220 2.832474113} {curve x1220 85.49924252} {curve x1220 2.526217608}}
+ focal {{curve x1220 78.30323259}}
+ haperture {{curve x1220 36.00000381}}
+ name Camera1
+ label "G90_G90_Main_Beauty_1220\nFrame Range: 1220-1220"
+ xpos -355
+ ypos -189
+}
+set N21ff3be0 [stack 0]
+BasicMaterial {
+ inputs 0
+ diffuse {-0.1299999952 0.1800000072 0.4900000095}
+ name BasicMaterial1
+ xpos 85
+ ypos -222
+}
+Sphere {
+ inputs 0
+ radius 20
+ translate {997 40 -45}
+ name Sphere1
+ xpos -37
+ ypos -263
+}
+ApplyMaterial {
+ inputs 2
+ name ApplyMaterial2
+ xpos -37
+ ypos -222
+}
+Dot {
+ name Dot1
+ xpos -3
+ ypos -165
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ACES_WORKFLOW/dfulmer/elantra_test/red_q50_0000.exr
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ origset true
+ name Read6
+ xpos -198
+ ypos -622
+}
+Group {
+ name Image_Locked_to_Camera
+ xpos -198
+ ypos -384
+ addUserKnob {20 User}
+ addUserKnob {22 choose_camera l "Find Cameras" T "import nuke\nimport re\n# Assign the Group node to a variable we can get later...\nGroupNode = nuke.thisNode()\n################################################################\n# Get a list of all the available cameras in the Root node...\nRootNode = nuke.Root()\n# Make sure we're operating inside the Root group...\nRootNode.begin()\ncameras = \[]\nfor node in (nuke.allNodes('Camera') + nuke.allNodes('Camera2')):\n    cameras.append(node.name())\nRootNode.end()\n################################################################\n# Get all the knobs in the Group...\nGroupNodeKnobs = GroupNode.allKnobs()\n#print 'GroupNodeKnobs', GroupNodeKnobs\n# Make sure we're operating inside the GroupNode...\nGroupNode.begin()\n# Set up some variables for removal of preexisting knobs when the 'Pick Camera' button is pressed...\nknobs_to_remove = \[]\nknobs_to_ignore = \['selected', 'hide_input', 'cached', 'dope_sheet', 'bookmark', 'postage_stamp', 'useLifetime', 'lock_connections']\n# Make a list of any pulldown (Enumeration_Knob) knobs...\nregex = re.compile(r\"\\Enumeration_Knob\\W\")   # \\W is anything except a word character...\nfor knob in GroupNodeKnobs:\n    if bool(regex.search(str(type(knob)))):\n        if knob.name() not in knobs_to_ignore:\n            name = knob.name()\n            knobs_to_remove.append(name)\n        else:\n            pass\n# Remove existing pulldown knob when the 'Pick Camera' PyScript button is pressed, before we make a new one...\nKnobs = GroupNode.knobs()\ntry:\n    for knobname in knobs_to_remove:\n        GroupNode.removeKnob(Knobs\[knobname])\nexcept KeyError:\n    print 'Key Error: Some nonexistant knobs could not be removed.'\nexcept ValueError:\n    print 'Value Error: Some nonexistant knobs could not be removed.'\n# Build pulldown selector to pick the camera to link to...\ncameraChoiceKnob = nuke.Enumeration_Knob('cameras', 'Select Camera: ', cameras)\nGroupNode.addKnob(cameraChoiceKnob)\ncameraChoiceKnob.setFlag(nuke.STARTLINE)\n# Finish operating inside Group node...\nGroupNode.end()\n" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 image_z_distance_text l "Image Distance From Camera:"}
+ addUserKnob {41 z T BKGND_IMAGE_CARD.z}
+ addUserKnob {26 ""}
+ addUserKnob {4 cameras l "Select Camera: " M {Camera2 Camera_100mm Camera_50mm Camera1}}
+ cameras Camera1
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x212121ff
+  label "Background Image Card"
+  note_font_size 25
+  note_font_color 0xfefefeff
+  xpos -429
+  ypos -511
+  bdwidth 317
+  bdheight 253
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0xff7c3bff
+  label "Zero value Light\nNeeded to make Emission Shader work..."
+  note_font_size 20
+  xpos -468
+  ypos -224
+  bdwidth 408
+  bdheight 191
+ }
+ Light2 {
+  inputs 0
+  intensity 0
+  translate {1 2 1}
+  depthmap_slope_bias 0.01
+  name Light1
+  xpos -251
+  ypos -121
+ }
+ Input {
+  inputs 0
+  name Image
+  xpos -371
+  ypos -573
+ }
+ Dot {
+  name Dot2
+  xpos -337
+  ypos -425
+ }
+set N210d5260 [stack 0]
+ Dot {
+  name Dot3
+  xpos -212
+  ypos -425
+ }
+push 0
+ Emission {
+  inputs 2
+  emission 1
+  name Emission1
+  xpos -246
+  ypos -333
+ }
+push $N210d5260
+ Card2 {
+  cast_shadow false
+  receive_shadow false
+  z 350
+  lens_in_focal {{"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('focal')\\n\\nret\\ =\\ CameraKnob.value()]"}}
+  lens_in_haperture {{"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('haperture')\\n\\nret\\ =\\ CameraKnob.value()]"}}
+  translate {{"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('translate')\\n\\nret\\ =\\ CameraKnob.value()\\\[0\\]]"} {"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('translate')\\n\\nret\\ =\\ CameraKnob.value()\\\[1\\]]"} {"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('translate')\\n\\nret\\ =\\ CameraKnob.value()\\\[2\\]]"}}
+  rotate {{"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('rotate')\\n\\nret\\ =\\ CameraKnob.value()\\\[0\\]]"} {"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('rotate')\\n\\nret\\ =\\ CameraKnob.value()\\\[1\\]]"} {"\[python -execlocal Node\\ =\\ nuke.toNode('Image_Locked_to_Camera')\\nKnob\\ =\\ Node.knob('cameras')\\n\\nselected_camera\\ =\\ Knob.value()\\n\\nCameraNode\\ =\\ nuke.toNode(selected_camera)\\nCameraKnob\\ =\\ CameraNode.knob('rotate')\\n\\nret\\ =\\ CameraKnob.value()\\\[2\\]]"}}
+  control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+  name BKGND_IMAGE_CARD
+  xpos -371
+  ypos -384
+ }
+ ApplyMaterial {
+  inputs 2
+  name ApplyMaterial1
+  xpos -371
+  ypos -333
+ }
+ Scene {
+  inputs 2
+  name Scene1
+  xpos -361
+  ypos -121
+ }
+ Output {
+  name Output1
+  xpos -371
+  ypos 69
+ }
+end_group
+Light2 {
+ inputs 0
+ translate {1364 170 3.207999945}
+ depthmap_slope_bias 0.01
+ name Light1
+ xpos -311
+ ypos -305
+}
+push $N21ff3be0
+Scene {
+ inputs 4
+ name Scene1
+ xpos -188
+ ypos -189
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos -379
+ ypos -72
+}
+ScanlineRender {
+ inputs 3
+ conservative_shader_sampling false
+ motion_vectors_type distance
+ name ScanlineRender1
+ xpos -198
+ ypos -48
+}
+Viewer {
+ inputs 3
+ frame 1029
+ frame_range 1-1
+ colour_sample_bbox {1.765625 -0.1201171875 1.775390625 -0.119140625}
+ name Viewer1
+ xpos -198
+ ypos 123
+}
+Read {
+ inputs 0
+ file /Volumes/Chicago/Clearcut_FX/Nuke/shots/cf_0156_3760/v0001/comp/cf_0156_3760_comp_v0001/2314x868/cf_0156_3760_comp_v0001.1012.exr
+ format "2314 868 0 0 2314 868 1 "
+ origset true
+ name Read10
+ xpos -727
+ ypos -590
+}
+Camera2 {
+ inputs 0
+ translate {{curve x1 -364.0214233} {curve x1 4.411711216} {curve x1 -364.3486328}}
+ rotate {{curve x1 8.399700901} {curve x1 -129.1999949} {curve x1 4.018802422e-16}}
+ focal {{curve x1 54.99989371}}
+ haperture {{curve x1 35.99942017}}
+ name Camera2
+ label "white\nFrame Range: 1-1"
+ xpos -531
+ ypos -170
+}
+Camera2 {
+ inputs 0
+ name Camera_50mm
+ xpos -633
+ ypos -171
+}
+Camera2 {
+ inputs 0
+ focal 100
+ name Camera_100mm
+ xpos -749
+ ypos -173
+}

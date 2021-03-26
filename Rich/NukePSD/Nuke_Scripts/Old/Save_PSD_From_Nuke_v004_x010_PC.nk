@@ -1,0 +1,1517 @@
+#! C:/Program Files/Nuke10.5v7/nuke-10.5.7.dll -nx
+version 10.5 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="2576" h="1456" maximized="1" screen="0">
+        <splitter orientation="2">
+            <split size="1390"/>
+            <dock id="" activePageId="Viewer.1" focus="true">
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="0"/>
+            <dock id="" activePageId="DopeSheet.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="2560" y="0" w="1920" h="1200" screen="1">
+        <splitter orientation="1">
+            <split size="812"/>
+            <splitter orientation="2">
+                <split size="64"/>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"/>
+                </dock>
+                <split size="1093"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+            <split size="1088"/>
+            <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+                <page id="com.richbobo.LocalizeFiles"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/NukePSD/Nuke_Scripts/Save_PSD_From_Nuke_v004_x010_PC.nk"
+ last_frame 3
+ lock_range true
+ format "3072 3072 0 0 3072 3072 1 "
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath //isln-smb.ad.sgsco.int/library/OCIO_Configs/aw_Comp_aces_1.0.3/aw_Comp_config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut AW/sRGB_ICC(sRGB)
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut "ACES - ACES2065-1"
+ floatLut "ACES - ACES2065-1"
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x8e388e00
+ label "CURRENT Nuke_to_PSD Group Node."
+ note_font_size 30
+ xpos 990
+ ypos -957
+ bdwidth 619
+ bdheight 259
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ label "CURRENT afterRender CALLBACK:\n\nimport NukePSD.Standalone_JSX_Script_v002\nNPSD = NukePSD.Standalone_JSX_Script_v002.NukePSD()\nNPSD._write_data_file()\nNPSD._run_JS_command()\n"
+ note_font_size 30
+ xpos -460
+ ypos -323
+ bdwidth 826
+ bdheight 241
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode340
+ tile_color 0x212121ff
+ label Shadow
+ note_font_size 42
+ note_font_color 0xfefefeff
+ xpos -220
+ ypos -2706
+ bdwidth 1142
+ bdheight 693
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode341
+ tile_color 0x212121ff
+ label Background
+ note_font_size 42
+ note_font_color 0xfefefeff
+ xpos -215
+ ypos -3152
+ bdwidth 1139
+ bdheight 382
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode342
+ tile_color 0x212121ff
+ label Reflection
+ note_font_size 42
+ note_font_color 0xfefefeff
+ xpos -214
+ ypos -1945
+ bdwidth 1142
+ bdheight 718
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode4
+ label "Output Parent dirs. for testing:\n\nD:/rbobo/Dropbox\n\n/Users/richbobo/Dropbox\n"
+ note_font_size 50
+ xpos -411
+ ypos -750
+ bdwidth 755
+ bdheight 365
+}
+BackdropNode {
+ inputs 0
+ name COMP_PREVIEW1
+ tile_color 0x272727ff
+ label "COMP PREVIEW"
+ note_font_size 42
+ xpos 1365
+ ypos -2619
+ bdwidth 758
+ bdheight 785
+}
+BackdropNode {
+ inputs 0
+ name COMP_PREVIEW3
+ tile_color 0x272727ff
+ note_font_size 42
+ xpos 1352
+ ypos -1762
+ bdwidth 781
+ bdheight 405
+}
+Read {
+ inputs 0
+ file X:/Doner/DONR-17-005_Fairlife_Phase-1/work/fairlife/base_UFM_1percent_52oz_bottle/img/ren/FourView_v003/Front_BTY/Fairlife__Front_BTY_0001.exr
+ localizationPolicy on
+ format "3072 3072 0 0 3072 3072 1 "
+ origset true
+ name Read1
+ xpos -178
+ ypos -1062
+}
+set N78bd800 [stack 0]
+LayerContactSheet {
+ width 6144
+ height 6144
+ center true
+ showLayerNames true
+ name LayerContactSheet1
+ xpos -329
+ ypos -1026
+}
+Write {
+ inputs 0
+ channels rgba
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Beauty/Beauty_%04d.png
+ file_type png
+ create_directories true
+ render_order 4
+ checkHashOnRead false
+ version 20
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ afterRender "import NukePSD.Standalone_JSX_Script_v001.py\nNPSD = NukePSD.Standalone_JSX_Script_v001.py.NukePSD()\nNPSD._write_data_file()\nNPSD._run_JS_command()"
+ name Write_Beauty_3
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos -42
+ ypos -171
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+Reformat {
+ inputs 0
+ black_outside true
+ name Reformat2
+ label "THIS FIXES PHOTOSHOP\nONE PIXEL OFFSET PROBLEM!!"
+ xpos 1468
+ ypos -2518
+ disable true
+}
+add_layer {Background Background.red Background.green Background.blue Background.alpha}
+Shuffle {
+ in Background
+ name Shuffle5
+ label "\[value in]"
+ xpos 1614
+ ypos -2511
+ disable true
+}
+set N78bc400 [stack 0]
+add_layer {Floor_Reflection Floor_Reflection.red Floor_Reflection.green Floor_Reflection.blue Floor_Reflection.alpha}
+Shuffle {
+ in Floor_Reflection
+ name Shuffle6
+ label "\[value in]"
+ xpos 1719
+ ypos -2511
+ disable true
+}
+set N78bc000 [stack 0]
+add_layer {Floor_Shadow Floor_Shadow.red Floor_Shadow.green Floor_Shadow.blue Floor_Shadow.alpha}
+Shuffle {
+ in Floor_Shadow
+ name Shuffle7
+ label "\[value in]"
+ xpos 1826
+ ypos -2511
+ disable true
+}
+set N78bdc00 [stack 0]
+add_layer {Beauty Beauty.red Beauty.green Beauty.blue Beauty.alpha}
+Shuffle {
+ in Beauty
+ name Shuffle8
+ label "\[value in]"
+ xpos 1936
+ ypos -2511
+ disable true
+}
+Dot {
+ name Dot3
+ xpos 1970
+ ypos -2222
+}
+set N741e3800 [stack 0]
+push $N78bdc00
+Dot {
+ name Dot4
+ xpos 1860
+ ypos -2275
+}
+set N741e3400 [stack 0]
+push $N78bc000
+Dot {
+ name Dot5
+ xpos 1753
+ ypos -2325
+}
+set N741e3000 [stack 0]
+push $N78bc400
+Dot {
+ name Dot6
+ xpos 1648
+ ypos -2376
+}
+set N741e2c00 [stack 0]
+Dot {
+ name Dot7
+ xpos 1492
+ ypos -2376
+}
+PSDMerge {
+ inputs 2
+ name PSDMerge1
+ note_font "Bitstream Vera Sans"
+ xpos 1458
+ ypos -2328
+ disable true
+ maskChannelInput none
+}
+PSDMerge {
+ inputs 2
+ name PSDMerge2
+ note_font "Bitstream Vera Sans"
+ xpos 1458
+ ypos -2278
+ disable true
+ maskChannelInput none
+}
+PSDMerge {
+ inputs 2
+ name PSDMerge3
+ note_font "Bitstream Vera Sans"
+ xpos 1458
+ ypos -2225
+ disable true
+ maskChannelInput none
+}
+Dot {
+ name COMP_PREVIEW2
+ label COMP_PREVIEW
+ note_font_size 30
+ note_font_color 0xa01e2aff
+ xpos 1492
+ ypos -2131
+}
+push $N741e3400
+Write {
+ channels rgba
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Shadow/Shadow_%04d.png
+ file_type png
+ create_directories true
+ render_order 3
+ checkHashOnRead false
+ version 43
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ name Write_Shadow1
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1826
+ ypos -1960
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+push $N741e3000
+Write {
+ channels rgba
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Reflection/Reflection_%04d.png
+ file_type png
+ create_directories true
+ render_order 2
+ checkHashOnRead false
+ version 43
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ name Write_Reflection1
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1719
+ ypos -1960
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+push $N741e2c00
+Write {
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Background/Background_%04d.png
+ file_type png
+ create_directories true
+ checkHashOnRead false
+ version 43
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ name Write_BKGND1
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1614
+ ypos -1960
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+Reformat {
+ inputs 0
+ black_outside true
+ name Reformat1
+ label "THIS FIXES PHOTOSHOP\nONE PIXEL OFFSET PROBLEM!!"
+ xpos 1453
+ ypos -1661
+ disable true
+}
+Shuffle {
+ in Background
+ name Shuffle1
+ label "\[value in]"
+ xpos 1599
+ ypos -1654
+ disable true
+}
+set N7459dc00 [stack 0]
+Shuffle {
+ in Floor_Reflection
+ name Shuffle2
+ label "\[value in]"
+ xpos 1704
+ ypos -1654
+ disable true
+}
+set N7459d800 [stack 0]
+Shuffle {
+ in Floor_Shadow
+ name Shuffle3
+ label "\[value in]"
+ xpos 1811
+ ypos -1654
+ disable true
+}
+set N7459d400 [stack 0]
+Shuffle {
+ in Beauty
+ name Shuffle4
+ label "\[value in]"
+ xpos 1921
+ ypos -1654
+ disable true
+}
+Write {
+ channels rgba
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Beauty/Beauty_%04d.png
+ file_type png
+ create_directories true
+ render_order 4
+ checkHashOnRead false
+ version 45
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ afterRender "import NukePSD.Standalone_JSX_Script_v002\nNPSD = NukePSD.Standalone_JSX_Script_v002.NukePSD()\nNPSD._write_data_file()\nNPSD._run_JS_command()"
+ name Write_Beauty
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1921
+ ypos -1514
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+push $N7459dc00
+Write {
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Background/Background_%04d.png
+ file_type png
+ create_directories true
+ checkHashOnRead false
+ version 44
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ name Write_BKGND
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1599
+ ypos -1511
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+push $N78bd800
+AddChannels {
+ channels Beauty
+ name AddChannels192
+ xpos 595
+ ypos -1032
+}
+RotoPaint {
+ inputs 0
+ premultiply alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x457a0000 x457a0000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle2 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {0 0}
+        {x4472a926 x43ab28d9}
+        {0 0}
+        {0 0}
+        {x4501edbe x43ab28d9}
+        {0 0}
+        {0 0}
+        {x4501c2c8 x4360952e}
+        {0 0}
+        {0 0}
+        {x4471fd45 x4360952e}
+        {0 0}}}
+      {cc
+       {f 8192}
+       {px 1
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {x4156b900 xc351e64e}
+        {0 0}
+        {0 0}
+        {x405e5a00 xc3503be2}
+        {0 0}}}}
+     {t x45836000 x447f0000
+      {{1 0}}     0 0
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}     1 1
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}}
+     {a ft 1 osw x41200000 osf 0 str 1 spx x457a0000 spy x457a0000 sb 1 tt x41000000 inv 1 nv x42000000 view1 x42000000 view2 x41f80000 view3 x41f00000 view4 x41e80000 view5 x41e00000 view6 x41d80000 view7 x41d00000 view8 x41c80000 view9 x41c00000 view10 x41b80000 view11 x41b00000 view12 x41a80000 view13 x41a00000 view14 x41980000 view15 x41900000 view16 x41880000 view17 x41800000 view18 x41700000 view19 x41600000 view20 x41500000 view21 x41400000 view22 x41300000 view23 x41200000 view24 x41100000 view25 x41000000 view26 x40e00000 view27 x40c00000 view28 x40a00000 view29 x40800000 view30 x40400000 view31 x40000000 view32 1}}}}}}
+ toolbox {selectFeatherPoints {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { selectCurves str 1 ssx 1 ssy 1 sf 1 }
+  { selectPoints str 1 ssx 1 ssy 1 sf 1 }
+  { selectFeatherPoints str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {4000 4000}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ view {}
+ motionblur_shutter_offset_type centred
+ feather_type smooth0
+ inverted true
+ source_black_outside true
+ name Mask_Defocus_Reflection35
+ xpos 252
+ ypos -1459
+}
+Read {
+ inputs 0
+ file X:/Doner/DONR-17-005_Fairlife_Phase-1/work/fairlife/base_UFM_1percent_52oz_bottle/img/ren/FourView_v001/Front_REF_Mask/Fairlife__Front_REF_Mask_0001.exr
+ localizationPolicy on
+ format "3072 3072 0 0 3072 3072 1 "
+ proxy X:/Doner/DONR-17-005_Fairlife_Phase-1/work/fairlife/base_UFM_1percent_52oz_bottle/img/ren/FourView_v004/Front_REF_Mask/Fairlife__Front_REF_Mask_0001.exr
+ origset true
+ name Read237
+ xpos 283
+ ypos -1778
+}
+Dot {
+ name Dot2444
+ xpos 317
+ ypos -1559
+}
+Read {
+ inputs 0
+ file X:/Doner/DONR-17-005_Fairlife_Phase-1/work/fairlife/base_UFM_1percent_52oz_bottle/img/ren/FourView_v001/Front_REF/Fairlife__Front_REF_0001.exr
+ localizationPolicy on
+ format "3072 3072 0 0 3072 3072 1 "
+ proxy X:/Doner/DONR-17-005_Fairlife_Phase-1/work/fairlife/base_UFM_1percent_52oz_bottle/img/ren/FourView_v004/Front_REF/Fairlife__Front_REF_0001.exr
+ origset true
+ name Read238
+ xpos 94
+ ypos -1773
+}
+RotoPaint {
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x44c00000 x44c00000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup BezierCusped1 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {0 0}
+        {x44b675e6 x433aaff0}
+        {0 0}
+        {0 0}
+        {x44b6a059 x4332f988}
+        {0 0}
+        {xc2829510 xbe8d5000}
+        {x44c700ed x4331becc}
+        {x428294f0 x3e8d5200}
+        {0 0}
+        {x44d7a4ba x43346472}
+        {0 0}
+        {0 0}
+        {x44d7faae x433c709a}
+        {0 0}
+        {x4285f600 x3dc72800}
+        {x44c6dd62 x433c04a7}
+        {xc285f600 xbdc72800}}}     idem}
+     {tx 1 x44c71e66 x4341cccc}
+     {a osw x41200000 osf 0 str 1 spx x44c00000 spy x44c00000 sb 1 tt x40a00000 src 1 stx x43820000 nv x42000000 view1 x42000000 view2 x41f80000 view3 x41f00000 view4 x41e80000 view5 x41e00000 view6 x41d80000 view7 x41d00000 view8 x41c80000 view9 x41c00000 view10 x41b80000 view11 x41b00000 view12 x41a80000 view13 x41a00000 view14 x41980000 view15 x41900000 view16 x41880000 view17 x41800000 view18 x41700000 view19 x41600000 view20 x41500000 view21 x41400000 view22 x41300000 view23 x41200000 view24 x41100000 view25 x41000000 view26 x40e00000 view27 x40c00000 view28 x40a00000 view29 x40800000 view30 x40400000 view31 x40000000 view32 1}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 tt 5 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1536 1536}
+ colorOverlay {0 0 0 0}
+ paint_source foreground
+ lifetime_type "all frames"
+ view {}
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name REMOVE_TEXT_reflection29
+ label "on bottom_of_bottle"
+ xpos 94
+ ypos -1645
+}
+Copy {
+ inputs 2
+ from0 rgba.green
+ to0 rgba.alpha
+ name Copy1107
+ xpos 94
+ ypos -1569
+}
+RotoPaint {
+ premultiply rgba
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x457a0000 x457a0000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Rectangle1 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {0 0}
+        {x44708f8c x43a2c26f}
+        {0 0}
+        {0 0}
+        {x45016757 x43a2c26f}
+        {0 0}
+        {0 0}
+        {x45017f96 x436bc85f}
+        {0 0}
+        {0 0}
+        {x4470f078 x436bc85f}
+        {0 0}}}
+      {cc
+       {f 8192}
+       {px 1
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {0 0}
+        {x4129ec00 xc3657fe6}
+        {0 0}
+        {0 0}
+        {x3f2ca000 xc363d57a}
+        {0 0}}}}
+     {t x45836000 x447f0000
+      {{1 0}}     0 0
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}     1 1
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}}
+     {a ft 1 osw x41200000 osf 0 src 1 str 1 spx x457a0000 spy x457a0000 sb 1 tt x41000000 nv x42000000 view1 x42000000 view2 x41f80000 view3 x41f00000 view4 x41e80000 view5 x41e00000 view6 x41d80000 view7 x41d00000 view8 x41c80000 view9 x41c00000 view10 x41b80000 view11 x41b00000 view12 x41a80000 view13 x41a00000 view14 x41980000 view15 x41900000 view16 x41880000 view17 x41800000 view18 x41700000 view19 x41600000 view20 x41500000 view21 x41400000 view22 x41300000 view23 x41200000 view24 x41100000 view25 x41000000 view26 x40e00000 view27 x40c00000 view28 x40a00000 view29 x40800000 view30 x40400000 view31 x40000000 view32 1}}}}}}
+ toolbox {selectFeatherPoints {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { selectPoints str 1 ssx 1 ssy 1 sf 1 }
+  { selectFeatherPoints str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 tt 8 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {4000 4000}
+ colorOverlay {0 0 0 0}
+ paint_source foreground
+ lifetime_type "all frames"
+ view {}
+ motionblur_shutter_offset_type centred
+ feather_type smooth0
+ source_black_outside true
+ name Mask_Reflection35
+ xpos 94
+ ypos -1517
+}
+Defocus {
+ inputs 1+1
+ defocus 50
+ name Defocus_Reflection36
+ xpos 94
+ ypos -1465
+}
+Premult {
+ name Premult194
+ xpos 94
+ ypos -1389
+}
+Dot {
+ name Dot2445
+ xpos 128
+ ypos -1336
+}
+Grade {
+ channels rgba
+ white 0.4
+ name Reflection_Transparency36
+ xpos 406
+ ypos -1340
+}
+AddChannels {
+ channels Floor_Reflection
+ name AddChannels193
+ xpos 595
+ ypos -1346
+}
+Constant {
+ inputs 0
+ color 1
+ name Constant128
+ xpos 419
+ ypos -2614
+}
+Shuffle {
+ in alpha
+ name Shuffle1216
+ label "\[value in]"
+ xpos 419
+ ypos -2512
+}
+set N7405ac00 [stack 0]
+Dot {
+ name Dot2446
+ xpos 271
+ ypos -2502
+}
+Grade {
+ channels alpha
+ white 0.76
+ name Grade_Shadow_Transparency_INNER35
+ xpos 237
+ ypos -2462
+}
+RotoPaint {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x457a0000 x457a0000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Ellipse2 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {xc22d4ca0 xbc12f925}
+        {x44be421f x433b640e}
+        {x422d4ca0 x3c1313b6}
+        {xc2316d60 xbf9185fc}
+        {x44dbc5c0 x433ea6de}
+        {x42316d60 x3f91861d}
+        {xc17a4180 xc0127e14}
+        {x44f1508a x43491ccc}
+        {x417a4200 x40127e1a}
+        {x3fb52800 xc1549800}
+        {x44f6b5ae x43625d9b}
+        {xbff09800 x418d3ac0}
+        {x422f3620 xc06e4600}
+        {x44e77668 x4382435f}
+        {xc22f36a0 x406e4600}
+        {x42ed4950 x3f465800}
+        {x44bd5048 x43859225}
+        {xc2ed4950 xbf465800}
+        {x41c47840 x40129e0e}
+        {x449656f3 x4380e4c1}
+        {xc1c47840 xc0129e1c}
+        {x40ff7f00 x413b1682}
+        {x4488c298 x4365b37f}
+        {xc0ff7f00 xc13b1683}
+        {xc1d2ecc0 x40783140}
+        {x448ffdee x4346c79e}
+        {x41d87900 xc07eb440}
+        {xc21b6b20 x3f97a7e4}
+        {x44a5e411 x433e2672}
+        {x421b6b20 xbf97a7bc}}}
+      {cc
+       {f 8192}
+       {px 1
+        {xc22d4ca0 xbc12f925}
+        {0 0}
+        {x422d4ca0 x3c1313b6}
+        {xc2316d60 xbf9185fc}
+        {0 0}
+        {x42316d60 x3f91861d}
+        {xc17a4180 xc0127e14}
+        {0 0}
+        {x417a4200 x40127e1a}
+        {x3fb52800 xc1549800}
+        {0 0}
+        {xbff09800 x418d3ac0}
+        {x422f3620 xc06e4600}
+        {0 0}
+        {xc22f36a0 x406e4600}
+        {x42ed4950 x3f465800}
+        {0 0}
+        {xc2ed4950 xbf465800}
+        {x41c47840 x40129e00}
+        {0 0}
+        {xc1c47840 xc0129e00}
+        {x40ff7f00 x413b1680}
+        {0 0}
+        {xc0ff7f00 xc13b1680}
+        {xc1d2ecc0 x40783140}
+        {0 0}
+        {x41d87900 xc07eb440}
+        {xc21b6b20 x3f97a7e4}
+        {0 0}
+        {x421b6b20 xbf97a7bc}}}}
+     {t x44c00000 x44c00000
+      {{1 0}}     0 0
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 1}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}}
+     {a r 0 g 0 b 0 a 0 inv 1 osw x41200000 osf 0 str 1 spx x457a0000 spy x457a0000 sb 1 tt x40e00000 ff x3faf5c29 nv x42000000 view1 x42000000 view2 x41f80000 view3 x41f00000 view4 x41e80000 view5 x41e00000 view6 x41d80000 view7 x41d00000 view8 x41c80000 view9 x41c00000 view10 x41b80000 view11 x41b00000 view12 x41a80000 view13 x41a00000 view14 x41980000 view15 x41900000 view16 x41880000 view17 x41800000 view18 x41700000 view19 x41600000 view20 x41500000 view21 x41400000 view22 x41300000 view23 x41200000 view24 x41100000 view25 x41000000 view26 x40e00000 view27 x40c00000 view28 x40a00000 view29 x40800000 view30 x40400000 view31 x40000000 view32 1}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { selectFeatherPoints str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 tt 7 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {4000 4000}
+ color 0
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ view {}
+ motionblur_shutter_offset_type centred
+ feather_falloff 1.370000005
+ inverted true
+ source_black_outside true
+ name Mask_Shadow_INNER35
+ xpos 237
+ ypos -2392
+}
+Blur {
+ size {10 20}
+ name Blur_Shadow_INNER35
+ xpos 237
+ ypos -2322
+}
+push $N7405ac00
+Grade {
+ channels alpha
+ white 0.53
+ name Grade_Shadow_Transparency35
+ xpos 419
+ ypos -2462
+}
+RotoPaint {
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x457a0000 x457a0000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Ellipse2 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {xc29236a7 x3ea108c5}
+        {x44be541c x433c6adb}
+        {x429236a0 xbea10685}
+        {xc296c619 xc007d122}
+        {x44d78d5c x433eab80}
+        {x4296c619 x4007d130}
+        {xc1b08bb1 xc045d83d}
+        {x44ef183b x43476648}
+        {x41b08bb1 x4045d84b}
+        {x41807749 xc1773232}
+        {x44f556e5 x43600d03}
+        {xc180774a x41773230}
+        {x423bf249 xc0910e41}
+        {x44e745ee x4381ccda}
+        {xc23bf249 x40910e4a}
+        {x42eaa560 x3ed118d9}
+        {x44bd81db x43859225}
+        {xc2eaa564 xbed11b2b}
+        {x4228283d x40819b21}
+        {x4498dd1e x4380b559}
+        {xc228283d xc0819b2f}
+        {x417a1673 x4195cbd7}
+        {x448c262f x43651969}
+        {xc17a1670 xc195cbd8}
+        {xc1c2b680 x3fcbd980}
+        {x4492cc64 x434749fc}
+        {x41ce8080 xbfd83100}
+        {xc28476d4 x400454fa}
+        {x44a77cda x434052f8}
+        {x428476d4 xc00454bd}}}
+      {cc
+       {f 8192}
+       {px 1
+        {xc29236a7 x3ea108c5}
+        {xbddbc000 xc07ffc00}
+        {x429236b0 xbea10685}
+        {xc296c619 xc007d122}
+        {x3f341000 xc07f5d40}
+        {x4296c619 x4007d130}
+        {xc1e5cdc0 xbf242d00}
+        {x4279df80 xc0984380}
+        {x41fe7840 x3f369a00}
+        {x41807749 xc1773232}
+        {x43575588 xc13fc2f0}
+        {xc180774a x41773230}
+        {x430869e0 xc177c260}
+        {x42a91670 x41a713a0}
+        {xc23b9a00 x40ab3c00}
+        {x42eaa560 x3ed118d9}
+        {x4081cd00 x41d7ff90}
+        {xc2eaa564 xbed11b2b}
+        {x4228283d x40819b21}
+        {xc0fa6f00 x41bccae0}
+        {xc228283d xc0819b2f}
+        {x41d7fd40 x422584b8}
+        {xc2cbb7b0 xc0c4a800}
+        {xc1553e80 xc1a36b60}
+        {xc1c2b5c0 x3fcbd880}
+        {xc0705200 xc081bbe0}
+        {x41ce8200 xbfd83080}
+        {xc28476d4 x400454fa}
+        {xbf47a800 xc07f37c0}
+        {x428476d4 xc00454bd}}}}
+     {t x44c00000 x44c00000
+      {{1 0}}     0 0
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 1}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 0}}
+      {{1 1}}}
+     {a r 0 g 0 b 0 a 0 inv 1 osw x41200000 osf 0 str 1 spx x457a0000 spy x457a0000 sb 1 tt x40e00000 ff x3faf5c29 nv x42000000 view1 x42000000 view2 x41f80000 view3 x41f00000 view4 x41e80000 view5 x41e00000 view6 x41d80000 view7 x41d00000 view8 x41c80000 view9 x41c00000 view10 x41b80000 view11 x41b00000 view12 x41a80000 view13 x41a00000 view14 x41980000 view15 x41900000 view16 x41880000 view17 x41800000 view18 x41700000 view19 x41600000 view20 x41500000 view21 x41400000 view22 x41300000 view23 x41200000 view24 x41100000 view25 x41000000 view26 x40e00000 view27 x40c00000 view28 x40a00000 view29 x40800000 view30 x40400000 view31 x40000000 view32 1}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { selectCurves str 1 ssx 1 ssy 1 sf 1 }
+  { selectFeatherPoints str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 tt 7 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {4000 4000}
+ color 0
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ view {}
+ motionblur_shutter_offset_type centred
+ feather_falloff 1.370000005
+ inverted true
+ source_black_outside true
+ name Mask_Shadow35
+ xpos 419
+ ypos -2393
+}
+Blur {
+ size {100 20}
+ filter box
+ quality 30
+ name Blur_Shadow35
+ xpos 419
+ ypos -2320
+}
+Dot {
+ name Dot2447
+ xpos 453
+ ypos -2234
+}
+ChannelMerge {
+ inputs 2
+ name ChannelMerge36
+ xpos 237
+ ypos -2251
+}
+Constant {
+ inputs 0
+ channels rgb
+ name BLACK35
+ xpos 20
+ ypos -2362
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy1108
+ xpos 20
+ ypos -2244
+}
+Premult {
+ name Premult195
+ xpos 20
+ ypos -2165
+}
+Dot {
+ name Dot2448
+ xpos 54
+ ypos -2108
+}
+Grade {
+ channels alpha
+ white 0.9
+ name Shadow_Transparency35
+ xpos 409
+ ypos -2118
+}
+AddChannels {
+ channels Floor_Shadow
+ name AddChannels194
+ xpos 595
+ ypos -2118
+}
+Constant {
+ inputs 0
+ color {1 1 1 1}
+ name Constant129
+ xpos 15
+ ypos -3031
+}
+Dot {
+ name Dot2449
+ xpos 49
+ ypos -2886
+}
+AddChannels {
+ channels Background
+ name AddChannels195
+ xpos 595
+ ypos -2898
+}
+push 0
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 Background.red
+ from1 rgba.green
+ to1 Background.green
+ from2 rgba.blue
+ to2 Background.blue
+ from3 rgba.alpha
+ to3 Background.alpha
+ name Copy1109
+ xpos 725
+ ypos -2918
+}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 Floor_Shadow.red
+ from1 rgba.green
+ to1 Floor_Shadow.green
+ from2 rgba.blue
+ to2 Floor_Shadow.blue
+ from3 rgba.alpha
+ to3 Floor_Shadow.alpha
+ name Copy1110
+ xpos 725
+ ypos -2138
+}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 Floor_Reflection.red
+ from1 rgba.green
+ to1 Floor_Reflection.green
+ from2 rgba.blue
+ to2 Floor_Reflection.blue
+ from3 rgba.alpha
+ to3 Floor_Reflection.alpha
+ name Copy1111
+ xpos 725
+ ypos -1366
+}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 Beauty.red
+ from1 rgba.green
+ to1 Beauty.green
+ from2 rgba.blue
+ to2 Beauty.blue
+ from3 rgba.alpha
+ to3 Beauty.alpha
+ name Copy1112
+ xpos 725
+ ypos -1052
+}
+Remove {
+ channels rgba
+ name Remove_RGBA1
+ xpos 725
+ ypos -819
+}
+set N7495d000 [stack 0]
+Write {
+ channels all
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/Save_PSD_From_Nuke_TESTING.exr
+ file_type exr
+ create_directories true
+ version 1
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ afterFrameRender "import NukePSD.Test_Running_JSX_Script_v001\nPS = NukePSD.Test_Running_JSX_Script_v001.NukePSD()\nPS._run_JS_command()"
+ name Write0
+ note_font Verdana
+ note_font_color 0xff
+ xpos 725
+ ypos -715
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+push $N7495d000
+Group {
+ name Nuke_to_PSD
+ knobChanged "\nGroupNode = nuke.thisNode()\nKnob = nuke.thisKnob()\n\nwith GroupNode:\n    Writes = \[node for node in GroupNode.nodes() if node.Class() == 'Write']\n\n# \"Automatic\" Tab knobs...\nif Knob.name() == 'ICC_knob':\n    for WriteNode in Writes:\n        WriteNode\['ICC_knob'].setValue(Knob.value())\n"
+ selected true
+ xpos 1212
+ ypos -819
+ addUserKnob {20 main_tab l "Nuke to PSD"}
+ addUserKnob {26 step_1 l (1) T " Scan for input image layers..."}
+ addUserKnob {22 scan_button l Scan T "import NukePSD.Nuke_to_PSD_Group_v003\nreload(NukePSD.Nuke_to_PSD_Group_v003)\nLayers = NukePSD.Nuke_to_PSD_Group_v003._get_group_input_layers()\nNukePSD.Nuke_to_PSD_Group_v003._create_layer_order_knobs(Layers)\nNukePSD.Nuke_to_PSD_Group_v003._create_group_layer_nodes(Layers)" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_2 l (2) T " Set the PSD output directory and other settings..."}
+ addUserKnob {22 output_dir_select l "Output Dir:" T "Dir = nuke.getFilename('Select Directory', pattern='*/*', type='select', multiple=False)\n\nnuke.thisNode().knob('dir_text').setValue(Dir)" +STARTLINE}
+ addUserKnob {1 dir_text l "" -STARTLINE}
+ addUserKnob {4 ICC_knob l "ICC Profile:" M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc" ""}}
+ ICC_knob sRGB.icc
+ addUserKnob {4 create_PSD_files l "Create PSD Files:" M {"now, on render completion" "later, with post process function" "" "" "" ""}}
+ addUserKnob {6 delete_temp_files l "Delete Temp PNG Files" +STARTLINE}
+ delete_temp_files true
+ addUserKnob {26 ""}
+ addUserKnob {26 step_3 l (3) T " Type the PSD file name... "}
+ addUserKnob {1 PSD_filename l "PSD Filename:"}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_4 l (4) T " Set PSD file layer order below (lowest number is bottom layer) -- then, Render."}
+ addUserKnob {22 render_button l Render T "import NukePSD.Nuke_to_PSD_Group_v003\nreload(NukePSD.Nuke_to_PSD_Group_v003)\nNukePSD.Nuke_to_PSD_Group_v003._render_write_nodes()" +STARTLINE}
+}
+ Input {
+  inputs 0
+  name Input1
+  selected true
+  xpos 736
+  ypos -565
+ }
+ Output {
+  name Output1
+  xpos 736
+  ypos -272
+ }
+end_group
+Viewer {
+ frame_range 1-3
+ name Viewer1
+ xpos 634
+ ypos -286
+}
+Read {
+ inputs 0
+ file D:/rbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ACES_WORKFLOW/dfulmer/elantra_test/red_q50_0000.exr
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ origset true
+ name Read2
+ xpos 1156
+ ypos -319
+}
+Read {
+ inputs 0
+ file D:/rbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ACES_WORKFLOW/dfulmer/elantra_test/white.exr
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ origset true
+ name Read3
+ xpos 1414
+ ypos -294
+}
+push $N7459d800
+Write {
+ channels rgba
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Floor_Reflection/Floor_Reflection_%04d.png
+ file_type png
+ create_directories true
+ render_order 2
+ checkHashOnRead false
+ version 44
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ name Write_Floor_Reflection
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1704
+ ypos -1511
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+push $N741e3800
+Write {
+ channels rgba
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Beauty/Beauty_%04d.png
+ file_type png
+ create_directories true
+ render_order 4
+ checkHashOnRead false
+ version 44
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ afterRender "import NukePSD.Standalone_JSX_Script_v002\nNPSD = NukePSD.Standalone_JSX_Script_v002.NukePSD()\nNPSD._write_data_file()\nNPSD._run_JS_command()"
+ name Write_Beauty1
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1936
+ ypos -1963
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+push $N7459d400
+Write {
+ channels rgba
+ file D:/rbobo/Dropbox/richbobo/NUKE/Scripts/Save_PSD_From_Nuke_TESTING/img/PNG/Shadow/Shadow_%04d.png
+ file_type png
+ create_directories true
+ render_order 3
+ checkHashOnRead false
+ version 44
+ in_colorspace "ACES - ACEScg"
+ out_colorspace "ACES - ACEScg"
+ name Write_Shadow
+ label "ICC Profile: sRGB.icc"
+ note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 1811
+ ypos -1511
+ disable true
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}

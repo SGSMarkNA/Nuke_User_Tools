@@ -1,0 +1,584 @@
+#! /Applications/Nuke10.5v7/Nuke10.5v7.app/Contents/MacOS/libnuke-10.5.7.dylib -nx
+version 10.5 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-4" y="22" w="2560" h="1418" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1605" stretch="1"/>
+            <splitter orientation="2">
+                <split size="454"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="938"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+            <split size="907"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+                <page id="com.richbobo.LocalizeFiles"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name "/Users/richbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/NukePSD/Nuke_Scripts/_From_Roger/psd_maker_SIMPLIFIED.nk"
+ last_frame 1
+ lock_range true
+ format "6000 4500 0 0 6000 4500 1 "
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath //isln-smb.ad.sgsco.int/library/OCIO_Configs/aw_Comp_aces_1.0.3/aw_Comp_config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut AW/sRGB_ICC(sRGB)
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut "ACES - ACES2065-1"
+ floatLut "ACES - ACES2065-1"
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ FrameListMode Custom
+ addUserKnob {1 CustomFrameList l customFrameList}
+ CustomFrameList 1-8
+ addUserKnob {1 Department l department}
+ addUserKnob {1 Pool l pool}
+ Pool aw
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ SecondaryPool aw
+ addUserKnob {1 Group l group}
+ Group 64gb
+ addUserKnob {1 Priority l priority}
+ Priority 75
+ addUserKnob {1 MachineLimit l machineLimit}
+ MachineLimit 0
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ IsBlacklist False
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ LimitGroups nuke
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ SubmitSuspended False
+ addUserKnob {1 ChunkSize l chunkSize}
+ ChunkSize 1
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ ConcurrentTasks 1
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ LimitConcurrentTasks True
+ addUserKnob {1 Threads l threads}
+ Threads 0
+ addUserKnob {1 SubmitScene l submitScene}
+ SubmitScene True
+ addUserKnob {1 BatchMode l batchMode}
+ BatchMode False
+ addUserKnob {1 ContinueOnError l continueOnError}
+ ContinueOnError True
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ UseNodeRange False
+ addUserKnob {1 UseGpu l useGpu}
+ UseGpu False
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ ChooseGpu 0
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ EnforceRenderOrder False
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ DeadlineRenderMode "Use Scene Settings"
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ PerformanceProfiler False
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ ReloadPlugin False
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x8e388e00
+ note_font_size 42
+ xpos -4715
+ ypos 10091
+ bdwidth 179
+ bdheight 155
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode17
+ tile_color 0x388e8e00
+ label Glass
+ note_font_size 42
+ xpos -5229
+ ypos 9430
+ bdwidth 119
+ bdheight 164
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode19
+ tile_color 0xaaaaaa00
+ label INT
+ note_font_size 42
+ xpos -5225
+ ypos 9620
+ bdwidth 109
+ bdheight 565
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Glass/Glass_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ version 1
+ name Read376
+ xpos -5209
+ ypos 9492
+}
+set N3b487810 [stack 0]
+push 0
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/Interior/Tech_A_SPEC_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ version 1
+ name Read410
+ xpos -5210
+ ypos 10070
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/Interior/Tech_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ version 1
+ name Read409
+ xpos -5210
+ ypos 9970
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/Interior/Premium_A_Spec_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ version 1
+ name Read408
+ xpos -5210
+ ypos 9877
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/Interior/Premium_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ version 1
+ name Read407
+ xpos -5210
+ ypos 9784
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/Interior/Base_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ version 1
+ name Read406
+ xpos -5211
+ ypos 9689
+}
+push $N3b487810
+Constant {
+ inputs 0
+ channels rgb
+ name Constant3
+ xpos -4946
+ ypos 9411
+}
+add_layer {Windows Windows.red Windows.green Windows.blue Windows.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Windows
+ name ShuffleCopy2
+ xpos -4946
+ ypos 9525
+}
+add_layer {Int_Base Int_Base.red Int_Base.green Int_Base.blue Int_Base.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Base
+ name ShuffleCopy3
+ xpos -4946
+ ypos 9722
+}
+add_layer {Int_Premium Int_Premium.red Int_Premium.green Int_Premium.blue Int_Premium.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Premium
+ name ShuffleCopy4
+ xpos -4946
+ ypos 9817
+}
+add_layer {Int_PremAspec Int_PremAspec.red Int_PremAspec.green Int_PremAspec.blue Int_PremAspec.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_PremAspec
+ name ShuffleCopy5
+ xpos -4946
+ ypos 9910
+}
+add_layer {Int_Tech Int_Tech.red Int_Tech.green Int_Tech.blue Int_Tech.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Tech
+ name ShuffleCopy6
+ xpos -4946
+ ypos 10003
+}
+add_layer {Int_Tech_Aspec Int_Tech_Aspec.red Int_Tech_Aspec.green Int_Tech_Aspec.blue Int_Tech_Aspec.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Tech_Aspec
+ name ShuffleCopy7
+ xpos -4946
+ ypos 10103
+}
+Remove {
+ channels rgba
+ name Remove1
+ xpos -4946
+ ypos 10169
+}
+Group {
+ name Nuke_to_PSD
+ knobChanged "\nimport operator\nGroupNode = nuke.thisNode()\nKnob = nuke.thisKnob()\n\n# The list of Write nodes in the group...\ntry:\n    Writes = \[node for node in GroupNode.nodes() if node.Class() == 'Write']\n    # Use the render_order of the Writes to identify which one has the afterRender callback in its Python tab...\n    # Dictionary of Writes, ordered by render_order, to find last Write that holds the afterRender callback code...\n    WritesOrderDict = \{\}\n    for node in Writes:\n        order = node\['render_order'].value()\n        WritesOrderDict\[node] = order\n    #print \"WritesOrderDict --> \", WritesOrderDict\n    # Sort by render_order value...\n    sorted_WritesOrderDict = sorted(WritesOrderDict.items(), key=operator.itemgetter(1))\n    #print \"sorted_WritesOrderDict --> \", sorted_WritesOrderDict\n    CallBackWriteNode = sorted_WritesOrderDict\[-1]\[0]\n    #print \"CallBackWriteNode --> \", CallBackWriteNode.name()\nexcept:\n    pass\n\n# The list of knobs to be checked...\nICC_KNOB = GroupNode.knob('ICC_knob')\nPSD_KNOB = GroupNode.knob('create_PSD_files')\nDEL_KNOB = GroupNode.knob('delete_temp_files')\nOUTPUT_KNOB = GroupNode.knob('dir_text')\nPSD_FILE_KNOB = GroupNode.knob('PSD_filename')\nVIEWS_KNOB = GroupNode.knob('views')\nSCAN_KNOB = GroupNode.knob('scan_button')\n#RENDER_KNOB = GroupNode.knob('render_button')\n\n# afterRender callbacks...\nCallback_with_PSD = \"\"\"\nimport NukePSD.Nuke_to_PSD\nNPSD = NukePSD.Nuke_to_PSD.NukePSD()\nNPSD._run_write_data_file()\nNPSD._run_JS_command()\n\"\"\"\nCallback_no_PSD = \"\"\"\nimport NukePSD.Nuke_to_PSD\nNPSD = NukePSD.Nuke_to_PSD.NukePSD()\nNPSD._run_write_data_file()\n\"\"\"\n\nif len(nuke.views()) > 1:\n    PSD_FILE_KNOB.setValue(\"Not used for multiple views. View name is used, instead.\")\n    PSD_FILE_KNOB.setEnabled(False)\nelif len(nuke.views()) == 1:\n    PSD_FILE_KNOB.setEnabled(True)\n\n\nif Knob == ICC_KNOB:\n    for WriteNode in Writes:\n        WriteNode\['ICC_knob'].setValue(Knob.value())\n\nif Knob == PSD_KNOB:\n    if Knob.value() == 'now, on render completion':\n        try:\n            CallBackWriteNode\['afterRender'].setValue(Callback_with_PSD)\n        except:\n            pass\n        DEL_KNOB.setValue(True)\n        DEL_KNOB.setEnabled(True)\n    elif Knob.value() == 'later, with post process function':\n        try:\n            CallBackWriteNode\['afterRender'].setValue(Callback_no_PSD)\n        except:\n            pass\n        DEL_KNOB.setValue(False)\n        DEL_KNOB.setEnabled(False)\n\nif Knob == OUTPUT_KNOB or Knob == SCAN_KNOB:\n    try:\n        OutputDir = OUTPUT_KNOB.value()\n\n        if OutputDir:\n            if OutputDir.endswith('/'):\n                pass\n            else:\n                OutputDir = OutputDir + '/'\n\n            for WriteNode in Writes:\n                ShuffleNode = WriteNode.input(0)\n                layername = ShuffleNode\['in'].value()\n                # We're only using one view, most likely the default, \"main\"...\n                if len(nuke.views()) == 1:\n                    WriteNode\['file'].setValue(OutputDir + 'PNG' + '/' + layername + '/' + layername + '_%04d' + '.png')\n                # We're using multiple views...\n                elif len(nuke.views()) > 1:\n                    WriteNode\['file'].setValue(OutputDir + 'PNG' + '/' + '%V' + '/' + layername + '/' + layername + '_%04d' + '.png')\n        else:\n            for WriteNode in Writes:\n                WriteNode\['file'].setValue('')\n    except:\n        raise\n\nif Knob == VIEWS_KNOB:\n    try:\n        for WriteNode in Writes:\n            WriteNode\['views'].setValue(VIEWS_KNOB.value())\n    except:\n        pass\n"
+ xpos -4663
+ ypos 10169
+ addUserKnob {20 main_tab l "Nuke to PSD"}
+ addUserKnob {26 step_1 l (1) T " Scan for input image layers..."}
+ addUserKnob {22 scan_button l Scan T "import NukePSD.Nuke_to_PSD_Group\nreload(NukePSD.Nuke_to_PSD_Group)\nLayers = NukePSD.Nuke_to_PSD_Group._get_group_input_layers()\nNukePSD.Nuke_to_PSD_Group._create_layer_order_knobs(Layers)\nNukePSD.Nuke_to_PSD_Group._create_group_layer_nodes(Layers)" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_2 l (2) T " Set the PSD output directory path and other settings..."}
+ addUserKnob {22 output_dir_select l "Output Dir:" T "Dir = nuke.getFilename('Select Directory', pattern='*/*', type='select', multiple=False)\n\nnuke.thisNode().knob('dir_text').setValue(Dir)" +STARTLINE}
+ addUserKnob {1 dir_text l "" -STARTLINE}
+ dir_text /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/
+ addUserKnob {4 ICC_knob l "ICC Profile:" M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc" ""}}
+ ICC_knob sRGB.icc
+ addUserKnob {4 create_PSD_files l "Create PSD Files:" M {"now, on render completion" "later, with post process function" "" "" "" ""}}
+ create_PSD_files "later, with post process function"
+ addUserKnob {6 delete_temp_files l "Delete Temp Files" +DISABLED +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_3 l (3) T " Type the PSD file name... "}
+ addUserKnob {1 PSD_filename l "PSD Filename:"}
+ PSD_filename RogersComp
+ addUserKnob {26 ""}
+ addUserKnob {26 step_4 l (4) T " Set PSD file layer order below (lowest number is bottom layer) -- then, Render."}
+ addUserKnob {22 render_button l Render T "try:\n    del nuke.__dict__\[\"_afterRenderCount\"]\nexcept:\n    pass\nimport NukePSD.Nuke_to_PSD_Group\nreload(NukePSD.Nuke_to_PSD_Group)\nNukePSD.Nuke_to_PSD_Group._render_write_nodes()" +STARTLINE}
+ addUserKnob {45 views}
+ views {main}
+ addUserKnob {3 _ORDER_Windows l Windows}
+ _ORDER_Windows 5
+ addUserKnob {3 _ORDER_Int_Tech l Int_Tech}
+ _ORDER_Int_Tech 2
+ addUserKnob {3 _ORDER_Int_PremAspec l Int_PremAspec}
+ _ORDER_Int_PremAspec 3
+ addUserKnob {3 _ORDER_Int_Tech_Aspec l Int_Tech_Aspec}
+ _ORDER_Int_Tech_Aspec 4
+ addUserKnob {3 _ORDER_Glass l Glass}
+ _ORDER_Glass 1
+ addUserKnob {3 _ORDER_Int_Premium l Int_Premium}
+ _ORDER_Int_Premium 6
+ addUserKnob {3 _ORDER_Int_Base l Int_Base}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 736
+  ypos -565
+ }
+ Reformat {
+  black_outside true
+  name Reformat1
+  label "THIS FIXES PHOTOSHOP\nONE PIXEL OFFSET PROBLEM"
+ }
+set N3c7140a0 [stack 0]
+ Shuffle {
+  in Int_Base
+  name Shuffle7
+  label "\[value in]"
+ }
+ Write {
+  channels rgba
+  file /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/PNG/Int_Base/Int_Base_%04d.png
+  file_type png
+  create_directories true
+  render_order 7
+  checkHashOnRead false
+  version 1
+  afterRender "\nimport NukePSD.Nuke_to_PSD\nNPSD = NukePSD.Nuke_to_PSD.NukePSD()\nNPSD._run_write_data_file()\n"
+  name Write7
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  selected true
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+ Output {
+  name Output1
+  xpos 736
+  ypos -272
+ }
+push $N3c7140a0
+ Shuffle {
+  in Windows
+  name Shuffle1
+  label "\[value in]"
+ }
+ Write {
+  channels rgba
+  file /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/PNG/Windows/Windows_%04d.png
+  file_type png
+  create_directories true
+  checkHashOnRead false
+  version 1
+  name Write1
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+push $N3c7140a0
+ Shuffle {
+  in Int_Tech
+  name Shuffle2
+  label "\[value in]"
+ }
+ Write {
+  channels rgba
+  file /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/PNG/Int_Tech/Int_Tech_%04d.png
+  file_type png
+  create_directories true
+  render_order 2
+  checkHashOnRead false
+  version 1
+  name Write2
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+push $N3c7140a0
+ Shuffle {
+  in Int_PremAspec
+  name Shuffle3
+  label "\[value in]"
+ }
+ Write {
+  channels rgba
+  file /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/PNG/Int_PremAspec/Int_PremAspec_%04d.png
+  file_type png
+  create_directories true
+  render_order 3
+  checkHashOnRead false
+  version 1
+  name Write3
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+push $N3c7140a0
+ Shuffle {
+  in Int_Tech_Aspec
+  name Shuffle4
+  label "\[value in]"
+ }
+ Write {
+  channels rgba
+  file /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/PNG/Int_Tech_Aspec/Int_Tech_Aspec_%04d.png
+  file_type png
+  create_directories true
+  render_order 4
+  checkHashOnRead false
+  version 1
+  name Write4
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+push $N3c7140a0
+ Shuffle {
+  in none
+  name Shuffle5
+  label "\[value in]"
+ }
+ Write {
+  channels rgba
+  file /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/PNG/none/none_%04d.png
+  file_type png
+  create_directories true
+  render_order 5
+  checkHashOnRead false
+  version 1
+  name Write5
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+push $N3c7140a0
+ Shuffle {
+  in Int_Premium
+  name Shuffle6
+  label "\[value in]"
+ }
+ Write {
+  channels rgba
+  file /Users/richbobo/Desktop/NukePSD_TESTING/TESTING_3/PNG/Int_Premium/Int_Premium_%04d.png
+  file_type png
+  create_directories true
+  render_order 6
+  checkHashOnRead false
+  version 1
+  name Write6
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+end_group
+Viewer {
+ inputs 3
+ frame 1
+ frame_range 1-1
+ input_number 2
+ colour_sample_bbox {0.04233333468 0.1476666629 0.07800000161 0.1863333285}
+ samplepoints {{0.80400002 -0.3183333278}
+   }
+ translate {-0.4250000119 -0.09449999779}
+ name Viewer1
+ xpos -4663
+ ypos 10340
+}

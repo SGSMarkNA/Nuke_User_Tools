@@ -1,0 +1,1 @@
+﻿// Four zeroesvar s1 = "0000";// Get field valuevar s2 = "2";// Add needed number of leading zeroesvar AccNum = s1.substr(0, s1.length - s2.length) + s2;alert(AccNum);

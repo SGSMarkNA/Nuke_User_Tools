@@ -1,0 +1,14 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+push $cut_paste_input
+Gamma {
+ value 2.2
+ maskChannelInput rgba.alpha
+ fringe true
+ name Gamma1
+ tile_color 0xff0000ff
+ label "2.2 Gamma to show what Photoshop sRGB\nlayer blending will look like...\n\nvalue = 2.2\nmask = rgb.alpha\nfringe = \[checked]"
+ selected true
+ xpos 4559
+ ypos 304
+}

@@ -1,0 +1,323 @@
+#! /Applications/Nuke10.5v4/Nuke10.5v4.app/Contents/MacOS/libnuke-10.5.4.dylib -nx
+version 10.5 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="22" w="2560" h="1414" maximized="1" screen="0">
+        <splitter orientation="1">
+            <split size="1674"/>
+            <splitter orientation="1">
+                <split size="1067"/>
+                <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                    <page id="uk.co.thefoundry.scripteditor.1"/>
+                </dock>
+                <split size="603"/>
+                <dock id="" activePageId="Properties.1" focus="true">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+            <split size="882"/>
+            <splitter orientation="2">
+                <split size="694"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="694"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Users/richbobo/Dropbox/CODE_aw_projects/aw_projects/EXR_Layer_Exporter/Nuke_Scripts/Layer_Exporter/Layer_Exporter_BUILD_NEW_v014_x001.nk
+ last_frame 1
+ lock_range true
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath //isln-smb.armstrong-white.com/library/OCIO_Configs/aw_Comp_aces_1.0.3/aw_Comp_config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut AW/sRGB_ICC(sRGB)
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut "ACES - ACES2065-1"
+ floatLut "ACES - ACES2065-1"
+}
+Read {
+ inputs 0
+ file C:/Users/rbobo/Desktop/TESTING/empty.exr
+ localizationPolicy on
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ origset true
+ name Read11
+ xpos -456
+ ypos 107
+}
+set N2ab5ea00 [stack 0]
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet11
+ xpos -456
+ ypos 193
+}
+Read {
+ inputs 0
+ file C:/Users/rbobo/Desktop/TESTING/SingleLayer_EXR.exr
+ localizationPolicy on
+ format "2000 1125 0 0 2000 1125 1 "
+ origset true
+ version 1
+ name Read12
+ xpos -66
+ ypos 102
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet12
+ xpos -66
+ ypos 200
+}
+Read {
+ inputs 0
+ file X:/Designory/DESI-17-040_2018_Armada_Platinum_Reserve_360s/work/18TDI_ARMw001/img/ren/v04/wheels/Armada_wheels_####.exr
+ localizationPolicy on
+ format "6000 3376 0 0 6000 3376 0.999563 "
+ last 8
+ origlast 8
+ origset true
+ name Read10
+ xpos 123
+ ypos -49
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet10
+ xpos 123
+ ypos 49
+}
+Read {
+ inputs 0
+ file R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/budlight_130/img/ren/v002/BTY_wDrops/budLight_BTY_wDrops_####.exr
+ localizationPolicy on
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ origset true
+ name Read9
+ xpos -76
+ ypos -44
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet9
+ xpos -76
+ ypos 42
+}
+push 0
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/TESTING_1_2_3.exr
+ localizationPolicy on
+ format "2000 1125 0 0 2000 1125 1 "
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read8
+ xpos -738
+ ypos 63
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet8
+ xpos -738
+ ypos 153
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/img/comp/apple_cucumber/v001/apple_cucumber_drink_v001.exr
+ localizationPolicy on
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read7
+ xpos -738
+ ypos -81
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet7
+ xpos -738
+ ypos 10
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ACES_WORKFLOW/CHOBANI_TEST/footage/BTY/Chobani_Drinks_BTY_0001.exr
+ localizationPolicy on
+ format "12000 12000 0 0 12000 12000 1 "
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read3
+ xpos -74
+ ypos -234
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet6
+ xpos -74
+ ypos -144
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ACES_WORKFLOW/dfulmer/elantra_test/white.exr
+ localizationPolicy on
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read5
+ xpos -203
+ ypos -234
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet5
+ xpos -203
+ ypos -144
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ACES_WORKFLOW/dfulmer/elantra_test/red_q50_0000.exr
+ localizationPolicy on
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read4
+ xpos -336
+ ypos -234
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet3
+ xpos -336
+ ypos -144
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/EXR_REBUILD_IN_PHOTOSHOP/EXRs/2016Elantra_Int360_Value_0001.exr
+ localizationPolicy on
+ format "2000 1125 0 0 2000 1125 1 "
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read6
+ xpos -479
+ ypos -234
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet4
+ xpos -479
+ ypos -144
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/ElantraGray8frame_v06_LimTech_0001_16bit_RETOUCHED_LAYERS.exr
+ localizationPolicy on
+ format "2000 1125 0 0 2000 1125 1 "
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read2
+ xpos -617
+ ypos -234
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet2
+ xpos -617
+ ypos -144
+}
+Read {
+ inputs 0
+ file /Users/richbobo/Dropbox/richbobo/NUKE/Photoshop_and_Nuke/___Photoshop_Outputs_TESTING___/Mazda_CX5_Bty_int_parch_0004.exr
+ localizationPolicy on
+ format "2000 2000 0 0 2000 2000 1 "
+ origset true
+ colorspace "ACES - ACES2065-1"
+ name Read1
+ xpos -742
+ ypos -234
+}
+LayerContactSheet {
+ center true
+ showLayerNames true
+ name LayerContactSheet1
+ xpos -742
+ ypos -144
+}
+Viewer {
+ inputs 10
+ frame 1
+ frame_range 1-1
+ input_number 3
+ viewerProcess "sRGB_ICC(sRGB) (AW)"
+ name Viewer1
+ xpos -435
+ ypos -3
+}
+push $N2ab5ea00
+Group {
+ name Layer_Exporter
+ knobChanged "\ndef knobChanged():\n\n    Node = nuke.thisNode()\n    Knob = nuke.thisKnob()\n\n    # \"Automatic\" Tab knobs...\n    if Knob.name() == 'filetype':\n        if Knob.value() == 'exr':\n            Node.knob('icc_profile').setValue('Empty')\n            Node.knob('icc_profile').setEnabled(False)\n            Node.knob('exr_consolidate').setEnabled(True)\n        elif Knob.value() == 'tga':\n            Node.knob('icc_profile').setValue('Empty')\n            Node.knob('icc_profile').setEnabled(False)\n            Node.knob('exr_consolidate').setValue(False)\n            Node.knob('exr_consolidate').setEnabled(False)\n        else:\n            Node.knob('icc_profile').setEnabled(True)\n            Node.knob('exr_consolidate').setValue(False)\n            Node.knob('exr_consolidate').setEnabled(False)\n\n    # \"Manual\" Tab knobs...\n    if Knob.name() == 'filetype2':\n        if Knob.value() == 'exr':\n            Node.knob('icc_profile2').setValue('Empty')\n            Node.knob('icc_profile2').setEnabled(False)\n            Node.knob('exr_consolidate2').setEnabled(True)\n        elif Knob.value() == 'tga':\n            Node.knob('icc_profile2').setValue('Empty')\n            Node.knob('icc_profile2').setEnabled(False)\n            Node.knob('exr_consolidate2').setValue(False)\n            Node.knob('exr_consolidate2').setEnabled(False)\n        else:\n            Node.knob('icc_profile2').setEnabled(True)\n            Node.knob('exr_consolidate2').setValue(False)\n            Node.knob('exr_consolidate2').setEnabled(False)\n\nknobChanged()\n"
+ selected true
+ xpos -305
+ ypos 133
+ addUserKnob {20 auto_tab l Automatic}
+ addUserKnob {26 title_auto l "AUTO OUTPUT EXR LAYERS: " T "(Automatically removes empty layers.)"}
+ addUserKnob {26 ""}
+ addUserKnob {2 dest_dir l "Output Directory:"}
+ addUserKnob {68 filetype l "Image Type:" M {png tif jpg exr tga}}
+ addUserKnob {6 exr_consolidate l "Consolidate Layers (Single EXR File)" t "Instead of rendering the layers to separate files, just remove empty layers and save to a new EXR file." +DISABLED +STARTLINE}
+ addUserKnob {68 icc_profile l "ICC Profile:" M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc" ""}}
+ icc_profile sRGB.icc
+ addUserKnob {26 ""}
+ addUserKnob {22 do_it l "Do it." T "import EXR_Layer_Exporter.Auto_Do_It\nreload(EXR_Layer_Exporter.Auto_Do_It)" +STARTLINE}
+ addUserKnob {20 manual_tab l Manual}
+ addUserKnob {26 title_manual l "SELECT EXR LAYERS TO OUTPUT: " T "(Follow the steps below.)"}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_one l "1) Scan for All EXR Layers:" -STARTLINE}
+ addUserKnob {22 check_for_layers l Scan -STARTLINE T "import EXR_Layer_Exporter.Manual_Scan\nreload(EXR_Layer_Exporter.Manual_Scan)"}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_two l "2) Select Layers for Export:"}
+ addUserKnob {22 select_all l "Select All" T "\nfor knob in checkboxKnobs:\n    knob.setValue(True)\n" +STARTLINE}
+ addUserKnob {22 invert_selection l "Invert Selection" -STARTLINE T "\ndef invertSelection():\n    for checkbox in checkboxKnobs:\n        if checkbox.value():\n            checkbox.setValue(False)\n        else:\n            checkbox.setValue(True)    \ninvertSelection()\n"}
+ addUserKnob {6 rgba +STARTLINE}
+ addUserKnob {26 newline2 l "" +STARTLINE}
+ addUserKnob {26 step_three l "3) Set the Image Parameters:"}
+ addUserKnob {2 dest_dir2 l "Output Directory:"}
+ addUserKnob {4 filetype2 l "Image Type:" M {png tif jpg exr tga}}
+ addUserKnob {6 exr_consolidate2 l "Consolidate Layers (Single EXR File)" +DISABLED +STARTLINE}
+ addUserKnob {4 icc_profile2 l "ICC Profile:" M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc Rec2020.icc "ACESCG Linear.icc"}}
+ icc_profile2 sRGB.icc
+ addUserKnob {26 newline5 l "" +STARTLINE}
+ addUserKnob {26 press_the_button l "4) Press the \"Do it.\" Button! :"}
+ addUserKnob {22 do_it2 l "Do it." -STARTLINE T "\nimport nuke\nimport CollectSourceFiles.SourceNodeInfo\nimport re\n\n#------------------------------------------------------------------------\n# The Group node itself...\nGroupNode = nuke.thisNode()\n\n# Get the EXR Read node connected to the Group's input...\ntry:\n    ConnectedNode = GroupNode.input(0)\n    if (ConnectedNode.Class() == 'Read') and (os.path.splitext(nuke.filename(ConnectedNode))\[-1] == \".exr\"):\n        pass\n    else:\n        nuke.message(\"Please connect an EXR file to the input!\")\nexcept AttributeError:\n    nuke.message(\"Please connect an EXR file to the input!\")\n\n# The Output Directory knob for the user to set...\n##user_input = GroupNode.knob('dest_dir2').value()\n\n# ICC Profile to add to image...\nICC_Profile_Name = GroupNode.knob('icc_profile2').value()\n\n# Initialize the NodeInfo class to get parameters from the Read node...\nSource = CollectSourceFiles.SourceNodeInfo.NodeInfo()\n\n# Get first and last frame numbers from Read node...\nfirst = Source.get_info(ConnectedNode)\['firstFrame']\nlast = Source.get_info(ConnectedNode)\['lastFrame']\n# Set the frame range to be rendered...\nFrameRange = \[(int(first), int(last), 1)]\n#------------------------------------------------------------------------\n\ndef get_layers(ConnectedNode):\n    # Get the layers from the EXR...\n    channels = ConnectedNode.channels()\n    #print 'channels', channels\n    layers = list(set(\[c.split('.')\[0] for c in channels]))\n    layers.sort()\n    return layers\n\ndef get_checkbox_knobs():\n    # Make a list of all the checkbox knobs (Boolean_Knob)...\n    checkboxKnobsDict = \{\}\n    checkboxKnobs = \[]\n    # Also, make sure to ignore the exr_consolidate knob on the Automatic tab...\n    knobs_to_ignore = \['exr_consolidate', 'exr_consolidate2', 'selected', 'hide_input', 'cached', 'dope_sheet', 'bookmark', 'postage_stamp', 'useLifetime', 'lock_connections']\n    # Make a list of any checkbox (Boolean_Knob) knobs...\n    regex = re.compile(r\"\\WBoolean_Knob\\W\")   # \\W is anything but a word character...\n    # Start with a list of all the Group's knobs...\n    AllKnobs = GroupNode.knobs()\n    for name, knob in AllKnobs.iteritems():\n        #print name, knob\n        if bool(regex.search(str(type(knob)))):\n            if knob.name() not in knobs_to_ignore:\n                name = knob.name()\n                #print name\n                checkboxKnobsDict\[name] = knob\n            else:\n                pass\n    #print 'checkboxKnobsDict', checkboxKnobsDict\n    return checkboxKnobsDict\n\ndef directory_path_check():\n    destDir = GroupNode.knob('dest_dir2').value()\n    if destDir:\n        # Check to make sure a file path is not passed through.\n        # If splitext \[1] result is empty, we're good...\n        if os.path.splitext(destDir)\[1] == '':\n            # Make sure target path ends with a slash (for consistency)\n            if not destDir.endswith('/'):\n                destDir += '/'\n            # Put the reformatted directory path back in the knob...\n            GroupNode.knob('dest_dir2').setValue(destDir)\n        else:\n            temp_dir = os.path.splitext(destDir)\n            destDir = os.path.dirname(temp_dir\[0])          \n            # Make sure target path ends with a slash (for consistency)\n            if not destDir.endswith('/'):\n                destDir += '/'\n            # Put the reformatted directory path back in the knob...\n            GroupNode.knob('dest_dir2').setValue(destDir)\n            if nuke.ask('Filename not allowed. Path has been changed to a directory format. Please re-check for correctness. Continue?'):\n                pass\n            else:\n                destDir = False\n    # Return the chosen directory path...\n    return destDir\n\ndef cleanup_nodes():\n    try:\n        for Node in GroupNode.nodes():\n            if Node.Class() == ('Input'):\n                pass\n            elif Node.Class() == ('Output'):\n                pass\n            else:\n                nuke.delete(Node)      \n    except ValueError:\n        print \"Value Error: Check in Group for nodes that were not deleted...\"\n\ndef write_layers_to_separate_files(destDir, FileType=''):\n    if destDir == False:\n        return\n\n    # Start working inside the Group's context...\n    GroupNode.begin()\n\n    # Remove any leftover group nodes...\n    cleanup_nodes()\n\n    # The Input node inside the Group, which is connected to the Read node on the Group's input...\n    InputNode = nuke.toNode('Input1')\n\n    WriteNodes = \[]\n    ShuffleNodes = \[]\n\n    # Build a dict of the checkbox names and their respective knob objects...\n    checkboxKnobsDict = get_checkbox_knobs()\n\n    # Get a list of all the layers...\n    layers = get_layers(ConnectedNode)\n\n    # Initialize the user-selected layers...\n    layers_to_export = \[]\n    layers_to_remove = \[]\n\n    # Create a dict that will contain all the checkbox names and their knob objects (and eventually their boolean value)...\n    checkboxesDict = \{\}\n    for checkbox, knob in checkboxKnobsDict.iteritems():\n        knob_value = knob.value()\n        checkboxesDict\[checkbox] = knob_value\n    for knobname, value in checkboxesDict.iteritems():\n        if value == True:\n            # Build a list of layers_to_export by getting the corresponding layer object from layers...by using the checkbox knobnames...\n            layers_to_export.append(knobname)\n    if not layers_to_export:\n        nuke.message('Please select some layers for export!')\n        return\n    else:\n        for layer in layers:\n            if layer not in layers_to_export:\n                layers_to_remove.append(layer)\n\n    # Get the selected image file type to render...\n    FileType = GroupNode.knob('filetype2').value()\n\n    for layer in layers_to_export:\n        ShuffleNode = nuke.createNode('Shuffle', inpanel=False)\n        ShuffleNode.knob('in').setValue(str(layer))\n        # Make sure the Shuffle node's input is connected to the Group's Input node...\n        ShuffleNode.setInput(0, InputNode)\n        ShuffleNodes.append(ShuffleNode)\n\n        WriteNode = nuke.createNode('Write', inpanel=False)\n        WriteNode.knob('file').setValue(str(destDir) + str(layer) + '_%04d' + '.' + FileType)\n        WriteNode.knob('use_limit').setValue(True)\n        WriteNode.knob('first').setValue(first)\n        WriteNode.knob('last').setValue(last)\n        # Make sure the Write node's input is connected to the Shuffle...\n        WriteNode.setInput(0, ShuffleNode)\n        # Add selected ICC Profile...\n        WriteNode.knob('ICC_knob').setValue(ICC_Profile_Name)\n        if layer is not 'rgba':\n            WriteNode.knob('channels').setValue('rgb')\n        else:\n            WriteNode.knob('channels').setValue('rgba')\n        WriteNodes.append(WriteNode)\n\n    if WriteNodes:\n        if len(WriteNodes) == 1:\n            # Single Write node...\n            # nuke.execute() takes a string for the node name...\n            # EX: nuke.execute(nodes, ranges, views, continueOnError=False) -- views is optional.            \n            try:\n                nuke.execute(WriteNodes\[0], first, last, 1)\n            except RuntimeError as error:\n                status = str(error)\n                # Catch the user's Cancel button press...\n                if \"Cancelled\" in status:\n                    cleanup_nodes()\n                    nuke.critical('Cancelled. Check for any .tmp files that may remain in the output folder...')\n                    return\n        else:\n            # Multiple Write nodes:\n            # executeMultiple() takes a tuple of node objects...\n            try:\n                nuke.executeMultiple(tuple(WriteNodes), tuple(FrameRange))\n            except RuntimeError as error:\n                status = str(error)\n                # Catch the user's Cancel button press...\n                if \"Cancelled\" in status:\n                    cleanup_nodes()\n                    nuke.critical('Cancelled.Check for any .tmp files that may remain in the output folder...')\n                    return\n                else:\n                    cleanup_nodes()\n                    nuke.critical('nuke.executeMultiple failed. Exported images are probably OK, though. Check for last .tmp file that may not have been deleted...')\n                    return\n    else:\n        nuke.critical('Only one rgba layer in EXR file!')\n        return None \n\n    # Cleanup remaining nodes...\n    cleanup_nodes()\n\n    # Finish Group operations...\n    GroupNode.end()\n\n\ndef write_consolidated_EXR_layers_to_single_file(destDir):\n\n    if destDir == False:\n        return\n\n    # Start working inside the Group's context...\n    GroupNode.begin()\n\n    # Remove any leftover group nodes...\n    cleanup_nodes()    \n\n    # The Input node inside the Group, which is connected to the Read node on the Group's input...\n    InputNode = nuke.toNode('Input1')\n\n    # Build a dict of the checkbox names and their respective knob objects...\n    checkboxKnobsDict = get_checkbox_knobs()\n\n    # Get a list of all the layers...\n    layers = get_layers(ConnectedNode)\n\n    # Initialize the user-selected layers...\n    layers_to_export = \[]\n    layers_to_remove = \[]\n\n    # Create a dict that will contain all the checkbox names and their knob objects (and eventually their boolean value)...\n    checkboxesDict = \{\}\n    for checkbox, knob in checkboxKnobsDict.iteritems():\n        knob_value = knob.value()\n        checkboxesDict\[checkbox] = knob_value\n    for knobname, value in checkboxesDict.iteritems():\n        if value == True:\n            # Build a list of layers_to_export by getting the corresponding layer object from layers...by using the checkbox knobnames...\n            layers_to_export.append(knobname)\n    if not layers_to_export:\n        nuke.message('Please select some layers for export!')\n        return\n    else:\n        for layer in layers:\n            if layer not in layers_to_export:\n                layers_to_remove.append(layer)\n\n    #----------------------------------------------------------------------\n    # Calculate how many Remove nodes we need -- only 4 layers can be removed per node...\n    # divmod returns a tuple with (quotient, remainder)...\n    num_of_nodes = divmod(len(layers_to_remove), 4)\n    if num_of_nodes\[1] is 0:\n        num_of_nodes = num_of_nodes\[0]\n    else:\n        # We need one additional node for the remainder...\n        num_of_nodes = num_of_nodes\[0] + 1\n\n    # We've only got a maximum of four channel removal knobs available on a Remove node...\n    removal_knobs = \['channels', 'channels2', 'channels3', 'channels4']\n\n    # Select the Input node, so the new nodes get attached after that...\n    InputNode = nuke.toNode('Input1')\n    InputNode.knob(\"selected\").setValue(True)\n\n    # Create the Remove nodes, based on the number of layers to be removed...\n    for node in range(num_of_nodes):\n        RemoveNode = nuke.createNode(\"Remove\", inpanel = False)\n        for knobname in removal_knobs:\n            if layers_to_remove:\n                layer = layers_to_remove.pop()\n                RemoveNode\[knobname].setValue(layer)\n\n    #----------------------------------------------------------------------\n    # Add a Crop node to make sure that Photoshop won't lose a pixel,\n    # based on a misinterpretation of the bounding box...\n    cropnode = nuke.createNode('Crop', inpanel = False)\n    cropnode.knob('label').setValue('PHOTOSHOP FIX.')\n    cropnode.knob('reformat').setValue(True)\n    cropnode.knob('crop').setValue(True)\n\n    WriteNode = nuke.createNode('Write', inpanel=False)\n    # Get original Read node's basename...\n    Filename = Source.get_info(ConnectedNode)\['FilenameForRelink']\n    WriteNode.knob('file').setValue(destDir + Filename)\n    WriteNode.knob('use_limit').setValue(True)\n    WriteNode.knob('first').setValue(first)\n    WriteNode.knob('last').setValue(last)\n    WriteNode.knob('channels').setValue('all')\n    # Make sure the Write node's input is connected to the Shuffle...\n    WriteNode.setInput(0, cropnode)\n\n    # Execute() takes a string for the node name, executeMultiple() takes a tuple of node objects...\n    # Single Write node...\n    try:\n        nuke.execute(WriteNode.name(), first, last, 1)\n    except RuntimeError as error:\n        status = str(error)\n        if \"Cancelled\" in status:\n            cleanup_nodes()\n            nuke.critical('Cancelled. Check for any .tmp files that may remain in the output folder...')\n            return\n\n    #----------------------------------------------------------------------\n    # Remove existing internal group nodes...\n    cleanup_nodes()\n\n    GroupNode.end()\n\n#------------------------------------------------------------------------\n# RUN IT...\ndestDir = directory_path_check()\nif GroupNode.knob('exr_consolidate2').value() == True:\n    write_consolidated_EXR_layers_to_single_file(destDir)\nelse:\n    # Get the selected image file type to render...\n    FileType = GroupNode.knob('filetype2').value()        \n    write_layers_to_separate_files(destDir, FileType)\n    "}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 365
+  ypos -573
+ }
+end_group

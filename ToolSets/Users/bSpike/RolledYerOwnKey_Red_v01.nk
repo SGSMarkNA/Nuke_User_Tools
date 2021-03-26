@@ -1,0 +1,62 @@
+set cut_paste_input [stack 0]
+version 5.2200
+push $cut_paste_input
+Dot {
+ name Dot43
+ selected true
+ xpos 443
+ ypos 1444
+}
+set N1bfe3b60 [stack 0]
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name Shuffle11
+ selected true
+ xpos 321
+ ypos 1475
+}
+push $N1bfe3b60
+Shuffle {
+ red green
+ blue green
+ alpha green
+ name Shuffle13
+ selected true
+ xpos 409
+ ypos 1473
+}
+push $N1bfe3b60
+Shuffle {
+ red blue
+ green blue
+ alpha blue
+ name Shuffle12
+ selected true
+ xpos 499
+ ypos 1473
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge27
+ selected true
+ xpos 458
+ ypos 1499
+}
+Merge2 {
+ inputs 2
+ operation minus
+ name Merge28
+ selected true
+ xpos 321
+ ypos 1499
+}
+Clamp {
+ channels rgba
+ name Clamp11
+ selected true
+ xpos 321
+ ypos 1523
+}

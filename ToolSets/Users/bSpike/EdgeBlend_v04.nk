@@ -1,0 +1,125 @@
+#! /Applications/Nuke5.0v1/Nuke5.0v1.app/Contents/MacOS/Nuke5.0 -nx
+version 5.0100
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="22" w="1920" h="1174" screen="0">
+        <splitter orientation="1">
+            <split size="914"></split>
+            <splitter orientation="1">
+                <split size="40"></split>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"></page>
+                </dock>
+                <split size="872"></split>
+                <splitter orientation="2">
+                    <split size="631"></split>
+                    <dock id="" activePageId="Viewer.1">
+                        <page id="Viewer.1"></page>
+                    </dock>
+                    <split size="519"></split>
+                    <dock id="" activePageId="Properties.1">
+                        <page id="Curve Editor.1"></page>
+                        <page id="Properties.1"></page>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="1004"></split>
+            <dock id="" activePageId="DAG.1">
+                <page id="DAG.1"></page>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Volumes/Terra/common/Library/Scripts/Nuke_scripts/EdgeBlend_v04.nk
+ format "640 480 0 0 640 480 1 PC_Video"
+ proxy_format "640 480 0 0 640 480 1 PC_Video"
+}
+BackdropNode {
+ inputs 0
+ name EdgeBlending_Group
+ xpos -1515
+ ypos 1307
+ bdwidth 337
+ bdheight 279
+}
+Dot {
+ inputs 0
+ name Dot1
+ label "Insert Matte\nfor blending"
+ xpos -1336
+ ypos 1363
+}
+Blur {
+ channels rgba
+ size 1.115
+ name Blur5
+ xpos -1370
+ ypos 1413
+}
+set N17b95e90 [stack 0]
+Invert {
+ channels rgba
+ name Invert4
+ xpos -1493
+ ypos 1413
+}
+push $N17b95e90
+Merge2 {
+ inputs 2
+ operation xor
+ name Merge24
+ xpos -1426
+ ypos 1449
+}
+Invert {
+ channels rgba
+ name Invert5
+ xpos -1426
+ ypos 1476
+}
+Grade {
+ channels rgba
+ whitepoint 0.4975
+ white_clamp true
+ name Matte__EdgeBlend
+ xpos -1426
+ ypos 1503
+}
+push 0
+Dot {
+ name Dot2
+ label "Insert MainTrunk"
+ xpos -1025
+ ypos 1420
+}
+set N17b61160 [stack 0]
+Dot {
+ name Dot3
+ xpos -1247
+ ypos 1420
+}
+Blur {
+ channels rgb
+ size 2
+ name Blur1
+ label Trunk
+ xpos -1281
+ ypos 1492
+}
+ShuffleCopy {
+ inputs 2
+ name Edgeblend
+ xpos -1358
+ ypos 1555
+}
+push $N17b61160
+AddMix {
+ inputs 2
+ name AddMix1
+ label Edgeblend
+ xpos -1059
+ ypos 1549
+}

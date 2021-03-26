@@ -1,0 +1,85 @@
+set cut_paste_input [stack 0]
+version 7.0 v4
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x5f5f5fff
+ label "  WRITE HYUNDAI TAGGED IMAGES:\n\n  Image type MUST be TIFF\n  for metadata tagging to work!\n\n\n\n\n\n\n  IMPORTANT:\n      Set the \"project directory\" path in Project Settings.\n      Make sure to include a trailing \"/\".\n\n  EXAMPLE project directory:\n      N:/Jobs/Innocean/INNO-14-029_2015_Elantra_Ext_CG_Assets/work/s01_Ext-360/"
+ note_font Verdana
+ note_font_size 25
+ selected true
+ xpos -529
+ ypos -253
+ bdwidth 1123
+ bdheight 537
+}
+push $cut_paste_input
+NoOp {
+ name MasterSwitch
+ tile_color 0x930000ff
+ note_font "Wide Latin"
+ note_font_size 40
+ note_font_color 0xecf264ff
+ selected true
+ xpos -742
+ ypos -89
+ addUserKnob {20 User}
+ addUserKnob {4 Trim M {"0  GLS_Popular" "1  Limited" "2  Sport_Tech" "" "" "" "" "" "" "" "" ""}}
+ Trim "2  Sport_Tech"
+ addUserKnob {4 Color M {"0  Camel" "1  Chestnut_Brown" "2  Graphite_Black" "" "" ""}}
+}
+Dot {
+ inputs 0
+ name Dot73
+ selected true
+ xpos 235
+ ypos -319
+}
+ModifyMetaData {
+ metadata {
+  {set version 001}
+  {set model Azera}
+  {set year 2015}
+  {set Exterior_Interior Interior}
+  {set ex_in in}
+  {set comp_dir img/comp}
+  {set main_dir HyundaiUSA.com}
+  {set trim "\[lrange \[knob MasterSwitch.Trim] 1 1]"}
+  {set color "\[lrange \[knob MasterSwitch.Color] 1 1]"}
+ }
+ name ______OUTPUT_PATH_METADATA_______
+ label "Set version, year, model, Exterior_Interior and ex_in..."
+ note_font_size 15
+ selected true
+ xpos 201
+ ypos -177
+}
+ViewMetaData {
+ name view_metadata_node1
+ selected true
+ xpos 201
+ ypos -95
+}
+Write {
+ file "\[value project_directory]\[metadata comp_dir]/\[metadata version]/\[metadata main_dir]/\[metadata Exterior_Interior]/\[metadata year]/\[metadata model]/\[metadata trim]/\[metadata year]_\[metadata model]_\[metadata trim]_\[metadata color]_\[metadata ex_in]_####.tif"
+ file_type tiff
+ checkHashOnRead false
+ beforeRender TagImages.TagImages().create_args_file()
+ afterFrameRender TagImages.TagImages().tag_images()
+ name Write_TIFF_TaggedImages
+ selected true
+ xpos 201
+ ypos -23
+}
+Text {
+ message "\[value \[value input.name].file]"
+ font C:/Windows/Fonts/arial.ttf
+ size 25
+ translate {0 50}
+ name text_node_____
+ label "View Output Path here..."
+ note_font_size 15
+ selected true
+ xpos 428
+ ypos -28
+}

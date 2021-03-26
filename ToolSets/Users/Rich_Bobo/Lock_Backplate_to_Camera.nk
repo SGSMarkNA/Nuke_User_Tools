@@ -1,0 +1,73 @@
+set cut_paste_input [stack 0]
+version 10.5 v1
+push $cut_paste_input
+Camera2 {
+ focal 30
+ name Camera1
+ selected true
+ xpos 423
+ ypos -227
+}
+set N23c1d930 [stack 0]
+CheckerBoard2 {
+ inputs 0
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ name CheckerBoard1
+ selected true
+ xpos 254
+ ypos -541
+}
+Dot {
+ name Dot1
+ selected true
+ xpos 288
+ ypos -442
+}
+Card2 {
+ lens_in_focal {{parent.Camera1.focal}}
+ lens_in_haperture {{parent.Camera1.haperture}}
+ translate {0 0 -80}
+ uniform_scale {{abs(translate.z)}}
+ control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+ name Card1
+ label "Push the card back in space to be\nat the back of your 3d scene..."
+ selected true
+ xpos 254
+ ypos -388
+}
+TransformGeo {
+ translate {{parent.Camera1.translate.x} {parent.Camera1.translate.y} {parent.Camera1.translate.z}}
+ rotate {{parent.Camera1.rotate.x} {parent.Camera1.rotate.y} {parent.Camera1.rotate.z}}
+ name TransformGeo1
+ selected true
+ xpos 254
+ ypos -310
+}
+push $N23c1d930
+Scene {
+ inputs 2
+ name Scene1
+ selected true
+ xpos 264
+ ypos -227
+}
+push 0
+ScanlineRender {
+ inputs 3
+ conservative_shader_sampling false
+ motion_vectors_type distance
+ name ScanlineRender1
+ selected true
+ xpos 254
+ ypos -114
+}

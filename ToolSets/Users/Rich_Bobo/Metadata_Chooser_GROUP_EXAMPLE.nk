@@ -1,0 +1,64 @@
+set cut_paste_input [stack 0]
+version 10.5 v7
+push $cut_paste_input
+Group {
+ name PATH_BUILDER
+ tile_color 0x73b8ff
+ label "\[value decal_chooser]"
+ note_font_color 0xfefefeff
+ selected true
+ xpos 984
+ ypos 965
+ addUserKnob {20 chooser l Chooser}
+ addUserKnob {41 designpoint_chooser l "Design Point:" T Chooser.designpoint_chooser}
+ addUserKnob {41 bodycolor_chooser l "Body Color:" T Chooser.bodycolor_chooser}
+ addUserKnob {41 decal_chooser l Decals: T Chooser.decal_chooser}
+ addUserKnob {41 battlecry_chooser l "Battle Cry:" T Chooser.battlecry_chooser}
+ addUserKnob {41 wheels_chooser l Wheels: T Chooser.wheels_chooser}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 459
+  ypos -478
+ }
+ NoOp {
+  name Chooser
+  tile_color 0x1fff00ff
+  selected true
+  xpos 459
+  ypos -382
+  addUserKnob {20 path_parts l "Path Parts"}
+  addUserKnob {4 designpoint_chooser l "Design Point:" M {"DP01 (Body Color)" "DP02 (Decals)" "DP03 (Battle Cry)" "DP04 (Wheels)" "" ""}}
+  designpoint_chooser "DP03 (Battle Cry)"
+  addUserKnob {4 bodycolor_chooser l "Body Color:" M {"BC01 ( G41 - Magnetic Black - First Order)" "BC02 (NBF - Palatial Ruby - First Order)" "BC03 (K23 - Brilliant Silver - First Order)" "BC04 (QAK - Glacier White - First Order)" "BC05 (G41 - Magnetic Black - Resistance)" "BC06 (CAU - Forged Copper - Resistance)" "BC07 (KAC - Titanium - Resistance)" "BC08 (K23 - Brilliant Silver - Resistance)" "" ""}}
+  bodycolor_chooser "BC03 (K23 - Brilliant Silver - First Order)"
+  addUserKnob {4 decal_chooser l Decals: M {"D01 (EXECUTIONER - First Order)" "D02 (SUPERIOR - First Order)" "D03 (ORDER - First Order)" "D04 (SILENCER - First Order)" "D05 (CAPTAIN - First Order)" "D06 (DREADNOUGHT - First Order)" "D07 (SPECIAL FORCES - First Order)" "D08 (SCOUT - First Order)" "D09 (GUNNER - Resistance)" "D10 (COMMANDER - Resistance)" "D11 (BOMBER - Resistance)" "D12 (BUNKERBUSTER - Resistance)" "D13 (STARFIGHTER - Resistance)" "D14 (REBEL - Resistance)" "D15 (VICTORY - Resistance)" "D16 (INTERCEPTOR - Resistance)"}}
+  addUserKnob {4 battlecry_chooser l "Battle Cry:" M {"BCR01 (RULE THE GALAXY - First Order)" "BCR02 (DARK SIDE - First Order)" "BCR03 (DARKNESS RISES - First Order)" "BCR04 (FIRST ORDER - First Order)" "BCR05 (POWER - First Order)" "BCR06 (RESISTANCE - Resistance)" "BCR07 (LIGHT SIDE - Resistance)" "BCR08 (MAKE A STAND - Resistance)" "BCR09 (REBEL - Resistance)" "BCR10 (HOPE - Resistance)" "" "" "" ""}}
+  addUserKnob {4 wheels_chooser l Wheels: M {"WH1 (SUPREME - First Order)" "WH2 (PRAETORIAN - First Order)" "WH3 (ELITE - First Order)" "WH4 (SIEGE - First Order)" "WH5 (FINALIZER - First Order)" "WH6 (SPEEDER - Resistance)" "WH7 (CRUISER - Resistance)" "WH8 (LEGEND - Resistance)" "WH9 (HERO - Resistance)" "WH10 (SPARK - Resistance)" ""}}
+ }
+ ModifyMetaData {
+  metadata {
+   {set BattleCry "\[lindex \[value battlecry_chooser] 0]"}
+   {set BodyColor "\[lindex \[value bodycolor_chooser] 0]"}
+   {set Decals "\[lindex \[value decal_chooser] 0]"}
+   {set DesignPoint "\[lindex \[value designpoint_chooser] 0]"}
+   {set Wheels "\[lindex \[value wheels_chooser] 0]"}
+  }
+  name ModifyMetaData_PathBuilder
+  tile_color 0x1fff00ff
+  xpos 459
+  ypos -288
+ }
+ ViewMetaData {
+  name ViewMetaData1
+  tile_color 0x1fff00ff
+  xpos 459
+  ypos -187
+ }
+ Output {
+  name Output1
+  xpos 459
+  ypos -80
+ }
+end_group

@@ -1,0 +1,81 @@
+set cut_paste_input [stack 0]
+version 7.0 v4
+BackdropNode {
+ inputs 0
+ name BackdropNode5
+ tile_color 0x666666ff
+ label "Write Hyundai Images\n\n\n\n\n\n\n\n\n\n\nNote:\nSet the \"project directory\" field in Project Settings.\nMake sure to include a trailing \"/\".\n\nEXAMPLE project directory:\nN:/Jobs/Innocean/INNO-14-029_2015_Elantra_Ext_CG_Assets/work/s01_Ext-360/"
+ note_font_size 22
+ selected true
+ xpos -690
+ ypos -331
+ bdwidth 894
+ bdheight 490
+}
+push $cut_paste_input
+NoOp {
+ name MasterSwitch
+ tile_color 0x930000ff
+ note_font "Wide Latin"
+ note_font_size 40
+ note_font_color 0xecf264ff
+ selected true
+ xpos -898
+ ypos -211
+ addUserKnob {20 User}
+ addUserKnob {4 Trim M {"0  GLS_Popular" "1  Limited" "2  Sport_Tech" "" "" "" "" "" "" "" "" ""}}
+ Trim "2  Sport_Tech"
+ addUserKnob {4 Color M {"0  Geranium_Red" "1  Phantom_Black" "2  Desert_Bronze" "3  Lakeside_Blue" ""}}
+ Color "3  Lakeside_Blue"
+}
+Dot {
+ inputs 0
+ name Dot73
+ selected true
+ xpos -231
+ ypos -415
+}
+ModifyMetaData {
+ metadata {
+  {set Exterior_Interior Exterior}
+  {set year 2015}
+  {set model Elantra}
+  {set trim "\[lrange \[knob MasterSwitch.Trim] 1 1]"}
+  {set color "\[lrange \[knob MasterSwitch.Color] 1 1]"}
+  {set ex_in ex}
+  {set version 001}
+ }
+ name ______OUTPUT_PATH_METADATA_______
+ label "Set version number, year, model, etc. here..."
+ selected true
+ xpos -265
+ ypos -259
+}
+ViewMetaData {
+ name View_Metadata
+ selected true
+ xpos -265
+ ypos -187
+}
+Write {
+ file "\[value project_directory]img/comp/\[metadata version]/\[metadata Exterior_Interior]/\[metadata year]/\[metadata model]/\[metadata trim]/\[metadata color]/\[metadata year]_\[metadata model]_\[metadata trim]_\[metadata color]_\[metadata ex_in]_###.tif"
+ file_type tiff
+ checkHashOnRead false
+ beforeRender TagImages.TagImages().create_args_file()
+ afterFrameRender TagImages.TagImages().tag_images()
+ name Write_Hyundai_Images
+ selected true
+ xpos -265
+ ypos -118
+}
+Text {
+ message "\[value \[value input.name].file]"
+ font C:/Windows/Fonts/arial.ttf
+ size 20
+ translate {0 50}
+ name View_Output_Path_Here
+ label "View Output Path here..."
+ selected true
+ xpos -509
+ ypos -118
+}

@@ -1,0 +1,115 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+push $cut_paste_input
+Group {
+ name Image_Locked_to_Camera
+ selected true
+ xpos 2
+ ypos -84
+ addUserKnob {20 User}
+ addUserKnob {22 choose_camera l "Find Cameras" T "import nuke\nimport re\n# Assign the Group node to a variable we can get later...\nGroupNode = nuke.thisNode()\n################################################################\n# Get a list of all the available cameras in the Root node...\nRootNode = nuke.Root()\n# Make sure we're operating inside the Root group...\nRootNode.begin()\ncameras = \[]\nfor node in (nuke.allNodes('Camera') + nuke.allNodes('Camera2')):\n    cameras.append(node.name())\nRootNode.end()\n################################################################\n# Get all the knobs in the Group...\nGroupNodeKnobs = GroupNode.allKnobs()\n#print 'GroupNodeKnobs', GroupNodeKnobs\n# Make sure we're operating inside the GroupNode...\nGroupNode.begin()\n# Set up some variables for removal of preexisting knobs when the 'Pick Camera' button is pressed...\nknobs_to_remove = \[]\nknobs_to_ignore = \['selected', 'hide_input', 'cached', 'dope_sheet', 'bookmark', 'postage_stamp', 'useLifetime', 'lock_connections']\n# Make a list of any pulldown (Enumeration_Knob) knobs...\nregex = re.compile(r\"\\Enumeration_Knob\\W\")   # \\W is anything except a word character...\nfor knob in GroupNodeKnobs:\n    if bool(regex.search(str(type(knob)))):\n        if knob.name() not in knobs_to_ignore:\n            name = knob.name()\n            knobs_to_remove.append(name)\n        else:\n            pass\n# Remove existing pulldown knob when the 'Pick Camera' PyScript button is pressed, before we make a new one...\nKnobs = GroupNode.knobs()\ntry:\n    for knobname in knobs_to_remove:\n        GroupNode.removeKnob(Knobs\[knobname])\nexcept KeyError:\n    print 'Key Error: Some nonexistant knobs could not be removed.'\nexcept ValueError:\n    print 'Value Error: Some nonexistant knobs could not be removed.'\n# Build pulldown selector to pick the camera to link to...\ncameraChoiceKnob = nuke.Enumeration_Knob('cameras', 'Select Camera: ', cameras)\nGroupNode.addKnob(cameraChoiceKnob)\ncameraChoiceKnob.setFlag(nuke.STARTLINE)\n# Finish operating inside Group node...\nGroupNode.end()\n" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 image_z_distance_text l "Image Distance From Camera:"}
+ addUserKnob {41 z T BKGND_IMAGE_CARD.z}
+ addUserKnob {26 ""}
+ addUserKnob {4 cameras l "Select Camera: " M {Camera1 Camera3 Camera2}}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x212121ff
+  label "Background Image Card"
+  note_font_size 25
+  note_font_color 0xfefefeff
+  xpos -429
+  ypos -511
+  bdwidth 317
+  bdheight 253
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0xff7c3bff
+  label "Zero Intensity Light -\nOnly Needed to make Emission Shader work..."
+  note_font_size 20
+  xpos -428
+  ypos -222
+  bdwidth 462
+  bdheight 205
+ }
+ Light2 {
+  inputs 0
+  intensity 0
+  translate {77.80000305 -57.59999847 54}
+  depthmap_slope_bias 0.01
+  name ZeroLight_for_Emission_Shader_Toggle
+  xpos -141
+  ypos -121
+ }
+ Input {
+  inputs 0
+  name Image
+  xpos -371
+  ypos -573
+ }
+ Dot {
+  name Dot2
+  xpos -337
+  ypos -425
+ }
+set N5f559800 [stack 0]
+ Dot {
+  name Dot3
+  xpos -212
+  ypos -425
+ }
+push 0
+ Emission {
+  inputs 2
+  emission 1
+  name Emission1
+  xpos -246
+  ypos -333
+ }
+push $N5f559800
+ Card2 {
+  cast_shadow false
+  receive_shadow false
+  z 350
+  lens_in_focal {{"parent.parent.\[value cameras].focal"}}
+  lens_in_haperture {{"parent.parent.\[value cameras].haperture"}}
+  translate {{"parent.parent.\[value cameras].translate.x"} {"parent.parent.\[value cameras].translate.y"} {"parent.parent.\[value cameras].translate.z"}}
+  rotate {{"parent.parent.\[value cameras].rotate.x"} {"parent.parent.\[value cameras].rotate.y"} {"parent.parent.\[value cameras].rotate.z"}}
+  control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+  name BKGND_IMAGE_CARD
+  xpos -371
+  ypos -383
+ }
+ ApplyMaterial {
+  inputs 2
+  name ApplyMaterial1
+  xpos -371
+  ypos -333
+ }
+ Scene {
+  inputs 2
+  name Scene_for_ZeroLight
+  xpos -361
+  ypos -121
+ }
+ Output {
+  name Output1
+  xpos -371
+  ypos 69
+ }
+end_group

@@ -1,0 +1,419 @@
+#! C:/Program Files/Nuke6.3v8/Nuke6.3.exe -nx
+version 6.3 v8
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="0" w="1936" h="1200" screen="1">
+        <splitter orientation="2">
+            <split size="855"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="282"/>
+            <dock id="" activePageId="Curve Editor.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="1912" y="168" w="1296" h="1040" screen="0">
+        <splitter orientation="2">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="962"/>
+            <splitter orientation="1">
+                <split size="942"/>
+                <dock id="" hideTitles="1" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="334"/>
+                <dock id="" hideTitles="1" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name N:/common/SYSENV/Nuke/ToolSets/Common_Script_Templates/VrayRebuild_INT_FromMAX_v01.nk
+ frame 4
+ last_frame 8
+ lock_range true
+ format "1920 1080 0 0 1920 1080 1 HD"
+}
+BackdropNode {
+ inputs 0
+ name Mattes
+ tile_color 0x736f7fff
+ xpos 687
+ ypos 1612
+ bdwidth 1097
+ bdheight 1092
+}
+BackdropNode {
+ inputs 0
+ name Vehicle1
+ tile_color 0x2c3136ff
+ xpos 689
+ ypos 2745
+ bdwidth 1553
+ bdheight 1067
+}
+BackdropNode {
+ inputs 0
+ name Lightwrap
+ tile_color 0x3f3f3fff
+ xpos 2246
+ ypos 4212
+ bdwidth 327
+ bdheight 362
+}
+BackdropNode {
+ inputs 0
+ name Background
+ tile_color 0x212b21ff
+ xpos 2496
+ ypos 2835
+ bdwidth 658
+ bdheight 972
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ label " BG "
+ note_font_size 84
+ xpos 3033
+ ypos 2801
+}
+StickyNote {
+ inputs 0
+ name StickyNote2
+ label " INT "
+ note_font_size 84
+ xpos 1630
+ ypos 1555
+}
+Dot {
+ inputs 0
+ name Dot2
+ label "PlugIn Exr"
+ xpos 788
+ ypos 1588
+}
+Dot {
+ name Dot12
+ xpos 788
+ ypos 2710
+}
+Dot {
+ name Dot1
+ xpos 788
+ ypos 2778
+}
+set Na2a2a50 [stack 0]
+Dot {
+ name Dot3
+ xpos 955
+ ypos 2778
+}
+set Na2a2d70 [stack 0]
+Dot {
+ name Dot4
+ xpos 1106
+ ypos 2778
+}
+set Na2a3090 [stack 0]
+Dot {
+ name Dot7
+ xpos 1290
+ ypos 2778
+}
+set Na2a33b0 [stack 0]
+Dot {
+ name Dot5
+ xpos 1500
+ ypos 2778
+}
+set Na2a36d0 [stack 0]
+Dot {
+ name Dot6
+ xpos 1725
+ ypos 2778
+}
+set Na568650 [stack 0]
+Dot {
+ name Dot8
+ xpos 1948
+ ypos 2778
+}
+set Na56ed70 [stack 0]
+Dot {
+ name Dot9
+ xpos 2148
+ ypos 2778
+}
+add_layer {VRaySelfIllumination VRaySelfIllumination.red VRaySelfIllumination.green VRaySelfIllumination.blue}
+Shuffle {
+ in VRaySelfIllumination
+ alpha black
+ name Self_Illum
+ xpos 2114
+ ypos 2796
+}
+push $Na56ed70
+add_layer {VRayReflection VRayReflection.red VRayReflection.green VRayReflection.blue}
+Shuffle {
+ in VRayReflection
+ alpha black
+ name Reflection
+ xpos 1914
+ ypos 2796
+}
+push $Na568650
+add_layer {VRaySpecular VRaySpecular.red VRaySpecular.green VRaySpecular.blue}
+Shuffle {
+ in VRaySpecular
+ alpha black
+ name Spec
+ xpos 1691
+ ypos 2796
+}
+push $Na2a36d0
+Shuffle {
+ in alpha
+ name Alpha
+ xpos 1466
+ ypos 2796
+}
+push $Na2a33b0
+add_layer {VRayRefraction VRayRefraction.red VRayRefraction.green VRayRefraction.blue}
+Shuffle {
+ in VRayRefraction
+ alpha black
+ name Refraction
+ xpos 1256
+ ypos 2796
+}
+push $Na2a2a50
+add_layer {VRayRawGlobalIllumination VRayRawGlobalIllumination.red VRayRawGlobalIllumination.green VRayRawGlobalIllumination.blue}
+Shuffle {
+ in VRayRawGlobalIllumination
+ alpha black
+ name RawGI
+ xpos 754
+ ypos 2796
+}
+push $Na2a2d70
+add_layer {VRayDiffuseFilter VRayDiffuseFilter.red VRayDiffuseFilter.green VRayDiffuseFilter.blue}
+Shuffle {
+ in VRayDiffuseFilter
+ alpha black
+ name Diffuse
+ xpos 921
+ ypos 2796
+}
+Dot {
+ name Dot10
+ xpos 955
+ ypos 3645
+}
+set N871d250 [stack 0]
+Merge2 {
+ inputs 2
+ operation multiply
+ Achannels rgb
+ name Merge2
+ xpos 754
+ ypos 3641
+}
+push $N871d250
+push $Na2a3090
+add_layer {VRayRawLighting VRayRawLighting.red VRayRawLighting.green VRayRawLighting.blue}
+Shuffle {
+ in VRayRawLighting
+ alpha black
+ name RawLighting
+ xpos 1072
+ ypos 2796
+}
+Merge2 {
+ inputs 2
+ operation multiply
+ Achannels rgb
+ name Merge3
+ xpos 1072
+ ypos 3642
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge4
+ xpos 920
+ ypos 3742
+}
+Merge2 {
+ inputs 2
+ operation screen
+ Achannels rgb
+ name Merge6
+ label Refraction
+ xpos 1256
+ ypos 3736
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy1
+ xpos 1466
+ ypos 3736
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge5
+ label Spec
+ xpos 1691
+ ypos 3736
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge7
+ label Reflection
+ xpos 1914
+ ypos 3736
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge1
+ label "Self Illum."
+ xpos 2114
+ ypos 3736
+}
+Dot {
+ name Dot13
+ xpos 2148
+ ypos 3844
+}
+set N871f560 [stack 0]
+Dot {
+ name Dot14
+ xpos 2385
+ ypos 3844
+}
+Shuffle {
+ red alpha
+ green alpha
+ blue alpha
+ name Shuffle15
+ xpos 2351
+ ypos 4258
+}
+Grade {
+ channels rgba
+ blackpoint 0.1333
+ name Grade1
+ xpos 2351
+ ypos 4285
+}
+set Na650d30 [stack 0]
+Blur {
+ channels rgba
+ size 12.01
+ name Blur2
+ xpos 2276
+ ypos 4363
+}
+Invert {
+ channels rgba
+ name Invert1
+ xpos 2276
+ ypos 4387
+}
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name Shuffle16
+ xpos 2276
+ ypos 4411
+}
+push $Na650d30
+Merge2 {
+ inputs 2
+ operation multiply
+ name Matte__LightWrap
+ label Matte__LightWrap
+ xpos 2351
+ ypos 4479
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 0.9115
+ name Constant2
+ xpos 2791
+ ypos 3043
+}
+Dot {
+ name Dot11
+ xpos 2825
+ ypos 3978
+}
+Dot {
+ name Dot15
+ xpos 2495
+ ypos 3978
+}
+set Na652380 [stack 0]
+Blur {
+ channels rgb
+ size 30
+ name Blur3
+ xpos 2461
+ ypos 4458
+}
+ShuffleCopy {
+ inputs 2
+ name ShuffleCopy1
+ xpos 2461
+ ypos 4485
+}
+Premult {
+ name Premult1
+ xpos 2461
+ ypos 4512
+}
+push $N871f560
+push $Na652380
+Merge2 {
+ inputs 2
+ name Merge8
+ xpos 2114
+ ypos 3975
+}
+Merge2 {
+ inputs 2
+ operation screen
+ Achannels rgb
+ mix 0.25
+ name Merge18
+ label Lightwrap
+ xpos 2114
+ ypos 4506
+}
+Dot {
+ name Dot34
+ label "To Output"
+ xpos 2148
+ ypos 4659
+}

@@ -1,0 +1,62 @@
+set cut_paste_input [stack 0]
+version 6.3 v8
+push $cut_paste_input
+Dot {
+ name Dot43
+ selected true
+ xpos -725
+ ypos -48
+}
+set Nbddc990 [stack 0]
+Shuffle {
+ red green
+ blue green
+ alpha green
+ name G
+ selected true
+ xpos -847
+ ypos -17
+}
+push $Nbddc990
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name R
+ selected true
+ xpos -759
+ ypos -17
+}
+push $Nbddc990
+Shuffle {
+ red blue
+ green blue
+ alpha blue
+ name B
+ selected true
+ xpos -671
+ ypos -17
+}
+Merge2 {
+ inputs 2
+ operation max
+ name Merge27
+ selected true
+ xpos -716
+ ypos 7
+}
+Merge2 {
+ inputs 2
+ operation minus
+ name Merge28
+ selected true
+ xpos -847
+ ypos 7
+}
+Clamp {
+ channels rgba
+ name Clamp11
+ selected true
+ xpos -847
+ ypos 31
+}

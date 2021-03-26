@@ -1,0 +1,32 @@
+set cut_paste_input [stack 0]
+version 10.5 v7
+push $cut_paste_input
+Group {
+ name Reinhard_Vray_VIEWER_PROCESS
+ selected true
+ xpos -69
+ ypos -717
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 248
+  ypos -188
+ }
+ Expression {
+  expr0 r*(1+r*(0.3**2))/(1+r)
+  expr1 g*(1+g*(0.3**2))/(1+g)
+  expr2 b*(1+b*(0.3**2))/(1+b)
+  name Reinhard_Vray
+  label "Modified Reinhard Curve"
+  xpos 248
+  ypos -125
+  addUserKnob {20 User}
+  addUserKnob {7 burn l Burn}
+ }
+ Output {
+  name Output1
+  xpos 248
+  ypos -48
+ }
+end_group

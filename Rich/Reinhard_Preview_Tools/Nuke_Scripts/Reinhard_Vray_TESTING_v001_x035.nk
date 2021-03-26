@@ -1,0 +1,505 @@
+#! C:/Program Files/Nuke10.5v7/nuke-10.5.7.dll -nx
+#write_info Write1 file:"C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/Reinhard_Preview_Tools/Reinhard_ICON/Reinhard_ICON.png" format:"200 200 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 100" fps:"0" colorspace:"default (sRGB)" datatype:"8 bit" transfer:"unknown" views:"main" colorManagement:"OCIO"
+version 10.5 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="2576" h="1456" maximized="1" screen="0">
+        <splitter orientation="2">
+            <split size="1390"/>
+            <dock id="" activePageId="Viewer.1" focus="true">
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="0"/>
+            <dock id="" activePageId="DopeSheet.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="2560" y="0" w="1920" h="1200" fullscreen="1" screen="1">
+        <splitter orientation="1">
+            <split size="1036"/>
+            <splitter orientation="2">
+                <split size="66"/>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"/>
+                </dock>
+                <split size="1130"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="DAG.2"/>
+                </dock>
+            </splitter>
+            <split size="880"/>
+            <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+                <page id="com.richbobo.LocalizeFiles"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/Reinhard_Preview_Tools/Nuke_Scripts/Reinhard_Vray_TESTING_v001_x035.nk"
+ format "200 200 0 0 200 200 1 200x200"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath //isln-smb.ad.sgsco.int/library/OCIO_Configs/aw_Comp_aces_1.0.3/aw_Comp_config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut AW/sRGB_ICC(sRGB)
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut "ACES - ACES2065-1"
+ floatLut "ACES - ACES2065-1"
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x388e8e00
+ label REF
+ note_font_size 42
+ xpos -116
+ ypos -238
+ bdwidth 203
+ bdheight 352
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x545454ff
+ label "Reinhard vs. Linear Curves - ICON"
+ note_font_size 42
+ note_font_color 0xfefefeff
+ xpos 213
+ ypos -684
+ bdwidth 1007
+ bdheight 784
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0x7171c600
+ label "EXPERIMENT:\nReinhard 3d LUT.  (DON'T USE.)"
+ note_font_size 30
+ xpos 1432
+ ypos -547
+ bdwidth 494
+ bdheight 368
+}
+CMSTestPattern {
+ inputs 0
+ cube_size 65
+ name CMSTestPattern1
+ xpos 1491
+ ypos -426
+ disable true
+}
+set N6c01000 [stack 0]
+Expression {
+ expr0 r*(1+r*(0.3**2))/(1+r)
+ expr1 g*(1+g*(0.3**2))/(1+g)
+ expr2 b*(1+b*(0.3**2))/(1+b)
+ name Reinhard_Vray
+ xpos 1491
+ ypos -320
+ disable true
+ addUserKnob {20 User}
+ addUserKnob {7 burn l Burn}
+}
+GenerateLUT {
+ file "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/Reinhard_Preview_Tools/Nuke_Scripts/footage/luts/AW_Reinhard_Vray.3dl"
+ file_type .3dl
+ bitdepth_id "16 bit"
+ name GenerateLUT1
+ label "Original Path:\nX:/AW/ARMW-17-005_New_Color_Pipeline/work/common/ocio/aw_Comp_aces_1.0.3/luts/AW_Reinhard_Vray.3dl"
+ xpos 1491
+ ypos -294
+ disable true
+}
+push $N6c01000
+Dot {
+ name Dot1
+ xpos 1680
+ ypos -399
+}
+Vectorfield {
+ vfield_file "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/Reinhard_Preview_Tools/Nuke_Scripts/footage/luts___dupe_1/AW_Reinhard_Vray.3dl"
+ version 2
+ file_type 3dl
+ output_bitdepth_id auto
+ normalize_output false
+ format_3dl_id auto
+ name Vectorfield_Reinhard_Vray
+ label "Original Path:\nX:/AW/ARMW-17-005_New_Color_Pipeline/work/common/ocio/aw_Comp_aces_1.0.3/luts/AW_Reinhard_Vray.3dl"
+ xpos 1646
+ ypos -245
+ disable true
+}
+Read {
+ inputs 0
+ file "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/Reinhard_Preview_Tools/Nuke_Scripts/footage/Desktop/Linear-vs-Reinhard.png"
+ format "436 266 0 0 436 266 1 "
+ origset true
+ name Read2
+ label "Original Path:\nC:/Users/rbobo/Desktop/Linear-vs-Reinhard.png"
+ xpos -69
+ ypos -149
+}
+Crop {
+ box {52.5 9.75 365.25 292.5}
+ reformat true
+ crop false
+ name Crop1
+ xpos -69
+ ypos -40
+ disable true
+}
+Transform {
+ translate {29 -58}
+ scale 1.26
+ center {156 112.5}
+ black_outside false
+ name REPO_REF
+ xpos -69
+ ypos -5
+}
+Reformat {
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ name Reformat1
+ xpos -69
+ ypos 21
+}
+push 0
+push 0
+Constant {
+ inputs 0
+ channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+ color {0 0 1 1}
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ name LINEAR
+ xpos 550
+ ypos -403
+}
+Transform {
+ translate {127 95}
+ rotate 81.5
+ scale {1 0.024}
+ center {0 100}
+ filter Impulse
+ name Transform_LINEAR
+ xpos 550
+ ypos -275
+}
+Constant {
+ inputs 0
+ channels {rgba.red rgba.green rgba.blue rgba.alpha}
+ color {1 0 0 1}
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ name Constant1
+ xpos 1054
+ ypos -445
+}
+RotoPaint {
+ premultiply rgba
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097664}
+    {t x44800000 x44800000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup OpenSpline1 1049088 bezier
+     {{cc
+       {f 1056800}
+       {px 1
+        {xc2704287 xc3a40b03}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     x42e16668 x4351fffc}
+        {x426e0000 x43a28002}
+        {xc2d826a7 xc335bd08}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     x4392fffe x4459e005}
+        {x42d826a2 x4335bd09}
+        {xc36b3f76 xc2898990}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     x4444fffe x449a3fff}
+        {x436b3f75 x42898996}
+        {xc423a000 xc1cfffc0}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     x45032800 x44aedfff}
+        {x43dd25a0 x418d3700}}}
+      {cc
+       {f 1056800}
+       {px 1
+        {xc2704287 xc3a40b03}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     0 0}
+        {x426e0000 x43a28002}
+        {xc2d826a8 xc335bd08}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     0 0}
+        {x42d826a0 x4335bd0c}
+        {xc36b3f76 xc2898990}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     0 0}
+        {x436b3f75 x42898996}
+        {xc423a000 xc1cfffc0}
+        {{a osw
+       {{1 1}}	 osf
+       {{1 0}}}     0 0}
+        {x43dd25a0 x418d3700}}}}
+     {tx 1 x448d5249 x4486d249}
+     {a osbe 0 osee 0 osw x41a00000 g 0 b 0 osf 0 str 1 tt x41200000 src 1}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createOpenSpline str 1 ssx 1 ssy 1 sf 1 tt 10 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_openspline_width 20
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {320 240}
+ color {1 0 0 1}
+ colorOverlay {0 0 0 0}
+ paint_source foreground
+ lifetime_type "all frames"
+ motionblur_shutter_offset_type centred
+ openspline_width 20
+ name RotoPaint2
+ xpos 1054
+ ypos -351
+}
+Constant {
+ inputs 0
+ color {0.3000000119 0.3000000119 0.3000000119 1}
+ format "1024 1024 0 0 1024 1024 1 square_1K"
+ name BASE
+ xpos 871
+ ypos -545
+}
+Transform {
+ translate {100 95}
+ scale {1.93 0.06}
+ center {0 100}
+ filter Impulse
+ name Transform_BASE
+ xpos 871
+ ypos -473
+}
+Dot {
+ name Dot2
+ xpos 905
+ ypos -415
+}
+Constant {
+ inputs 0
+ color {0.3000000119 0.3000000119 0.3000000119 1}
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ name VERTICAL
+ xpos 745
+ ypos -546
+}
+Transform {
+ translate {100 91}
+ rotate 90
+ scale {0.91 0.03}
+ center {0 100}
+ filter Impulse
+ name Transform_VERTICAL
+ xpos 745
+ ypos -474
+}
+Merge2 {
+ inputs 2
+ name Merge_LINES
+ xpos 745
+ ypos -419
+}
+Merge2 {
+ inputs 2
+ name Merge1
+ xpos 745
+ ypos -351
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ xpos 745
+ ypos -275
+}
+Transform {
+ translate {38 -103}
+ center {100 100}
+ name Transform_LINES
+ xpos 745
+ ypos -136
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 1
+ format "2048 2048 0 0 2048 2048 1 square_2K"
+ name Constant_2K
+ xpos 335
+ ypos -567
+}
+Text2 {
+ font_size_toolbar 1900
+ font_width_toolbar 100
+ font_height_toolbar 100
+ baseline_toolbar -162
+ premult alpha
+ opacity 0.75
+ message R
+ old_message {{82}
+   }
+ box {0 0 2048 2048}
+ xjustify center
+ yjustify center
+ transforms {{0 2}
+   }
+ font_size_values {{0 1900 0 200}
+   }
+ kern_values {{0 0 0 1}
+   }
+ baseline_values {{0 -162 0 -1}
+   }
+ cursor_position 1
+ font {{ Minion Pro : Regular : MinionPro-Regular.otf : 0 }}
+ font_size 1900
+ baseline_shift -162
+ scale {1 1}
+ cursor_initialised true
+ autofit_bbox false
+ initial_cursor_position {{0 200}
+   }
+ group_animations {{0} imported: 0 selected: items: "root transform/"}
+ animation_layers {{1 11 100 100 0 0 1 1 0 0 0 0}
+   }
+ color {1 0 0 1}
+ name Text1
+ xpos 335
+ ypos -345
+}
+Merge2 {
+ inputs 2
+ name Merge_Ove_BKGND
+ xpos 335
+ ypos -136
+}
+Crop {
+ box {0 0 2048 2048}
+ name Crop2
+ xpos 335
+ ypos -72
+}
+Reformat {
+ name Reformat_200px
+ xpos 335
+ ypos -15
+}
+Write {
+ file "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/Reinhard_Preview_Tools/Reinhard_ICON/Reinhard_ICON.png"
+ file_type png
+ create_directories true
+ checkHashOnRead false
+ version 1
+ name Write1
+ label "ICC Profile: AdobeRGB1998.icc"
+ note_font "Verdana Bold Bold"
+ note_font_size 12
+ note_font_color 0x664cf4ff
+ xpos 335
+ ypos 156
+ addUserKnob {20 Metadata_Tab l Metadata}
+ addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+ addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+ ICC_knob AdobeRGB1998.icc
+ addUserKnob {26 divider2 l "" +STARTLINE}
+ addUserKnob {26 divider2B l "" +STARTLINE}
+ addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+ addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+ addUserKnob {26 divider3 l "" +STARTLINE}
+ addUserKnob {26 divider3B l "" +STARTLINE}
+ addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+ addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+}
+Viewer {
+ inputs 4
+ frame_range 1-100
+ colour_sample_bbox {-1.38530612 1.343673468 -1.38476193 1.344217658}
+ samplepoints {{-0.2127071768 0.277163893}
+   }
+ input_process_node Photoshop_sRGB_3dLUT_Vectorfield
+ input_process false
+ translate {-1.5 -0.3440000117}
+ gauge 0.4394152164
+ name Viewer1
+ xpos 182
+ ypos 266
+}
+Read {
+ inputs 0
+ file "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/Reinhard_Preview_Tools/Nuke_Scripts/footage/MGD8630HC_Knob/__MGD8630HC_Knob_0001.exr"
+ format "4344 2896 0 0 4344 2896 1 "
+ origset true
+ name Read1
+ label "Original Path:\nD:/rbobo/Dropbox/richbobo/NUKE/Scripts/Reinhard_Vray_TESTING/footage/MGD8630HC_Knob/__MGD8630HC_Knob_0001.exr"
+ xpos -222
+ ypos -609
+}
+Group {
+ inputs 0
+ name Reinhard_Vray_VIEWER_PROCESS
+ xpos -69
+ ypos -717
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 248
+  ypos -188
+ }
+ Expression {
+  expr0 r*(1+r*(0.3**2))/(1+r)
+  expr1 g*(1+g*(0.3**2))/(1+g)
+  expr2 b*(1+b*(0.3**2))/(1+b)
+  name Reinhard_Vray
+  label "Modified Reinhard Curve"
+  xpos 248
+  ypos -125
+  addUserKnob {20 User}
+  addUserKnob {7 burn l Burn}
+ }
+ Output {
+  name Output1
+  xpos 248
+  ypos -48
+ }
+end_group

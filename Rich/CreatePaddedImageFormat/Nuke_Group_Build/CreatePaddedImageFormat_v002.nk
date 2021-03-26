@@ -1,0 +1,181 @@
+#! C:/Program Files/Nuke9.0v7/nuke-9.0.7.dll -nx
+version 9.0 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="2552" y="-8" w="1936" h="1216" maximized="1" screen="1">
+        <splitter orientation="1">
+            <split size="1344"/>
+            <splitter orientation="1">
+                <split size="795"/>
+                <dock id="" activePageId="uk.co.thefoundry.scripteditor.1">
+                    <page id="uk.co.thefoundry.scripteditor.1"/>
+                </dock>
+                <split size="545"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+            <split size="572"/>
+            <splitter orientation="2">
+                <split size="490"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="660"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name D:/rbobo/Dropbox/CODE_aw_projects/aw_projects/CreatePaddedImage_Format/CreatePaddedImageFormat_v002.nk
+ last_frame 1
+ lock_range true
+ format "3000 3000 0 0 3000 3000 1 3K"
+}
+Group {
+ inputs 0
+ name Create_Padded_Output_Format
+ knobChanged "ParentGroup = nuke.thisNode()\nReadNode = ParentGroup.input(0)\n\nUserKnobWidth = ParentGroup.knob('percentage_of_width')\nDisplayKnobWidth = ParentGroup.knob('padded_width_display')\n\nUserKnobHeight = ParentGroup.knob('percentage_of_height')\nDisplayKnobHeight = ParentGroup.knob('padded_height_display')\n\nCalculatorNode = nuke.toNode(ParentGroup.name() + '.Padding_Size_Calculator')\nResultKnobWidth = CalculatorNode.knob('padded_width_result')\nResultKnobHeight = CalculatorNode.knob('padded_height_result')\n\nCreateOutputFormatKnob = ParentGroup.knob('output_format_selector')\n\nFinalReformatNode = nuke.toNode(ParentGroup.name() + '.Reformat_to_Final_Output_Size')\nFinalReformatKnob = FinalReformatNode.knob('format')\n\nWarningKnob = ParentGroup.knob('image_scaled_warning')\n\ndef knobChanged():\n    if nuke.thisKnob() == CreateOutputFormatKnob:\n        FinalReformatKnob.setValue(CreateOutputFormatKnob.value())\n        DisplayKnobWidth.setValue(str(int(ResultKnobWidth.value())))\n        DisplayKnobHeight.setValue(str(int(ResultKnobHeight.value())))\n        InputFormat = ReadNode.knob('format').value()\n        OutputFormat = ParentGroup.knob('output_format_selector').value()\n        if InputFormat.width() < OutputFormat.width() or InputFormat.height() < OutputFormat.height():\n            print '\\nWARNING! Output format is larger than Input format!\\nImage will be scaled up!'\n            WarningKnob.setValue('<FONT COLOR=\"#CB2222\">WARNING: Image will be scaled up!<\\FONT>')\n        else:\n            WarningKnob.setValue('')\n    if nuke.thisKnob() == UserKnobWidth:\n        DisplayKnobWidth.setValue(str(int(ResultKnobWidth.value())))\n    if nuke.thisKnob() == UserKnobHeight:\n        DisplayKnobHeight.setValue(str(int(ResultKnobHeight.value())))\nknobChanged()"
+ xpos 729
+ ypos 722
+ addUserKnob {20 PaddedOutput}
+ addUserKnob {26 ""}
+ addUserKnob {26 final_output_format l "1)  Select/Create Output Format:"}
+ addUserKnob {17 output_format_selector l "Output Format:"}
+ output_format_selector "2000 2000 0 0 2000 2000 1 2000x2000"
+ addUserKnob {26 image_scaled_warning l "" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 curve_tool_autocrop_title l "2)  Calculate Auto Crop Size:"}
+ addUserKnob {22 autocrop_button l Go! T "## AutoCrop 'Go!' Python Button...\n\nGroupNode = nuke.thisNode()\nReadNode = GroupNode.input(0)\n\n# Make sure we're operating inside the group...\nGroupNode.begin()\n\n# Select the Input node, so that autocrop places the new Crop node after that...\nInputNode = nuke.toNode('Input1')\nInputNode.knob(\"selected\").setValue(True)\n\n# Remove existing Crop node, since autocrop makes a new one...\nAllNodes = \[node for node in GroupNode.nodes()]\nfor Node in AllNodes:\n    if Node.Class()==('Crop'):\n        nuke.delete(Node)\n\n# Get the Read node that is connected to the group's input and execute the autocrop...\nNodeToCrop = \[]\nNodeToCrop.append(ReadNode)\nfor Node in NodeToCrop:\n    nukescripts.autocrop(first=None, last=None, inc=None, layer='rgba')\n\n# Get the new Crop node...\nCropNode = nuke.toNode('Crop1')\n# Format to the cropped values, so we have a tight fit...\nCropNode\['reformat'].setValue(True)\n# Set to 'black outside'...\nCropNode\['crop'].setValue(True)\n# Get the current crop values...\nCropValues = CropNode\['box'].value()\n# Subtract one pixel from the x and y values and add a pixel to r and t...\nNewValues = \[]\nfor index, value in enumerate(CropValues):\n    if index <= 1:\n        value = value - 1\n        NewValues.append(value)\n    else:\n        value = value + 1\n        NewValues.append(value)\nCropNode\['box'].setValue(tuple(NewValues))\n\n# End our editing inside the group...\nGroupNode.end()\n" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 set_padding_size_title l "3)  Set Padding Size Percentage:"}
+ addUserKnob {7 percentage_of_width l "% of Output Width:" R 0 100}
+ addUserKnob {7 percentage_of_height l "% of Output Height" R 0 100}
+ addUserKnob {26 padded_width_display l "Padded Width Size:" T 2000}
+ addUserKnob {26 padded_height_display l "Padded Height Size:" T 2000}
+ addUserKnob {26 ""}
+ addUserKnob {26 set_padding_type_title l "4)  Set Padding Method:"}
+ addUserKnob {41 resize l "resize type" T Reformat_to_Padded_Size.resize}
+ addUserKnob {41 center -STARTLINE T Reformat_to_Padded_Size.center}
+ addUserKnob {41 flip -STARTLINE T Reformat_to_Padded_Size.flip}
+ addUserKnob {41 flop -STARTLINE T Reformat_to_Padded_Size.flop}
+ addUserKnob {41 turn -STARTLINE T Reformat_to_Padded_Size.turn}
+ addUserKnob {26 ""}
+ addUserKnob {26 create_padded_format_title l "5)  Create Padded Format:"}
+ addUserKnob {26 ""}
+ addUserKnob {22 create_padded_format l "Do it!" T "ParentGroup = nuke.thisNode()\n\nDisplayKnobWidth = ParentGroup.knob('padded_width_display')\nDisplayKnobHeight = ParentGroup.knob('padded_height_display')\n\nPaddedlReformatNode = nuke.toNode(ParentGroup.name() + '.Reformat_to_Padded_Size')\nPaddedReformatKnob = PaddedlReformatNode.knob('format')\n\n\ndef create_new_image_format():\n    # Create a new image format in Nuke --> EXAMPLE: MyNewFormat = '16000 119 1.0 Format_Name'\n    NewFormatName = str(DisplayKnobWidth.value()) + 'x' + str(DisplayKnobHeight.value())\n    NewFormat = (\" %s %s 1.0 %s\") % (int(DisplayKnobWidth.value()), int(DisplayKnobHeight.value()), NewFormatName )\n    nuke.addFormat(NewFormat)\n    # Set the Reformat_to_Final_Output_Size to the new padded size...\n    PaddedReformatKnob.setValue(NewFormatName)\n    print NewFormat\n    nuke.message(\"Created new format: \" + NewFormatName)\n\ncreate_new_image_format()" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 ""}
+ addUserKnob {26 version l "" -STARTLINE T "<FONT COLOR=\"#f75d16\">VERSION: 2.0<\\FONT>"}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x7171c6ff
+  label "Premultiply -- if input has alpha."
+  note_font_size 20
+  xpos 326
+  ypos 657
+  bdwidth 365
+  bdheight 146
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x212121ff
+  label "Padded Size calculations..."
+  note_font_size 20
+  xpos 527
+  ypos 113
+  bdwidth 367
+  bdheight 144
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode6
+  tile_color 0x7171c600
+  label "Reformat to Final Output Size:\nSet to -->  center"
+  note_font_size 20
+  xpos 323
+  ypos 469
+  bdwidth 367
+  bdheight 144
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode7
+  tile_color 0x7171c600
+  label "Reformat to Padded Size\nEX: 4000 - 2.5% = 3900"
+  note_font_size 20
+  xpos 324
+  ypos 284
+  bdwidth 367
+  bdheight 144
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode9
+  tile_color 0x7171c600
+  label "\n\n\n\n\nCrop Reformat to Auto Crop data size"
+  note_font_size 20
+  xpos 326
+  ypos -88
+  bdwidth 366
+  bdheight 167
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 457
+  ypos -59
+ }
+ Crop {
+  box {{curve x1 1130} {curve x1 196} {curve x1 2890} {curve x1 3718}}
+  reformat true
+  name Crop1
+  label AutoCrop
+  xpos 457
+  ypos -33
+ }
+ Reformat {
+  format "2850 2850 0 0 2850 2850 1 2850x2850"
+  resize height
+  name Reformat_to_Padded_Size
+  xpos 457
+  ypos 361
+ }
+ Reformat {
+  format "2000 2000 0 0 2000 2000 1 2000x2000"
+  resize none
+  name Reformat_to_Final_Output_Size
+  xpos 457
+  ypos 548
+ }
+ Premult {
+  name Premult
+  xpos 457
+  ypos 725
+  disable {{"\[string first \".a\" \[channels \[input this 0]]]==-1"}}
+ }
+ Output {
+  name Output1
+  xpos 457
+  ypos 837
+ }
+ NoOp {
+  inputs 0
+  name Padding_Size_Calculator
+  xpos 662
+  ypos 190
+  addUserKnob {20 User}
+  addUserKnob {3 padded_width_result l "Width with Pad:"}
+  padded_width_result {{"\[python -execlocal Parent\\ =\\ nuke.thisParent()\\n\\nOutputFormatWidth\\ =\\ Parent.knob('output_format_selector').value().width()\\n\\nWidthInput\\ =\\ Parent.knob('percentage_of_width').value()\\n\\nPaddingWidthPixels\\ =\\ OutputFormatWidth*((WidthInput*2)/100)\\n\\nCalculatedWidth\\ =\\ OutputFormatWidth\\ -\\ PaddingWidthPixels\\n\\nret\\ =\\ CalculatedWidth]"}}
+  addUserKnob {3 padded_height_result l "Height with Pad:" -STARTLINE}
+  padded_height_result {{"\[python -execlocal Parent\\ =\\ nuke.thisParent()\\n\\nOutputFormatHeight\\ =\\ Parent.knob('output_format_selector').value().height()\\n\\nHeightInput\\ =\\ Parent.knob('percentage_of_height').value()\\n\\nPaddingHeightPixels\\ =\\ OutputFormatHeight*((HeightInput*2)/100)\\n\\nCalculatedHeight\\ =\\ OutputFormatHeight\\ -\\ PaddingHeightPixels\\n\\nret\\ =\\ CalculatedHeight]"}}
+ }
+end_group

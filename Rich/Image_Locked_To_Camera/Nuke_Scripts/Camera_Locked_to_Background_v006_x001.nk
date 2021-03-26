@@ -1,0 +1,214 @@
+#! C:/Program Files/Nuke9.0v7/nuke-9.0.7.dll -nx
+version 9.0 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="2576" h="1456" maximized="1" screen="0">
+        <splitter orientation="2">
+            <split size="1009"/>
+            <dock id="" activePageId="Viewer.1" focus="true">
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="381"/>
+            <dock id="" activePageId="Curve Editor.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="2560" y="0" w="1920" h="1200" screen="1">
+        <splitter orientation="1">
+            <split size="1247"/>
+            <splitter orientation="2">
+                <split size="64"/>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"/>
+                </dock>
+                <split size="1093"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="DAG.2"/>
+                </dock>
+            </splitter>
+            <split size="653"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name D:/rbobo/Dropbox/CODE_aw_projects/aw_projects/Image_Locked_To_Camera/Nuke_Scripts/Camera_Locked_to_Background_v006_x001.nk
+ frame 153
+ last_frame 180
+ lock_range true
+ format "2000 1125 0 0 2000 1125 1 "
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+Read {
+ inputs 0
+ file X:/SGS/SGSC-17-005_Febreze_Masters/work/aircare/746996-1/img/ren/v001/746996-1_AirEffects_BTY.0001.exr
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ name Read1
+ xpos -485
+ ypos -328
+}
+Camera2 {
+ inputs 0
+ translate {{curve x1 128 x45 934.7999878 x90 132 -701 128} {curve x1 1 x45 1 x90 1 1 1} {curve x1 832 x45 17 x90 -814 -1 832}}
+ rotate {{curve x1 0 x180 0} {curve x1 0 x45 90 x90 180 270 360} {curve x1 0 x180 0}}
+ name Camera1
+ xpos -111
+ ypos 3
+}
+set N6bd5800 [stack 0]
+Read {
+ inputs 0
+ file X:/Innocean/INNO-17-032_2018_Elantra_GT_HDRI_360-180_frames/work/s01_HDRI-360/img/ren/v01_01/veh_beauty/Elantra_GT_veh_beauty_####.exr
+ format "2000 1125 0 0 2000 1125 1 "
+ last 180
+ origlast 180
+ origset true
+ name Read2
+ xpos 2
+ ypos -231
+}
+Group {
+ name Image_Locked_to_Camera
+ xpos 2
+ ypos -84
+ addUserKnob {20 User}
+ addUserKnob {22 choose_camera l "Find Cameras" T "import nuke\nimport re\n# Assign the Group node to a variable we can get later...\nGroupNode = nuke.thisNode()\n################################################################\n# Get a list of all the available cameras in the Root node...\nRootNode = nuke.Root()\n# Make sure we're operating inside the Root group...\nRootNode.begin()\ncameras = \[]\nfor node in (nuke.allNodes('Camera') + nuke.allNodes('Camera2')):\n    cameras.append(node.name())\nRootNode.end()\n################################################################\n# Get all the knobs in the Group...\nGroupNodeKnobs = GroupNode.allKnobs()\n#print 'GroupNodeKnobs', GroupNodeKnobs\n# Make sure we're operating inside the GroupNode...\nGroupNode.begin()\n# Set up some variables for removal of preexisting knobs when the 'Pick Camera' button is pressed...\nknobs_to_remove = \[]\nknobs_to_ignore = \['selected', 'hide_input', 'cached', 'dope_sheet', 'bookmark', 'postage_stamp', 'useLifetime', 'lock_connections']\n# Make a list of any pulldown (Enumeration_Knob) knobs...\nregex = re.compile(r\"\\Enumeration_Knob\\W\")   # \\W is anything except a word character...\nfor knob in GroupNodeKnobs:\n    if bool(regex.search(str(type(knob)))):\n        if knob.name() not in knobs_to_ignore:\n            name = knob.name()\n            knobs_to_remove.append(name)\n        else:\n            pass\n# Remove existing pulldown knob when the 'Pick Camera' PyScript button is pressed, before we make a new one...\nKnobs = GroupNode.knobs()\ntry:\n    for knobname in knobs_to_remove:\n        GroupNode.removeKnob(Knobs\[knobname])\nexcept KeyError:\n    print 'Key Error: Some nonexistant knobs could not be removed.'\nexcept ValueError:\n    print 'Value Error: Some nonexistant knobs could not be removed.'\n# Build pulldown selector to pick the camera to link to...\ncameraChoiceKnob = nuke.Enumeration_Knob('cameras', 'Select Camera: ', cameras)\nGroupNode.addKnob(cameraChoiceKnob)\ncameraChoiceKnob.setFlag(nuke.STARTLINE)\n# Finish operating inside Group node...\nGroupNode.end()\n" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 image_z_distance_text l "Image Distance From Camera:"}
+ addUserKnob {41 z T BKGND_IMAGE_CARD.z}
+ addUserKnob {26 ""}
+ addUserKnob {4 cameras l "Select Camera: " M {Camera1}}
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x212121ff
+  label "Background Image Card"
+  note_font_size 25
+  note_font_color 0xfefefeff
+  xpos -429
+  ypos -511
+  bdwidth 317
+  bdheight 253
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0xff7c3bff
+  label "Zero value Light\nNeeded to make Emission Shader work..."
+  note_font_size 20
+  xpos -468
+  ypos -224
+  bdwidth 408
+  bdheight 191
+ }
+ Light2 {
+  inputs 0
+  intensity 0
+  translate {77.80000305 -57.59999847 54}
+  depthmap_slope_bias 0.01
+  name Light1
+  xpos -251
+  ypos -121
+ }
+ Input {
+  inputs 0
+  name Image
+  xpos -371
+  ypos -573
+ }
+ Dot {
+  name Dot2
+  xpos -337
+  ypos -425
+ }
+set N5f559800 [stack 0]
+ Dot {
+  name Dot3
+  xpos -212
+  ypos -425
+ }
+push 0
+ Emission {
+  inputs 2
+  emission 1
+  name Emission1
+  xpos -246
+  ypos -333
+ }
+push $N5f559800
+ Card2 {
+  cast_shadow false
+  receive_shadow false
+  z 350
+  lens_in_focal {{"parent.parent.\[value cameras].focal"}}
+  lens_in_haperture {{"parent.parent.\[value cameras].haperture"}}
+  translate {{"parent.parent.\[value cameras].translate.x"} {"parent.parent.\[value cameras].translate.y"} {"parent.parent.\[value cameras].translate.z"}}
+  rotate {{"parent.parent.\[value cameras].rotate.x"} {"parent.parent.\[value cameras].rotate.y"} {"parent.parent.\[value cameras].rotate.z"}}
+  control_points {3 3 3 6 
+
+1 {-0.5 -0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0 0 0} 
+1 {0 -0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {0.5 0 0} 
+1 {0.5 -0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666865 0} 0 {0 0 0} 0 {1 0 0} 
+1 {-0.5 0 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0 0.5 0} 
+1 {0 0 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {0.5 0.5 0} 
+1 {0.5 0 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0.1666666716 0} 0 {0 -0.1666666716 0} 0 {1 0.5 0} 
+1 {-0.5 0.5 0} 0 {0.1666666865 0 0} 0 {0 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0 1 0} 
+1 {0 0.5 0} 0 {0.1666666716 0 0} 0 {-0.1666666716 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {0.5 1 0} 
+1 {0.5 0.5 0} 0 {0 0 0} 0 {-0.1666666865 0 0} 0 {0 0 0} 0 {0 -0.1666666865 0} 0 {1 1 0} }
+  name BKGND_IMAGE_CARD
+  selected true
+  xpos -371
+  ypos -383
+ }
+ ApplyMaterial {
+  inputs 2
+  name ApplyMaterial1
+  xpos -371
+  ypos -333
+ }
+ Scene {
+  inputs 2
+  name Scene1
+  xpos -361
+  ypos -121
+ }
+ Output {
+  name Output1
+  xpos -371
+  ypos 69
+ }
+end_group
+push $N6bd5800
+Scene {
+ inputs 2
+ name Scene1
+ xpos 12
+ ypos 3
+}
+push 0
+ScanlineRender {
+ inputs 3
+ conservative_shader_sampling false
+ motion_vectors_type distance
+ name ScanlineRender1
+ xpos 2
+ ypos 115
+}
+Viewer {
+ frame 153
+ frame_range 1-180
+ name Viewer1
+ xpos 2
+ ypos 213
+}

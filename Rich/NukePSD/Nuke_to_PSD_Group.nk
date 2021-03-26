@@ -1,0 +1,229 @@
+set cut_paste_input [stack 0]
+version 10.5 v7
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x767676ff
+ label "\n\n\n\n\n\n    (Disable to prevent Deadline render.)"
+ note_font_color 0xfefefeff
+ selected true
+ xpos 1377
+ ypos -755
+ bdwidth 243
+ bdheight 131
+}
+push $cut_paste_input
+Group {
+ name Nuke_to_PSD
+ knobChanged "\nimport operator\nGroupNode = nuke.thisNode()\nKnob = nuke.thisKnob()\n\n# The list of Write nodes in the group...\ntry:\n    Writes = \[node for node in GroupNode.nodes() if node.Class() == 'Write']\n    # Use the render_order of the Writes to identify which one has the afterRender callback in its Python tab...\n    # Dictionary of Writes, ordered by render_order, to find last Write that holds the afterRender callback code...\n    WritesOrderDict = \{\}\n    for node in Writes:\n        order = node\['render_order'].value()\n        WritesOrderDict\[node] = order\n    #print \"WritesOrderDict --> \", WritesOrderDict\n    # Sort by render_order value...\n    sorted_WritesOrderDict = sorted(WritesOrderDict.items(), key=operator.itemgetter(1))\n    #print \"sorted_WritesOrderDict --> \", sorted_WritesOrderDict\n    CallBackWriteNode = sorted_WritesOrderDict\[-1]\[0]\n    #print \"CallBackWriteNode --> \", CallBackWriteNode.name()\nexcept:\n    pass\n\n# The list of knobs to be checked...\nICC_KNOB = GroupNode.knob('ICC_knob')\nPSD_KNOB = GroupNode.knob('create_PSD_files')\n#DEL_KNOB = GroupNode.knob('delete_temp_files')\nOUTPUT_KNOB = GroupNode.knob('dir_text')\nPSD_FILE_KNOB = GroupNode.knob('PSD_filename')\nVIEWS_KNOB = GroupNode.knob('views')\nSCAN_KNOB = GroupNode.knob('scan_button')\nRENDER_KNOB = GroupNode.knob('render_button')\nSUBMIT_KNOB = GroupNode.knob('submit_to_deadline')\nREPLACE_LAYERNAME_KNOB = GroupNode.knob('replace_layername')\n\n# afterRender callbacks...\nCallback_with_PSD = \"\"\"import NukePSD.Nuke_to_PSD\nNPSD = NukePSD.Nuke_to_PSD.NukePSD()\nNPSD._run_write_data_file()\nNPSD._run_JS_command()\"\"\"\n\nCallback_no_PSD = \"\"\"import NukePSD.Nuke_to_PSD\nNPSD = NukePSD.Nuke_to_PSD.NukePSD()\nNPSD._run_write_data_file()\"\"\"\n\nif len(nuke.views()) > 1:\n    PSD_FILE_KNOB.setValue(\"Not used for multiple views. View name is used, instead.\")\n    PSD_FILE_KNOB.setEnabled(False)\nelif len(nuke.views()) == 1:\n    PSD_FILE_KNOB.setEnabled(True)\n\n#-------------------------------------------------------------------------\nif Knob == ICC_KNOB:\n    for WriteNode in Writes:\n        WriteNode\['ICC_knob'].setValue(Knob.value())\n\n#-------------------------------------------------------------------------\nif Knob == RENDER_KNOB:\n    if PSD_KNOB.value() == 'now, on render completion':\n        try:\n            CallBackWriteNode\['afterRender'].setValue(Callback_with_PSD)\n        except:\n            pass\n    elif PSD_KNOB.value() == 'later, with post process function':\n        try:\n            CallBackWriteNode\['afterRender'].setValue(Callback_no_PSD)\n        except:\n            pass\n\n    try:\n        for WriteNode in Writes:\n            WriteNode\['views'].setValue(VIEWS_KNOB.value())\n    except:\n        pass\n\n    if nuke.modified():\n        if nuke.ask(\"Your script has been modified. 'Save As' before rendering?\"):\n            nuke.scriptSaveAs()\n        else:\n            pass\n\n    try:\n        del nuke.__dict__\[\"_afterRenderCount\"]\n    except:\n        pass\n\n    import NukePSD.Nuke_to_PSD_Group\n    reload(NukePSD.Nuke_to_PSD_Group)\n\n    check = NukePSD.Nuke_to_PSD_Group._pre_render_sanity_checks()\n    if check:\n        NukePSD.Nuke_to_PSD_Group._render_write_nodes()\n    else:\n        print \"Pre-render check failed!\"\n        nuke.critical('Pre-render check failed!')\n\n#-------------------------------------------------------------------------\nif Knob == SUBMIT_KNOB:\n    if PSD_KNOB.value() == 'now, on render completion':\n        try:\n            CallBackWriteNode\['afterRender'].setValue(Callback_no_PSD)\n        except:\n            pass\n    elif PSD_KNOB.value() == 'later, with post process function':\n        try:\n            CallBackWriteNode\['afterRender'].setValue(Callback_no_PSD)\n        except:\n            pass\n\n    try:\n        for WriteNode in Writes:\n            WriteNode\['views'].setValue(VIEWS_KNOB.value())\n    except:\n        pass    \n\n    if nuke.modified():\n        if nuke.ask(\"Your script has been modified. 'Save As' before rendering?\"):\n            nuke.scriptSaveAs()\n        else:\n            pass\n\n    PNG_DIR = OUTPUT_KNOB.value()\n\n    import NukePSD.Nuke_to_PSD_Group\n    reload(NukePSD.Nuke_to_PSD_Group)\n\n    check = NukePSD.Nuke_to_PSD_Group._pre_render_sanity_checks()\n    if check:\n        import NukePSD.Nuke_to_PSD_Submitter\n        reload(NukePSD.Nuke_to_PSD_Submitter)\n        NukePSD.Nuke_to_PSD_Submitter.Nuke_to_PSD_SubmitPanel(PNG_DIR, GroupNode).show()\n\n#-------------------------------------------------------------------------\nif Knob == OUTPUT_KNOB or Knob == SCAN_KNOB:\n    try:\n        OutputDir = OUTPUT_KNOB.value()\n\n        if OutputDir:\n            if OutputDir.endswith('/'):\n                pass\n            else:\n                OutputDir = OutputDir + '/'\n\n            for WriteNode in Writes:\n                ShuffleNode = WriteNode.input(0)\n                layername = ShuffleNode\['in'].value()\n                # We're only using one view, most likely the default, \"main\"...\n                if len(nuke.views()) == 1:\n                    WriteNode\['file'].setValue(OutputDir + 'PNG' + '/' + layername + '/' + layername + '_%04d' + '.png')\n                # We're using multiple views...\n                elif len(nuke.views()) > 1:\n                    WriteNode\['file'].setValue(OutputDir + 'PNG' + '/' + '%V' + '/' + layername + '/' + layername + '_%04d' + '.png')\n        else:\n            for WriteNode in Writes:\n                WriteNode\['file'].setValue('')\n    except:\n        raise\n\n#-------------------------------------------------------------------------\nif Knob == VIEWS_KNOB:\n    try:\n        for WriteNode in Writes:\n            WriteNode\['views'].setValue(VIEWS_KNOB.value())\n    except:\n        pass\n\nif GroupNode\['disable']:\n    try:\n        for node in Writes:\n            node\['disable'].setValue(GroupNode\['disable'].value())\n    except:\n        pass\n"
+ tile_color 0xbaba00ff
+ note_font Verdana
+ note_font_color 0x101010ff
+ selected true
+ xpos 1455
+ ypos -711
+ addUserKnob {20 main_tab l Setup}
+ addUserKnob {26 version l "<font color=orange>Nuke_to_PSD</font>" T ""}
+ addUserKnob {26 version_b l "<font color=orange> - VERSION 1.7 beta</font>" -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_1 l "<font color=orange>(1)</font>" T " Scan for input image layers..."}
+ addUserKnob {22 scan_button l Scan T "import NukePSD.Nuke_to_PSD_Group\nreload(NukePSD.Nuke_to_PSD_Group)\nLayers = NukePSD.Nuke_to_PSD_Group._get_group_input_layers()\nNukePSD.Nuke_to_PSD_Group._create_layer_order_knobs(Layers)\nNukePSD.Nuke_to_PSD_Group._create_group_layer_nodes(Layers)" +STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_2 l "<font color=orange>(2)</font>" T " Set the Output Directory Path and the ICC color profile..."}
+ addUserKnob {22 output_dir_select l "Output Dir:" T "Dir = nuke.getFilename('Select Directory', pattern='*/*', type='select', multiple=False)\n\nnuke.thisNode().knob('dir_text').setValue(Dir)" +STARTLINE}
+ addUserKnob {1 dir_text l "" -STARTLINE}
+ addUserKnob {4 ICC_knob l "ICC Profile:" M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc" ""}}
+ ICC_knob sRGB.icc
+ addUserKnob {26 ""}
+ addUserKnob {26 step_3 l "<font color=orange>(3)</font>" T " Type the PSD file name... "}
+ addUserKnob {1 PSD_filename l "PSD Filename:"}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_4 l "<font color=orange>(4)</font>" T " Set the <font color=orange>PSD Layer Order</font> below, at the bottom of the panel..."}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_5 l "<font color=orange>(5)</font>" T " Select whether to Create the PSD FIles Now or Later..."}
+ addUserKnob {4 create_PSD_files l "Create PSD Files:" M {"now, on render completion" "later, with post process function" "" "" "" "" "" "" ""}}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_6 l "<font color=orange>(6)</font>" T " Select Views to render, if using multiple views..."}
+ addUserKnob {45 views}
+ views {main}
+ addUserKnob {26 ""}
+ addUserKnob {26 step_7 l "<font color=orange>(7)</font>" T " Click to Render Locally or Submit to Deadline..."}
+ addUserKnob {22 render_button l "Render Local" +STARTLINE}
+ addUserKnob {26 _or_ l "" -STARTLINE T "  or  "}
+ addUserKnob {22 submit_to_deadline l "Submit to Deadline" -STARTLINE}
+ addUserKnob {26 ""}
+ addUserKnob {26 psd_layers l "<font color=orange>PSD Layer Order:</font>"}
+ addUserKnob {26 step_4b l "" -STARTLINE T "(Lowest number is the bottom layer.)"}
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 736
+  ypos -565
+ }
+ Reformat {
+  black_outside true
+  name Reformat1
+  label "THIS FIXES PHOTOSHOP\nONE PIXEL OFFSET PROBLEM"
+  xpos 736
+  ypos -539
+ }
+set N5e94c800 [stack 0]
+add_layer {Background Background.red Background.green Background.blue Background.alpha}
+ Shuffle {
+  in Background
+  name Shuffle4
+  label "\[value in]"
+  xpos 1066
+  ypos -513
+ }
+ Write {
+  channels rgba
+  file_type png
+  create_directories true
+  render_order 4
+  checkHashOnRead false
+  version 4
+  in_colorspace "ACES - ACEScg"
+  out_colorspace "ACES - ACEScg"
+  afterRender "import NukePSD.Nuke_to_PSD\nNPSD = NukePSD.Nuke_to_PSD.NukePSD()\nNPSD._run_write_data_file()"
+  name Write4
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  selected true
+  xpos 1066
+  ypos -488
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+ Output {
+  name Output1
+  xpos 736
+  ypos -272
+ }
+push $N5e94c800
+add_layer {Floor_Reflection Floor_Reflection.red Floor_Reflection.green Floor_Reflection.blue Floor_Reflection.alpha}
+ Shuffle {
+  in Floor_Reflection
+  name Shuffle1
+  label "\[value in]"
+  xpos 736
+  ypos -513
+ }
+ Write {
+  channels rgba
+  file_type png
+  create_directories true
+  checkHashOnRead false
+  version 4
+  in_colorspace "ACES - ACEScg"
+  out_colorspace "ACES - ACEScg"
+  name Write1
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  xpos 736
+  ypos -487
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+push $N5e94c800
+add_layer {Beauty Beauty.red Beauty.green Beauty.blue Beauty.alpha}
+ Shuffle {
+  in Beauty
+  name Shuffle2
+  label "\[value in]"
+  xpos 846
+  ypos -513
+ }
+ Write {
+  channels rgba
+  file_type png
+  create_directories true
+  render_order 2
+  checkHashOnRead false
+  version 4
+  in_colorspace "ACES - ACEScg"
+  out_colorspace "ACES - ACEScg"
+  name Write2
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  xpos 846
+  ypos -487
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+push $N5e94c800
+add_layer {Floor_Shadow Floor_Shadow.red Floor_Shadow.green Floor_Shadow.blue Floor_Shadow.alpha}
+ Shuffle {
+  in Floor_Shadow
+  name Shuffle3
+  label "\[value in]"
+  xpos 956
+  ypos -513
+ }
+ Write {
+  channels rgba
+  file_type png
+  create_directories true
+  render_order 3
+  checkHashOnRead false
+  version 4
+  in_colorspace "ACES - ACEScg"
+  out_colorspace "ACES - ACEScg"
+  name Write3
+  label "ICC Profile: sRGB.icc"
+  note_font "Verdana Bold Bold Bold Bold Bold Bold Bold Bold Bold"
+  note_font_size 12
+  note_font_color 0x664cf4ff
+  xpos 956
+  ypos -487
+  addUserKnob {20 Metadata_Tab l Metadata}
+  addUserKnob {26 ICC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">ICC Profile (JPG, PNG & TIF images):<\\FONT>"}
+  addUserKnob {4 ICC_knob l "" +STARTLINE M {Empty sRGB.icc AdobeRGB1998.icc REC709.icc REC2020.icc "ACESCG Linear.icc"}}
+  ICC_knob sRGB.icc
+  addUserKnob {26 divider2 l "" +STARTLINE}
+  addUserKnob {26 divider2B l "" +STARTLINE}
+  addUserKnob {26 IPTC_Section_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">IPTC Data (TIF images only - Required for Innocean/Hyundai projects):<\\FONT>"}
+  addUserKnob {6 IPTC_knob l "Armstrong White Contact/Author Data" +STARTLINE}
+  addUserKnob {26 divider3 l "" +STARTLINE}
+  addUserKnob {26 divider3B l "" +STARTLINE}
+  addUserKnob {26 Hyundai_Folders_Title l "" +STARTLINE T "<FONT COLOR=\"#7777EE\">Views-Based Comp:<\\FONT>"}
+  addUserKnob {6 Hyundai_knob l "Rearrange Folders per Innocean/Hyundai requirements." +DISABLED +STARTLINE}
+ }
+end_group

@@ -1,0 +1,143 @@
+#! /Applications/Nuke6.0v3-32/Nuke6.0v3.app/Contents/MacOS/Nuke6.0v3 -nx
+version 6.0 v3
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="22" w="1920" h="1174" screen="0">
+        <splitter orientation="1">
+            <split size="995"></split>
+            <splitter orientation="1">
+                <split size="43"></split>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"></page>
+                </dock>
+                <split size="948"></split>
+                <splitter orientation="2">
+                    <split size="630"></split>
+                    <dock id="" activePageId="Viewer.1">
+                        <page id="Viewer.1"></page>
+                    </dock>
+                    <split size="518"></split>
+                    <dock id="" activePageId="Properties.1">
+                        <page id="Curve Editor.1"></page>
+                        <page id="Properties.1"></page>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="921"></split>
+            <dock id="" activePageId="DAG.1">
+                <page id="DAG.1"></page>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Volumes/arc/common/Library/Scripts/Nuke_scripts/ChromaAb_v06.nk
+}
+BackdropNode {
+ inputs 0
+ name Chroma_Ab
+ tile_color 0x342222ff
+ xpos 1607
+ ypos 2796
+ bdwidth 278
+ bdheight 462
+}
+Dot {
+ inputs 0
+ name Dot69
+ xpos 1805
+ ypos 2799
+}
+Remove {
+ operation keep
+ channels rgba
+ name Remove1
+ label "Keep RGBA only"
+ xpos 1771
+ ypos 2858
+}
+Dot {
+ name Dot62
+ xpos 1805
+ ypos 2942
+}
+set N1edb4a0 [stack 0]
+push $N1edb4a0
+Shuffle {
+ green red
+ name r1
+ xpos 1626
+ ypos 2978
+}
+Transform {
+ scale 1.002
+ center {{"\[metadata input/width]/2" i} {"\[metadata input/height]/2" i}}
+ name Transform1
+ xpos 1626
+ ypos 3002
+}
+push $N1edb4a0
+Shuffle {
+ red green
+ name g1
+ xpos 1718
+ ypos 2978
+}
+Transform {
+ scale 1.001
+ center {{"\[metadata input/width]/2" i} {"\[metadata input/height]/2" i}}
+ name Transform6
+ xpos 1718
+ ypos 3002
+}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 rgba.red
+ name ChromaAb1
+ xpos 1674
+ ypos 3040
+}
+Copy {
+ inputs 2
+ from0 rgba.blue
+ to0 rgba.blue
+ name Copy42
+ xpos 1771
+ ypos 3040
+}
+Colorspace {
+ colorspace_in sRGB
+ colorspace_out HSV
+ name Colorspace1
+ xpos 1771
+ ypos 3110
+}
+Sharpen {
+ channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+ amount 0.5
+ size 1.84
+ name Sharpen3
+ xpos 1771
+ ypos 3134
+}
+Colorspace {
+ colorspace_in HSV
+ colorspace_out sRGB
+ name Colorspace2
+ xpos 1771
+ ypos 3168
+}
+Clamp {
+ channels rgba
+ name Clamp3
+ xpos 1771
+ ypos 3192
+}
+Reformat {
+ name Reformat1
+ xpos 1771
+ ypos 3216
+}

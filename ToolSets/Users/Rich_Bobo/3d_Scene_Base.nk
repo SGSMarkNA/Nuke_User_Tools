@@ -1,0 +1,44 @@
+#! C:/Program Files/Nuke6.3v8/Nuke6.3.exe -nx
+version 6.3 v8
+
+Camera2 {
+ inputs 0
+ name Camera1
+ xpos -86
+ ypos 109
+}
+set Na201b90 [stack 0]
+push $Na201b90
+Light2 {
+ inputs 0
+ name Light1
+ xpos 200
+ ypos 109
+}
+Scene {
+ inputs 2
+ name Scene1
+ xpos 56
+ ypos 109
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos 187
+ ypos 198
+}
+ScanlineRender {
+ inputs 3
+ output_motion_vectors_type accurate
+ name ScanlineRender1
+ xpos 46
+ ypos 222
+}
+Viewer {
+ frame 1
+ input_process false
+ name Viewer1
+ xpos 46
+ ypos 394
+}

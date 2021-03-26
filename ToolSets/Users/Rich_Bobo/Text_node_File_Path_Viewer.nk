@@ -1,0 +1,14 @@
+set cut_paste_input [stack 0]
+version 9.0 v4
+push $cut_paste_input
+Text {
+ message "\[value \[value input.name].file]"
+ font C:/Windows/Fonts/arial.ttf
+ size 20
+ translate {0 50}
+ name File_Path_text_node
+ label "View Output Path here..."
+ selected true
+ xpos 647
+ ypos 1847
+}

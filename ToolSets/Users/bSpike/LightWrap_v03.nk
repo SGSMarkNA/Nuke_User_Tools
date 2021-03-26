@@ -1,0 +1,147 @@
+#! /Applications/Nuke5.2v2/Nuke5.2v2.app/Contents/MacOS/Nuke5.2v2 -nx
+version 5.2200
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="22" w="1920" h="1174" screen="0">
+        <splitter orientation="1">
+            <split size="995"></split>
+            <splitter orientation="1">
+                <split size="43"></split>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"></page>
+                </dock>
+                <split size="948"></split>
+                <splitter orientation="2">
+                    <split size="630"></split>
+                    <dock id="" activePageId="Viewer.1">
+                        <page id="Viewer.1"></page>
+                    </dock>
+                    <split size="518"></split>
+                    <dock id="" activePageId="Properties.1">
+                        <page id="Curve Editor.1"></page>
+                        <page id="Properties.1"></page>
+                    </dock>
+                </splitter>
+            </splitter>
+            <split size="921"></split>
+            <dock id="" activePageId="DAG.1">
+                <page id="DAG.1"></page>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /Volumes/arc/common/Library/Scripts/Nuke_scripts/LightWrap_v03.nk
+}
+BackdropNode {
+ inputs 0
+ name Lightwrap
+ tile_color 0x3f3f3fff
+ xpos 1101
+ ypos 1291
+ bdwidth 327
+ bdheight 362
+}
+Dot {
+ inputs 0
+ name Dot31
+ label "From Vehicle iput"
+ xpos 1240
+ ypos 1253
+}
+Shuffle {
+ red alpha
+ green alpha
+ blue alpha
+ name Shuffle15
+ xpos 1206
+ ypos 1337
+}
+Grade {
+ channels rgba
+ blackpoint 0.1333
+ name Grade1
+ xpos 1206
+ ypos 1364
+}
+set N15aef7b0 [stack 0]
+Blur {
+ channels rgba
+ size 12.01
+ name Blur2
+ xpos 1131
+ ypos 1442
+}
+Invert {
+ channels rgba
+ name Invert1
+ xpos 1131
+ ypos 1466
+}
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name Shuffle16
+ xpos 1131
+ ypos 1490
+}
+push $N15aef7b0
+Merge2 {
+ inputs 2
+ operation multiply
+ name Matte__LightWrap
+ label Matte__LightWrap
+ xpos 1206
+ ypos 1558
+}
+Dot {
+ inputs 0
+ name Dot32
+ label Environment
+ xpos 1350
+ ypos 1255
+}
+Blur {
+ channels rgb
+ size 30
+ name Blur3
+ xpos 1316
+ ypos 1537
+}
+ShuffleCopy {
+ inputs 2
+ name ShuffleCopy1
+ xpos 1316
+ ypos 1564
+}
+Premult {
+ name Premult1
+ xpos 1316
+ ypos 1591
+}
+Dot {
+ inputs 0
+ name Dot33
+ label "From Main Flow"
+ xpos 1003
+ ypos 1256
+}
+Merge2 {
+ inputs 2
+ operation screen
+ Achannels rgb
+ mix 0.25
+ name Merge18
+ label Lightwrap
+ xpos 969
+ ypos 1585
+}
+Dot {
+ name Dot34
+ label "To Output"
+ xpos 1003
+ ypos 1738
+}

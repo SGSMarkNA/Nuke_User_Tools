@@ -1,0 +1,116 @@
+set cut_paste_input [stack 0]
+version 9.0 v4
+BackdropNode {
+ inputs 0
+ name BackdropNode14
+ tile_color 0x2b3a4cff
+ label "ZDefocus: Depth channel processing to\nhelp eliminate noise on blurred edges."
+ note_font_size 30
+ note_font_color 0x939393ff
+ selected true
+ xpos 1125
+ ypos 3668
+ bdwidth 629
+ bdheight 785
+}
+Constant {
+ inputs 0
+ channels depth
+ color 1
+ name Depth_WHITE
+ label "Depth = WHITE (1.0)"
+ selected true
+ xpos 1220
+ ypos 3854
+}
+Dot {
+ inputs 0
+ name DEPTH
+ label DEPTH
+ note_font_size 20
+ note_font_color 0x919191ff
+ selected true
+ xpos 1623
+ ypos 3821
+}
+Unpremult {
+ channels depth
+ name Unpremult6
+ selected true
+ xpos 1388
+ ypos 3812
+}
+Merge2 {
+ inputs 2
+ operation divide
+ Achannels depth
+ Bchannels depth
+ output depth
+ name One_Divided_by_Depth
+ selected true
+ xpos 1388
+ ypos 3884
+}
+Premult {
+ channels depth
+ name Premult_depth
+ selected true
+ xpos 1388
+ ypos 3956
+}
+Unpremult {
+ channels depth
+ name Unpremult_depth
+ selected true
+ xpos 1388
+ ypos 4038
+}
+Grade {
+ channels depth
+ multiply 1000
+ name Shift_depth_Values
+ label "Not always needed..."
+ selected true
+ xpos 1388
+ ypos 4110
+}
+push $cut_paste_input
+Dot {
+ name Dot71
+ label SCENE
+ note_font_size 20
+ note_font_color 0x939393ff
+ selected true
+ xpos 1623
+ ypos 4207
+}
+Copy {
+ inputs 2
+ from0 depth.Z
+ to0 depth.Z
+ name Copy_New_depth_channel
+ selected true
+ xpos 1388
+ ypos 4198
+}
+ZDefocus2 {
+ center 0.3105590045
+ focal_point {932.5 811.5}
+ size 12
+ max_size {{size}}
+ autoLayerSpacing false
+ layers 100
+ filter_type bladed
+ legacy_resize_mode false
+ show_legacy_resize_mode false
+ name ZDefocus2
+ selected true
+ xpos 1388
+ ypos 4299
+}
+Dot {
+ name Dot72
+ selected true
+ xpos 1422
+ ypos 4400
+}

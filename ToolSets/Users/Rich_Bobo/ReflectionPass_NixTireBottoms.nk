@@ -1,0 +1,104 @@
+set cut_paste_input [stack 0]
+version 6.3 v8
+push $cut_paste_input
+Group {
+ name Reflection_NixTireBottoms
+ selected true
+ xpos -1960
+ ypos 41
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -621
+  ypos 49
+ }
+ Dot {
+  name Dot56
+  xpos -587
+  ypos 89
+ }
+add_layer {Black_Trim_Tires Black_Trim_Tires.red Black_Trim_Tires.green Black_Trim_Tires.blue}
+ Shuffle {
+  in Black_Trim_Tires
+  red blue
+  green blue
+  name Tires_Mask2
+  xpos -542
+  ypos 86
+ }
+set N30aa8450 [stack 0]
+add_layer {VRayNormals VRayNormals.X VRayNormals.Y VRayNormals.Z}
+ Shuffle {
+  in VRayNormals
+  red green
+  blue green
+  alpha green
+  name Y_Normals2
+  xpos -446
+  ypos 86
+ }
+set N30aa9770 [stack 0]
+ Grade {
+  channels rgba
+  white -1
+  unpremult -rgba.alpha
+  name Invert_y_Normals2
+  xpos -446
+  ypos 110
+ }
+push $N30aa8450
+ Merge2 {
+  inputs 2
+  operation multiply
+  maskChannelInput Black_Trim_Tires.blue
+  name Merge40
+  xpos -542
+  ypos 140
+ }
+add_layer {rgb rgb.red}
+ Constant {
+  inputs 0
+  channels rgb
+  name BLACK_
+  xpos -238
+  ypos 86
+  postage_stamp false
+ }
+push $N30aa9770
+add_layer {VRayReflection VRayReflection.red VRayReflection.green VRayReflection.blue}
+ Shuffle {
+  in VRayReflection
+  name Reflection_Pass2
+  xpos -336
+  ypos 86
+ }
+set N30aaa430 [stack 0]
+ Merge2 {
+  inputs 2
+  operation minus
+  maskChannelInput -Black_Trim_Tires.blue
+  name Merge39
+  xpos -238
+  ypos 128
+ }
+push $N30aaa430
+ Merge2 {
+  inputs 2+1
+  maskChannelInput -VRayNormals.Y
+  name Merge41
+  xpos -336
+  ypos 146
+ }
+ Clamp {
+  maximum_enable false
+  name Clamp_BLACK2
+  xpos -336
+  ypos 180
+ }
+ Output {
+  name Output1
+  xpos -336
+  ypos 280
+ }
+end_group

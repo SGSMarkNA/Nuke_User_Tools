@@ -1,0 +1,18 @@
+
+# The DateCreated data needs to be changed - either manually or via automated script...
+-xmp-Photoshop:DateCreated=2014:04:01
+
+-xmp-dc:Creator=Armstrong White
+-xmp-iptcCore:CreatorAddress=2125 E. Lincoln
+-xmp-iptcCore:CreatorCity=Birmingham
+-xmp-iptcCore:CreatorRegion=Michigan
+-xmp-iptcCore:CreatorPostalCode=48009
+-xmp-iptcCore:CreatorCountry=USA
+-xmp-iptcCore:CreatorWorkTelephone=(248) 594-1818
+-xmp-iptcCore:CreatorWorkEmail=arielle.helfman@armstrong-white.com, kati.white@armstrong-white.com
+-xmp-iptcCore:CreatorWorkURL=http://armstrong-white.com
+
+# Additional..
+#-xmp-Photoshop:AuthorsPosition=Artist
+#-xmp-Photoshop:Credit=Armstrong White
+#-xmp-Photoshop:State=Michigan

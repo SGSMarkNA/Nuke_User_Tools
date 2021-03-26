@@ -1,0 +1,41 @@
+set cut_paste_input [stack 0]
+version 6.3 v8
+push $cut_paste_input
+Dot {
+ name Dot1
+ selected true
+ xpos -21
+ ypos -382
+}
+Dot {
+ inputs 0
+ name Dot2
+ selected true
+ xpos 61
+ ypos -373
+}
+Dot {
+ inputs 0
+ name Dot3
+ selected true
+ xpos -106
+ ypos -374
+}
+Dot {
+ name Dot5
+ selected true
+ xpos -31
+ ypos -284
+}
+Dot {
+ name Dot6
+ selected true
+ xpos 85
+ ypos -271
+}
+Dot {
+ name Dot7
+ selected true
+ xpos 141
+ ypos -352
+}

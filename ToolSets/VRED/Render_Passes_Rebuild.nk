@@ -1,0 +1,1320 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+BackdropNode {
+ inputs 0
+ name BackdropNode47
+ tile_color 0x4b4b4bff
+ label "EFX\n"
+ note_font_size 42
+ selected true
+ xpos -186
+ ypos -347
+ bdwidth 436
+ bdheight 726
+ z_order -1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode48
+ tile_color 0xaaaaaa00
+ label Shadow
+ note_font_size 30
+ selected true
+ xpos -575
+ ypos 300
+ bdwidth 231
+ bdheight 412
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode49
+ tile_color 0xaaaaaaff
+ label Background
+ note_font_size 30
+ selected true
+ xpos -1025
+ ypos 297
+ bdwidth 393
+ bdheight 415
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode50
+ tile_color 0x989898ff
+ label Glow
+ note_font_size 30
+ selected true
+ xpos -143
+ ypos -80
+ bdwidth 330
+ bdheight 165
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode51
+ tile_color 0x919191ff
+ label Defocus
+ note_font_size 30
+ selected true
+ xpos -146
+ ypos -247
+ bdwidth 328
+ bdheight 143
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode52
+ tile_color 0x989898ff
+ label "Chromatic Abberation"
+ note_font_size 30
+ selected true
+ xpos -146
+ ypos 121
+ bdwidth 333
+ bdheight 136
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode53
+ tile_color 0x989898ff
+ label "Merge_VRED_Passes Gizmo"
+ note_font_size 30
+ selected true
+ xpos -4235
+ ypos -2136
+ bdwidth 437
+ bdheight 232
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode54
+ tile_color 0x4b4b4b00
+ label "VRED Passes Rebuild"
+ note_font_size 30
+ selected true
+ xpos -4234
+ ypos -1860
+ bdwidth 4530
+ bdheight 1453
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode55
+ tile_color 0x989898ff
+ label "Paint Alpha"
+ note_font_size 30
+ selected true
+ xpos -4630
+ ypos -1966
+ bdwidth 293
+ bdheight 337
+}
+BackdropNode {
+ inputs 0
+ name NOTES
+ tile_color 0xccb243ff
+ label "_________________ NOTES _________________\n\n(1)  Merge_VRED_Passes Gizmo:\n\t-- Set the 'Render Pass Dir.'  for the VRED renders\n\t-- \[Clear Checkboxes] button\n\t-- \[Check for Passes] button\n\n\tOPTION:  You can bake out the merged VRED passes\n\tto an EXR sequence...\n\n\t-- Set the directory path for the 'EXR Output Path'\n\t-- \[Render] button\n\t-- \[Add EXR to Node Graph] button\n\t-- Attach EXR Read node in place of Merge_VRED_Passes Gizmo\n\n(2)  Paint Alpha:\n\t-- Add Read node\n\t-- Navigate to path for paint alpha render\n\t-- Attach Read node\n\n(3)  Background:\n\t-- Add Read node\n\t-- Navigate to path for background render\n\t-- Attach Read node\n\n(4)  Shadow:\n\t-- Add Read node\n\t-- Navigate to path for shadow render\n\t-- Attach Read node\n\n"
+ note_font Verdana
+ note_font_size 20
+ selected true
+ xpos -4465
+ ypos -2937
+ bdwidth 974
+ bdheight 766
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ label "-------- Autodesk Web Documentation --------\n\n_______VRED RENDERPASSES________\n\nExport Renderpasses: Activates rendering with render passes.\nAll activated Renderpasses are rendered and saved at a time.\n\n\n-------- COMBINED CHANNELS --------\n\nCOLOR CHANNELS:\n  Beauty\n  Diffuse IBL\n  Diffuse Light\n  Diffuse Indirect\n  Incandescence\n  Background Color\n  Specular Reflection\n  Glossy IBL\n  Glossy Light\n  Glossy Indirect\n  Translucency\n  Transparency Color\n\nAUXILLARY CHANNELS:\n  Occlusion\n  Mask\n  Material ID\n  Depth\n  Normal\n  Position\n  View Vector\n\n\n-------- SEPARATED CHANNELS --------\n\nMATERIAL CHANNELS:\n  Diffuse Color\n  Glossy Color\n  Specular Color\n  Incandescence\n  Translucency Color\n  Transparency Color\n  Background Color\n\nILLUMINATION CHANNELS:\n  IBL Diffuse\n  Lights Diffuse\n  Indirect Diffuse\n  IBL Glossy\n  Lights Glossy\n  Indirect Glossy\n  IBL Translucency\n  Light Translucency\n  Indirect Specular\n\n\nNOTE:\nTo reconstruct the beauty pass image using the other renderpasses it is necessary\nto render to EXR/HDR/Floating Point TIFF image format without Tonemap HDR activated.\nBecause Tonemapping changes the linearity of values, render with Tonemapping after the\nrenderpasses are combined to the final image.\n\nTo reconstruct the beauty pass, layer the Diffuse IBL/Light /Indirect , Glossy IBL/Light /Indirect,\nSpecular Reflection, Translucency, and Incandescence Passes using a linear add operation in your\ncompositing tool.\n\nURL:\nhttps://knowledge.autodesk.com/support/vred-products/learn-explore/caas/CloudHelp/cloudhelp/2016/ENU/VRED/files/GUID-B01B9ECB-4A29-4341-9C67-F166A9956044-htm.html\n"
+ note_font_size 20
+ selected true
+ xpos -3321
+ ypos -3264
+ bdwidth 1574
+ bdheight 1355
+ z_order 1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0xe1882eff
+ label "IMPORTANT!!\n\nThe Merge_VRED_Passes Gizmo expects\nPADDED IMAGE SEQUENCES!\n\nSo, even if you are only rendering a still frame,\nmake sure that the render passes have a sequence\nnumber at the end of their name. Otherwise, the\ngizmo will not see them at all!\n\nEXAMPLE:\nMX5_002-diffuse_light-00001.png\n"
+ note_font_size 20
+ selected true
+ xpos -3952
+ ypos -2514
+ bdwidth 450
+ bdheight 334
+ z_order 1
+}
+Merge_VRED_Passes {
+ inputs 0
+ name Merge_VRED_Passes
+ selected true
+ xpos -4136
+ ypos -2063
+ searchdir ""
+ file ""
+}
+Dot {
+ name Dot187
+ selected true
+ xpos -4102
+ ypos -2003
+}
+set N225d7340 [stack 0]
+LayerContactSheet {
+ showLayerNames true
+ name LayerContactSheet
+ selected true
+ xpos -3996
+ ypos -2006
+}
+Dot {
+ name View_Passes_Here3
+ label "View Passes Here"
+ note_font_size 20
+ note_font_color 0x990000ff
+ selected true
+ xpos -3962
+ ypos -1946
+}
+Dot {
+ inputs 0
+ name Dot188
+ label "Attach Shadow Here"
+ note_font_size 20
+ note_font_color 0x990000ff
+ selected true
+ xpos -463
+ ypos 544
+}
+Premult {
+ name Premult17
+ selected true
+ xpos -497
+ ypos 582
+}
+Dot {
+ inputs 0
+ name Dot191
+ label "Attach Background Here"
+ note_font_size 20
+ note_font_color 0x990000ff
+ selected true
+ xpos -897
+ ypos 497
+}
+Remove {
+ channels alpha
+ name Remove
+ selected true
+ xpos -931
+ ypos 536
+}
+QuickGrade {
+ name QuickGrade
+ label "\n"
+ selected true
+ xpos -931
+ ypos 597
+}
+Dot {
+ name Dot192
+ selected true
+ xpos -897
+ ypos 645
+}
+Merge2 {
+ inputs 2
+ name Merge_Shadow
+ selected true
+ xpos -497
+ ypos 642
+}
+push $cut_paste_input
+Dot {
+ name Dot193
+ label "Attach Paint Alpha Here"
+ note_font_size 20
+ note_font_color 0x990000ff
+ selected true
+ xpos -4509
+ ypos -1758
+}
+Shuffle {
+ in alpha
+ name Shuffle_Car_Paint_Alpha
+ label "\[value in]"
+ selected true
+ xpos -4543
+ ypos -1704
+}
+push $N225d7340
+add_layer {Car_Paint_Alpha Car_Paint_Alpha.red}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 Car_Paint_Alpha.red
+ name Copy_Car_Paint_alpha
+ selected true
+ xpos -4136
+ ypos -1704
+}
+Dot {
+ name Dot197
+ selected true
+ xpos -4102
+ ypos -1573
+}
+set N90f548e0 [stack 0]
+Dot {
+ name Dot198
+ selected true
+ xpos -3902
+ ypos -1573
+}
+set N90f58cd0 [stack 0]
+Dot {
+ name Dot199
+ selected true
+ xpos -3702
+ ypos -1573
+}
+set N90f5cfe0 [stack 0]
+Dot {
+ name Dot200
+ selected true
+ xpos -3489
+ ypos -1573
+}
+set N90f612f0 [stack 0]
+Dot {
+ name Dot201
+ selected true
+ xpos -3277
+ ypos -1573
+}
+set N90f65610 [stack 0]
+Dot {
+ name Dot202
+ selected true
+ xpos -3055
+ ypos -1573
+}
+set N90f69950 [stack 0]
+Dot {
+ name Dot203
+ selected true
+ xpos -2829
+ ypos -1573
+}
+set N90f6de60 [stack 0]
+Dot {
+ name Dot204
+ selected true
+ xpos -2589
+ ypos -1573
+}
+set N90f72170 [stack 0]
+Dot {
+ name Dot205
+ selected true
+ xpos -2335
+ ypos -1573
+}
+set N90f765a0 [stack 0]
+Dot {
+ name Dot206
+ selected true
+ xpos -2088
+ ypos -1573
+}
+set N90f7a8b0 [stack 0]
+Dot {
+ name Dot207
+ selected true
+ xpos -1821
+ ypos -1573
+}
+set N90f7ebd0 [stack 0]
+Dot {
+ name Dot208
+ selected true
+ xpos -1557
+ ypos -1573
+}
+set N90f82f10 [stack 0]
+Dot {
+ name Dot209
+ selected true
+ xpos -1235
+ ypos -1573
+}
+set N90f87220 [stack 0]
+Dot {
+ name Dot210
+ selected true
+ xpos -1023
+ ypos -1573
+}
+set N90f8b530 [stack 0]
+Dot {
+ name Dot211
+ selected true
+ xpos -801
+ ypos -1573
+}
+set N90f8f860 [stack 0]
+Dot {
+ name Dot212
+ selected true
+ xpos -575
+ ypos -1573
+}
+set N90f93b70 [stack 0]
+Dot {
+ name Dot213
+ selected true
+ xpos -354
+ ypos -1573
+}
+set N90f97eb0 [stack 0]
+add_layer {Specular_Reflection Specular_Reflection.red Specular_Reflection.green Specular_Reflection.blue Specular_Reflection.alpha}
+Shuffle {
+ in Specular_Reflection
+ name Shuffle_Specular_Reflection_PAINT
+ label "\[value in]"
+ selected true
+ xpos -388
+ ypos -1549
+ postage_stamp true
+}
+Shuffle {
+ in Car_Paint_Alpha
+ in2 rgb
+ red red2
+ green green2
+ blue blue2
+ name Shuffle_Car_Paint_Alpha22
+ label "\[value in]"
+ selected true
+ xpos -388
+ ypos -1463
+}
+Premult {
+ name Premult16
+ selected true
+ xpos -388
+ ypos -1428
+}
+Dot {
+ name Dot214
+ selected true
+ xpos -354
+ ypos -1400
+}
+Grade {
+ maskChannelInput Car_Paint_Alpha.red
+ name Grade_Spec_Reflect_GOLD
+ selected true
+ xpos -388
+ ypos -1351
+ disable {{Paint_Color.Color!=0}}
+}
+Grade {
+ maskChannelInput Car_Paint_Alpha.red
+ name Grade_Spec_Reflect_RED
+ selected true
+ xpos -388
+ ypos -1299
+ disable {{Paint_Color.Color!=1}}
+}
+Grade {
+ maskChannelInput Car_Paint_Alpha.red
+ name Grade_Spec_Reflect_BLACK
+ selected true
+ xpos -388
+ ypos -1229
+ disable {{Paint_Color.Color!=2}}
+}
+Grade {
+ maskChannelInput Car_Paint_Alpha.red
+ name Grade_Spec_Reflect_BLUE
+ selected true
+ xpos -388
+ ypos -1172
+ disable {{Paint_Color.Color!=3}}
+}
+Grade {
+ maskChannelInput Car_Paint_Alpha.red
+ name Grade_Spec_Reflect_SILVER
+ selected true
+ xpos -388
+ ypos -1108
+ disable {{Paint_Color.Color!=4}}
+}
+push $N90f93b70
+add_layer {Occlusion Occlusion.red Occlusion.green Occlusion.blue Occlusion.alpha}
+Shuffle {
+ in Occlusion
+ name Shuffle_Occlusion_PAINT
+ label "\[value in]"
+ selected true
+ xpos -609
+ ypos -1548
+ postage_stamp true
+}
+Shuffle {
+ in Car_Paint_Alpha
+ in2 rgb
+ red red2
+ green green2
+ blue blue2
+ name Shuffle_Car_Paint_Alpha23
+ label "\[value in]"
+ selected true
+ xpos -609
+ ypos -1463
+}
+Premult {
+ name Premult15
+ selected true
+ xpos -609
+ ypos -1428
+}
+Dot {
+ name Dot215
+ selected true
+ xpos -575
+ ypos -1400
+}
+push $N90f8f860
+add_layer {Glossy_Indirect Glossy_Indirect.red Glossy_Indirect.green Glossy_Indirect.blue Glossy_Indirect.alpha}
+Shuffle {
+ in Glossy_Indirect
+ name Shuffle_Glossy_Indirect_PAINT
+ label "\[value in]"
+ selected true
+ xpos -835
+ ypos -1547
+ postage_stamp true
+}
+Shuffle {
+ in Car_Paint_Alpha
+ in2 rgb
+ red red2
+ green green2
+ blue blue2
+ name Shuffle_Car_Paint_Alpha24
+ label "\[value in]"
+ selected true
+ xpos -835
+ ypos -1463
+}
+Premult {
+ name Premult14
+ selected true
+ xpos -835
+ ypos -1428
+}
+Dot {
+ name Dot216
+ selected true
+ xpos -801
+ ypos -1400
+}
+add_layer {Car_Paint Car_Paint.red}
+Grade {
+ white {1.679999948 0.8659959435 0 1}
+ gamma 1.1
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Indirect_GOLD
+ selected true
+ xpos -835
+ ypos -1351
+ disable {{Paint_Color.Color!=0}}
+}
+Grade {
+ white {1.679999948 -0.235199973 -0.2198960185 1}
+ gamma 1.1
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Indirect_RED
+ selected true
+ xpos -835
+ ypos -1299
+ disable {{Paint_Color.Color!=1}}
+}
+Grade {
+ white 0.6
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Indirect_BLACK
+ selected true
+ xpos -835
+ ypos -1229
+ disable {{Paint_Color.Color!=2}}
+}
+Grade {
+ whitepoint 0.6
+ white {0.0799484849 0.3999485075 1.599948645 1}
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Indirect_BLUE
+ selected true
+ xpos -835
+ ypos -1172
+ disable {{Paint_Color.Color!=3}}
+}
+Grade {
+ whitepoint 0.6
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Indirect_SILVER
+ selected true
+ xpos -835
+ ypos -1108
+ disable {{Paint_Color.Color!=4}}
+}
+push $N90f8b530
+add_layer {Glossy_Light Glossy_Light.red Glossy_Light.green Glossy_Light.blue Glossy_Light.alpha}
+Shuffle {
+ in Glossy_Light
+ name Shuffle_Glossy_Light_PAINT
+ label "\[value in]"
+ selected true
+ xpos -1057
+ ypos -1547
+ postage_stamp true
+}
+Shuffle {
+ in Car_Paint_Alpha
+ in2 rgb
+ red red2
+ green green2
+ blue blue2
+ name Shuffle_Car_Paint_Alpha25
+ label "\[value in]"
+ selected true
+ xpos -1057
+ ypos -1463
+}
+Premult {
+ name Premult13
+ selected true
+ xpos -1057
+ ypos -1428
+}
+Dot {
+ name Dot217
+ selected true
+ xpos -1023
+ ypos -1400
+}
+Grade {
+ white {1.019869566 0.6916584969 0.1434473395 1}
+ gamma 1.06
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Light_GOLD
+ selected true
+ xpos -1057
+ ypos -1351
+ disable {{Paint_Color.Color!=0}}
+}
+Grade {
+ white {1 0.05000001192 0.05000001192 1}
+ gamma 1.1
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Light_RED
+ selected true
+ xpos -1057
+ ypos -1286
+ disable {{Paint_Color.Color!=1}}
+}
+Grade {
+ white {0 0 0 1}
+ gamma 1.1
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Light_BLACK
+ selected true
+ xpos -1057
+ ypos -1229
+ disable {{Paint_Color.Color!=2}}
+}
+Grade {
+ white {-0.3007490337 0.0242509786 0.2992509902 1}
+ gamma 1.32
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Light_BLUE
+ selected true
+ xpos -1057
+ ypos -1172
+ disable {{Paint_Color.Color!=3}}
+}
+Grade {
+ gamma 1.32
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_Light_Silver
+ selected true
+ xpos -1057
+ ypos -1108
+ disable {{Paint_Color.Color!=4}}
+}
+push $N90f87220
+add_layer {Glossy_IBL Glossy_IBL.red Glossy_IBL.green Glossy_IBL.blue Glossy_IBL.alpha}
+Shuffle {
+ in Glossy_IBL
+ name Shuffle_Glossy_IBL_PAINT
+ label "\[value in]"
+ selected true
+ xpos -1269
+ ypos -1547
+ postage_stamp true
+}
+Shuffle {
+ in Car_Paint_Alpha
+ in2 rgb
+ red red2
+ green green2
+ blue blue2
+ name Shuffle_Car_Paint_Alpha26
+ label "\[value in]"
+ selected true
+ xpos -1269
+ ypos -1463
+}
+Premult {
+ name Premult12
+ selected true
+ xpos -1269
+ ypos -1428
+}
+Dot {
+ name Dot218
+ selected true
+ xpos -1235
+ ypos -1400
+}
+Grade {
+ white {1.019869566 0.6916584969 0.1434473395 1}
+ gamma 1.06
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_IBL_GOLD
+ selected true
+ xpos -1269
+ ypos -1351
+ disable {{Paint_Color.Color!=0}}
+}
+Grade {
+ white {1 0.05000001192 0.05000001192 1}
+ gamma 1.1
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_IBL_RED
+ selected true
+ xpos -1269
+ ypos -1286
+ disable {{Paint_Color.Color!=1}}
+}
+Grade {
+ white {0 0 0 1}
+ gamma 1.1
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_IBL_BLACK
+ selected true
+ xpos -1269
+ ypos -1229
+ disable {{Paint_Color.Color!=2}}
+}
+Grade {
+ white {-0.3007490337 0.0242509786 0.2992509902 1}
+ gamma 1.32
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_IBL_BLUE
+ selected true
+ xpos -1269
+ ypos -1172
+ disable {{Paint_Color.Color!=3}}
+}
+Grade {
+ gamma 1.32
+ maskChannelMask Car_Paint.red
+ maskChannelInput Car_Paint_Alpha.red
+ name Glossy_IBL_SILVER
+ selected true
+ xpos -1269
+ ypos -1108
+ disable {{Paint_Color.Color!=4}}
+}
+Dot {
+ name Dot219
+ selected true
+ xpos -1235
+ ypos -752
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_11
+ selected true
+ xpos -1057
+ ypos -755
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_12
+ selected true
+ xpos -835
+ ypos -755
+}
+Merge2 {
+ inputs 2
+ operation multiply
+ output rgb
+ mix 0.5
+ name Merge_VRED_13
+ selected true
+ xpos -609
+ ypos -755
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_14
+ selected true
+ xpos -388
+ ypos -755
+}
+push $N90f97eb0
+Dot {
+ name Dot220
+ selected true
+ xpos -63
+ ypos -1573
+}
+Remove {
+ name BLACK
+ label "BLACK BKGND."
+ selected true
+ xpos -97
+ ypos -1542
+}
+Merge2 {
+ inputs 2
+ name Merge_Paint_Passes
+ selected true
+ xpos -97
+ ypos -755
+}
+push $N90f82f10
+Shuffle {
+ in alpha
+ name Shuffle_Alpha
+ label alpha
+ selected true
+ xpos -1591
+ ypos -1546
+ postage_stamp true
+}
+NoOp {
+ name NOT_A_Premult4
+ selected true
+ xpos -1591
+ ypos -1460
+}
+Dot {
+ name Dot221
+ selected true
+ xpos -1557
+ ypos -1431
+}
+push $N90f7ebd0
+add_layer {Transparency_Color Transparency_Color.red Transparency_Color.green Transparency_Color.blue Transparency_Color.alpha}
+Shuffle {
+ in Transparency_Color
+ name Shuffle_Transparency_Color
+ label "\[value in]"
+ selected true
+ xpos -1855
+ ypos -1548
+ postage_stamp true
+}
+Premult {
+ name Premult11
+ selected true
+ xpos -1855
+ ypos -1460
+}
+Dot {
+ name Dot222
+ selected true
+ xpos -1821
+ ypos -1431
+}
+push $N90f7a8b0
+add_layer {Incandescence Incandescence.red Incandescence.green Incandescence.blue Incandescence.alpha}
+Shuffle {
+ in Incandescence
+ name Shuffle_Incandescence
+ label "\[value in]"
+ selected true
+ xpos -2122
+ ypos -1547
+ postage_stamp true
+}
+Premult {
+ name Premult10
+ selected true
+ xpos -2122
+ ypos -1459
+}
+Dot {
+ name Dot223
+ selected true
+ xpos -2088
+ ypos -1431
+}
+push $N90f765a0
+add_layer {Translucency Translucency.red Translucency.green Translucency.blue Translucency.alpha}
+Shuffle {
+ in Translucency
+ name Shuffle_Translucency
+ label "\[value in]"
+ selected true
+ xpos -2369
+ ypos -1548
+ postage_stamp true
+}
+Premult {
+ name Premult9
+ selected true
+ xpos -2369
+ ypos -1460
+}
+Dot {
+ name Dot224
+ selected true
+ xpos -2335
+ ypos -1430
+}
+push $N90f72170
+Shuffle {
+ in Specular_Reflection
+ name Shuffle_Specular_Reflection
+ label "\[value in]"
+ selected true
+ xpos -2623
+ ypos -1545
+ postage_stamp true
+}
+Premult {
+ name Premult8
+ selected true
+ xpos -2623
+ ypos -1460
+}
+Dot {
+ name Dot225
+ selected true
+ xpos -2589
+ ypos -1432
+}
+push $N90f6de60
+Shuffle {
+ in Occlusion
+ name Shuffle_Occlusion
+ label "\[value in]"
+ selected true
+ xpos -2863
+ ypos -1547
+ postage_stamp true
+}
+Premult {
+ name Premult7
+ selected true
+ xpos -2863
+ ypos -1460
+}
+Dot {
+ name Dot226
+ selected true
+ xpos -2829
+ ypos -1431
+}
+push $N90f69950
+Shuffle {
+ in Glossy_Indirect
+ name Shuffle_Glossy_Indirect
+ label "\[value in]"
+ selected true
+ xpos -3089
+ ypos -1546
+ postage_stamp true
+}
+Premult {
+ name Premult6
+ selected true
+ xpos -3089
+ ypos -1460
+}
+Dot {
+ name Dot227
+ selected true
+ xpos -3055
+ ypos -1431
+}
+push $N90f65610
+Shuffle {
+ in Glossy_Light
+ name Shuffle_Glossy_Light
+ label "\[value in]"
+ selected true
+ xpos -3311
+ ypos -1546
+ postage_stamp true
+}
+Premult {
+ name Premult5
+ selected true
+ xpos -3311
+ ypos -1460
+}
+Dot {
+ name Dot228
+ selected true
+ xpos -3277
+ ypos -1431
+}
+push $N90f612f0
+Shuffle {
+ in Glossy_IBL
+ name Shuffle_Glossy_IBL
+ label "\[value in]"
+ selected true
+ xpos -3523
+ ypos -1547
+ postage_stamp true
+}
+Premult {
+ name Premult4
+ selected true
+ xpos -3523
+ ypos -1459
+}
+Dot {
+ name Dot229
+ selected true
+ xpos -3489
+ ypos -1431
+}
+push $N90f5cfe0
+add_layer {Diffuse_Indirect Diffuse_Indirect.red Diffuse_Indirect.green Diffuse_Indirect.blue Diffuse_Indirect.alpha}
+Shuffle {
+ in Diffuse_Indirect
+ name Shuffle_Diffuse_Indirect
+ label "\[value in]"
+ selected true
+ xpos -3736
+ ypos -1549
+ postage_stamp true
+}
+Premult {
+ name Premult3
+ selected true
+ xpos -3736
+ ypos -1460
+}
+Dot {
+ name Dot230
+ selected true
+ xpos -3702
+ ypos -1431
+}
+push $N90f58cd0
+add_layer {Diffuse_Light Diffuse_Light.red Diffuse_Light.green Diffuse_Light.blue Diffuse_Light.alpha}
+Shuffle {
+ in Diffuse_Light
+ name Shuffle_Diffuse_Light
+ label "\[value in]"
+ selected true
+ xpos -3936
+ ypos -1545
+ postage_stamp true
+}
+Premult {
+ name Premult2
+ selected true
+ xpos -3936
+ ypos -1460
+}
+Dot {
+ name Dot231
+ selected true
+ xpos -3902
+ ypos -1431
+}
+push $N90f548e0
+add_layer {Diffuse_IBL Diffuse_IBL.red Diffuse_IBL.green Diffuse_IBL.blue Diffuse_IBL.alpha}
+Shuffle {
+ in Diffuse_IBL
+ name Shuffle_Diffuse_IBL
+ label "\[value in]"
+ selected true
+ xpos -4136
+ ypos -1547
+ postage_stamp true
+}
+Premult {
+ name Premult1
+ selected true
+ xpos -4136
+ ypos -1460
+}
+Dot {
+ name Dot232
+ selected true
+ xpos -4102
+ ypos -1431
+}
+Dot {
+ name Dot233
+ selected true
+ xpos -4102
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_1
+ selected true
+ xpos -3936
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_2
+ selected true
+ xpos -3736
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_3
+ selected true
+ xpos -3523
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_4
+ selected true
+ xpos -3311
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_5
+ selected true
+ xpos -3089
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation multiply
+ output rgb
+ mix 0.5
+ name Merge_VRED_6
+ selected true
+ xpos -2863
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_7
+ selected true
+ xpos -2622
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_8
+ selected true
+ xpos -2368
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_9
+ selected true
+ xpos -2121
+ ypos -624
+}
+Merge2 {
+ inputs 2
+ operation plus
+ output rgb
+ name Merge_VRED_10
+ selected true
+ xpos -1854
+ ypos -624
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy_alpha
+ selected true
+ xpos -1591
+ ypos -630
+}
+Merge2 {
+ inputs 2
+ output rgb
+ name Merge_Car_Paint
+ selected true
+ xpos -97
+ ypos -624
+}
+Dot {
+ name CAR_BUILD4
+ label "CAR BUILD"
+ note_font_size 30
+ note_font_color 0x919191ff
+ selected true
+ xpos -63
+ ypos -498
+}
+Defocus {
+ channels alpha
+ defocus 0.02
+ maskChannelInput rgba.alpha
+ name Defocus_Car
+ selected true
+ xpos -97
+ ypos -173
+ disable true
+}
+Dot {
+ name Dot234
+ selected true
+ xpos -63
+ ypos -23
+}
+set N91391dc0 [stack 0]
+Glow {
+ channels rgba
+ tolerance 0.4
+ brightness 0.4
+ effect_only true
+ size 20
+ maskChannelInput -rgba.alpha
+ name Glow_Car
+ selected true
+ xpos 48
+ ypos -26
+ disable true
+}
+Dot {
+ name Dot235
+ selected true
+ xpos 82
+ ypos 34
+}
+push $N91391dc0
+Merge2 {
+ inputs 2
+ operation screen
+ name Merge_Glow
+ selected true
+ xpos -97
+ ypos 31
+ disable true
+}
+chromaticAbberation {
+ name chromaticAbberation
+ note_font "Verdana Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic Italic"
+ selected true
+ xpos -97
+ ypos 206
+ disable true
+ format 0
+ redScale 1.001
+ greenScale 1
+ blueScale 1.0008
+}
+Dot {
+ name EFX4
+ label EFX
+ note_font_size 30
+ note_font_color 0x919191ff
+ selected true
+ xpos -63
+ ypos 316
+}
+Merge2 {
+ inputs 2
+ operation under
+ name Merge_Car_and_BKGND
+ selected true
+ xpos -97
+ ypos 642
+}
+Write {
+ name Write
+ selected true
+ xpos -97
+ ypos 819
+}
+Ramp {
+ inputs 0
+ p0 {0 -900}
+ p1 {0 780}
+ type plinear
+ name Ramp
+ selected true
+ xpos -779
+ ypos 584
+}
+NoOp {
+ inputs 0
+ name Paint_Color
+ tile_color 0x930000ff
+ label Switch
+ note_font Arial
+ note_font_size 42
+ note_font_color 0xf2f2f2ff
+ selected true
+ xpos 197
+ ypos 574
+ hide_input true
+ addUserKnob {20 User}
+ addUserKnob {4 Color M {"0  Gold" "1  Red" "2  Black" "3  Blue" "4 Silver" "" "" "" "" "" "" ""}}
+}

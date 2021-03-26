@@ -1,0 +1,67 @@
+set cut_paste_input [stack 0]
+version 6.0 v3
+push $cut_paste_input
+Group {
+ name Find_Edges
+ selected true
+ xpos -12344
+ ypos 3200
+ addUserKnob {20 User}
+ addUserKnob {7 Thickness l "Edge Thickness" R 0 10}
+ Thickness 1.115
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos -461
+  ypos 447
+ }
+ Dot {
+  name Dot104
+  label "Insert Matte\nfor blending"
+  xpos -427
+  ypos 542
+ }
+ Blur {
+  channels rgba
+  size {{Find_Edges.Thickness}}
+  name Blur5
+  selected true
+  xpos -461
+  ypos 560
+ }
+set N23634280 [stack 0]
+ Invert {
+  channels rgba
+  name Invert4
+  xpos -513
+  ypos 593
+ }
+push $N23634280
+ Merge2 {
+  inputs 2
+  operation xor
+  name Merge2
+  xpos -403
+  ypos 593
+ }
+ Invert {
+  channels rgba
+  name Invert5
+  xpos -403
+  ypos 617
+ }
+ Grade {
+  channels rgba
+  whitepoint 0.4975
+  white_clamp true
+  name Matte__EdgeBlend
+  xpos -403
+  ypos 641
+ }
+ Output {
+  name Output1
+  xpos -403
+  ypos 728
+ }
+end_group

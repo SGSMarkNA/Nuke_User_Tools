@@ -1,0 +1,214 @@
+#! C:/Program Files/Nuke6.3v8/Nuke6.3.exe -nx
+version 6.3 v8
+
+Root {
+ inputs 0
+ name N:/common/SYSENV/Nuke/ToolSets/Hyundai_Templates/Metadata_WriteNodes_Template_Hyundai_v01.nk
+ format "2000 1125 0 0 2000 1125 1 Hyundai_Universal"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode2
+ tile_color 0x434343ff
+ label Metadata
+ note_font_size 42
+ xpos -486
+ ypos 75
+ bdwidth 421
+ bdheight 161
+}
+BackdropNode {
+ inputs 0
+ name Chroma_Ab2
+ tile_color 0x342222ff
+ xpos -487
+ ypos 252
+ bdwidth 421
+ bdheight 472
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos -316
+ ypos -97
+}
+Dot {
+ name Dot34
+ label "To Output"
+ xpos -282
+ ypos 20
+}
+ModifyMetaData {
+ metadata {
+  {set vehicle Santa_Fe}
+  {set year 2013}
+  {set trim "\[lrange \[knob MasterSwitch.Trim] 1 1]"}
+  {set version v01}
+  {set color "\[lrange \[knob MasterSwitch.Color] 1 1]"}
+  {set outputdir Comp}
+  {set extension jpg}
+  {set framepadding _###}
+  {set INT_EXT _INT}
+ }
+ name ModifyMetaData4
+ xpos -316
+ ypos 152
+}
+ViewMetaData {
+ name ViewMetaData4
+ xpos -316
+ ypos 193
+}
+Dot {
+ name Dot1
+ xpos -282
+ ypos 255
+}
+Remove {
+ operation keep
+ channels rgb
+ name Remove1
+ xpos -316
+ ypos 308
+}
+Reformat {
+ format "2000 1125 0 0 2000 1125 1 Hyundai_Universal"
+ name Reformat1
+ xpos -316
+ ypos 332
+}
+Dot {
+ name Dot2
+ xpos -282
+ ypos 398
+}
+set Na4437c0 [stack 0]
+push $Na4437c0
+Shuffle {
+ green red
+ name r1
+ xpos -461
+ ypos 434
+}
+Transform {
+ scale 1.002
+ center {1000 562.5}
+ name Transform1
+ xpos -461
+ ypos 458
+}
+push $Na4437c0
+Shuffle {
+ red green
+ name g1
+ xpos -369
+ ypos 434
+}
+Transform {
+ scale 1.001
+ center {1000 562.5}
+ name Transform5
+ xpos -369
+ ypos 458
+}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 rgba.red
+ name ChromaAb1
+ xpos -413
+ ypos 496
+}
+Copy {
+ inputs 2
+ from0 rgba.blue
+ to0 rgba.blue
+ name Copy1
+ xpos -316
+ ypos 496
+}
+Reformat {
+ format "2000 1125 0 0 2000 1125 1 Hyundai_Universal"
+ name Reformat2
+ xpos -316
+ ypos 532
+}
+Colorspace {
+ colorspace_in sRGB
+ colorspace_out HSV
+ name Colorspace1
+ xpos -316
+ ypos 593
+}
+Sharpen {
+ channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+ amount 0.5
+ size 1.84
+ name Sharpen3
+ xpos -316
+ ypos 617
+}
+Colorspace {
+ colorspace_in HSV
+ colorspace_out sRGB
+ name Colorspace2
+ xpos -316
+ ypos 651
+}
+Clamp {
+ channels rgba
+ name Clamp1
+ xpos -316
+ ypos 675
+}
+Write {
+ file "\[file dirname \[file dirname \[value root.name]]]/\[metadata outputdir]/\[metadata version]/\[metadata year]/\[metadata vehicle]/\[metadata trim]/\[metadata color]/\[metadata year]_\[metadata vehicle]_\[metadata trim]_\[metadata color]\[metadata INT_EXT]\[metadata framepadding].\[metadata extension]"
+ frame_mode "start at"
+ frame 41
+ checkHashOnRead false
+ version 30
+ beforeFrameRender "def createWriteDirs():\n  import nuke, os, errno\n  file = nuke.filename(nuke.thisNode())\n  dir = os.path.dirname( file )\n  osdir = nuke.callbacks.filenameFilter( dir )\n  try:\n    os.makedirs( osdir )\n  except OSError, e:\n    if e.errno != errno.EEXIST:\n      raise\nnuke.addBeforeFrameRender(createWriteDirs)"
+ name Write4
+ xpos -316
+ ypos 801
+}
+set Na8b0f00 [stack 0]
+Text {
+ message "\[value input.name]\n\n\n\n\[value \[value input.name].file]\n\n\n\n\n\[knob \[value input.name].file]\n"
+ font C:/Windows/Fonts/arial.ttf
+ size 15
+ yjustify center
+ Transform 1
+ box {0 0 2000 1125}
+ center {1000 562.5}
+ name Text2
+ xpos -583
+ ypos 807
+}
+push $Na8b0f00
+Viewer {
+ inputs 2
+ input_process false
+ name Viewer2
+ xpos -316
+ ypos 938
+}
+NoOp {
+ inputs 0
+ name MasterSwitch
+ tile_color 0x930000ff
+ note_font Tahoma
+ note_font_size 50
+ note_font_color 0xecf264ff
+ xpos -790
+ ypos 451
+ addUserKnob {20 User}
+ addUserKnob {4 Trim M {"0 Sport_24_Tech" "1 20T_Tech" ""}}
+ Trim "1 20T_Tech"
+ addUserKnob {26 ""}
+ addUserKnob {4 Color M {"0 Beige" "1 Gray" "2 Black" "3 Saddle" "" "" "" "" "" ""}}
+ Color "2 Black"
+}

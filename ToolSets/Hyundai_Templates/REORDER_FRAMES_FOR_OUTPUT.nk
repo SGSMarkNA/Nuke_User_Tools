@@ -1,0 +1,22 @@
+set cut_paste_input [stack 0]
+version 9.0 v4
+BackdropNode {
+ inputs 0
+ name BackdropNode7
+ tile_color 0x388e8e00
+ label " Hyundai Interior 360 Frame Reorder\n\nHere's the new sequence...\n\nORIG     NEW\n 005 --> 001\n 006 --> 002\n 007 --> 003\n 008 --> 004\n 001 --> 005\n 002 --> 006\n 003 --> 007\n 004 --> 008"
+ note_font_size 20
+ selected true
+ xpos 5109
+ ypos 4803
+ bdwidth 450
+ bdheight 357
+}
+push $cut_paste_input
+clone node1f4784880|FrameHold|4288 FrameHold {
+ first_frame {{curve K x1 5 6 7 8 1 2 3 4}}
+ name FrameHold_REORDER
+ selected true
+ xpos 5340
+ ypos 5000
+}

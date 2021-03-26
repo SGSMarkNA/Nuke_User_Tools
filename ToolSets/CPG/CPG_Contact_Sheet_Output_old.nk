@@ -1,0 +1,2131 @@
+#! C:/Program Files/Nuke9.0v7/nuke-9.0.7.dll -nx
+version 9.0 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-1930" y="-10" w="1940" h="1220" maximized="1" screen="1">
+        <splitter orientation="1">
+            <split size="46"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1251" stretch="1"/>
+            <splitter orientation="2">
+                <split size="673"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="473"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="com.richbobo.LocalizeFiles"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name Z:/Git_Live_Code/User_Tools/Nuke_User_Tools/ToolSets/CPG/CPG_Contact_Sheet_Output.nk
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+StickyNote {
+ inputs 0
+ name StickyNote8
+ label C8N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -260
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote16
+ label C1C1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -1140
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote15
+ label C1L1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -1360
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote17
+ label C1R1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -920
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote10
+ label C2N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -700
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote11
+ label C1N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -480
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote18
+ label C8N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -260
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote12
+ label C3N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -40
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote2
+ label C1L1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -1360
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ label C1C1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -1140
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote4
+ label C1R1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -920
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote5
+ label C2N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -700
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote3
+ label C1N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -480
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote6
+ label C3N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -40
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote7
+ label C7N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 180
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote9
+ label C9N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 400
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote14
+ label C7N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 180
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote13
+ label C9N1
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 400
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote24
+ label "C1R1 Vert"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 1053
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote23
+ label "C1L1 Vert"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 834
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote22
+ label "C1C1 Vert"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 613
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote25
+ label "C1R1 Vert"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 1053
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote26
+ label "C1L1 Vert"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 834
+ ypos 345
+}
+StickyNote {
+ inputs 0
+ name StickyNote27
+ label "C1C1 Vert"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 613
+ ypos 345
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1R1_Vert_Read
+ xpos 1060
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1R1_Vert_Croper
+ xpos 1060
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop13
+ xpos 1060
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat14
+ xpos 1060
+ ypos 38
+}
+Premult {
+ name Premult13
+ note_font Verdana
+ xpos 1060
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1L1_Vert_Read
+ xpos 840
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1L1_Vert_Croper
+ xpos 840
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop12
+ xpos 840
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat13
+ xpos 840
+ ypos 38
+}
+Premult {
+ name Premult12
+ note_font Verdana
+ xpos 840
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1C1_Vert_Read
+ xpos 620
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1C1_Vert_Croper
+ xpos 620
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop11
+ xpos 620
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat12
+ xpos 620
+ ypos 38
+}
+Premult {
+ name Premult1
+ note_font Verdana
+ xpos 620
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C9N1_Read
+ xpos 400
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C9N1_Croper
+ xpos 400
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop10
+ xpos 400
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat11
+ xpos 400
+ ypos 38
+}
+Premult {
+ name Premult11
+ note_font Verdana
+ xpos 400
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C7N1_Read
+ xpos 180
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C7N1_Croper
+ xpos 180
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop9
+ xpos 180
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat9
+ xpos 180
+ ypos 38
+}
+Premult {
+ name Premult10
+ note_font Verdana
+ xpos 180
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C3N1_Read
+ xpos -40
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C3N1_Croper
+ xpos -40
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop8
+ xpos -40
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat8
+ xpos -40
+ ypos 38
+}
+Premult {
+ name Premult9
+ note_font Verdana
+ xpos -40
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C8N1_Read
+ xpos -260
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C8N1_Croper
+ xpos -260
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop7
+ xpos -260
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat7
+ xpos -260
+ ypos 38
+}
+Premult {
+ name Premult8
+ note_font Verdana
+ xpos -260
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1N1_Read
+ xpos -480
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1N1_Croper
+ xpos -480
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop6
+ xpos -480
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat6
+ xpos -480
+ ypos 38
+}
+Premult {
+ name Premult7
+ note_font Verdana
+ xpos -480
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C2N1_Read
+ xpos -700
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C2N1_Croper
+ xpos -700
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop5
+ xpos -700
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat5
+ xpos -700
+ ypos 38
+}
+Premult {
+ name Premult6
+ note_font Verdana
+ xpos -700
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1R1_Read
+ xpos -920
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1R1_Croper
+ xpos -920
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop4
+ xpos -920
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat4
+ xpos -920
+ ypos 38
+}
+Premult {
+ name Premult5
+ note_font Verdana
+ xpos -920
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1C1_Read
+ xpos -1140
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1C1_Croper
+ xpos -1140
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop3
+ xpos -1140
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat3
+ xpos -1140
+ ypos 38
+}
+Premult {
+ name Premult4
+ note_font Verdana
+ xpos -1140
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1L1_Read
+ xpos -1360
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1L1_Croper
+ xpos -1360
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop2
+ xpos -1360
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat2
+ xpos -1360
+ ypos 38
+}
+Premult {
+ name Premult3
+ note_font Verdana
+ xpos -1360
+ ypos 183
+}
+Read {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ origset true
+ on_error black
+ name C1C0_Read
+ xpos -1580
+ ypos -153
+ disable true
+}
+CurveTool {
+ operation "Auto Crop"
+ color 1
+ avgframes 0
+ channels rgba
+ ROI {{curve} {curve} {input.format.r} {input.format.t}}
+ autocropdata {{curve x1 1004 0 0 0 0 x21 0} {curve x1 286 0 0 0 0 x21 0} {curve x1 2984 0 0 0 0 x21 0} {curve x1 3672 0 0 0 0 x21 0}}
+ name C1C0_Croper
+ xpos -1580
+ ypos -58
+}
+Crop {
+ box {{input.autocropdata-1} {input.autocropdata-1} {input.autocropdata+1} {input.autocropdata+1}}
+ reformat true
+ name Crop1
+ xpos -1580
+ ypos -10
+}
+Reformat {
+ format {{{input.input.input.format}}}
+ resize fit
+ name Reformat10
+ xpos -1580
+ ypos 38
+}
+Premult {
+ name Premult2
+ note_font Verdana
+ xpos -1580
+ ypos 183
+}
+Constant {
+ inputs 0
+ format "4000 4000 0 0 4000 4000 1 "
+ name Constant3
+ xpos -1800
+ ypos -177
+}
+add_layer {C1L1 C1L1.red C1L1.green C1L1.blue C1L1.alpha}
+add_layer {C1C1 C1C1.red C1C1.green C1C1.blue C1C1.alpha}
+add_layer {C1R1 C1R1.red C1R1.green C1R1.blue C1R1.alpha}
+add_layer {C2N1 C2N1.red C2N1.green C2N1.blue C2N1.alpha}
+AddChannels {
+ channels C1L1
+ channels2 C1C1
+ channels3 C1R1
+ channels4 C2N1
+ name AddChannels1
+ xpos -1800
+ ypos 80
+}
+add_layer {C1N1 C1N1.red C1N1.green C1N1.blue C1N1.alpha}
+add_layer {C8N1 C8N1.red C8N1.green C8N1.blue C8N1.alpha}
+add_layer {C3N1 C3N1.red C3N1.green C3N1.blue C3N1.alpha}
+add_layer {C7N1 C7N1.red C7N1.green C7N1.blue C7N1.alpha}
+AddChannels {
+ channels C1N1
+ channels2 C8N1
+ channels3 C3N1
+ channels4 C7N1
+ name AddChannels2
+ xpos -1800
+ ypos 128
+}
+add_layer {C9N1 C9N1.red C9N1.green C9N1.blue C9N1.alpha}
+add_layer {ContactSheet ContactSheet.red ContactSheet.green ContactSheet.blue ContactSheet.alpha}
+add_layer {C1C1_Vert C1C1_Vert.red C1C1_Vert.green C1C1_Vert.blue C1C1_Vert.alpha}
+add_layer {C1L1_Vert C1L1_Vert.red C1L1_Vert.green C1L1_Vert.blue C1L1_Vert.alpha}
+AddChannels {
+ channels C9N1
+ channels2 ContactSheet
+ channels3 C1C1_Vert
+ channels4 C1L1_Vert
+ name AddChannels3
+ xpos -1800
+ ypos 176
+}
+add_layer {C1R1_Vert C1R1_Vert.red C1R1_Vert.green C1R1_Vert.blue C1R1_Vert.alpha}
+add_layer {C1C0 C1C0.red C1C0.green C1C0.blue C1C0.alpha}
+AddChannels {
+ channels C1R1_Vert
+ channels2 C1C0
+ name AddChannels4
+ xpos -1800
+ ypos 224
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1C0
+ name C1C0_SFC
+ xpos -1580
+ ypos 230
+}
+set N58c29000 [stack 0]
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1L1
+ name C1L1_SFC
+ xpos -1360
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1C1
+ name C1C1_SFC
+ xpos -1140
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1R1
+ name C1R1_SFC
+ xpos -920
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C2N1
+ name C2N1_SFC
+ xpos -700
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1N1
+ name ShuffleCopy4
+ xpos -480
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C8N1
+ name C1N1_SFC
+ xpos -260
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C3N1
+ name C3N1_SFC
+ xpos -40
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C7N1
+ name C7N1_SFC
+ xpos 180
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C9N1
+ name C9N1_SFC
+ xpos 400
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1C1_Vert
+ name C9N1_SFC1
+ xpos 620
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1L1_Vert
+ name C9N1_SFC2
+ xpos 840
+ ypos 230
+}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out C1R1_Vert
+ name C9N1_SFC3
+ xpos 1060
+ ypos 230
+}
+Dot {
+ name Dot10
+ xpos 1534
+ ypos 234
+}
+set N58c5bc00 [stack 0]
+Dot {
+ name Dot17
+ xpos 1534
+ ypos -78
+}
+set N58c5b800 [stack 0]
+Dot {
+ name Dot18
+ xpos 1534
+ ypos -222
+}
+Dot {
+ name Dot20
+ xpos 1754
+ ypos -222
+}
+set N58c5b000 [stack 0]
+Dot {
+ name Dot21
+ xpos 1974
+ ypos -222
+}
+Dot {
+ name Dot19
+ xpos 1974
+ ypos -78
+}
+Group {
+ name Contact_Sheet_1_Image_Group
+ xpos 2050
+ ypos -105
+ postage_stamp true
+}
+ StickyNote {
+  inputs 0
+  name StickyNote19
+  label C1C1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 840
+  ypos -447
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 180
+  ypos -394
+ }
+ Dot {
+  name Dot13
+  xpos 874
+  ypos -390
+ }
+ Shuffle {
+  in C1C0
+  name Shuffle3
+  xpos 840
+  ypos -346
+ }
+ ContactSheet {
+  width 4000
+  height 4000
+  rows 1
+  columns 1
+  gap 10
+  center true
+  roworder TopBottom
+  name ContactSheet2
+  xpos 840
+  ypos -82
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color 1
+  format "4000 4000 0 0 4000 4000 1 "
+  name Constant2
+  xpos 950
+  ypos -51
+ }
+ Merge2 {
+  inputs 2
+  name Merge2
+  xpos 840
+  ypos -34
+ }
+set N58c86c00 [stack 0]
+ Output {
+  name Output1
+  xpos 840
+  ypos 86
+ }
+push $N58c86c00
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  xpos 675
+  ypos -10
+ }
+end_group
+push $N58c5b000
+Dot {
+ name Dot11
+ xpos 1754
+ ypos -78
+}
+Group {
+ name Contact_Sheet_9_Image_Group
+ xpos 1830
+ ypos -105
+ postage_stamp true
+}
+ StickyNote {
+  inputs 0
+  name StickyNote19
+  label C1C1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 510
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote21
+  label C1R1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 620
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote22
+  label C2N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 730
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote23
+  label C1N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 840
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote24
+  label C8N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 950
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote25
+  label C3N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1060
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote26
+  label C7N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1170
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote27
+  label C9N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1280
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote20
+  label C1L1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 400
+  ypos -447
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 180
+  ypos -394
+ }
+ Dot {
+  name Dot12
+  xpos 434
+  ypos -390
+ }
+set N567df000 [stack 0]
+ Dot {
+  name Dot13
+  xpos 544
+  ypos -390
+ }
+set N567dec00 [stack 0]
+ Dot {
+  name Dot14
+  xpos 654
+  ypos -390
+ }
+set N567de800 [stack 0]
+ Dot {
+  name Dot15
+  xpos 764
+  ypos -390
+ }
+set N567de400 [stack 0]
+ Dot {
+  name Dot16
+  xpos 874
+  ypos -390
+ }
+set N567de000 [stack 0]
+ Dot {
+  name Dot17
+  xpos 984
+  ypos -390
+ }
+set N56821c00 [stack 0]
+ Dot {
+  name Dot18
+  xpos 1094
+  ypos -390
+ }
+set N56821800 [stack 0]
+ Dot {
+  name Dot19
+  xpos 1204
+  ypos -390
+ }
+set N56821400 [stack 0]
+ Dot {
+  name Dot11
+  xpos 1314
+  ypos -390
+ }
+ Shuffle {
+  in C9N1
+  name Shuffle10
+  xpos 1280
+  ypos -346
+ }
+ Dot {
+  name Dot20
+  xpos 1314
+  ypos -78
+ }
+push $N56821400
+ Shuffle {
+  in C7N1
+  name Shuffle9
+  xpos 1170
+  ypos -346
+ }
+ Dot {
+  name Dot21
+  xpos 1204
+  ypos -174
+ }
+push $N56821800
+ Shuffle {
+  in C3N1
+  name Shuffle8
+  xpos 1060
+  ypos -346
+ }
+ Dot {
+  name Dot22
+  xpos 1094
+  ypos -222
+ }
+push $N56821c00
+ Shuffle {
+  in C8N1
+  name Shuffle7
+  xpos 950
+  ypos -346
+ }
+ Dot {
+  name Dot23
+  xpos 984
+  ypos -246
+ }
+push $N567de000
+ Shuffle {
+  in C1N1
+  name Shuffle6
+  xpos 840
+  ypos -346
+ }
+ Dot {
+  name Dot10
+  xpos 874
+  ypos -270
+ }
+push $N567de400
+ Shuffle {
+  in C2N1
+  name Shuffle5
+  xpos 730
+  ypos -346
+ }
+ Dot {
+  name Dot9
+  xpos 764
+  ypos -246
+ }
+push $N567de800
+ Shuffle {
+  in C1R1
+  name Shuffle4
+  xpos 620
+  ypos -346
+ }
+ Dot {
+  name Dot24
+  xpos 654
+  ypos -222
+ }
+push $N567dec00
+ Shuffle {
+  in C1C1
+  name Shuffle3
+  xpos 510
+  ypos -346
+ }
+ Dot {
+  name Dot8
+  xpos 544
+  ypos -174
+ }
+push $N567df000
+ Shuffle {
+  in C1L1
+  name Shuffle2
+  xpos 400
+  ypos -346
+ }
+ Dot {
+  name Dot7
+  xpos 434
+  ypos -78
+ }
+ ContactSheet {
+  inputs 9
+  width 4000
+  height 4000
+  columns 3
+  gap 10
+  center true
+  roworder TopBottom
+  name ContactSheet2
+  xpos 840
+  ypos -82
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color 1
+  format "4000 4000 0 0 4000 4000 1 "
+  name Constant2
+  xpos 950
+  ypos -51
+ }
+ Merge2 {
+  inputs 2
+  name Merge2
+  xpos 840
+  ypos -34
+ }
+ Output {
+  name Output1
+  xpos 840
+  ypos 86
+ }
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  selected true
+  xpos 675
+  ypos -10
+ }
+end_group
+push $N58c5b800
+Group {
+ name Contact_Sheet_12_Image_Group
+ xpos 1610
+ ypos -105
+ postage_stamp true
+}
+ StickyNote {
+  inputs 0
+  name StickyNote19
+  label C1C1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 730
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote21
+  label C1R1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 840
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote22
+  label C2N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 950
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote23
+  label C1N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1060
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote24
+  label C8N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1170
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote25
+  label C3N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1280
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote26
+  label C7N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1390
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote27
+  label C9N1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 1500
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote20
+  label C1L1
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 620
+  ypos -447
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos 180
+  ypos -394
+ }
+ Dot {
+  name Dot1
+  xpos 324
+  ypos -390
+ }
+set N58bc1000 [stack 0]
+ Dot {
+  name Dot2
+  xpos 434
+  ypos -390
+ }
+set N58bc0c00 [stack 0]
+ Dot {
+  name Dot3
+  xpos 544
+  ypos -390
+ }
+set N58bc0800 [stack 0]
+ Dot {
+  name Dot12
+  xpos 654
+  ypos -390
+ }
+set N58bc0400 [stack 0]
+ Dot {
+  name Dot13
+  xpos 764
+  ypos -390
+ }
+set N58bc0000 [stack 0]
+ Dot {
+  name Dot14
+  xpos 874
+  ypos -390
+ }
+set N58bedc00 [stack 0]
+ Dot {
+  name Dot15
+  xpos 984
+  ypos -390
+ }
+set N58bed800 [stack 0]
+ Dot {
+  name Dot16
+  xpos 1094
+  ypos -390
+ }
+set N58bed400 [stack 0]
+ Dot {
+  name Dot17
+  xpos 1204
+  ypos -390
+ }
+set N58bed000 [stack 0]
+ Dot {
+  name Dot18
+  xpos 1314
+  ypos -390
+ }
+set N58becc00 [stack 0]
+ Dot {
+  name Dot19
+  xpos 1424
+  ypos -390
+ }
+set N58bec800 [stack 0]
+ Dot {
+  name Dot11
+  xpos 1534
+  ypos -390
+ }
+ Shuffle {
+  in C9N1
+  name Shuffle10
+  xpos 1500
+  ypos -346
+ }
+ Dot {
+  name Dot20
+  xpos 1534
+  ypos -126
+ }
+push $N58bec800
+ Shuffle {
+  in C7N1
+  name Shuffle9
+  xpos 1390
+  ypos -346
+ }
+ Dot {
+  name Dot21
+  xpos 1424
+  ypos -174
+ }
+push $N58becc00
+ Shuffle {
+  in C3N1
+  name Shuffle8
+  xpos 1280
+  ypos -346
+ }
+ Dot {
+  name Dot22
+  xpos 1314
+  ypos -222
+ }
+push $N58bed000
+ Shuffle {
+  in C8N1
+  name Shuffle7
+  xpos 1170
+  ypos -346
+ }
+ Dot {
+  name Dot23
+  xpos 1204
+  ypos -246
+ }
+push $N58bed400
+ Shuffle {
+  in C1N1
+  name Shuffle6
+  xpos 1060
+  ypos -346
+ }
+ Dot {
+  name Dot10
+  xpos 1094
+  ypos -270
+ }
+push $N58bed800
+ Shuffle {
+  in C2N1
+  name Shuffle5
+  xpos 950
+  ypos -346
+ }
+ Dot {
+  name Dot9
+  xpos 984
+  ypos -270
+ }
+push $N58bedc00
+ Shuffle {
+  in C1R1
+  name Shuffle4
+  xpos 840
+  ypos -346
+ }
+ Dot {
+  name Dot24
+  xpos 874
+  ypos -270
+ }
+push $N58bc0000
+ Shuffle {
+  in C1C1
+  name Shuffle3
+  xpos 730
+  ypos -346
+ }
+ Dot {
+  name Dot8
+  xpos 764
+  ypos -270
+ }
+push $N58bc0400
+ Shuffle {
+  in C1L1
+  name Shuffle2
+  xpos 620
+  ypos -346
+ }
+ Dot {
+  name Dot7
+  xpos 654
+  ypos -270
+ }
+push $N58bc0800
+ Shuffle {
+  in C1R1_Vert
+  name Shuffle12
+  xpos 510
+  ypos -346
+ }
+ Dot {
+  name Dot6
+  xpos 544
+  ypos -246
+ }
+push $N58bc0c00
+ Shuffle {
+  in C1L1_Vert
+  name Shuffle11
+  xpos 400
+  ypos -346
+ }
+ Dot {
+  name Dot5
+  xpos 434
+  ypos -198
+ }
+push $N58bc1000
+ Shuffle {
+  in C1C1_Vert
+  name Shuffle1
+  xpos 290
+  ypos -346
+ }
+ Dot {
+  name Dot4
+  xpos 324
+  ypos -126
+ }
+ ContactSheet {
+  inputs 12
+  width 4000
+  height 4000
+  rows 4
+  columns 3
+  gap 10
+  center true
+  roworder TopBottom
+  name ContactSheet2
+  xpos 840
+  ypos -82
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color 1
+  format "4000 4000 0 0 4000 4000 1 "
+  name Constant2
+  xpos 950
+  ypos -51
+ }
+ Merge2 {
+  inputs 2
+  name Merge2
+  xpos 840
+  ypos -34
+ }
+set N57a13800 [stack 0]
+ Output {
+  name Output1
+  xpos 840
+  ypos 86
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote3
+  label "C1C1 Vert"
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 283
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote2
+  label "C1L1 Vert"
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 394
+  ypos -447
+ }
+ StickyNote {
+  inputs 0
+  name StickyNote1
+  label "C1R1 Vert"
+  note_font "Arial Black"
+  note_font_size 18
+  xpos 503
+  ypos -447
+ }
+push $N57a13800
+ Viewer {
+  frame_range 1-100
+  name Viewer1
+  xpos 675
+  ypos -10
+ }
+end_group
+Switch {
+ inputs 3
+ which 2
+ name Contact_Out_Switch
+ xpos 1830
+ ypos 38
+}
+Premult {
+ name Premult16
+ note_font Verdana
+ xpos 1830
+ ypos 87
+ disable true
+}
+push $N58c5bc00
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ black red
+ white green
+ red2 blue
+ green2 alpha
+ out ContactSheet
+ out2 rgba
+ name CONSHT_SFC
+ xpos 1830
+ ypos 230
+}
+Dot {
+ name Dot12
+ xpos 2194
+ ypos 234
+}
+set N57a4d800 [stack 0]
+Write {
+ channels all
+ file //pali0070/AW-Lacie3TB/Jobs/SGS/SGSC-15-003_GSK_3D-200_SKUs/work/tums/00307660745853/img/comp/v001/00307660745853.exr
+ file_type exr
+ interleave "channels and layers"
+ "standard layer name format" true
+ write_full_layer_names true
+ version 28
+ name ContactSheet2
+ xpos 2270
+ ypos 217
+ disable true
+}
+StickyNote {
+ inputs 0
+ name StickyNote21
+ label "EXR \nFull Rez\nDelivery\nArchive"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 2270
+ ypos 119
+}
+StickyNote {
+ inputs 0
+ name StickyNote19
+ label "Contact\nSheet"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 1830
+ ypos 310
+}
+StickyNote {
+ inputs 0
+ name StickyNote20
+ label "12 Image\nContact\nSheet"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 1606
+ ypos -182
+}
+StickyNote {
+ inputs 0
+ name StickyNote28
+ label "9 Image\nContact\nSheet"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 1830
+ ypos -182
+}
+StickyNote {
+ inputs 0
+ name StickyNote29
+ label "1 Image\nContact\nSheet"
+ note_font "Arial Black"
+ note_font_size 18
+ xpos 2050
+ ypos -182
+}
+push $N57a4d800
+Reformat {
+ format "3000 3000 0 0 3000 3000 1 GSK_delivery"
+ name Reformat1
+ note_font Verdana
+ xpos 2160
+ ypos 393
+}
+Dot {
+ name Dot13
+ xpos 1864
+ ypos 402
+}
+set N57a77400 [stack 0]
+Dot {
+ name Dot16
+ xpos 1094
+ ypos 402
+}
+set N57a77000 [stack 0]
+Dot {
+ name Dot15
+ xpos 874
+ ypos 402
+}
+set N57a76c00 [stack 0]
+Dot {
+ name Dot14
+ xpos 654
+ ypos 402
+}
+set N57a76800 [stack 0]
+Dot {
+ name Dot9
+ xpos 434
+ ypos 402
+}
+set N57a76400 [stack 0]
+Dot {
+ name Dot8
+ xpos 214
+ ypos 402
+}
+set N57a76000 [stack 0]
+Dot {
+ name Dot7
+ xpos -6
+ ypos 402
+}
+set N58b23c00 [stack 0]
+Dot {
+ name Dot6
+ xpos -226
+ ypos 402
+}
+set N58b23800 [stack 0]
+Dot {
+ name Dot5
+ xpos -446
+ ypos 402
+}
+set N58b23400 [stack 0]
+Dot {
+ name Dot4
+ xpos -666
+ ypos 402
+}
+set N58b23000 [stack 0]
+Dot {
+ name Dot3
+ xpos -886
+ ypos 402
+}
+set N58b22c00 [stack 0]
+Write {
+ channels C1R1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 29
+ name C1R1_Write
+ xpos -920
+ ypos 464
+ disable true
+}
+push $N58b23000
+Write {
+ channels C2N1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C2N1_Write
+ xpos -700
+ ypos 464
+ disable true
+}
+push $N58b23400
+Write {
+ channels C1N1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C1N1_Write
+ xpos -480
+ ypos 464
+ disable true
+}
+push $N58b23800
+Write {
+ channels C8N1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C8N1_Write
+ xpos -260
+ ypos 464
+ disable true
+}
+push $N58b23c00
+Write {
+ channels C3N1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ name C3N1_Write
+ xpos -40
+ ypos 464
+ disable true
+}
+push $N57a76400
+Write {
+ channels C9N1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C9N1_Write
+ xpos 400
+ ypos 464
+ disable true
+}
+push $N57a76800
+Write {
+ channels C1C1_Vert
+ file_type png
+ checkHashOnRead false
+ version 31
+ name C1C1_Vert_Write
+ xpos 620
+ ypos 464
+ disable true
+}
+push $N57a76c00
+Write {
+ channels C1L1_Vert
+ file_type png
+ checkHashOnRead false
+ version 31
+ name C1L1_Vert_Write
+ xpos 840
+ ypos 464
+ disable true
+}
+push $N57a77000
+Write {
+ channels C1R1_Vert
+ file_type png
+ checkHashOnRead false
+ version 32
+ name C1R1_Vert_Write
+ xpos 1060
+ ypos 464
+ disable true
+}
+push $N57a76000
+Write {
+ channels C7N1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C7N1_Write
+ xpos 180
+ ypos 464
+ disable true
+}
+push $N58b22c00
+Dot {
+ name Dot2
+ xpos -1106
+ ypos 402
+}
+set N58b56000 [stack 0]
+Dot {
+ name Dot1
+ xpos -1326
+ ypos 402
+}
+set N59dd0800 [stack 0]
+Write {
+ channels C1L1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C1L1_Write
+ xpos -1360
+ ypos 464
+ disable true
+}
+push $N58b56000
+Write {
+ channels C1C1
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C1C1_Write
+ xpos -1140
+ ypos 464
+ disable true
+}
+StickyNote {
+ inputs 0
+ name StickyNote30
+ label C1C0
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -1580
+ ypos -207
+}
+StickyNote {
+ inputs 0
+ name StickyNote31
+ label C1C0
+ note_font "Arial Black"
+ note_font_size 18
+ xpos -1580
+ ypos 345
+}
+push $N59dd0800
+Dot {
+ name Dot22
+ xpos -1546
+ ypos 402
+}
+Write {
+ channels C1C0
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 27
+ name C1C0_Write
+ xpos -1580
+ ypos 464
+ disable true
+}
+push $N57a77400
+Write {
+ channels ContactSheet
+ file_type png
+ render_order 2
+ checkHashOnRead false
+ version 28
+ name ContactSheet
+ xpos 1830
+ ypos 464
+}
+push $N58c29000
+Viewer {
+ frame_range 1-100
+ colour_sample_bbox {3.987304688 -0.4306640625 3.98828125 -0.4296875}
+ samplepoints {{-0.06400000304 -0.1000000015}
+   }
+ name Viewer1
+ xpos 1830
+ ypos 542
+}

@@ -1,0 +1,9 @@
+#### Reads arguments, one per line, from data.txt file... This alters one file.
+"C:\Program Files\exiftool\exiftool.exe" -@ data.txt TIF_TEST.tif
+
+#### Reads arguments, one per line, from data.txt file... This operates on a directory.
+"C:\Program Files\exiftool\exiftool.exe" -@ data.txt C:\Users\rbobo\Desktop\TEMP
+
+
+#### DELETES ALL METADATA!!
+"C:\Program Files\exiftool\exiftool.exe" -all= TIF_TEST.tif

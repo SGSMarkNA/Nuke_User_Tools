@@ -1,0 +1,195 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+BackdropNode {
+ inputs 0
+ name BackdropNode13
+ tile_color 0x7171c600
+ label Shadow
+ note_font_size 42
+ selected true
+ xpos 1887
+ ypos -830
+ bdwidth 1419
+ bdheight 749
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode6
+ tile_color 0x75ff4bff
+ label "REPLACE SHADOW PASS\nWITH RETOUCHED VERSION"
+ note_font_size 20
+ selected true
+ xpos 2591
+ ypos -790
+ bdwidth 360
+ bdheight 299
+ z_order 1
+}
+Read {
+ inputs 0
+ file N:/Jobs/SGS/SGSP-15-004_Tide_for_e-Commerce/work/ecom/37000138815/img/plate/37000138815_retouched_reflect_shadow.exr
+ format "6000 6000 0 0 6000 6000 1 "
+ origset true
+ name Read7
+ selected true
+ xpos 2725
+ ypos -676
+}
+add_layer {shadow shadow.red shadow.green shadow.blue shadow.alpha}
+Shuffle {
+ in shadow
+ red green
+ blue green
+ alpha green
+ name Shuffle5
+ label "\[value in]"
+ selected true
+ xpos 2725
+ ypos -590
+ postage_stamp true
+}
+Invert {
+ name Invert1
+ selected true
+ xpos 2725
+ ypos -467
+}
+set Nab211400 [stack 0]
+Erode {
+ channels all
+ size 3
+ name Erode1
+ selected true
+ xpos 2725
+ ypos -420
+}
+Blur {
+ size {100 20}
+ name Blur1
+ selected true
+ xpos 2725
+ ypos -382
+}
+Transform {
+ scale {0.98 1}
+ center {3000 3000}
+ name Transform2
+ selected true
+ xpos 2725
+ ypos -316
+}
+set Nab210800 [stack 0]
+Dot {
+ name Dot3
+ selected true
+ xpos 2759
+ ypos -219
+}
+clone nodeab210000|Grade|5652 Grade {
+ channels alpha
+ white 0.8
+ name Core_Shadow_Density
+ selected true
+ xpos 2607
+ ypos -229
+}
+set Cab210000 [stack 0]
+push $Nab210800
+clone $Cab210000 {
+ xpos 2605
+ ypos -322
+ selected true
+}
+push $Nab211400
+Grade {
+ channels alpha
+ white 0.5
+ name Main_Shadow_Density
+ selected true
+ xpos 2597
+ ypos -467
+}
+Dot {
+ name Dot2
+ selected true
+ xpos 2506
+ ypos -457
+}
+ChannelMerge {
+ inputs 2
+ name ChannelMerge1
+ selected true
+ xpos 2472
+ ypos -329
+}
+ChannelMerge {
+ inputs 2
+ name ChannelMerge2
+ selected true
+ xpos 2472
+ ypos -236
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant2
+ selected true
+ xpos 2314
+ ypos -682
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy2
+ selected true
+ xpos 2314
+ ypos -229
+}
+Grade {
+ channels alpha
+ name Shadow_Transparency_OVERALL
+ selected true
+ xpos 2149
+ ypos -229
+}
+set Nab24a000 [stack 0]
+push $cut_paste_input
+Merge2 {
+ inputs 2
+ name Merge_Shadow
+ selected true
+ xpos 1982
+ ypos -223
+}
+push $Nab24a000
+Dot {
+ name Dot4
+ selected true
+ xpos 2183
+ ypos -164
+}
+add_layer {Shadow Shadow.red Shadow.green Shadow.blue Shadow.alpha}
+AddChannels {
+ channels Shadow
+ name AddChannels2
+ selected true
+ xpos 2945
+ ypos -174
+}
+push 0
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 Shadow.red
+ from1 rgba.green
+ to1 Shadow.green
+ from2 rgba.blue
+ to2 Shadow.blue
+ from3 rgba.alpha
+ to3 Shadow.alpha
+ name Copy3
+ selected true
+ xpos 3089
+ ypos -194
+}

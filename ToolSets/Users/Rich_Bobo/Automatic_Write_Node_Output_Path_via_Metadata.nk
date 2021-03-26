@@ -1,0 +1,59 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+push $cut_paste_input
+ModifyMetaData {
+ metadata {
+  {set FileName "\[join \[lrange \[split \[file rootname \[file tail \[value input.file]]] _] 0 end-1] _]"}
+  {set FirstFrame "\[value input.origfirst]"}
+  {set LastFrame "\[value input.origlast]"}
+  {set SubDir "\[lindex \[split \[file rootname \[file dirname \[value input.file]]] /] end]"}
+ }
+ name ModifyMetaData2
+ selected true
+ xpos -578
+ ypos -139
+}
+ViewMetaData {
+ name ViewMetaData2
+ selected true
+ xpos -578
+ ypos -93
+}
+Write {
+ channels rgba
+ file "\[value project_directory]\[metadata FileName].mov"
+ file_type mov
+ meta_codec "rle "
+ mov32_codec "rle "
+ mov32_pixel_format {{0} "default (RGBA  8-bit)" "RGBA  8-bit"}
+ mov64_codec "rle "
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 40000000
+ mov64_quality_min 2
+ mov64_quality_max 31
+ mov64_gop_size 12
+ mov64_b_frames 0
+ first {{"\[metadata FirstFrame]"}}
+ last {{"\[metadata LastFrame]"}}
+ use_limit true
+ checkHashOnRead false
+ version 4
+ name Write1
+ selected true
+ xpos -578
+ ypos -52
+}
+Text {
+ message "\[value \[value input.name].file]"
+ font C:/Windows/Fonts/arial.ttf
+ size 25
+ yjustify bottom
+ Transform 1
+ box {0 28 1920 1080}
+ color 0
+ name File_Path_text_node19
+ label "View Output Path here..."
+ selected true
+ xpos -578
+ ypos 20
+}

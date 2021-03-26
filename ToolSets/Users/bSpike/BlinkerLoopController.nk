@@ -1,0 +1,12 @@
+set cut_paste_input [stack 0]
+version 5.1200
+push $cut_paste_input
+NoOp {
+ name Blinker
+ selected true
+ xpos 196
+ ypos 477
+ addUserKnob {20 User}
+ addUserKnob {7 Blinker l "Blinker Loop"}
+ Blinker {{curve(((frame-102)%(119-102+1))+102) x102 0 x108 0 x110 1 x117 1 x119 0}}
+}

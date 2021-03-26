@@ -1,0 +1,268 @@
+#! C:/Program Files/Nuke6.3v8/Nuke6.3.exe -nx
+version 6.3 v8
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="0" w="1936" h="1216" screen="1">
+        <splitter orientation="2">
+            <split size="1029"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="124"/>
+            <dock id="" activePageId="Curve Editor.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="1912" y="168" w="1296" h="1040" screen="0">
+        <splitter orientation="2">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="962"/>
+            <splitter orientation="1">
+                <split size="1227"/>
+                <dock id="" hideTitles="1" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="49"/>
+                <dock id="" hideTitles="1" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/rbobo/Dropbox/richbobo/NUKE/A-W_Nuke_Scripts/WriteNodeSwitchPath_TEMPLATE_v01.nk
+ frame 51
+ last_frame 101
+ format "1920 1080 0 0 1920 1080 1 HD"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x3f3f3fff
+ label "Switch node to control separate shot renders to different folders and names..."
+ note_font_size 30
+ xpos 179
+ ypos -477
+ bdwidth 1438
+ bdheight 833
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode3
+ tile_color 0x8e8e3800
+ label "Set individual Shot Names here.\nDeactivate extras..."
+ note_font_size 20
+ xpos 190
+ ypos -205
+ bdwidth 1410
+ bdheight 196
+}
+BackdropNode {
+ inputs 0
+ name Shot_Folder_Filename_SWITCH1
+ tile_color 0x376c8eff
+ label "Keyframe this switch for rendering\nframe ranges to different folders\nand difference sequence names..."
+ note_font_size 20
+ xpos 529
+ bdwidth 805
+ bdheight 180
+}
+BackdropNode {
+ inputs 0
+ name Computed_Path
+ tile_color 0x7171c600
+ label "View this to see output paths..."
+ note_font_size 20
+ xpos 533
+ ypos 190
+ bdwidth 330
+ bdheight 116
+}
+BackdropNode {
+ inputs 0
+ name Shots_Common_Metadata
+ tile_color 0x4480a0ff
+ label "Set main directory, file extension, padding\nand version number here..."
+ note_font_size 20
+ selected true
+ xpos 513
+ ypos -413
+ bdwidth 822
+ bdheight 200
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant1
+ xpos 887
+ ypos -632
+}
+ModifyMetaData {
+ metadata {
+  {set outputdir Comp}
+  {set extension jpg}
+  {set framepadding _###}
+  {set version v01}
+ }
+ name ModifyMetaData
+ label "Version #\nOutput Dir.\nPadding\nExtension"
+ xpos 887
+ ypos -377
+}
+ViewMetaData {
+ name ViewMetaData4
+ xpos 887
+ ypos -274
+}
+set Na535c00 [stack 0]
+ModifyMetaData {
+ metadata {
+  {set shot Background}
+ }
+ name ModifyMetaData_9
+ label Background
+ xpos 1460
+ ypos -117
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot Interior}
+ }
+ name ModifyMetaData_8
+ label Interior
+ xpos 1325
+ ypos -119
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot LightsOff}
+ }
+ name ModifyMetaData_7
+ label "Lights Off"
+ xpos 1182
+ ypos -115
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot KeylessEntry}
+ }
+ name ModifyMetaData_6
+ label KeylessEntry
+ xpos 1034
+ ypos -114
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot LightsOn}
+ }
+ name ModifyMetaData_5
+ label "Lights On"
+ xpos 887
+ ypos -114
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot Front}
+ }
+ name ModifyMetaData_4
+ label "Front (Still)"
+ xpos 754
+ ypos -117
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot WheelsSpin}
+ }
+ name ModifyMetaData_3
+ label "Wheels Spin"
+ xpos 630
+ ypos -115
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot Hatch}
+ }
+ name ModifyMetaData_2
+ label "Hatch Opens"
+ xpos 498
+ ypos -115
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot Wipers}
+ }
+ name ModifyMetaData_1
+ label Wipers
+ xpos 366
+ ypos -113
+}
+push $Na535c00
+ModifyMetaData {
+ metadata {
+  {set shot EXT360}
+ }
+ name ModifyMetaData_0
+ label "EXT 360"
+ xpos 233
+ ypos -113
+}
+Switch {
+ inputs 10
+ which {{curve i K x1 0 x11 1 2 3 4 5 6 7 8 9}}
+ name SwitchShot_KEYFRAME_THIS
+ xpos 887
+ ypos 58
+}
+ViewMetaData {
+ name ViewMetaData1
+ xpos 887
+ ypos 117
+}
+Write {
+ file "\[file dirname \[file dirname \[value root.name]]]/\[metadata outputdir]/\[metadata version]/\[metadata shot]/\[metadata shot]\[metadata framepadding].\[metadata extension]"
+ file_type jpeg
+ _jpeg_quality 1
+ checkHashOnRead false
+ version 5
+ beforeFrameRender "def createWriteDirs():\n  import nuke, os, errno\n  file = nuke.filename(nuke.thisNode())\n  dir = os.path.dirname( file )\n  osdir = nuke.callbacks.filenameFilter( dir )\n  try:\n    os.makedirs( osdir )\n  except OSError, e:\n    if e.errno != errno.EEXIST:\n      raise\nnuke.addBeforeFrameRender(createWriteDirs)"
+ name Write1
+ xpos 887
+ ypos 248
+}
+Text {
+ message "\[value input.name]\n\n\n\n\[value \[value input.name].file]\n\n\n\n\n\[knob \[value input.name].file]\n"
+ font C:/Windows/Fonts/arial.ttf
+ size 22
+ yjustify center
+ Transform 1
+ box {0 0 1920 410}
+ center {960 540}
+ name Text1
+ xpos 722
+ ypos 254
+}
+Viewer {
+ frame 51
+ input_process false
+ name Viewer1
+ xpos 722
+ ypos 424
+}

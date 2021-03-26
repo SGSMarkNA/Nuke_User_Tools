@@ -1,0 +1,998 @@
+set cut_paste_input [stack 0]
+version 7.0 v4
+push $cut_paste_input
+Group {
+ name Slate
+ selected true
+ xpos -151
+ ypos -20
+ addUserKnob {20 info_tab l "Shot Info"}
+ addUserKnob {26 shot_info l "Shot Info"}
+ addUserKnob {1 studio}
+ studio Armstrong-White
+ addUserKnob {1 show}
+ show "PROJECT TITLE IN ALL CAPS"
+ addUserKnob {1 shot}
+ shot seq_###_###_v###
+ addUserKnob {6 frm_ovr l "specify frame range manually (below)" +STARTLINE}
+ addUserKnob {1 range l "frame range"}
+ range "start-end (duration)"
+ addUserKnob {6 art_ovr l "input artist name manually (below)" +STARTLINE}
+ addUserKnob {1 artist}
+ artist "<enter username>"
+ addUserKnob {1 notes}
+ notes "Include a brief description of the notes addressed & other changes made since the last version viewed by the intended audience."
+ addUserKnob {26 slate_section l "Slate Options"}
+ addUserKnob {3 sltfrm l "@ frame"}
+ sltfrm 1000
+ addUserKnob {3 frzfm l thumbnail}
+ frzfm 1001
+ addUserKnob {6 thumb l "use thumbnail" +STARTLINE}
+ thumb true
+ addUserKnob {6 bw_bar l "show grayscale bar" +STARTLINE}
+ bw_bar true
+ addUserKnob {6 rgb_bar l "show color bar" +STARTLINE}
+ rgb_bar true
+ addUserKnob {26 overlay_bug_text l Overlay/Bug}
+ addUserKnob {6 bug l "show overlay/bug" +STARTLINE}
+ bug true
+ addUserKnob {6 trnsp l "use transparency" +STARTLINE}
+ trnsp true
+ addUserKnob {26 watermark_text l Watermark}
+ addUserKnob {6 wtrmk l "show watermark" +STARTLINE}
+ wtrmk true
+}
+ BackdropNode {
+  inputs 0
+  name BackdropNode2
+  tile_color 0x7171c600
+  label Overlay/Bug
+  note_font_size 42
+  xpos 91
+  ypos 737
+  bdwidth 603
+  bdheight 483
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode1
+  tile_color 0x7171c600
+  label Slate
+  note_font_size 42
+  xpos -1313
+  ypos 319
+  bdwidth 877
+  bdheight 1477
+ }
+ BackdropNode {
+  inputs 0
+  name BackdropNode4
+  tile_color 0x8e8e3800
+  label thumbnail
+  note_font_size 42
+  xpos -722
+  ypos 1051
+  bdwidth 259
+  bdheight 383
+ }
+ Read {
+  inputs 0
+  file N:/Common/AW_Resources/AW_Logos/AW_Logo_over_black.tif
+  format "720 720 0 0 720 720 1 "
+  origset true
+  name Read3
+  xpos 507
+  ypos 868
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color {1 1 1 0}
+  format "720 720 0 0 720 720 1 "
+  name Constant5
+  xpos 379
+  ypos 799
+ }
+ Copy {
+  inputs 2
+  from0 rgba.red
+  to0 rgba.alpha
+  name Copy2
+  xpos 379
+  ypos 892
+ }
+set N1aa5ddd0 [stack 0]
+ Transform {
+  translate {-230 670}
+  scale 0.15
+  center {360 360}
+  name Transform6
+  xpos 379
+  ypos 936
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  name Constant6
+  xpos 251
+  ypos 831
+ }
+ Merge2 {
+  inputs 2
+  name Merge3
+  xpos 251
+  ypos 936
+ }
+ Text {
+  message "\[value Slate.shot]"
+  font C:/Windows/Fonts/arial.ttf
+  size 48
+  xjustify center
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {-60 250}
+  center {1024 778}
+  name Text4
+  label "top center"
+  xpos 251
+  ypos 968
+ }
+ Text {
+  message "\[date %b] \[date %e], \[date %Y]"
+  font C:/Windows/Fonts/arial.ttf
+  size 48
+  xjustify right
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {293 250}
+  center {1024 778}
+  name Text1
+  label "top right"
+  xpos 251
+  ypos 1012
+ }
+ Text {
+  message "\[value Slate.show]"
+  font C:/Windows/Fonts/arial.ttf
+  size 48
+  xjustify center
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {-66 -730}
+  center {1024 778}
+  name Text2
+  label "bottom center"
+  xpos 251
+  ypos 1056
+ }
+ Text {
+  message "\[format %04d \[frame]]"
+  font C:/Windows/Fonts/arial.ttf
+  size 48
+  xjustify right
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {300 -730}
+  center {1024 778}
+  name Text3
+  label "bottom right"
+  xpos 251
+  ypos 1100
+ }
+ Grade {
+  multiply 0.50363
+  name Grade1
+  xpos 251
+  ypos 1144
+ }
+ Reformat {
+  resize fit
+  name Reformat2
+  xpos 251
+  ypos 1176
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color {0.02549336106 0.02549336106 0.02549336106 0.9245702624}
+  name Constant3
+  xpos 123
+  ypos 933
+ }
+ Rectangle {
+  area {-306 {root.format.height*.09 i x13 280.08} 4520 {root.format.height*.9 i x13 2816.36}}
+  name Rectangle9
+  xpos 123
+  ypos 1010
+ }
+ Invert {
+  name Invert1
+  xpos 123
+  ypos 1042
+ }
+push 0
+ Copy {
+  inputs 2
+  from0 rgba.alpha
+  to0 rgba.alpha
+  name Copy1
+  xpos 123
+  ypos 1100
+ }
+ Premult {
+  name Premult1
+  xpos 123
+  ypos 1144
+ }
+ AddMix {
+  inputs 2
+  name AddMix2
+  xpos 123
+  ypos 1176
+ }
+set N1b0511b0 [stack 0]
+push $N1aa5ddd0
+ Reformat {
+  resize fit
+  name Reformat1
+  xpos -288
+  ypos 898
+ }
+ Transform {
+  scale 0.7
+  center {960 540}
+  name Transform7
+  xpos -288
+  ypos 930
+ }
+ Blur {
+  size 16
+  name Blur1
+  xpos -288
+  ypos 972
+  disable true
+ }
+ Input {
+  inputs 0
+  name Input1
+  xpos -288
+  ypos 632
+ }
+set N1b051f70 [stack 0]
+ Dot {
+  name Dot1
+  xpos -133
+  ypos 731
+ }
+ Dot {
+  name Dot8
+  xpos -133
+  ypos 1019
+ }
+set N2752a4e0 [stack 0]
+ AddMix {
+  inputs 2
+  mix 0.05
+  name AddMix4
+  xpos -288
+  ypos 1016
+ }
+ Dot {
+  name Dot9
+  xpos -254
+  ypos 1115
+ }
+push $N2752a4e0
+ Switch {
+  inputs 2
+  which {{"\[value Slate.wtrmk]" i}}
+  name Switch5
+  xpos -167
+  ypos 1112
+ }
+ Dot {
+  name Dot4
+  xpos -133
+  ypos 1179
+ }
+set N2752af30 [stack 0]
+ Dot {
+  name Dot6
+  xpos -133
+  ypos 1243
+ }
+set N2752b2a0 [stack 0]
+ AddMix {
+  inputs 2
+  mix 0.8
+  name AddMix3
+  xpos 123
+  ypos 1240
+ }
+ Dot {
+  name Dot7
+  xpos 157
+  ypos 1307
+ }
+push $N1b0511b0
+push $N2752af30
+ AddMix {
+  inputs 2
+  name AddMix1
+  xpos -5
+  ypos 1176
+ }
+ Switch {
+  inputs 2
+  which {{"\[value Slate.trnsp]" i}}
+  name Switch3
+  xpos -5
+  ypos 1304
+ }
+push $N2752b2a0
+ Switch {
+  inputs 2
+  which {{"\[value Slate.bug]" i}}
+  name Switch2
+  xpos -167
+  ypos 1304
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  color 0.35
+  format "1920 1080 0 0 1920 1080 1 HD"
+  name Constant1
+  xpos -590
+  ypos 1215
+ }
+push $N1b051f70
+ Dot {
+  name Dot2
+  xpos -389
+  ypos 731
+ }
+ Dot {
+  name Dot3
+  xpos -389
+  ypos 1026
+ }
+ Crop {
+  box {0 0 {width i} {height i}}
+  name Crop3
+  xpos -590
+  ypos 1119
+ }
+ FrameHold {
+  first_frame {{Slate.frzfm i}}
+  name FrameHold2
+  xpos -700
+  ypos 1185
+ }
+ Shuffle {
+  alpha white
+  name SetAlpha2
+  xpos -700
+  ypos 1221
+ }
+ Crop {
+  box {15 15 {width-15 i} {height-15 i}}
+  name Crop1
+  xpos -700
+  ypos 1245
+ }
+ Merge2 {
+  inputs 2
+  operation under
+  name Merge5
+  xpos -700
+  ypos 1311
+ }
+ Transform {
+  translate {-676 -72}
+  scale 0.25
+  center {{width/2 i x1000 0} {height/2 i x1000 0}}
+  name Transform8
+  xpos -700
+  ypos 1335
+ }
+ Text {
+  message "frame \[value frzfm]   "
+  font C:/Windows/Fonts/arial.ttf
+  size 32
+  xjustify right
+  yjustify center
+  Transform 1
+  box {135.5 223.5 675.5 266}
+  translate {-128 64}
+  center {960 540}
+  color 0.5
+  name Text7
+  xpos -700
+  ypos 1359
+ }
+ Transform {
+  translate {196 0}
+  center {960 540}
+  name Transform9
+  xpos -700
+  ypos 1383
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+  name Constant11
+  xpos -1184
+  ypos 379
+ }
+ Text {
+  message studio:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 553}
+  center {1024 778}
+  color 0.5
+  name Text33
+  label "studio\n"
+  xpos -1184
+  ypos 459
+ }
+ Text {
+  message "\[value Slate.studio]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 556}
+  center {1024 778}
+  color 0.5
+  name Text34
+  label studio_input
+  xpos -1184
+  ypos 503
+ }
+ Text {
+  message show:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 453}
+  center {1024 778}
+  color 0.5
+  name Text35
+  label show
+  xpos -1184
+  ypos 547
+ }
+ Text {
+  message "\[value Slate.show]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 456}
+  center {1024 778}
+  color 0.5
+  name Text36
+  label show_input
+  xpos -1184
+  ypos 591
+ }
+ Text {
+  message shot:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 353}
+  center {1024 778}
+  color 0.5
+  name Text37
+  label "shot\n"
+  xpos -1184
+  ypos 635
+ }
+ Text {
+  message "\[value Slate.shot]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 356}
+  center {1024 778}
+  color 0.5
+  name Text38
+  label shot_input
+  xpos -1184
+  ypos 679
+ }
+ Text {
+  message frames:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 254}
+  center {1024 778}
+  color 0.5
+  name Text39
+  label "frames\n"
+  xpos -1184
+  ypos 723
+ }
+set N275ec9d0 [stack 0]
+ Text {
+  message "\[value Slate.range]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 256}
+  center {1806 332}
+  color 0.5
+  name Text6
+  label frames_input
+  xpos -1056
+  ypos 786
+ }
+push $N275ec9d0
+ Text {
+  message "\[expr \[frames first]] - \[expr \[frames last]] (\[expr \[frames last] - \[expr \[frames first]]+1] frames)"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 256}
+  center {1806 332}
+  color 0.5
+  name Text40
+  label frames_auto
+  xpos -1184
+  ypos 786
+ }
+ Switch {
+  inputs 2
+  which {{Slate.frm_ovr i}}
+  name Switch10
+  xpos -1184
+  ypos 856
+ }
+ Text {
+  message date:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 154}
+  center {1024 778}
+  color 0.5
+  name Text41
+  label "date\n\n"
+  xpos -1184
+  ypos 888
+ }
+ Text {
+  message "\[date %b] \[date %e], \[date %Y]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 156}
+  center {1024 778}
+  color 0.5
+  name Text42
+  label date_input
+  xpos -1184
+  ypos 932
+ }
+ Text {
+  message artist:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 53}
+  center {1024 778}
+  color 0.5
+  name Text43
+  label "artist\n\n"
+  xpos -1184
+  ypos 978
+ }
+set N275edb00 [stack 0]
+ Text {
+  message "\[value Slate.artist]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 56}
+  center {1024 778}
+  color 0.5
+  name Text5
+  label "manual artist name"
+  xpos -1056
+  ypos 1042
+ }
+push $N275edb00
+ Text {
+  message "\$env(USERNAME)"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 56}
+  center {1024 778}
+  color 0.5
+  name Text44
+  label username
+  xpos -1184
+  ypos 1042
+ }
+ Switch {
+  inputs 2
+  which {{Slate.art_ovr i}}
+  name Switch9
+  xpos -1184
+  ypos 1112
+ }
+ Text {
+  message comp:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 -46}
+  center {1024 778}
+  color 0.5
+  name Text45
+  label "comp\n\n"
+  xpos -1184
+  ypos 1144
+ }
+ Text {
+  message "\[file tail \[value root.name]]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 -52}
+  center {1024 778}
+  color 0.5
+  name Text46
+  label comp_input
+  xpos -1184
+  ypos 1188
+ }
+ Text {
+  message notes:
+  font C:/Windows/Fonts/arial.ttf
+  size 61
+  yjustify center
+  Transform 1
+  box {512 389 1536 1167}
+  translate {280 -156}
+  center {1024 778}
+  color 0.5
+  name Text31
+  label "notes\n\n"
+  xpos -1184
+  ypos 1232
+ }
+ Text {
+  message "\[value Slate.notes]"
+  font C:/Windows/Fonts/arial.ttf
+  size 70
+  yjustify top
+  Transform 1
+  box {512 389 1536 1167}
+  translate {540 -522}
+  center {1024 778}
+  color 0.5
+  name Text32
+  label notes_input
+  xpos -1184
+  ypos 1276
+ }
+ Reformat {
+  resize fit
+  name Reformat3
+  xpos -1184
+  ypos 1368
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  format "1828 1556 0 0 1828 1556 2 2K_Cinemascope"
+  name Constant4
+  xpos -672
+  ypos 351
+ }
+ Rectangle {
+  area {1123.5 -4.5 1284.5 144.5}
+  color {0.5 0.5 0.5 1}
+  name Rectangle19
+  label "White 235"
+  xpos -672
+  ypos 433
+ }
+ Rectangle {
+  area {963 -3 1124 144.5}
+  color {0.5 0.5 0 1}
+  name Rectangle20
+  tile_color 0xffff00ff
+  label "Yellow 204"
+  xpos -672
+  ypos 477
+ }
+ Rectangle {
+  area {802 -3 963 144.5}
+  color {0 0.5 0.5 1}
+  name Rectangle21
+  tile_color 0xffffff
+  label "Cyan 172"
+  xpos -672
+  ypos 521
+ }
+ Rectangle {
+  area {642.5 -3 803.5 144.5}
+  color {0 0.5 0 0}
+  name Rectangle22
+  tile_color 0xff00ff
+  label "Green 140\n"
+  xpos -672
+  ypos 565
+ }
+ Rectangle {
+  area {482 -3 643 144.5}
+  color {0.5 0 0.5 0}
+  name Rectangle23
+  tile_color 0xff00ffff
+  label "Magenta 110\n\n"
+  xpos -672
+  ypos 609
+ }
+ Rectangle {
+  area {321 -3 482 144.5}
+  color {0.5 0 0 0}
+  name Rectangle24
+  tile_color 0xff0000ff
+  label "Red 78\n\n\n"
+  xpos -672
+  ypos 653
+ }
+ Rectangle {
+  area {160 -3 321 144.5}
+  color {0 0 0.5 0}
+  name Rectangle25
+  tile_color 0xffff
+  label "Blue 47\n\n\n\n"
+  xpos -672
+  ypos 697
+ }
+ Rectangle {
+  area {-1 -3 160 144.5}
+  color 0
+  name Rectangle26
+  tile_color 0xff
+  label "Black 16\n\n\n\n"
+  xpos -672
+  ypos 741
+ }
+ Shuffle {
+  alpha white
+  name Shuffle1
+  xpos -672
+  ypos 791
+ }
+ Crop {
+  box {0 0 1280 {root.format.height*.06 i}}
+  reformat true
+  name Crop_bars
+  xpos -672
+  ypos 823
+ }
+ set C277785d0 [stack 0]
+ Reformat {
+  resize fit
+  center false
+  name Reformat7
+  xpos -672
+  ypos 855
+ }
+ Transform {
+  translate {0 {Crop_bars.box.t*1.25 i}}
+  name Transform3
+  xpos -672
+  ypos 887
+ }
+ Constant {
+  inputs 0
+  channels rgb
+  format "1828 1556 0 0 1828 1556 2 2K_Cinemascope"
+  name Constant2
+  xpos -800
+  ypos 351
+ }
+ Rectangle {
+  area {1123.5 -4.5 1284.5 144.5}
+  name Rectangle1
+  label "White 235"
+  xpos -800
+  ypos 433
+ }
+ Rectangle {
+  area {963 -3 1124 144.5}
+  color {{1-.143 i}}
+  name Rectangle2
+  label "White 204"
+  xpos -800
+  ypos 477
+ }
+ Rectangle {
+  area {802 -3 963 144.5}
+  color 0.714
+  name Rectangle3
+  label "White 172"
+  xpos -800
+  ypos 521
+ }
+ Rectangle {
+  area {642.5 -3 803.5 144.5}
+  color 0.571
+  name Rectangle4
+  label "White 140\n"
+  xpos -800
+  ypos 565
+ }
+ Rectangle {
+  area {482 -3 643 144.5}
+  color 0.428
+  name Rectangle5
+  label "White 110\n\n"
+  xpos -800
+  ypos 609
+ }
+ Rectangle {
+  area {321 -3 482 144.5}
+  color 0.285
+  name Rectangle6
+  label "White 78\n\n\n"
+  xpos -800
+  ypos 653
+ }
+ Rectangle {
+  area {160 -3 321 144.5}
+  color 0.142
+  name Rectangle7
+  label "White 47\n\n\n\n"
+  xpos -800
+  ypos 697
+ }
+ Rectangle {
+  area {-1 -3 160 144.5}
+  color 0
+  name Rectangle8
+  label "White 16\n\n\n\n"
+  xpos -800
+  ypos 741
+ }
+ Shuffle {
+  alpha white
+  name Shuffle21
+  xpos -800
+  ypos 791
+ }
+clone $C277785d0 {
+  xpos -800
+  ypos 823
+  selected false
+ }
+ Reformat {
+  resize fit
+  center false
+  name Reformat6
+  xpos -800
+  ypos 855
+ }
+ Transform {
+  translate {0 {Crop_bars.box.t*2 i}}
+  name Transform1
+  xpos -800
+  ypos 887
+ }
+push 0
+ Switch {
+  inputs 2
+  which {{"\[value Slate.bw_bar]" i}}
+  name Switch7
+  xpos -920
+  ypos 951
+ }
+set N27565f90 [stack 0]
+ Merge2 {
+  inputs 2
+  name Merge1
+  xpos -672
+  ypos 951
+ }
+push $N27565f90
+ Switch {
+  inputs 2
+  which {{"\[value Slate.rgb_bar]" i}}
+  name Switch6
+  xpos -920
+  ypos 1079
+ }
+ Merge2 {
+  inputs 2
+  name Merge4
+  xpos -920
+  ypos 1368
+ }
+set N27880750 [stack 0]
+ Merge2 {
+  inputs 2
+  name Merge2
+  xpos -810
+  ypos 1479
+ }
+push $N27880750
+ Switch {
+  inputs 2
+  which {{"\[value Slate.thumb]" i}}
+  name Switch8
+  xpos -920
+  ypos 1575
+ }
+ Crop {
+  box {0 0 {root.format.width i} {root.format.height i}}
+  reformat true
+  crop false
+  name Crop2
+  xpos -920
+  ypos 1741
+ }
+ Switch {
+  inputs 2
+  which {{"x > \[value Slate.sltfrm] ? 1:0" i}}
+  name Switch1
+  xpos -167
+  ypos 1741
+ }
+ Output {
+  name Output1
+  xpos -167
+  ypos 1863
+ }
+ Viewer {
+  input_process false
+  name Viewer1
+  xpos 96
+  ypos 1863
+ }
+end_group

@@ -1,0 +1,415 @@
+#! C:/Program Files/Nuke6.3v8/Nuke6.3.exe -nx
+version 6.3 v8
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="0" w="1936" h="1200" screen="1">
+        <splitter orientation="2">
+            <split size="1015"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="122"/>
+            <dock id="" activePageId="Curve Editor.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="1912" y="168" w="1296" h="1040" screen="0">
+        <splitter orientation="2">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="962"/>
+            <splitter orientation="1">
+                <split size="930"/>
+                <dock id="" hideTitles="1" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                </dock>
+                <split size="346"/>
+                <dock id="" hideTitles="1" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name N:/common/SYSENV/Nuke/ToolSets/Common_Script_Templates/VrayRebuild_INT_FromMAYA_v01.nk
+}
+BackdropNode {
+ inputs 0
+ name Mattes
+ tile_color 0x736f7fff
+ xpos 858
+ ypos 1718
+ bdwidth 1097
+ bdheight 1092
+}
+BackdropNode {
+ inputs 0
+ name Vehicle1
+ tile_color 0x2c3136ff
+ xpos 860
+ ypos 2851
+ bdwidth 1553
+ bdheight 1067
+}
+BackdropNode {
+ inputs 0
+ name Lightwrap
+ tile_color 0x3f3f3fff
+ xpos 2417
+ ypos 4318
+ bdwidth 327
+ bdheight 362
+}
+BackdropNode {
+ inputs 0
+ name Background
+ tile_color 0x212b21ff
+ xpos 2667
+ ypos 2941
+ bdwidth 658
+ bdheight 972
+}
+Dot {
+ inputs 0
+ name Dot2
+ label "PlugIn Exr"
+ xpos 959
+ ypos 1694
+}
+Dot {
+ name Dot12
+ xpos 959
+ ypos 2816
+}
+Dot {
+ name Dot1
+ xpos 959
+ ypos 2884
+}
+set Na465380 [stack 0]
+Dot {
+ name Dot3
+ xpos 1126
+ ypos 2884
+}
+set Na25e400 [stack 0]
+Dot {
+ name Dot4
+ xpos 1277
+ ypos 2884
+}
+set Na25e720 [stack 0]
+Dot {
+ name Dot7
+ xpos 1461
+ ypos 2884
+}
+set Na25ea40 [stack 0]
+Dot {
+ name Dot5
+ xpos 1671
+ ypos 2884
+}
+set Na25ed60 [stack 0]
+Dot {
+ name Dot6
+ xpos 1896
+ ypos 2884
+}
+set Na25f080 [stack 0]
+Dot {
+ name Dot8
+ xpos 2119
+ ypos 2884
+}
+set Na481d70 [stack 0]
+Dot {
+ name Dot9
+ xpos 2319
+ ypos 2884
+}
+add_layer {selfIllum selfIllum.red selfIllum.green selfIllum.blue}
+Shuffle {
+ in selfIllum
+ alpha black
+ name Self_Illum
+ xpos 2285
+ ypos 2902
+}
+push $Na481d70
+add_layer {reflect reflect.red reflect.green reflect.blue}
+Shuffle {
+ in reflect
+ alpha black
+ name Reflection
+ xpos 2085
+ ypos 2902
+}
+push $Na25f080
+add_layer {specular specular.red specular.green specular.blue}
+Shuffle {
+ in specular
+ alpha black
+ name Spec
+ xpos 1862
+ ypos 2902
+}
+push $Na25ed60
+Shuffle {
+ in alpha
+ name Alpha
+ xpos 1637
+ ypos 2902
+}
+push $Na25ea40
+add_layer {refract refract.red refract.green refract.blue}
+Shuffle {
+ in refract
+ alpha black
+ name Refraction
+ xpos 1427
+ ypos 2902
+}
+push $Na465380
+add_layer {rawGI rawGI.red rawGI.green rawGI.blue}
+Shuffle {
+ in rawGI
+ alpha black
+ name RawGI
+ xpos 925
+ ypos 2902
+}
+push $Na25e400
+add_layer {diffuse diffuse.red diffuse.green diffuse.blue}
+Shuffle {
+ in diffuse
+ alpha black
+ name Diffuse
+ xpos 1092
+ ypos 2902
+}
+Dot {
+ name Dot10
+ xpos 1126
+ ypos 3751
+}
+set Na48fa20 [stack 0]
+Merge2 {
+ inputs 2
+ operation multiply
+ Achannels rgb
+ name Merge2
+ xpos 925
+ ypos 3747
+}
+push $Na48fa20
+push $Na25e720
+add_layer {rawLight rawLight.red rawLight.green rawLight.blue}
+Shuffle {
+ in rawLight
+ alpha black
+ name RawLighting
+ xpos 1243
+ ypos 2902
+}
+Merge2 {
+ inputs 2
+ operation multiply
+ Achannels rgb
+ name Merge3
+ xpos 1236
+ ypos 3747
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge4
+ xpos 1091
+ ypos 3848
+}
+Merge2 {
+ inputs 2
+ operation screen
+ Achannels rgb
+ name Merge6
+ label Refraction
+ xpos 1427
+ ypos 3842
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ name Copy1
+ xpos 1637
+ ypos 3842
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge5
+ label Spec
+ xpos 1862
+ ypos 3842
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge7
+ label Reflection
+ xpos 2085
+ ypos 3842
+}
+Merge2 {
+ inputs 2
+ operation plus
+ Achannels rgb
+ name Merge1
+ label "Self Illum."
+ xpos 2285
+ ypos 3842
+}
+Dot {
+ name Dot13
+ xpos 2319
+ ypos 3950
+}
+set Na491a00 [stack 0]
+Dot {
+ name Dot14
+ xpos 2556
+ ypos 3950
+}
+Shuffle {
+ red alpha
+ green alpha
+ blue alpha
+ name Shuffle15
+ xpos 2522
+ ypos 4364
+}
+Grade {
+ channels rgba
+ blackpoint 0.1333
+ name Grade1
+ xpos 2522
+ ypos 4391
+}
+set Na492390 [stack 0]
+Blur {
+ channels rgba
+ size 12.01
+ name Blur2
+ xpos 2447
+ ypos 4469
+}
+Invert {
+ channels rgba
+ name Invert1
+ xpos 2447
+ ypos 4493
+}
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name Shuffle16
+ xpos 2447
+ ypos 4517
+}
+push $Na492390
+Merge2 {
+ inputs 2
+ operation multiply
+ name Matte__LightWrap
+ label Matte__LightWrap
+ xpos 2522
+ ypos 4585
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 0.9115
+ name Constant2
+ xpos 2962
+ ypos 3149
+}
+Dot {
+ name Dot11
+ xpos 2996
+ ypos 4084
+}
+Dot {
+ name Dot15
+ xpos 2666
+ ypos 4084
+}
+set Na572b70 [stack 0]
+Blur {
+ channels rgb
+ size 30
+ name Blur3
+ xpos 2632
+ ypos 4564
+}
+ShuffleCopy {
+ inputs 2
+ name ShuffleCopy1
+ xpos 2632
+ ypos 4591
+}
+Premult {
+ name Premult1
+ xpos 2632
+ ypos 4618
+}
+push $Na491a00
+push $Na572b70
+Merge2 {
+ inputs 2
+ name Merge8
+ xpos 2285
+ ypos 4081
+}
+Merge2 {
+ inputs 2
+ operation screen
+ Achannels rgb
+ mix 0.25
+ name Merge18
+ label Lightwrap
+ xpos 2285
+ ypos 4612
+}
+Dot {
+ name Dot34
+ label "To Output"
+ xpos 2319
+ ypos 4765
+}
+StickyNote {
+ inputs 0
+ name StickyNote1
+ label " BG "
+ note_font_size 84
+ xpos 3204
+ ypos 2907
+}
+StickyNote {
+ inputs 0
+ name StickyNote2
+ label " INT "
+ note_font_size 84
+ xpos 1801
+ ypos 1661
+}

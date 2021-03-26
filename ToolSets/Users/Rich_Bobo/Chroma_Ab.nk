@@ -1,0 +1,123 @@
+set cut_paste_input [stack 0]
+version 6.3 v8
+BackdropNode {
+ inputs 0
+ name Chroma_Ab
+ tile_color 0x342222ff
+ selected true
+ xpos -205
+ ypos -440
+ bdwidth 278
+ bdheight 462
+}
+push $cut_paste_input
+Dot {
+ name Dot69
+ selected true
+ xpos -7
+ ypos -437
+}
+Remove {
+ operation keep
+ channels rgba
+ name Remove1
+ label "Keep RGBA only"
+ selected true
+ xpos -41
+ ypos -378
+}
+Dot {
+ name Dot62
+ selected true
+ xpos -7
+ ypos -294
+}
+set Nac9ed30 [stack 0]
+push $Nac9ed30
+Shuffle {
+ green red
+ name r1
+ selected true
+ xpos -186
+ ypos -258
+}
+Transform {
+ scale 1.002
+ center {{"\[metadata input/width]/2" i} {"\[metadata input/height]/2" i}}
+ name Transform1
+ selected true
+ xpos -186
+ ypos -234
+}
+push $Nac9ed30
+Shuffle {
+ red green
+ name g1
+ selected true
+ xpos -94
+ ypos -258
+}
+Transform {
+ scale 1.001
+ center {{"\[metadata input/width]/2" i} {"\[metadata input/height]/2" i}}
+ name Transform6
+ selected true
+ xpos -94
+ ypos -234
+}
+Copy {
+ inputs 2
+ from0 rgba.red
+ to0 rgba.red
+ name ChromaAb1
+ selected true
+ xpos -138
+ ypos -196
+}
+Copy {
+ inputs 2
+ from0 rgba.blue
+ to0 rgba.blue
+ name Copy42
+ selected true
+ xpos -41
+ ypos -196
+}
+Colorspace {
+ colorspace_in sRGB
+ colorspace_out HSV
+ name Colorspace1
+ selected true
+ xpos -41
+ ypos -126
+}
+Sharpen {
+ channels {-rgba.red -rgba.green rgba.blue rgba.alpha}
+ amount 0.5
+ size 1.84
+ name Sharpen3
+ selected true
+ xpos -41
+ ypos -102
+}
+Colorspace {
+ colorspace_in HSV
+ colorspace_out sRGB
+ name Colorspace2
+ selected true
+ xpos -41
+ ypos -68
+}
+Clamp {
+ channels rgba
+ name Clamp3
+ selected true
+ xpos -41
+ ypos -44
+}
+Reformat {
+ name Reformat1
+ selected true
+ xpos -41
+ ypos -20
+}

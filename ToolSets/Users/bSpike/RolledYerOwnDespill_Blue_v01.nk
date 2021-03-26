@@ -1,0 +1,95 @@
+set cut_paste_input [stack 0]
+version 5.2200
+push $cut_paste_input
+Dot {
+ name Dot85
+ selected true
+ xpos -940
+ ypos 2289
+}
+set N1822330 [stack 0]
+push $N1822330
+Dot {
+ name Dot86
+ selected true
+ xpos -1110
+ ypos 2348
+}
+set N15af4090 [stack 0]
+Shuffle {
+ red blue
+ green blue
+ alpha blue
+ name Blue
+ selected true
+ xpos -1232
+ ypos 2380
+}
+push $N15af4090
+Shuffle {
+ red green
+ blue green
+ alpha green
+ name Green
+ selected true
+ xpos -1144
+ ypos 2379
+}
+push $N15af4090
+Shuffle {
+ green red
+ blue red
+ alpha red
+ name Red
+ selected true
+ xpos -1053
+ ypos 2379
+}
+Merge2 {
+ inputs 2
+ operation average
+ name Merge50
+ selected true
+ xpos -1098
+ ypos 2404
+}
+Merge2 {
+ inputs 2
+ operation minus
+ name Merge51
+ selected true
+ xpos -1232
+ ypos 2404
+}
+Clamp {
+ channels rgba
+ name Clamp12
+ selected true
+ xpos -1232
+ ypos 2428
+}
+Shuffle {
+ red black
+ green black
+ alpha black
+ name Shuffle21
+ selected true
+ xpos -1232
+ ypos 2452
+}
+Merge2 {
+ inputs 2
+ operation minus
+ name Merge52
+ label "Nix Blue Spill"
+ selected true
+ xpos -974
+ ypos 2447
+}
+Clamp {
+ channels rgba
+ name Clamp13
+ selected true
+ xpos -974
+ ypos 2481
+}

@@ -1,0 +1,76 @@
+set cut_paste_input [stack 0]
+version 9.0 v7
+BackdropNode {
+ inputs 0
+ name BackdropNode11
+ tile_color 0xaba535ff
+ label "WRITE LAYERED EXR\n\n\n\n\n\n\n\n\n\nFOR PHOTOSHOP"
+ note_font_size 42
+ selected true
+ xpos -399
+ ypos -528
+ bdwidth 622
+ bdheight 568
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode12
+ tile_color 0x75ff4bff
+ label "CHANGE VERSION NUMBER HERE"
+ note_font_size 20
+ selected true
+ xpos -259
+ ypos -422
+ bdwidth 394
+ bdheight 151
+ z_order 1
+}
+push $cut_paste_input
+ModifyMetaData {
+ metadata {
+  {set Product "\[lindex \[split \[value root.name] /] end-4]"}
+  {set CompDir img/comp}
+  {set Version v001}
+  {set Flavor "\[lindex \[split \[value root.name] /] end-5]"}
+  {set ProjectDir "\[join \[lrange \[split \[file rootname \[file dir \[value root.name]]] /] 0 6] /]"}
+ }
+ name ModifyMetaData1
+ selected true
+ xpos -104
+ ypos -361
+}
+ViewMetaData {
+ name ViewMetaData1
+ selected true
+ xpos -104
+ ypos -318
+}
+Reformat {
+ black_outside true
+ name Reformat2
+ label "THIS FIXES PHOTOSHOP\nONE PIXEL OFFSET PROBLEM!!"
+ selected true
+ xpos -104
+ ypos -214
+}
+Write {
+ channels all
+ file "\[metadata ProjectDir]/\[metadata CompDir]/\[metadata Version]/\[metadata Flavor]_\[metadata Product]_\[metadata Version].exr"
+ file_type exr
+ version 6
+ name Write_EXR1
+ selected true
+ xpos -104
+ ypos -135
+}
+Text {
+ message "\[value \[value input.name].file]"
+ font C:/Windows/Fonts/arial.ttf
+ size 62
+ translate {0 50}
+ name File_Path_text_node
+ label "View Output Path here..."
+ selected true
+ xpos -308
+ ypos -128
+}

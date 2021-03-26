@@ -1,0 +1,1162 @@
+#! C:/Program Files/Nuke10.5v7/nuke-10.5.7.dll -nx
+version 10.5 v7
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="-8" y="-8" w="2576" h="1456" maximized="1" screen="0">
+        <splitter orientation="2">
+            <split size="1390"/>
+            <dock id="" activePageId="Viewer.1">
+                <page id="Viewer.1"/>
+            </dock>
+            <split size="0"/>
+            <dock id="" activePageId="DopeSheet.1">
+                <page id="Curve Editor.1"/>
+                <page id="DopeSheet.1"/>
+            </dock>
+        </splitter>
+    </window>
+    <window x="2560" y="0" w="1920" h="1200" fullscreen="1" screen="1">
+        <splitter orientation="1">
+            <split size="1258"/>
+            <splitter orientation="2">
+                <split size="66"/>
+                <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                    <page id="Toolbar.1"/>
+                </dock>
+                <split size="1130"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                </dock>
+            </splitter>
+            <split size="658"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.scripteditor.1"/>
+                <page id="com.richbobo.LocalizeFiles"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name "C:/Users/rbobo/Box Sync/CODE_aw_projects (Rich.Bobo@armstrong-white.com)/aw_projects/NukePSD/Nuke_Scripts/_From_Roger/tlx_v2_EDITED.nk"
+ last_frame 1
+ format "6000 4500 0 0 6000 4500 1 "
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config custom
+ customOCIOConfigPath //isln-smb.ad.sgsco.int/library/OCIO_Configs/aw_Comp_aces_1.0.3/aw_Comp_config.ocio
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT "ACES - ACES2065-1"
+ monitorLut AW/sRGB_ICC(sRGB)
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut "ACES - ACES2065-1"
+ floatLut "ACES - ACES2065-1"
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ FrameListMode Custom
+ addUserKnob {1 CustomFrameList l customFrameList}
+ CustomFrameList 1-8
+ addUserKnob {1 Department l department}
+ addUserKnob {1 Pool l pool}
+ Pool aw
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ SecondaryPool aw
+ addUserKnob {1 Group l group}
+ Group 64gb
+ addUserKnob {1 Priority l priority}
+ Priority 75
+ addUserKnob {1 MachineLimit l machineLimit}
+ MachineLimit 0
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ IsBlacklist False
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ LimitGroups nuke
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ SubmitSuspended False
+ addUserKnob {1 ChunkSize l chunkSize}
+ ChunkSize 1
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ ConcurrentTasks 1
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ LimitConcurrentTasks True
+ addUserKnob {1 Threads l threads}
+ Threads 0
+ addUserKnob {1 SubmitScene l submitScene}
+ SubmitScene True
+ addUserKnob {1 BatchMode l batchMode}
+ BatchMode False
+ addUserKnob {1 ContinueOnError l continueOnError}
+ ContinueOnError True
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ UseNodeRange False
+ addUserKnob {1 UseGpu l useGpu}
+ UseGpu False
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ ChooseGpu 0
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ EnforceRenderOrder False
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ DeadlineRenderMode "Use Scene Settings"
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ PerformanceProfiler False
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ ReloadPlugin False
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode12
+ tile_color 0x7171c600
+ label Base
+ note_font_size 42
+ xpos -5215
+ ypos 10353
+ bdheight 902
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode13
+ tile_color 0x8e388e00
+ label Prem
+ note_font_size 42
+ xpos -5215
+ ypos 11313
+ bdheight 1046
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode14
+ tile_color 0x8e8e3800
+ label Prem_Aspec
+ note_font_size 42
+ xpos -5220
+ ypos 12444
+ bdwidth 106
+ bdheight 1081
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode15
+ tile_color 0x388e8e00
+ label Tech
+ note_font_size 42
+ xpos -5215
+ ypos 13689
+ bdheight 1190
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode16
+ tile_color 0x7171c600
+ label Tech_Aspec
+ note_font_size 42
+ xpos -5215
+ ypos 15033
+ bdheight 1190
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode17
+ tile_color 0x388e8e00
+ label Glass
+ note_font_size 42
+ xpos -5229
+ ypos 9186
+ bdwidth 124
+ bdheight 203
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode18
+ tile_color 0x8e388e00
+ label Shadow
+ note_font_size 42
+ xpos -5217
+ ypos 16281
+ bdwidth 143
+ bdheight 221
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode19
+ tile_color 0xaaaaaa00
+ label INT
+ note_font_size 42
+ xpos -5220
+ ypos 9474
+ bdwidth 104
+ bdheight 773
+}
+Constant {
+ inputs 0
+ channels rgb
+ color 0.5
+ name Constant4
+ xpos -5196
+ ypos 16647
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Shadow/Shadow_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read405
+ xpos -5196
+ ypos 16361
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/PlatinumWhitePearl/PlatinumWhitePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read404
+ xpos -5205
+ ypos 16121
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/PerformanceRedPearl/PerformanceRedPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read403
+ xpos -5205
+ ypos 15929
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/ModernSteelMetallic/ModernSteelMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read402
+ xpos -5205
+ ypos 15737
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/MajesticBlackPearl/MajesticBlackPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read401
+ xpos -5205
+ ypos 15593
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/LunarSilverMetallic/LunarSilverMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read400
+ xpos -5205
+ ypos 15425
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/CanyonBronzeMetallic/CanyonBronzeMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read399
+ xpos -5205
+ ypos 15257
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/ApexBluePearl/ApexBluePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read398
+ xpos -5205
+ ypos 15113
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/PlatinumWhitePearl/PlatinumWhitePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read397
+ xpos -5205
+ ypos 14777
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/PerformanceRedPearl/PerformanceRedPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read396
+ xpos -5205
+ ypos 14633
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/ModernSteelMetallic/ModernSteelMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read395
+ xpos -5205
+ ypos 14465
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/MajesticBlackPearl/MajesticBlackPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read394
+ xpos -5205
+ ypos 14297
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/LunarSilverMetallic/LunarSilverMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read393
+ xpos -5205
+ ypos 14129
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/CanyonBronzeMetallic/CanyonBronzeMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read392
+ xpos -5205
+ ypos 13937
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/ApexBluePearl/ApexBluePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read391
+ xpos -5205
+ ypos 13769
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/PlatinumWhitePearl/PlatinumWhitePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read390
+ xpos -5210
+ ypos 13423
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/PerformanceRedPearl/PerformanceRedPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read389
+ xpos -5210
+ ypos 13265
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/ModernSteelMetallic/ModernSteelMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read388
+ xpos -5204
+ ypos 13111
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/MajesticBlackPearl/MajesticBlackPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read387
+ xpos -5204
+ ypos 12967
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/LunarSilverMetallic/LunarSilverMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read386
+ xpos -5205
+ ypos 12823
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/CanyonBronzeMetallic/CanyonBronzeMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read385
+ xpos -5210
+ ypos 12679
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/ApexBluePearl/ApexBluePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read384
+ xpos -5210
+ ypos 12524
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/PlatinumWhitePearl/PlatinumWhitePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read383
+ xpos -5205
+ ypos 12257
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/PerformanceRedPearl/PerformanceRedPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read382
+ xpos -5205
+ ypos 12113
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/ModernSteelMetallic/ModernSteelMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read381
+ xpos -5205
+ ypos 11969
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/MajesticBlackPearl/MajesticBlackPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read380
+ xpos -5205
+ ypos 11825
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/LunarSilverMetallic/LunarSilverMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read379
+ xpos -5205
+ ypos 11681
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/CanyonBronzeMetallic/CanyonBronzeMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read378
+ xpos -5205
+ ypos 11537
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/ApexBluePearl/ApexBluePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read377
+ xpos -5205
+ ypos 11393
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/PlatinumWhitePearl/PlatinumWhitePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read375
+ xpos -5205
+ ypos 11153
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/PerformanceRedPearl/PerformanceRedPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read374
+ xpos -5203
+ ypos 11033
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/ModernSteelMetallic/ModernSteelMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read373
+ xpos -5205
+ ypos 10913
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/MajesticBlackPearl/MajesticBlackPearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read372
+ xpos -5205
+ ypos 10793
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/LunarSilverMetallic/LunarSilverMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read371
+ xpos -5205
+ ypos 10673
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/CanyonBronzeMetallic/CanyonBronzeMetallic_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read370
+ xpos -5205
+ ypos 10553
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/ApexBluePearl/ApexBluePearl_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read369
+ xpos -5205
+ ypos 10433
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech_A-SPEC/Interior/Tech_A_SPEC_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read410
+ xpos -5207
+ ypos 10130
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Tech/Interior/Tech_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read409
+ xpos -5210
+ ypos 9962
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium_A-SPEC/Interior/Premium_A_Spec_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read408
+ xpos -5210
+ ypos 9842
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Premium/Interior/Premium_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read407
+ xpos -5210
+ ypos 9698
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Base/Interior/Base_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read406
+ xpos -5210
+ ypos 9554
+}
+Read {
+ inputs 0
+ file X:/Misc/POSS-18-001_2019_2TX_Build_and_Price_Assets/work/common/img/comp/v04/Glass/Glass_####.png
+ format "6000 4500 0 0 6000 4500 1 "
+ last 8
+ origlast 8
+ origset true
+ name Read376
+ xpos -5203
+ ypos 9266
+}
+Constant {
+ inputs 0
+ channels rgb
+ name Constant3
+ xpos -4950
+ ypos 9057
+}
+add_layer {Windows Windows.red Windows.green Windows.blue Windows.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Windows
+ name ShuffleCopy2
+ xpos -4950
+ ypos 9302
+}
+add_layer {Int_Base Int_Base.red Int_Base.green Int_Base.blue Int_Base.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Base
+ name ShuffleCopy3
+ xpos -4950
+ ypos 9590
+}
+add_layer {Int_Premium Int_Premium.red Int_Premium.green Int_Premium.blue Int_Premium.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Premium
+ name ShuffleCopy4
+ xpos -4950
+ ypos 9734
+}
+add_layer {Int_PremAspec Int_PremAspec.red Int_PremAspec.green Int_PremAspec.blue Int_PremAspec.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_PremAspec
+ name ShuffleCopy5
+ xpos -4950
+ ypos 9878
+}
+add_layer {Int_Tech Int_Tech.red Int_Tech.green Int_Tech.blue Int_Tech.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Tech
+ name ShuffleCopy6
+ xpos -4950
+ ypos 9998
+}
+add_layer {Int_Tech_Aspec Int_Tech_Aspec.red Int_Tech_Aspec.green Int_Tech_Aspec.blue Int_Tech_Aspec.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Int_Tech_Aspec
+ name ShuffleCopy7
+ xpos -4950
+ ypos 10166
+}
+add_layer {Base_ApexBluePearl Base_ApexBluePearl.red Base_ApexBluePearl.green Base_ApexBluePearl.blue Base_ApexBluePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Base_ApexBluePearl
+ name ShuffleCopy8
+ xpos -4950
+ ypos 10469
+}
+add_layer {Base_CanyonBronzeMetallic Base_CanyonBronzeMetallic.red Base_CanyonBronzeMetallic.green Base_CanyonBronzeMetallic.blue Base_CanyonBronzeMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Base_CanyonBronzeMetallic
+ name ShuffleCopy9
+ xpos -4950
+ ypos 10589
+}
+add_layer {Base_MajesticBlackPearl Base_MajesticBlackPearl.red Base_MajesticBlackPearl.green Base_MajesticBlackPearl.blue Base_MajesticBlackPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Base_MajesticBlackPearl
+ name ShuffleCopy10
+ xpos -4950
+ ypos 10709
+}
+add_layer {Base_LunarSilverMetallic Base_LunarSilverMetallic.red Base_LunarSilverMetallic.green Base_LunarSilverMetallic.blue Base_LunarSilverMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Base_LunarSilverMetallic
+ name ShuffleCopy11
+ xpos -4950
+ ypos 10829
+}
+add_layer {Base_ModernSteelMetallic Base_ModernSteelMetallic.red Base_ModernSteelMetallic.green Base_ModernSteelMetallic.blue Base_ModernSteelMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Base_ModernSteelMetallic
+ name ShuffleCopy12
+ xpos -4950
+ ypos 10949
+}
+add_layer {Base_PerformanceRedPearl Base_PerformanceRedPearl.red Base_PerformanceRedPearl.green Base_PerformanceRedPearl.blue Base_PerformanceRedPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Base_PerformanceRedPearl
+ name ShuffleCopy13
+ xpos -4950
+ ypos 11069
+}
+add_layer {Base_PlatinumWhitePearl Base_PlatinumWhitePearl.red Base_PlatinumWhitePearl.green Base_PlatinumWhitePearl.blue Base_PlatinumWhitePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Base_PlatinumWhitePearl
+ name ShuffleCopy14
+ xpos -4950
+ ypos 11189
+}
+add_layer {Prem_ApexBluePearl Prem_ApexBluePearl.red Prem_ApexBluePearl.green Prem_ApexBluePearl.blue Prem_ApexBluePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Prem_ApexBluePearl
+ name ShuffleCopy15
+ xpos -4950
+ ypos 11429
+}
+add_layer {Prem_CanyonBronzeMetallic Prem_CanyonBronzeMetallic.red Prem_CanyonBronzeMetallic.green Prem_CanyonBronzeMetallic.blue Prem_CanyonBronzeMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Prem_CanyonBronzeMetallic
+ name ShuffleCopy16
+ xpos -4950
+ ypos 11573
+}
+add_layer {Prem_LunarSilverMetallic Prem_LunarSilverMetallic.red Prem_LunarSilverMetallic.green Prem_LunarSilverMetallic.blue Prem_LunarSilverMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Prem_LunarSilverMetallic
+ name ShuffleCopy17
+ xpos -4950
+ ypos 11717
+}
+add_layer {Prem_MajesticBlackPearl Prem_MajesticBlackPearl.red Prem_MajesticBlackPearl.green Prem_MajesticBlackPearl.blue Prem_MajesticBlackPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Prem_MajesticBlackPearl
+ name ShuffleCopy18
+ xpos -4950
+ ypos 11861
+}
+add_layer {Prem_ModernSteelMetallic Prem_ModernSteelMetallic.red Prem_ModernSteelMetallic.green Prem_ModernSteelMetallic.blue Prem_ModernSteelMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Prem_ModernSteelMetallic
+ name ShuffleCopy19
+ xpos -4950
+ ypos 12005
+}
+add_layer {Prem_PerformanceRedPearl Prem_PerformanceRedPearl.red Prem_PerformanceRedPearl.green Prem_PerformanceRedPearl.blue Prem_PerformanceRedPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Prem_PerformanceRedPearl
+ name ShuffleCopy20
+ xpos -4950
+ ypos 12149
+}
+add_layer {Prem_PlatinumWhitePearl Prem_PlatinumWhitePearl.red Prem_PlatinumWhitePearl.green Prem_PlatinumWhitePearl.blue Prem_PlatinumWhitePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Prem_PlatinumWhitePearl
+ name ShuffleCopy21
+ xpos -4950
+ ypos 12293
+}
+add_layer {PremAspec_ApexBluePearl PremAspec_ApexBluePearl.red PremAspec_ApexBluePearl.green PremAspec_ApexBluePearl.blue PremAspec_ApexBluePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out PremAspec_ApexBluePearl
+ name ShuffleCopy22
+ xpos -4950
+ ypos 12560
+}
+add_layer {PremAspec_CanyonBronzeMetallic PremAspec_CanyonBronzeMetallic.red PremAspec_CanyonBronzeMetallic.green PremAspec_CanyonBronzeMetallic.blue PremAspec_CanyonBronzeMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out PremAspec_CanyonBronzeMetallic
+ name ShuffleCopy23
+ xpos -4950
+ ypos 12715
+}
+add_layer {PremAspec_LunarSilverMetallic PremAspec_LunarSilverMetallic.red PremAspec_LunarSilverMetallic.green PremAspec_LunarSilverMetallic.blue PremAspec_LunarSilverMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out PremAspec_LunarSilverMetallic
+ name ShuffleCopy24
+ xpos -4946
+ ypos 12859
+}
+add_layer {PremAspec_MajesticBlackPearl PremAspec_MajesticBlackPearl.red PremAspec_MajesticBlackPearl.green PremAspec_MajesticBlackPearl.blue PremAspec_MajesticBlackPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out PremAspec_MajesticBlackPearl
+ name ShuffleCopy25
+ xpos -4946
+ ypos 13003
+}
+add_layer {PremAspec_ModernSteelMetallic PremAspec_ModernSteelMetallic.red PremAspec_ModernSteelMetallic.green PremAspec_ModernSteelMetallic.blue PremAspec_ModernSteelMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out PremAspec_ModernSteelMetallic
+ name ShuffleCopy26
+ xpos -4946
+ ypos 13147
+}
+add_layer {PremAspec_PerformanceRedPearl PremAspec_PerformanceRedPearl.red PremAspec_PerformanceRedPearl.green PremAspec_PerformanceRedPearl.blue PremAspec_PerformanceRedPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out PremAspec_PerformanceRedPearl
+ name ShuffleCopy27
+ xpos -4946
+ ypos 13301
+}
+add_layer {PremAspec_PlatinumWhitePearl PremAspec_PlatinumWhitePearl.red PremAspec_PlatinumWhitePearl.green PremAspec_PlatinumWhitePearl.blue PremAspec_PlatinumWhitePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out PremAspec_PlatinumWhitePearl
+ name ShuffleCopy28
+ xpos -4946
+ ypos 13459
+}
+add_layer {Tech_ApexBluePearl Tech_ApexBluePearl.red Tech_ApexBluePearl.green Tech_ApexBluePearl.blue Tech_ApexBluePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Tech_ApexBluePearl
+ name ShuffleCopy29
+ xpos -4946
+ ypos 13805
+}
+add_layer {Tech_CanyonBronzeMetallic Tech_CanyonBronzeMetallic.red Tech_CanyonBronzeMetallic.green Tech_CanyonBronzeMetallic.blue Tech_CanyonBronzeMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Tech_CanyonBronzeMetallic
+ name ShuffleCopy30
+ xpos -4946
+ ypos 13973
+}
+add_layer {Tech_LunarSilverMetallic Tech_LunarSilverMetallic.red Tech_LunarSilverMetallic.green Tech_LunarSilverMetallic.blue Tech_LunarSilverMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Tech_LunarSilverMetallic
+ name ShuffleCopy31
+ xpos -4946
+ ypos 14165
+}
+add_layer {Tech_MajesticBlackPearl Tech_MajesticBlackPearl.red Tech_MajesticBlackPearl.green Tech_MajesticBlackPearl.blue Tech_MajesticBlackPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Tech_MajesticBlackPearl
+ name ShuffleCopy32
+ xpos -4946
+ ypos 14333
+}
+add_layer {Tech_ModernSteelMetallic Tech_ModernSteelMetallic.red Tech_ModernSteelMetallic.green Tech_ModernSteelMetallic.blue Tech_ModernSteelMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Tech_ModernSteelMetallic
+ name ShuffleCopy33
+ xpos -4946
+ ypos 14501
+}
+add_layer {Tech_PerformanceRedPearl Tech_PerformanceRedPearl.red Tech_PerformanceRedPearl.green Tech_PerformanceRedPearl.blue Tech_PerformanceRedPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Tech_PerformanceRedPearl
+ name ShuffleCopy34
+ xpos -4946
+ ypos 14669
+}
+add_layer {Tech_PlatinumWhitePearl Tech_PlatinumWhitePearl.red Tech_PlatinumWhitePearl.green Tech_PlatinumWhitePearl.blue Tech_PlatinumWhitePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Tech_PlatinumWhitePearl
+ name ShuffleCopy35
+ xpos -4946
+ ypos 14813
+}
+add_layer {TechAspec_ApexBluePearl TechAspec_ApexBluePearl.red TechAspec_ApexBluePearl.green TechAspec_ApexBluePearl.blue TechAspec_ApexBluePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out TechAspec_ApexBluePearl
+ name ShuffleCopy36
+ xpos -4946
+ ypos 15149
+}
+add_layer {TechAspec_CanyonBronzeMetallic TechAspec_CanyonBronzeMetallic.red TechAspec_CanyonBronzeMetallic.green TechAspec_CanyonBronzeMetallic.blue TechAspec_CanyonBronzeMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out TechAspec_CanyonBronzeMetallic
+ name ShuffleCopy37
+ xpos -4946
+ ypos 15293
+}
+add_layer {TechAspec_LunarSilverMetallic TechAspec_LunarSilverMetallic.red TechAspec_LunarSilverMetallic.green TechAspec_LunarSilverMetallic.blue TechAspec_LunarSilverMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out TechAspec_LunarSilverMetallic
+ name ShuffleCopy38
+ xpos -4946
+ ypos 15461
+}
+add_layer {TechAspec_MajesticBlackPearl TechAspec_MajesticBlackPearl.red TechAspec_MajesticBlackPearl.green TechAspec_MajesticBlackPearl.blue TechAspec_MajesticBlackPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out TechAspec_MajesticBlackPearl
+ name ShuffleCopy39
+ xpos -4946
+ ypos 15629
+}
+add_layer {TechAspec_ModernSteelMetallic TechAspec_ModernSteelMetallic.red TechAspec_ModernSteelMetallic.green TechAspec_ModernSteelMetallic.blue TechAspec_ModernSteelMetallic.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out TechAspec_ModernSteelMetallic
+ name ShuffleCopy40
+ xpos -4946
+ ypos 15773
+}
+add_layer {TechAspec_PerformanceRedPearl TechAspec_PerformanceRedPearl.red TechAspec_PerformanceRedPearl.green TechAspec_PerformanceRedPearl.blue TechAspec_PerformanceRedPearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out TechAspec_PerformanceRedPearl
+ name ShuffleCopy41
+ xpos -4946
+ ypos 15965
+}
+add_layer {TechAspec_PlatinumWhitePearl TechAspec_PlatinumWhitePearl.red TechAspec_PlatinumWhitePearl.green TechAspec_PlatinumWhitePearl.blue TechAspec_PlatinumWhitePearl.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out TechAspec_PlatinumWhitePearl
+ name ShuffleCopy42
+ xpos -4946
+ ypos 16157
+}
+add_layer {Shadow Shadow.red Shadow.green Shadow.blue Shadow.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ out Shadow
+ name ShuffleCopy43
+ xpos -4946
+ ypos 16397
+}
+add_layer {Background Background.red Background.green Background.blue Background.alpha}
+ShuffleCopy {
+ inputs 2
+ red red
+ green green
+ blue blue
+ alpha white
+ out Background
+ name ShuffleCopy44
+ xpos -4946
+ ypos 16670
+}
+Remove {
+ channels rgba
+ name Remove1
+ xpos -4946
+ ypos 16718
+}
+Viewer {
+ frame_range 1-1
+ channels Windows
+ colour_sample_bbox {0.04233333468 0.1476666629 0.07800000161 0.1863333285}
+ samplepoints {{0.80400002 -0.3183333278}
+   }
+ translate {-0.4250000119 -0.09449999779}
+ name Viewer1
+ xpos -4694
+ ypos 17103
+}
