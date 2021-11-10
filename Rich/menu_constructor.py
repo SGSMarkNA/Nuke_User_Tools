@@ -596,16 +596,16 @@ def stop_performance_timing():
 	nuke.stopPerformanceTimers()
 
 
-#-------------------------------------------------------------------
-# Menu_Item
-## [menu_item]
-##   parent_menus:Nuke/PHOTOSHOP
-##   label:Create Layered PSD Files
-##   tooltip:Creates layered PSD files either at the end of a render or later, as a post process.
-def Nuke_to_PSD_Group():
-	path = os.environ["AW_USER_TOOLS"] + "/Nuke_User_Tools/Rich/NukePSD/Nuke_to_PSD_Group.nk"
-	print path
-	nuke.nodePaste(path)
+##-------------------------------------------------------------------
+## Menu_Item
+### [menu_item]
+###   parent_menus:Nuke/PHOTOSHOP
+###   label:Create Layered PSD Files
+###   tooltip:Creates layered PSD files either at the end of a render or later, as a post process.
+#def Nuke_to_PSD_Group():
+	#path = os.environ["AW_USER_TOOLS"] + "/Nuke_User_Tools/Rich/NukePSD/Nuke_to_PSD_Group.nk"
+	#print path
+	#nuke.nodePaste(path)
 
 
 ## Menu_Item
