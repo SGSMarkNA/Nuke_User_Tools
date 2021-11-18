@@ -193,14 +193,20 @@ def Create_Gamma_2point2_for_sRGB_alpha():
 
 #-------------------------------------------------------------------
 # Menu_Item
-## [menu_item]
-##   parent_menus:Nuke/CONFIGURATORS
-##   label:Build Comp from EXR Layers
-##   shortcut:alt+0:
-##   tooltip:Automatically builds a vehicle comp from the selected EXR Read node.\nProvides the ability to associate existing VRay layer names and creates a comp for an exterior or interior image sequence.
-def exr_CompBuilder():
+# [menu_item]
+#   parent_menus:Nuke/CONFIGURATORS
+#   label:New Build Comp from EXR Layers
+#   shortcut:alt+0:
+#   tooltip:Automatically builds a vehicle comp from the selected EXR Read node.\nProvides the ability to associate existing VRay layer names and creates a comp for an exterior or interior image sequence.
+#
+#   shift_label:OLD Build Comp from EXR Layers
+#   shift_tooltip:This Makes A Dot Node \nWith The Name Drew
+#   shift_arg:0
+#   shift_tooltip:Automatically builds a vehicle comp from the selected EXR Read node.\nProvides the ability to associate existing VRay layer names and creates a comp for an exterior or interior image sequence.
+def exr_CompBuilder(option=1):
 	import CompBuilder.CompBuilder
-	CompBuilder.CompBuilder.exr_CompBuilder()
+	reload(CompBuilder.CompBuilder)
+	CompBuilder.CompBuilder.exr_CompBuilder(option)
 
 
 #-------------------------------------------------------------------
