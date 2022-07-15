@@ -1,5 +1,5 @@
 import nuke
-import thread
+import _thread
 
 GroupNode = nuke.thisNode()
 
@@ -76,9 +76,9 @@ def _remove_replace_layername_knob():
 			try:
 				GroupNode.removeKnob(knob)
 			except ValueError:
-				print 'ValueError: Knob %s could not be removed...' % knob.name()
+				print('ValueError: Knob %s could not be removed...' % knob.name())
 			except KeyError:
-				print 'KeyError: Knob %s could not be removed...' % knob.name()
+				print('KeyError: Knob %s could not be removed...' % knob.name())
 
 
 def _create_group_layer_nodes(Layers):
@@ -138,7 +138,7 @@ def _cleanup_nodes():
 			else:
 				nuke.delete(Node)
 	except ValueError:
-		print "Value Error: Check in Group for nodes that were not deleted..."
+		print("Value Error: Check in Group for nodes that were not deleted...")
 
 
 def _remove_Int_Knobs():
@@ -163,9 +163,9 @@ def _remove_Int_Knobs():
 		try:
 			GroupNode.removeKnob(knob)
 		except ValueError:
-			print 'ValueError: Knob %s could not be removed...' % knob.name()
+			print('ValueError: Knob %s could not be removed...' % knob.name())
 		except KeyError:
-			print 'KeyError: Knob %s could not be removed...' % knob.name()
+			print('KeyError: Knob %s could not be removed...' % knob.name())
 
 
 def _pre_render_sanity_checks():
@@ -193,12 +193,12 @@ def _pre_render_sanity_checks():
 	# Get knobname and knob object from GroupNode.knobs() dictionary...
 	layer_order_dict = {}
 	Layers = _get_group_input_layers()
-	for knobname, knob in GroupNode.knobs().iteritems():
+	for knobname, knob in GroupNode.knobs().items():
 		knobname = knobname.lstrip('_ORDER_')
 		if knobname in Layers:
 			layer_order_dict[knobname] = knob.value()	
 	# Check to see if all the layers are still set to zero...
-	if all(value == 0 for value in layer_order_dict.values()):
+	if all(value == 0 for value in list(layer_order_dict.values())):
 		nuke.message("Please set the layer order for the PSD files.")
 		check = False
 
@@ -207,7 +207,7 @@ def _pre_render_sanity_checks():
 		if Node.Class() == ('Shuffle'):
 			InValue = Node['in'].value()
 			if InValue == 'none':
-				print ('The Shuffle node named "%s" has an input of "none".\n\nThe Photoshop build will most likely fail...\n\n(Check for missing or switched rgba channels.)' % Node.name())
+				print(('The Shuffle node named "%s" has an input of "none".\n\nThe Photoshop build will most likely fail...\n\n(Check for missing or switched rgba channels.)' % Node.name()))
 				nuke.critical('The Shuffle node named "%s" has an input of "none".\n\nThe Photoshop build will most likely fail...\n\n(Check for missing or switched rgba channels.)' % Node.name())
 				check = False
 			else:
@@ -255,11 +255,11 @@ def _render_write_nodes():
 			def do_execute_multiple_in_thread(WriteNodes, FrameRange):
 				nuke.executeInMainThread(do_execute_multiple, (WriteNodes, FrameRange))
 			
-			thread.start_new_thread(do_execute_multiple_in_thread, (WriteNodes, FrameRange))
+			_thread.start_new_thread(do_execute_multiple_in_thread, (WriteNodes, FrameRange))
 
 		except Exception as error:
 			status = str(error)
-			print status
+			print(status)
 			#nuke.message(status + '\nCheck for "%V" in Output Dir.')
 			nuke.message(status)
 

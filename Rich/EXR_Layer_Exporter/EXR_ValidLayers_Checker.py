@@ -42,8 +42,8 @@ def EXR_ValidLayers_Checker(Node):
             # Edge Case: check if the Min/Max values are not zero, but their sum is zero - it should still be considered a valid layer...
             if sum(Values) == 0.0:
                 if Values[0] != 0.0 and Values[1] != 0.0:
-                    print ''
-                    print 'Layer "%s" is Valid.\nThe MaxData and MinData values cancel each other out.\nAdding it to the ValidLayers list...' % layer
+                    print('')
+                    print('Layer "%s" is Valid.\nThe MaxData and MinData values cancel each other out.\nAdding it to the ValidLayers list...' % layer)
                     ValidLayers.append(layer)
                     #print layer, Values, 'VALID'
                 # Otherwise, there is no data to keep...
@@ -51,9 +51,9 @@ def EXR_ValidLayers_Checker(Node):
                     EmptyLayers.append(layer)
                     #print layer, Values, 'EMPTY'
     ValidLayers = list(set([x for x in ValidLayers]))
-    print 'ValidLayers --> ', ValidLayers
+    print('ValidLayers --> ', ValidLayers)
     EmptyLayers = list(set([x for x in EmptyLayers]))
-    print 'EmptyLayers --> ', EmptyLayers
+    print('EmptyLayers --> ', EmptyLayers)
     nuke.delete(CurveTool)
     nuke.delete(Shuffle)
     return (ValidLayers, EmptyLayers)

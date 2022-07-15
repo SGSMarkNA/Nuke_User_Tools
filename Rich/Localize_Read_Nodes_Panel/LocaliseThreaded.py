@@ -45,7 +45,7 @@ class LocaliseThreaded(object):
 		self.fileDict = fileDict
 		self.cachePath = nuke.value('preferences.localCachePath')
 		self.taskCount = len(self.fileDict)
-		self.totalFileCount = sum([len(v) for v in self.fileDict.values()])
+		self.totalFileCount = sum([len(v) for v in list(self.fileDict.values())])
 		self.progress = 0.0
 		self.cachePath = nuke.value('preferences.localCachePath')
 		self.finishedThreads = 0
@@ -59,7 +59,7 @@ class LocaliseThreaded(object):
 		self.start = time.time()
 		self.mainTask = nuke.ProgressTask('LOCALISING %s files' % self.totalFileCount)
 		self.__updateMainTaskMessage()
-		for seqName, fileList in self.fileDict.iteritems():
+		for seqName, fileList in self.fileDict.items():
 			thread = threading.Thread(name=seqName, target=self.copyFiles, args=(seqName, fileList))
 			thread.start()
 
@@ -219,12 +219,12 @@ def getFrameList(fileKnob, existingFilePaths):
 
 def localiseFileThreaded(readKnobList):
 	'''Wrapper to duck punch default method'''
-	print 'read knob list:', readKnobList
+	print('read knob list:', readKnobList)
 	sequenceCount = len(readKnobList)
 	if sequenceCount > 1:
 		p = nuke.Panel('Localiser (threaded)')
 		knobName = 'concurrent copy tasks'
-		p.addEnumerationPulldown(knobName, ' '.join([str(i+1) for i in xrange(min(nuke.THREADS, sequenceCount, 10))]))
+		p.addEnumerationPulldown(knobName, ' '.join([str(i+1) for i in range(min(nuke.THREADS, sequenceCount, 10))]))
 		if p.show():
 			maxThreads = int(p.value(knobName))
 		else:
@@ -237,7 +237,7 @@ def localiseFileThreaded(readKnobList):
 	for knob in readKnobList:
 		filePathList = getFrameList(knob, allFilesPaths)
 		allFilesPaths.extend(filePathList)
-		print 'before:', filePathList
+		print('before:', filePathList)
 		# collect proxies:
 		#try:
 			#proxyKnob = knob.node()['proxy']

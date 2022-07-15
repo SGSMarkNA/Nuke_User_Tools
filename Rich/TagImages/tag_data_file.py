@@ -117,13 +117,13 @@ class TagsFileUtils(object):
 		else:
 			try:
 				os.makedirs(self.dir_to_create)
-			except OSError, e:
+			except OSError as e:
 				if e.errno != errno.EEXIST:
 					raise
 			if os.path.isdir(self.dir_to_create):
-				print "Created output directory: %s " % (self.dir_to_create)
+				print("Created output directory: %s " % (self.dir_to_create))
 			else:
-				print "ERROR: Directory %s cannot be created." % (self.dir_to_create)
+				print("ERROR: Directory %s cannot be created." % (self.dir_to_create))
 				if nuke.GUI:
 					nuke.message("Directory cannot be created. Press OK to cancel." % (self.dir_to_create))
 		
@@ -141,7 +141,7 @@ class TagsFileUtils(object):
 				args_file = self.args_file
 				return args_file
 		except:
-			print "ERROR: args cannot be saved to: %s" % (self.args_file)
+			print("ERROR: args cannot be saved to: %s" % (self.args_file))
 			if nuke.GUI:		
 				nuke.message("args cannot be saved to: %s Press OK to cancel." % (self.args_file))
 			return None
@@ -175,18 +175,18 @@ class TagsFileUtils(object):
 				self.saved_args = self.args_read.read()
 				self.args_read.close()
 			except:
-				print "Sorry - args file %s cannot be read." % (self.args_file)
+				print("Sorry - args file %s cannot be read." % (self.args_file))
 				if nuke.GUI:			
 					nuke.message("args file cannot be read:\n %s\n\n Press OK to delete corrupt file and continue.\n\n You will need to save a new args file." % (self.args_file))
 				self.args_read.close()
 			finally:
-				print "args file loaded successfully from %s" % (self.args_file)
-				print "self.saved_args --------->\n", self.saved_args
+				print("args file loaded successfully from %s" % (self.args_file))
+				print("self.saved_args --------->\n", self.saved_args)
 				saved_args = self.saved_args
 				return saved_args		
 			
 		else:
-			print "Sorry - args file %s does not seem to exist." % (self.args_file)
+			print("Sorry - args file %s does not seem to exist." % (self.args_file))
 			if nuke.GUI:		
 				nuke.message("args file does not seem to exist:\n %s\n\n Press OK to delete corrupt file and continue.\n\n You will need to save a new args file." % (self.args_file))
 			return None

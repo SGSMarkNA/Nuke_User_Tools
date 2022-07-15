@@ -1,6 +1,6 @@
 import nuke
 import re
-import thread
+import _thread
 
 # A global dictionary of the current collections of nodes, grouped by node class.
 # These values are set by the selections in each master node control's NODE FILTERS...
@@ -53,10 +53,10 @@ def MasterControlNodes(knb_event=False):
         # If the user types in a class name, use that. Otherwise, use the pulldown value...
         if p.value('OR - Type the Class name: ') != '':
             NodeClassChoice = p.value('OR - Type the Class name: ')
-            print NodeClassChoice
+            print(NodeClassChoice)
         else:
             NodeClassChoice = p.value('Select Node Class to Control: ')
-            print NodeClassChoice
+            print(NodeClassChoice)
 
         return NodeClassChoice
 
@@ -131,7 +131,7 @@ def MasterControlNodes(knb_event=False):
 
     def do_reload_with_thread(node):
         nuke.executeInMainThread(do_reload, (node,))
-        print node.name() + ' reloaded'
+        print(node.name() + ' reloaded')
     ##-------------------------------------------------
 
     ##-------------------------------------------------
@@ -185,11 +185,11 @@ def MasterControlNodes(knb_event=False):
                                 # Push the reload button on all of the selected nodes.
                                 # Do it as a thread, though, because Nuke complains saying,
                                 # "I'm already executing something..."
-                                thread.start_new_thread(do_reload_with_thread, (node,))
+                                _thread.start_new_thread(do_reload_with_thread, (node,))
                             else:
                                 node.knob(knob_name).setValue(knob_value)
                     else:
-                        print "No Nodes Selected..."
+                        print("No Nodes Selected...")
                         nuke.message("No Nodes Selected...")
                 else:
                     pass

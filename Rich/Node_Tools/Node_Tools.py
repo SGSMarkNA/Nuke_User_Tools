@@ -211,7 +211,7 @@ class Node_Tools(object):
         for n in nodes:
             if n.Class() == 'Read':
                 file_path = n.knob('file').value()
-                print file_path
+                print(file_path)
 
 
 

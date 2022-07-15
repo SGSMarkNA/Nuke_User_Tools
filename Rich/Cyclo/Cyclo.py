@@ -100,11 +100,11 @@ def createProjection(source, previous, index, lookup, first, last):
 def getKeys(camera):
 	keys=[]
 	for curve in camera['translate'].animations():
-		for key in curve.keys():
-			keys.append(curve.keys()[0].x)
+		for key in list(curve.keys()):
+			keys.append(list(curve.keys())[0].x)
 	for curve in camera['rotate'].animations():
-		for key in curve.keys():
-			keys.append(curve.keys()[0].x)
+		for key in list(curve.keys()):
+			keys.append(list(curve.keys())[0].x)
 
 	first = nuke.root().firstFrame()
 	if len(keys)>0:
@@ -112,11 +112,11 @@ def getKeys(camera):
 
 	keys=[]
 	for curve in camera['translate'].animations():
-		for key in curve.keys():
-			keys.append(curve.keys()[-1].x)
+		for key in list(curve.keys()):
+			keys.append(list(curve.keys())[-1].x)
 	for curve in camera['rotate'].animations():
-		for key in curve.keys():
-			keys.append(curve.keys()[-1].x)
+		for key in list(curve.keys()):
+			keys.append(list(curve.keys())[-1].x)
 
 	last = nuke.root().lastFrame()
 	if len(keys)>0:

@@ -75,7 +75,7 @@ class NukePSD_PostProcess(QtGui.QWidget):
 
 		# Photoshop Executable - OS-specific...
 		if os.name == 'nt':
-			import _winreg
+			import winreg
 			# Set the Photoshop application to run...
 			self.PS_APP = 'start photoshop.exe'
 
@@ -168,7 +168,7 @@ class NukePSD_PostProcess(QtGui.QWidget):
 							OLD_PNG_DIR = OLD_PNG_DIR.strip("'")
 							#print 'OLD_PNG_DIR --->> ', repr(OLD_PNG_DIR)
 			except:
-				print "Error: Data file cannot be read!"
+				print("Error: Data file cannot be read!")
 				if nuke:            
 					nuke.critical("Data file cannot be read!")
 				data_read.close()
@@ -204,12 +204,12 @@ class NukePSD_PostProcess(QtGui.QWidget):
 				with open(self.data_file, 'w') as out_file:
 					out_file.write(''.join(NEW_DATA))			
 			except:
-				print "Error: Data file cannot be updated!"
+				print("Error: Data file cannot be updated!")
 				if nuke:
 					nuke.critical("Data file cannot be updated!")
 					return None		
 		else:
-			print "Error: Data file does not exist!"
+			print("Error: Data file does not exist!")
 			if nuke:        
 				nuke.critical("Data file does not exist!")
 			return None		
@@ -246,7 +246,7 @@ class NukePSD_PostProcess(QtGui.QWidget):
 		# Try to create the directory and cope with the directory already existing by ignoring that exception...
 		try:
 			os.makedirs(self.data_location_dir)
-		except OSError, e:
+		except OSError as e:
 			if e.errno != errno.EEXIST:
 				raise
 		#finally:
@@ -263,7 +263,7 @@ class NukePSD_PostProcess(QtGui.QWidget):
 			self.Data_Location_Save_Success = True
 		except Exception as e:
 			self.Data_Location_Save_Success = False
-			print e
+			print(e)
 			nuke.message("Data File cannot be saved to %s!" % (self.data_location_file))	
 
 	def _run_JS_command(self):

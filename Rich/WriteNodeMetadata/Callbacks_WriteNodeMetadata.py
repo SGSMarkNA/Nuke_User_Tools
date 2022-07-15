@@ -20,7 +20,7 @@ except Exception:
 try:
 	# Import the main module for adding a Metadata tab to Write nodes and running code...
 	# Callbacks to run the functions are added below..
-	from WriteNodeMetadata import WriteNodeMetadata
+	from .WriteNodeMetadata import WriteNodeMetadata
 except Exception:
 	pass
 

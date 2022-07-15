@@ -77,7 +77,7 @@ def create_camera_at(selected_camera, at_frame, link_to_original = False):
 
 	# Walk the animated knobs on the source camera and bind the projected camera to them.
 	# We walk the knobs on the LOCKED cam so that we do not copy over the user knobs!
-	for knob_name, knob_on_locked in locked_cam.knobs().iteritems():
+	for knob_name, knob_on_locked in locked_cam.knobs().items():
 		knob = selected_camera[knob_name]
 		if knob.isAnimated():
 			# When we create a shitload of cameras it's better to just unlink them

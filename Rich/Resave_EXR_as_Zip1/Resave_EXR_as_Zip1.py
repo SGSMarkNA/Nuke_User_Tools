@@ -20,15 +20,15 @@ def ResaveWriteNode(node):
 
     #### Create any missing /resave/ directories...
     if (os.path.isdir(resave_dir)):
-        print "%s path exists, skipping..." %(resave_dir)
+        print("%s path exists, skipping..." %(resave_dir))
     else:
         try:
             os.makedirs(resave_dir)
-        except OSError, e:
+        except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
         finally:
-            print "%s - created output directory:\n %s" % (resave_path, resave_dir)
+            print("%s - created output directory:\n %s" % (resave_path, resave_dir))
 
     #### Render Write node(s)...
     nuke.execute( w, node['first'].value(), node['last'].value() )

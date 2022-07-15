@@ -4,7 +4,7 @@ except ImportError:
 	nuke = None
 
 import os
-if os.environ.has_key("AW_GLOBAL_SYSTEMS"):
+if "AW_GLOBAL_SYSTEMS" in os.environ:
 	if not os.environ["AW_GLOBAL_SYSTEMS"] in os.sys.path:
 		os.sys.path.append(os.environ["AW_GLOBAL_SYSTEMS"])
 from Environment_Access import System_Settings
@@ -16,7 +16,7 @@ import operator
 import re
 from difflib import SequenceMatcher
 
-import tag_data_file
+from . import tag_data_file
 # Rename the imported utils class from the tag_data_file...
 TagsFileUtils = tag_data_file.TagsFileUtils
 
@@ -45,7 +45,7 @@ class AW_TagImages(object):
 			try:	
 				self.EXECUTABLE = System_Settings.EXIF_TOOL
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 		# Build exiftool executable path for MacOS...
@@ -53,7 +53,7 @@ class AW_TagImages(object):
 			try:
 				self.EXECUTABLE = '/usr/local/bin/exiftool'
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 
@@ -99,7 +99,7 @@ class AW_TagImages(object):
 			##print "Args file saved to: ", self.args_file_path
 			pass
 		else:
-			print "ERROR: Tags file not saved!"
+			print("ERROR: Tags file not saved!")
 			if nuke.GUI:	
 				nuke.critical("Tags file not saved!\n Something went wrong with the image metadata tagging!")
 			return	
@@ -195,7 +195,7 @@ class AW_TagImages(object):
 			# Make a dict of the matching items and their match scores...
 			scores_dict[item] = ratio
 			##print scores_dict
-			Sorted_Scores = sorted(scores_dict.items(), key=lambda (key,value): value, reverse=True)
+			Sorted_Scores = sorted(list(scores_dict.items()), key=lambda key_value: key_value[1], reverse=True)
 		##print Sorted_Scores
 		BestScoresList = []
 		for Item_Score in Sorted_Scores:
@@ -235,7 +235,7 @@ class AW_TagImages(object):
 		try:
 			os.system(exec_string)
 		except:
-			print "ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!"
+			print("ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			if nuke.GUI:	
 				nuke.critical("Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			return
@@ -246,7 +246,7 @@ class AW_TagImages(object):
 				os.remove(dup_frame)
 				# Check to see if we removed the file...And, if not....
 				if os.path.isfile(dup_frame):
-					print "INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself..."
+					print("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					if nuke.GUI:	
 						nuke.message("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					return
@@ -266,8 +266,8 @@ class AW_TagImages(object):
 		self.get_current_frame_info()
 
 		self.trim, self.color = self._get_trim_and_color_for_view(self.TrimsList)
-		print 'self.trim --> ', self.trim
-		print 'self.color --> ', self.color
+		print('self.trim --> ', self.trim)
+		print('self.color --> ', self.color)
 
 		if self.trim is not None and self.color is not None:
 			#self.dir_view_name = os.path.dirname(self.current_frame_path).split("/").pop()
@@ -279,31 +279,31 @@ class AW_TagImages(object):
 			else:
 				try:
 					os.makedirs(self.dir_to_create)
-				except OSError, e:
+				except OSError as e:
 					if e.errno != errno.EEXIST:
 						raise
 				if os.path.isdir(self.dir_to_create):
-					print "Created output directory: %s " % (self.dir_to_create)
+					print("Created output directory: %s " % (self.dir_to_create))
 					pass
 				else:
-					print "ERROR: Directory %s cannot be created." % (self.dir_to_create)
+					print("ERROR: Directory %s cannot be created." % (self.dir_to_create))
 					if nuke.GUI:
 						nuke.message("Directory cannot be created. Press OK to cancel." % (self.dir_to_create))		
 			# Build pieces for new frame file path...
 			self.current_frame_file = os.path.basename(self.current_frame_path)
 			self.new_frame_path = self.dir_to_create + "/" + self.current_frame_file
 			# Move the current rendered file to the new directory path that has the trim and color folders...
-			print 'self.current_frame_path --- ', self.current_frame_path
-			print 'self.new_frame_path --- ', self.new_frame_path
+			print('self.current_frame_path --- ', self.current_frame_path)
+			print('self.new_frame_path --- ', self.new_frame_path)
 			# Check to see if it's really there...
 			####if os.path.isfile(self.current_frame_path):
 			shutil.move(self.current_frame_path, self.new_frame_path)
-			print 'MOVED DIR.--> ', self.current_frame_path, ' to ', self.new_frame_path
+			print('MOVED DIR.--> ', self.current_frame_path, ' to ', self.new_frame_path)
 			# Remove the old empty directory, if it's not empty...
 			old_dir_to_remove = os.path.dirname(self.current_frame_path)
 			if not os.listdir(old_dir_to_remove):
 				os.rmdir(old_dir_to_remove)
-				print 'REMOVED OLD DIR.--> ', old_dir_to_remove
+				print('REMOVED OLD DIR.--> ', old_dir_to_remove)
 		else:
 			# There is no trim and color data in the Nuke Project Settings/comment panel, so we probably aren't using Nuke views in this comp. So, just tag the images and don't try to create the trim and color directories...
 			pass

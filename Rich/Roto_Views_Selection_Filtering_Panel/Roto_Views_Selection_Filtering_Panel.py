@@ -144,7 +144,7 @@ class RotoViewsSelectorPanel(nukescripts.PythonPanel):
 
 		# Current DAG widget name, e.g. "DAG.1" is the Root node graph or "DAG.2" is a Group node graph...
 		self.Current_Group_DAG = node_graph_widget.objectName()
-		print 'self.Current_Group_DAG', self.Current_Group_DAG
+		print('self.Current_Group_DAG', self.Current_Group_DAG)
 
 		# Check to see if the current Node Graph is the Root Node Graph, a.k.a. "DAG.1"...
 		if self.Current_Group_DAG == 'DAG.1':
@@ -165,16 +165,16 @@ class RotoViewsSelectorPanel(nukescripts.PythonPanel):
 			# The current DAG is a Group Node Graph.
 			# Get the current Group node name that's on the pane tab - the Group node we need to get...
 			Current_Group_DAG_Name = node_graph_widget.windowTitle()
-			print 'Current_Group_DAG_Name', Current_Group_DAG_Name
+			print('Current_Group_DAG_Name', Current_Group_DAG_Name)
 
 			# Get only the DAG name string...
 			Current_Group_Name = Current_Group_DAG_Name.split()[0]
-			print 'Current_Group_Name', Current_Group_Name
+			print('Current_Group_Name', Current_Group_Name)
 
 			# Get the Group node object...
 			for Node in nuke.allNodes('Group'):
 				self.GroupNode = nuke.toNode(Current_Group_Name)
-			print self.GroupNode.name()		
+			print(self.GroupNode.name())		
 
 			with self.GroupNode:
 				try:
@@ -246,7 +246,7 @@ class RotoViewsSelectorPanel(nukescripts.PythonPanel):
 						count +=1
 				k.changed()
 			else:
-				print "No shapes selected!"
+				print("No shapes selected!")
 				nuke.message("No shapes selected!")
 
 	def _do_part_filtering(self):
@@ -441,7 +441,7 @@ def Return_RotoViewsSelectorPanel():
 		panel._init_knobs(roto_node)
 		return panel
 	else:
-		print "Please select a single RotoPaint or Roto node and try again."
+		print("Please select a single RotoPaint or Roto node and try again.")
 		nuke.message("Please select a single RotoPaint or Roto node and try again.")
 		return
 

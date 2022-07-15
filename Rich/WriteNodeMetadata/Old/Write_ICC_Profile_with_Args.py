@@ -1,5 +1,5 @@
 import os
-if os.environ.has_key("AW_GLOBAL_SYSTEMS"):
+if "AW_GLOBAL_SYSTEMS" in os.environ:
 	if not os.environ["AW_GLOBAL_SYSTEMS"] in os.sys.path:
 		os.sys.path.append(os.environ["AW_GLOBAL_SYSTEMS"])
 from Environment_Access import System_Settings
@@ -25,7 +25,7 @@ class Write_ICC_Profile_with_Args(object):
 			try:	
 				self.EXECUTABLE = System_Settings.EXIF_TOOL
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 		# Build exiftool executable path for MacOS...
@@ -33,7 +33,7 @@ class Write_ICC_Profile_with_Args(object):
 			try:
 				self.EXECUTABLE = '/usr/local/bin/exiftool'
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 
@@ -57,7 +57,7 @@ class Write_ICC_Profile_with_Args(object):
 		try:
 			os.system(exec_string)
 		except:
-			print "ERROR: ICC Profile Tagging Failed!\n Something went wrong with the image metadata tagging!"
+			print("ERROR: ICC Profile Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			if nuke.GUI:	
 				nuke.critical("ICC Profile Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			return
@@ -69,7 +69,7 @@ class Write_ICC_Profile_with_Args(object):
 				os.remove(dup_frame)
 				# Check to see if we removed the file...And, if not....
 				if os.path.exists(dup_frame):
-					print "INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself..."
+					print("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 			# If the file doesn't exist, just ignore the error... 
 			except OSError as e:
 				# Some other kind of error must have occurred. Better let somebody know about it...

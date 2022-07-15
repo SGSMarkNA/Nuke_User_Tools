@@ -47,7 +47,7 @@ class PathChangeTools(object):
 	def print_node_collection(self):
 		self.collected_nodes = self.read_nodes + self.readgeo2_nodes + self.write_nodes
 		list = [n.name() for  n in self.collected_nodes]
-		print list	
+		print(list)	
 
 	def getAllNodes(self, topLevel):
 		'''
@@ -72,7 +72,7 @@ class PathChangeTools(object):
 	def listReadNodePaths(self):
 		for p in self.read_nodes:
 			path = p.knob('file').value()
-			print path
+			print(path)
 
 	## 
 	def findNodesWithFileKnob(self): 
@@ -83,7 +83,7 @@ class PathChangeTools(object):
 		if nuke.ask('Print nodes with file knobs?'): 
 			for node in selection:
 				if 'file' in node.knobs():
-					print node.name()
+					print(node.name())
 
 	def findNodesWithProxyKnob(self): 
 		selection = nuke.selectedNodes() 
@@ -93,7 +93,7 @@ class PathChangeTools(object):
 		if nuke.ask('Print nodes with proxy knobs?'): 
 			for node in selection:
 				if 'proxy' in node.knobs():
-					print node.name()    
+					print(node.name())    
 
 ##-------------------------------------------------------------##
 #x = PathChangeTools()

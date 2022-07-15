@@ -3,7 +3,7 @@ import os
 
 def get_user_tool_module_Names():
 	root_path = os.path.dirname(__file__)
-	r,names,files = os.walk(root_path).next()
+	r,names,files = next(os.walk(root_path))
 	return names
 
 def make_user_tool_module_menus(user_tools_menu,names):

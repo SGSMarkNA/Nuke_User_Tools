@@ -17,7 +17,7 @@ class multi_submit(object):
 		POOLS = Deadline_Command_Access.Get_PoolNames()
 		pools = POOLS.result
 		Node.knob('pool').setValues(pools)
-		print 'pool knob -----> ', Node.knob('pool').values()
+		print('pool knob -----> ', list(Node.knob('pool').values()))
 		Node.knob('secondary_pool').setValues(pools)
 		try:
 			Node.knob('pool').setValue('aw')
@@ -28,7 +28,7 @@ class multi_submit(object):
 		GROUPS = Deadline_Command_Access.Get_GroupNames()
 		groups = GROUPS.result
 		Node.knob('group').setValues(groups)
-		print 'group knob -----> ', Node.knob('group').values()
+		print('group knob -----> ', list(Node.knob('group').values()))
 		try:
 			Node.knob('group').setValue('64gb')
 		except:
@@ -37,7 +37,7 @@ class multi_submit(object):
 		LIMITS = Deadline_Command_Access.Get_LimitGroupNames()
 		limits = LIMITS.result
 		Node.knob('limits').setValues(limits)
-		print 'limits knob -----> ', Node.knob('limits').values()
+		print('limits knob -----> ', list(Node.knob('limits').values()))
 		try:
 			Node.knob('limits').setValue('nuke')
 		except:
@@ -76,17 +76,17 @@ class multi_submit(object):
 
 	# Try to create the Submit_Dir...
 	if os.path.isdir(Submit_Dir):
-		print "Directory %s already exists..." % (Submit_Dir)
+		print("Directory %s already exists..." % (Submit_Dir))
 	else:
 		try:
 			os.makedirs(Submit_Dir)
-		except OSError, e:
+		except OSError as e:
 			if e.errno != errno.EEXIST:
 				raise
 		if os.path.isdir(Submit_Dir):
-			print "Created output directory: %s " % (Submit_Dir)
+			print("Created output directory: %s " % (Submit_Dir))
 		else:
-			print "ERROR: Directory %s cannot be created." % (Submit_Dir)
+			print("ERROR: Directory %s cannot be created." % (Submit_Dir))
 			if nuke:
 				nuke.message("Directory cannot be created. Press OK to cancel." % (Submit_Dir))
 
@@ -106,13 +106,13 @@ class multi_submit(object):
 		"""
 		"""
 		self.NukeScriptsList = nuke.getFilename('Select Multiple Nuke Files to be Rendered.', pattern='*.nk', type='select', multiple=True)
-		print self.NukeScriptsList
+		print(self.NukeScriptsList)
 		NumScriptsSelected = len(self.NukeScriptsList)
-		print NumScriptsSelected
+		print(NumScriptsSelected)
 		first_script_num = "1"
 		last_script_num = str(NumScriptsSelected)
 		self.NumScripts = '"' + first_script_num + '-' + last_script_num + '"'
-		print self.NumScripts
+		print(self.NumScripts)
 
 	# ----------------------------------------------------------
 
@@ -122,8 +122,8 @@ class multi_submit(object):
 		# Write the Submit.py file...
 		try:
 			os.makedirs(self.Submit_Dir)
-			print "Created Deadline_Submit Directory: %s " % (self.Submit_Dir)
-		except OSError, e:
+			print("Created Deadline_Submit Directory: %s " % (self.Submit_Dir))
+		except OSError as e:
 			if e.errno != errno.EEXIST:
 				raise
 		try:
@@ -134,7 +134,7 @@ class multi_submit(object):
 			submit_save.close()
 		except Exception as e:
 			nuke.message("Submission file cannot be saved to: %s. Press OK to cancel." % (self.Submit_Script))
-			print e
+			print(e)
 			return None
 
 	# # ----------------------------------------------------------
@@ -195,26 +195,26 @@ class multi_submit(object):
 		Node = nuke.thisNode()
 
 		Name = Node.knob('submit_name').value()
-		print Name
+		print(Name)
 		Comment = Node.knob('comment').value()
-		print Comment
+		print(Comment)
 		Department = Node.knob('department').value()
-		print Department
+		print(Department)
 		Pool = Node.knob('pool').value()
-		print Pool
+		print(Pool)
 		SecondaryPool = Node.knob('secondary_pool').value()
-		print SecondaryPool
+		print(SecondaryPool)
 		Group = Node.knob('group').value()
-		print Group
+		print(Group)
 		Priority = int(Node.knob('priority').value())
-		print Priority
+		print(Priority)
 		ConcurrentTasks = int(Node.knob('concurrent_tasks').value())
-		print ConcurrentTasks
+		print(ConcurrentTasks)
 		LimitGroups = Node.knob('limits').value()
-		print LimitGroups
+		print(LimitGroups)
 		##### TO DO: Needs to be how many frames to divide the script task into... (chunks?) also selected by the user on the GUI...
 		ByNum = int(4)
-		print ByNum
+		print(ByNum)
 
 		# Deadline submission parameters - written to Submit.py file...
 		self.Submit_File_Code = [
@@ -261,8 +261,8 @@ class multi_submit(object):
 		# Write the Execute.py file...
 		# self.write_deadline_execute_file()  # Not needed
 
-		print self.Submit_Dir
-		print self.Submit_Script
+		print(self.Submit_Dir)
+		print(self.Submit_Script)
 
 		# Run the Submit.py file...
 		sys.path.append(self.Submit_Dir)
@@ -270,5 +270,5 @@ class multi_submit(object):
 		#print self.SubmitFile
 		#__import__(self.SubmitFile)
 		#reload(self.SubmitFile)
-		print self.Submit_Script
-		execfile(self.Submit_Script)
+		print(self.Submit_Script)
+		exec(compile(open(self.Submit_Script, "rb").read(), self.Submit_Script, 'exec'))

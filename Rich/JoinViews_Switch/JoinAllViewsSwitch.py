@@ -37,11 +37,11 @@ class JoinAllViewsSwitch(object):
 	def _connect_all_inputs_to_all_views(self):
 		'''Check to see which JoinViews input names (viewnames) match... Connect them if they do.'''
 		# Make a dictionary that has both the Nodes To Connect To (Input Nodes) and the Filters (Text and Logic Ops) that the user has typed for each node...	
-		self.ConnectionDict = dict(zip(self.InputNodes, self.ViewNamesList))
+		self.ConnectionDict = dict(list(zip(self.InputNodes, self.ViewNamesList)))
 		# Iterate through the ConnectionDict, checking to see which JoinViews input names (viewnames) match the Filter/Logic Op combo...
 		# Connect them to the NoOp if they match...
-		for NodeToConnectTo, ViewName in self.ConnectionDict.iteritems():
-			for index, name in self.InputsDict.iteritems():
+		for NodeToConnectTo, ViewName in self.ConnectionDict.items():
+			for index, name in self.InputsDict.items():
 				if ViewName == name:
 					self.JoinViews.setInput(index, NodeToConnectTo)
 		# Add the Output pipe...

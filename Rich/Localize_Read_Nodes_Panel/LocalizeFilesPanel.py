@@ -5,7 +5,7 @@ import shutil
 import re
 import errno
 
-import thread
+import _thread
 
 from Node_Tools.Node_Tools import Node_Tools
 
@@ -230,9 +230,9 @@ name Preferences %s
 					# Add the node to the list of "bad" nodes to report to the user///
 					self.skipped_nodes.append(node)
 					self.skipped_node_names.append(node.name())
-					print node.name(), " has a destination path longer than 256 characters. Skipping..."
+					print(node.name(), " has a destination path longer than 256 characters. Skipping...")
 				else:
-					print node.name(), " is OK."
+					print(node.name(), " is OK.")
 
 			# Remove any of the skipped nodes we found...
 			for node in self.skipped_nodes:
@@ -274,12 +274,12 @@ name Preferences %s
 			for node in self.ReadNodes:
 				node.knob("cacheLocal").setValue("always")
 		else:
-			print "No Read Nodes Selected..."
+			print("No Read Nodes Selected...")
 			nuke.message("No Read Nodes Selected...")
 
 		# Report any nodes that were skipped, due to paths longer than 256 characters... Windows only.
 		if self.skipped_nodes:
-			print "Skipping these nodes, since the local stored file path would be longer than 256 characters:\n ", self.skipped_node_names
+			print("Skipping these nodes, since the local stored file path would be longer than 256 characters:\n ", self.skipped_node_names)
 			nuke.message("Some Read nodes will be skipped, since the local stored file path would be longer than 256 characters.\n %s " % self.skipped_node_names)
 
 
@@ -294,9 +294,9 @@ name Preferences %s
 			if os.path.exists(filepath):
 				try:
 					shutil.rmtree(filepath)
-					print "Cache Removed."					
+					print("Cache Removed.")					
 				except:
-					print "ERROR: Could not remove cache files."
+					print("ERROR: Could not remove cache files.")
 					nuke.message("ERROR: Could not remove cache files.\n\nWait 5 or 10 seconds and try again.")
 
 
@@ -319,7 +319,7 @@ name Preferences %s
 
 	def _do_reload_with_thread(self, node):
 		nuke.executeInMainThread(self._do_reload, (node,))
-		print node.name() + ' reloaded'
+		print(node.name() + ' reloaded')
 
 	def _reload_all_footage(self):
 		'''Runs the threaded function, _do_reload_with_thread, on a list of nodes (gathered inside this method)...'''
@@ -329,7 +329,7 @@ name Preferences %s
 			# Push the reload button on all of the selected nodes.
 			# Do it as a thread, though, because Nuke complains saying,
 			# "I'm already executing something..."
-			thread.start_new_thread(self._do_reload_with_thread, (node,))
+			_thread.start_new_thread(self._do_reload_with_thread, (node,))
 	##-------------------------------------------------
 
 
@@ -346,7 +346,7 @@ name Preferences %s
 				for node in self.ReadNodes:
 					node.knob("cacheLocal").setValue("auto")
 			else:
-				print "No Read Nodes Selected..."
+				print("No Read Nodes Selected...")
 				nuke.message("No Read Nodes Selected...")  
 		if knob is self.setCacheValueToAlways:
 			self.getReadNodeFilterSettings()            
@@ -355,7 +355,7 @@ name Preferences %s
 				for node in self.ReadNodes:
 					node.knob("cacheLocal").setValue("always")
 			else:
-				print "No Read Nodes Selected..."
+				print("No Read Nodes Selected...")
 				nuke.message("No Read Nodes Selected...")
 		if knob is self.setCacheValueToNever:
 			self.getReadNodeFilterSettings()            
@@ -364,7 +364,7 @@ name Preferences %s
 				for node in self.ReadNodes:
 					node.knob("cacheLocal").setValue("never")
 			else:
-				print "No Read Nodes Selected..."
+				print("No Read Nodes Selected...")
 				nuke.message("No Read Nodes Selected...")
 		if knob is self.deleteLocalizedFiles:
 			if nuke.ask("Remove all of the localized file cache?"):

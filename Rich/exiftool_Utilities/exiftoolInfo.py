@@ -35,7 +35,7 @@ class exiftoolInfo(object):
 					return EXECUTABLE
 				self.EXECUTABLE = get_exiftool_executable()
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return	
 		# Test for MacOS location of exiftool executable...
@@ -44,12 +44,12 @@ class exiftoolInfo(object):
 			# If I'm at home testing, this is the binary location... Also would be for a local Mac OS X system - just wouldn't need the home_dir test, of course...
 			if home_dir == "/Users/richbobo":			
 				if os.path.exists('/usr/local/bin/exiftool'):
-					print 'Found exiftool at /usr/local/bin/exiftool'
+					print('Found exiftool at /usr/local/bin/exiftool')
 			elif home_dir == "/Users/rbobo":			
 				if os.path.exists('/usr/local/bin/exiftool'):
-					print 'Found exiftool at /usr/local/bin/exiftool'
+					print('Found exiftool at /usr/local/bin/exiftool')
 			else:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 
@@ -82,25 +82,25 @@ class exiftoolInfo(object):
 			else:
 				exec_string = 'exiftool -TAG ' + '-' + TagName + ' ' + FilePath
 		# Run the exiftool command on the files...
-		print 'exec_string ---------->', exec_string
+		print('exec_string ---------->', exec_string)
 		# Run exec_string in command shell as a subprocess...
 		try:
 			p = subprocess.Popen(exec_string, stdout=subprocess.PIPE, shell=True)
 			result = p.communicate()[0]
-			print result
+			print(result)
 			# Check for exiftool error...
 			if self.error_msg_1 in result:
-				print "ERROR: Reading metadata Failed!"
+				print("ERROR: Reading metadata Failed!")
 				nuke.critical('exiftool could not read the file metadata!\n\n')
 				return			
 			else:
 				TagValue = result.strip().split(': ')[-1]
 				if TagValue == '':
 					TagValue = 'None'
-				print TagName + ': \n' + TagValue
+				print(TagName + ': \n' + TagValue)
 				nuke.message(TagName + ': \n\n' + TagValue)
 		except:
-			print "ERROR: Reading metadata Failed!"
+			print("ERROR: Reading metadata Failed!")
 			return
 		# Ask if the user wants to add a colorspace_node after the Read node, to properly manage the image's color...
 		if nuke.ask('Add Colorspace transform node?'):
@@ -151,21 +151,21 @@ class exiftoolInfo(object):
 				exec_string = '/usr/local/bin/exiftool ' + FilePath
 			else:
 				exec_string = 'exiftool ' + FilePath
-		print 'exec_string ---------->', exec_string
+		print('exec_string ---------->', exec_string)
 		# Run the exiftool command on the files...
 		try:
 			p = subprocess.Popen(exec_string, stdout=subprocess.PIPE, shell=True)
 			metadata = p.communicate()[0]
-			print metadata
+			print(metadata)
 		except:
-			print "ERROR: Reading metadata Failed!"
+			print("ERROR: Reading metadata Failed!")
 			return
 		# If there are no exiftool errors, show the panel with metadata tags...
 		if self.error_msg_1 not in metadata:
 			p = self.infoPanel()
 			p.show()
 		else:
-			print "ERROR: Reading metadata Failed!"
+			print("ERROR: Reading metadata Failed!")
 			nuke.critical('exiftool could not read the file metadata!\n\n')
 			return
 

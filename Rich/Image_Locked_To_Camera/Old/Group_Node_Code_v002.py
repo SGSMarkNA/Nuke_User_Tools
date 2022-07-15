@@ -35,9 +35,9 @@ try:
     for knobname in knobs_to_remove:
         GroupNode.removeKnob(Knobs[knobname])
 except KeyError:
-    print 'Key Error: Some nonexistant knobs could not be removed.'
+    print('Key Error: Some nonexistant knobs could not be removed.')
 except ValueError:
-    print 'Value Error: Some nonexistant knobs could not be removed.'
+    print('Value Error: Some nonexistant knobs could not be removed.')
 # Build pulldown selector to pick the camera to link to...
 cameraChoiceKnob = nuke.Enumeration_Knob('cameras', 'Select Camera: ', cameras)
 GroupNode.addKnob(cameraChoiceKnob)

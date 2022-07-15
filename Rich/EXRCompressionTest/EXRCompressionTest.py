@@ -46,7 +46,7 @@ def EXR_Compression_Test():
 							loop = False
 						i=+1
 			compressMethod = (compressionTypes[ord(compression)])		   
-			print compressMethod
+			print(compressMethod)
 			nuke.message('EXR compression is %s' %(compressMethod))
 
 	except ValueError:

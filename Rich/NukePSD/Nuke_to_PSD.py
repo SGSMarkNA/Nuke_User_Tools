@@ -16,17 +16,17 @@ class NukePSD(object):
 
         # Get the Write node this class is called from. Since it's inside the group node, we can get the fullName, which gives us the group node's name...
         self.CallbackWriteNode = nuke.thisNode()
-        print 'CallbackWriteNode --> ', self.CallbackWriteNode.name()
-        print 'fullName --> ', self.CallbackWriteNode.fullName()
+        print('CallbackWriteNode --> ', self.CallbackWriteNode.name())
+        print('fullName --> ', self.CallbackWriteNode.fullName())
 
         # Get the group node object...
         # self.GroupNode = nuke.toNode(self.CallbackWriteNode.fullName().split('.')[0])
         self.GroupNode = nuke.thisParent()
-        print 'self.GroupNode --> ', self.GroupNode.name()
+        print('self.GroupNode --> ', self.GroupNode.name())
 
         # Photoshop Executable - OS-specific...
         if os.name == 'nt':
-            import _winreg
+            import winreg
             self.PS_APP = 'start photoshop.exe'
 
         elif os.name == 'posix':
@@ -58,14 +58,14 @@ class NukePSD(object):
             # _run_JS_command methods are prevented from running, until ALL the views have rendered...
 
             # Make a new instance and increment it...
-            if not "_afterRenderCount" in nuke.__dict__.keys():
+            if not "_afterRenderCount" in list(nuke.__dict__.keys()):
                 nuke.__dict__["_afterRenderCount"] = 0
             nuke.__dict__["_afterRenderCount"] += 1
             #print 'nuke.__dict__["_afterRenderCount"] --> ', nuke.__dict__["_afterRenderCount"]
 
             # Get the num_views, so it can be checked against the afterRenderCount global value...
             self.selected_views = (self.GroupNode.knob('views').value()).split()
-            print 'self.selected_views --> ', self.selected_views
+            print('self.selected_views --> ', self.selected_views)
 
             # If the GroupNode gets pasted into a new comp, it can carry over selected 'ghost' views.
             # We need to make sure we only get the selected views that are really in nuke.views()...
@@ -75,7 +75,7 @@ class NukePSD(object):
                     self.filtered_views.append(view)
             self.GroupNode.knob('views').setValue(' '.join(self.filtered_views))
             self.num_views = len(self.filtered_views)
-            print 'self.num_views --> ', self.num_views
+            print('self.num_views --> ', self.num_views)
 
         ##---------------------------------------------------------------------------------------------------------
 
@@ -260,11 +260,11 @@ class NukePSD(object):
         layer_order_dict = self._create_layer_order_dict()
 
         # Check to see if all the layers are still set to zero...
-        if all(value == 0 for value in layer_order_dict.values()):
+        if all(value == 0 for value in list(layer_order_dict.values())):
             nuke.message("Please set the layer order for the PSD files.")
             return None
         else:
-            sorted_layer_order = sorted(layer_order_dict.items(), key=operator.itemgetter(1))	# Example result ---> [('Background', 0), ('Floor_Reflection', 1), ('Floor_Shadow', 2), ('Beauty', 3)]
+            sorted_layer_order = sorted(list(layer_order_dict.items()), key=operator.itemgetter(1))	# Example result ---> [('Background', 0), ('Floor_Reflection', 1), ('Floor_Shadow', 2), ('Beauty', 3)]
 
         # Sort the layer names according to their number ranking...
         layers_in_order = []
@@ -297,7 +297,7 @@ class NukePSD(object):
         #---------------------------------------------------------------------------------------------------------
         #self.Data = [PNG_FOLDER, LAYER_FOLDERS, COLOR_SETTINGS, PSD_FILENAME, NUM_FRAMES, FIRST_FRAME, LAST_FRAME, DELETE_FILES, MULTI_VIEW, VIEWS_FOLDERS, LAYERNAME_REPLACEMENT]
         self.Data = [PNG_FOLDER, LAYER_FOLDERS, COLOR_SETTINGS, PSD_FILENAME, NUM_FRAMES, FIRST_FRAME, LAST_FRAME, MULTI_VIEW, VIEWS_FOLDERS, LAYERNAME_REPLACEMENT]
-        print 'self.Data --> ', self.Data
+        print('self.Data --> ', self.Data)
         return self.Data
 
 
@@ -333,7 +333,7 @@ class NukePSD(object):
         '''Create a dict of the layer names and their numerical order number the user has assigned for use in building the Photoshop files.'''
         layer_order_dict = {}
         # Get knobname and knob object from self.GroupNode.knobs() dictionary...
-        for knobname, knob in self.GroupNode.knobs().iteritems():
+        for knobname, knob in self.GroupNode.knobs().items():
             if '_ORDER_' in knobname:
                 knobname = (knobname.split('_ORDER_'))[1]
                 if knobname in self.Layers:
@@ -410,7 +410,7 @@ class NukePSD(object):
 
         except Exception as e:
             self.Data_Save_Success = False
-            print e
+            print(e)
             nuke.message("Data File cannot be saved to %s!" % (self.data_file))
 
 
@@ -438,7 +438,7 @@ class NukePSD(object):
         # Try to create the directory and cope with the directory already existing by ignoring that exception...
         try:
             os.makedirs(self.data_location_dir)
-        except OSError, e:
+        except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
         #finally:
@@ -455,7 +455,7 @@ class NukePSD(object):
             self.Data_Location_Save_Success = True
         except Exception as e:
             self.Data_Location_Save_Success = False
-            print e
+            print(e)
             nuke.message("Data Location File cannot be saved to %s!" % (self.data_location_file))
 
 

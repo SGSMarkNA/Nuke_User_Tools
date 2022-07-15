@@ -175,17 +175,17 @@ class CreateScaledImageFormat(nukescripts.PythonPanel):
         # Make a list of the common divisors...
         self.common_divisors = [item for item in self.height_entry_div if item in self.width_entry_div]
 
-        print "Width Divisors: ", self.width_entry_div
-        print "Height Divisors:", self.height_entry_div
-        print "Common Divisors:", self.common_divisors
-        print "Original Size:  ", self.OriginalSize
+        print("Width Divisors: ", self.width_entry_div)
+        print("Height Divisors:", self.height_entry_div)
+        print("Common Divisors:", self.common_divisors)
+        print("Original Size:  ", self.OriginalSize)
 
         # Assemble the new format names... 
         for divisor in self.common_divisors:
             # Make a format name, based on the image size...
             self.format_name = str(self.width_entry/divisor) + ' x ' + str(self.height_entry/divisor)
             self.formats.append(self.format_name)
-            print "Divisor " + str(divisor) + ' : -->  ' + self.format_name
+            print("Divisor " + str(divisor) + ' : -->  ' + self.format_name)
 
         # Populate the pulldown format selector menu with the new format names...
         if self.formats:
@@ -205,7 +205,7 @@ class CreateScaledImageFormat(nukescripts.PythonPanel):
         self.NewFormatName = str(self.NewFormatWidth) + 'x' + str(self.NewFormatHeight)
         self.NewFormat = (" %s %s 1.0 %s") % (self.NewFormatWidth, self.NewFormatHeight, self.NewFormatName)
         nuke.addFormat(self.NewFormat)
-        print self.NewFormat
+        print(self.NewFormat)
         nuke.message("Created new format: " + self.NewFormatName)
         ## Assign as the script's new root format...
         ##nuke.root()['format'].setValue(self.NewFormatName)
@@ -216,7 +216,7 @@ class CreateScaledImageFormat(nukescripts.PythonPanel):
         self.NewFormatName2 = str(self.scaled_width.value()) + 'x' + str(self.scaled_height.value())
         self.NewFormat2 = (" %s %s 1.0 %s") % (self.scaled_width.value(), self.scaled_height.value(), self.NewFormatName2)
         nuke.addFormat(self.NewFormat2)
-        print self.NewFormat2
+        print(self.NewFormat2)
         nuke.message("Created new format: " + self.NewFormatName2)
         ## Assign as the script's new root format...
         ##nuke.root()['format'].setValue(self.NewFormatName2)        

@@ -5,7 +5,7 @@ import os
 import time
 from difflib import SequenceMatcher
 import operator
-from SourceNodeInfo import NodeInfo
+from .SourceNodeInfo import NodeInfo
 ## Need this to find the Node_Tools folder, which is relative to this file...
 NodeToolsDir = os.path.realpath(os.path.dirname(__file__) + '/..') + '/Node_Tools'
 os.sys.path.append(NodeToolsDir)
@@ -113,11 +113,11 @@ class SourceNodePathRepair(object):
 		for path_to_match in dirs_list:
 			path_to_match = path_to_match + '/'
 			ratio = SequenceMatcher(None, dir_to_match_to, path_to_match).ratio()
-			print str(ratio) +  '--->   ' + path_to_match
+			print(str(ratio) +  '--->   ' + path_to_match)
 			# Make a dict of the matching dirs and their match scores...
 			scores_dict[path_to_match] = ratio
 		# Get the dir. with the best matching score...
-		MaxScoreDir = max(scores_dict.iteritems(), key=operator.itemgetter(1))[0]
+		MaxScoreDir = max(iter(scores_dict.items()), key=operator.itemgetter(1))[0]
 		return MaxScoreDir
 
 
@@ -141,10 +141,10 @@ class SourceNodePathRepair(object):
 		# Gather up all of the source nodes in the script...
 		self.AllNodes = Node_Tools()._get_all_nodes()
 		self.sourceNodes = Node_Tools()._find_all_source_nodes(self.AllNodes)
-		print 'self.SourceNodes -->', [item.fullName() for item in self.sourceNodes]
+		print('self.SourceNodes -->', [item.fullName() for item in self.sourceNodes])
 		# Do an initial check to see if any of the sourceNodes have errors...
 		self.SourceNodesWithErrors = Node_Tools()._find_nodes_with_errors(self.sourceNodes)
-		print 'self.SourceNodesWithErrors -->', [item.fullName() for item in self.SourceNodesWithErrors]
+		print('self.SourceNodesWithErrors -->', [item.fullName() for item in self.SourceNodesWithErrors])
 		# While there are errors, continue to run...
 		while self.SourceNodesWithErrors:		
 			# Ask the user if he wants to try to repair the broken links...
@@ -161,7 +161,7 @@ class SourceNodePathRepair(object):
 					TotalNodeCount = len(self.SourceNodesWithErrors)
 				# Loop though the list of source nodes with errors...
 				for node in self.SourceNodesWithErrors:
-					print node.name()
+					print(node.name())
 					# Initialize some progress bar starter values...
 					Progress = 0.0						
 					# Start a task progress bar...
@@ -193,12 +193,12 @@ class SourceNodePathRepair(object):
 						# Find the directories that have pattern matches and use the one with the best ratio score...
 						self.FoundDir = self._find_dir_match(self.pattern, self.searchPath)
 						if self.FoundDir:
-							print 'self.FoundDir---------->', self.FoundDir
+							print('self.FoundDir---------->', self.FoundDir)
 							# If we found a match, relink the node's file knob to the new path...
 							self._relink_node(node)
 							self.finalmessage = self.finalmessage + node.name() + " - " + " Found Successfully!\n"
 						else:
-							print 'self.FoundDir---------->' + 'NOT FOUND.'
+							print('self.FoundDir---------->' + 'NOT FOUND.')
 							self.finalmessage = self.finalmessage + node.name() + " - " +  " Not Found!\n"
 					else:
 						# User cancelled directory selection, so mark the node as not found...
@@ -229,7 +229,7 @@ class SourceNodePathRepair(object):
 							del self.MainTask
 						# Calculate how long it took...
 						self.elapsed = (time.time() - self.start_time)
-						print "Time elapsed:", self.elapsed, "seconds"
+						print("Time elapsed:", self.elapsed, "seconds")
 						self.finalmessage = self.finalmessage + ('\nTime elapsed: %s seconds' % self.elapsed)
 						nuke.message(self.finalmessage)
 						return			
@@ -240,7 +240,7 @@ class SourceNodePathRepair(object):
 						del self.MainTask
 					# Calculate how long it took...
 					self.elapsed = (time.time() - self.start_time)
-					print "Time elapsed:", self.elapsed, "seconds"
+					print("Time elapsed:", self.elapsed, "seconds")
 					self.finalmessage = self.finalmessage + ('\nTime elapsed: %s seconds' % self.elapsed)
 					nuke.message(self.finalmessage)
 					return

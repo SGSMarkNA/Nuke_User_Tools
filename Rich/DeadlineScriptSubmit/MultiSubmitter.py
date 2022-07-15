@@ -15,7 +15,7 @@ import Deadline_Command_Access
 #----------------------------------------------------------------------------
 try:
 	import traceback
-	import ConfigParser	
+	import configparser	
 except:
 	print( "Could not load ConfigParser module, sticky settings will not be loaded/saved" )
 #----------------------------------------------------------------------------
@@ -368,7 +368,7 @@ class MultiSubmitPanel(nukescripts.PythonPanel):
 			plugin_info_save.close()
 		except Exception as e:
 			nuke.message("Submission files cannot be saved to: %s. Press OK to cancel." % (Parent_Dir))
-			print e
+			print(e)
 			return None
 
 
@@ -378,7 +378,7 @@ class MultiSubmitPanel(nukescripts.PythonPanel):
 		# Write Sticky Settings...
 		try:
 			print( "Writing sticky settings..." )
-			config = ConfigParser.ConfigParser()
+			config = configparser.ConfigParser()
 
 			config.add_section( "Sticky" )
 			#config.set( "Sticky", "FrameListMode", dialog.frameListMode.value() )
@@ -416,7 +416,7 @@ class MultiSubmitPanel(nukescripts.PythonPanel):
 
 		except:
 			print( "Could not write sticky settings" )
-			print( traceback.format_exc() )
+			print(( traceback.format_exc() ))
 
 
 	def read_sticky_settings(self, configFile):
@@ -424,9 +424,9 @@ class MultiSubmitPanel(nukescripts.PythonPanel):
 
 		# Read Sticky Settings...
 		try:
-			print( "Reading sticky settings from %s" % self.configFile )
+			print(( "Reading sticky settings from %s" % self.configFile ))
 			if os.path.isfile( self.configFile ):
-				config = ConfigParser.ConfigParser()
+				config = configparser.ConfigParser()
 				config.read( self.configFile )
 
 				if config.has_section( "Sticky" ):
@@ -498,7 +498,7 @@ class MultiSubmitPanel(nukescripts.PythonPanel):
 						#DeadlineGlobals.initSmartVectorOnly = config.get( "Sticky", "SmartVectorOnly" )    
 		except:
 			print( "Could not read sticky settings.")
-			print( traceback.format_exc() )
+			print(( traceback.format_exc() ))
 
 
 	def submit_to_deadline(self):
@@ -522,7 +522,7 @@ class MultiSubmitPanel(nukescripts.PythonPanel):
 			try:
 				result, jobid, out = Deadline_Command_Access.Submit_Deadline_Job(self.job_info_file, self.plugin_info_file)
 				if result == True:
-					print result, jobid, out
+					print(result, jobid, out)
 				else:
 					raise
 			except:

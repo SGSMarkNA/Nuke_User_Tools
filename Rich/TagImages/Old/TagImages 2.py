@@ -49,7 +49,7 @@ class TagImages(object):
 					return EXECUTABLE
 				self.EXECUTABLE = get_exiftool_executable()
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return	
 		# Test for MacOS location of exiftool executable...
@@ -65,7 +65,7 @@ class TagImages(object):
 					##print 'Found exiftool at /usr/local/bin/exiftool'
 					pass
 			else:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 		# Rename the imported utils class for clarity...
@@ -96,7 +96,7 @@ class TagImages(object):
 			##print "Args file saved to: ", self.args_file_path
 			pass
 		else:
-			print "ERROR: Tags file not saved!"
+			print("ERROR: Tags file not saved!")
 			if nuke.GUI:	
 				nuke.critical("Tags file not saved!\n Something went wrong with the image metadata tagging!")
 			return	
@@ -205,7 +205,7 @@ class TagImages(object):
 		try:
 			os.system(exec_string)
 		except:
-			print "ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!"
+			print("ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			if nuke.GUI:	
 				nuke.critical("Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			return
@@ -216,7 +216,7 @@ class TagImages(object):
 				os.remove(dup_frame)
 				# Check to see if we removed the file...And, if not....
 				if os.path.isfile(dup_frame):
-					print "INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself..."
+					print("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					if nuke.GUI:	
 						nuke.message("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					return
@@ -238,7 +238,7 @@ class TagImages(object):
 			# Make a dict of the matching trims and their match scores...
 			scores_dict[trim] = ratio
 			##print scores_dict
-			Sorted_Scores = sorted(scores_dict.items(), key=lambda (key,value): value, reverse=True)
+			Sorted_Scores = sorted(list(scores_dict.items()), key=lambda key_value: key_value[1], reverse=True)
 		##print Sorted_Scores
 		BestScoresList = []
 		for TrimScore in Sorted_Scores:
@@ -249,9 +249,9 @@ class TagImages(object):
 		if BestScoresList: 
 			Match = max(BestScoresList)
 			trim_dir = Match
-			print trim_dir
-			print folder
-			print ''
+			print(trim_dir)
+			print(folder)
+			print('')
 			# Return the trim_dir name in TrimsList that best matches the folder name.
 			return trim_dir
 
@@ -281,13 +281,13 @@ class TagImages(object):
 			trim_dirs_dict[trim] = dir_to_create
 			try:
 				os.makedirs(dir_to_create)
-			except OSError, e:
+			except OSError as e:
 				if e.errno != errno.EEXIST:
 					raise
 			if os.path.isdir(dir_to_create):
-				print "Created output directory: %s " % (dir_to_create)
+				print("Created output directory: %s " % (dir_to_create))
 			else:
-				print "ERROR: Directory %s cannot be created." % (dir_to_create)
+				print("ERROR: Directory %s cannot be created." % (dir_to_create))
 				if nuke.GUI:
 					nuke.message("Directory cannot be created. Press OK to cancel." % (dir_to_create))
 		##print trim_dirs_dict
@@ -300,10 +300,10 @@ class TagImages(object):
 		##print base_folders_dict
 		##print sorted(base_folders_dict.keys())
 		# Move the base_dir_folders into their corresponding trim name directories...
-		for folder in base_folders_dict.iterkeys():
+		for folder in base_folders_dict.keys():
 			trim_dir = self.find_best_match(folder, self.TrimsList)
-			print ''
-			print trim_dirs_dict[trim_dir]
-			print base_folders_dict[folder]
-			print ''
+			print('')
+			print(trim_dirs_dict[trim_dir])
+			print(base_folders_dict[folder])
+			print('')
 			shutil.move(base_folders_dict[folder], trim_dirs_dict[trim_dir])

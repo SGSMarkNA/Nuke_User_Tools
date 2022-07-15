@@ -12,7 +12,7 @@ cameras = []
 for node in (nuke.allNodes('Camera') + nuke.allNodes('Camera2')):
     cameras.append(node.name())
 RootNode.end()
-print cameras
+print(cameras)
 ################################################################
 
 ## Get all the knobs in the Group...
@@ -34,8 +34,8 @@ for knob in GroupNodeKnobs:
             knobs_to_remove.append(name)
         else:
             pass
-print 'knobs_to_ignore', knobs_to_ignore
-print 'knobs_to_remove', knobs_to_remove
+print('knobs_to_ignore', knobs_to_ignore)
+print('knobs_to_remove', knobs_to_remove)
 
 ## Remove existing pulldown knob when the 'Pick Camera' PyScript button is pressed, before we make a new one...
 Knobs = GroupNode.knobs()
@@ -43,13 +43,13 @@ try:
     for knobname in knobs_to_remove:
         GroupNode.removeKnob(Knobs[knobname])
 except KeyError:
-    print 'Key Error: Some nonexistant knobs could not be removed.'
+    print('Key Error: Some nonexistant knobs could not be removed.')
 except ValueError:
-    print 'Value Error: Some nonexistant knobs could not be removed.'
+    print('Value Error: Some nonexistant knobs could not be removed.')
 
 # Build selector to pick the camera to link to...
 cameraChoiceKnob = nuke.Enumeration_Knob('cameras', 'Select Camera: ', cameras)
-print cameraChoiceKnob, cameraChoiceKnob.value(), cameraChoiceKnob.name()
+print(cameraChoiceKnob, cameraChoiceKnob.value(), cameraChoiceKnob.name())
 GroupNode.addKnob(cameraChoiceKnob)
 cameraChoiceKnob.setFlag(nuke.STARTLINE)
 

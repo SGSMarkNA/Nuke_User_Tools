@@ -6,7 +6,7 @@ import pickle
 # User select Nuke scripts to be submitted to Deadline for render...
 def select_nuke_scripts():
 	NukeScriptsList = nuke.getFilename('Select Multiple Nuke Files to be Rendered.', pattern='*.nk', type='select', multiple=True)
-	print NukeScriptsList
+	print(NukeScriptsList)
 	return NukeScriptsList
 
 #----------------------------------------------------------
@@ -95,11 +95,11 @@ def write_deadline_submit_file():
 	# Create the submit directory...
 	try:
 		os.makedirs(Submit_Dir)
-	except OSError, e:
+	except OSError as e:
 		if e.errno != errno.EEXIST:
 			raise
 	finally:
-		print "Created Deadline Submit Directory: %s " % (Submit_Dir)
+		print("Created Deadline Submit Directory: %s " % (Submit_Dir))
 	try:
 		submit_save = open(submit_file, 'w')
 		for line in Submit_File_Code:
@@ -108,7 +108,7 @@ def write_deadline_submit_file():
 		submit_save.close()
 	except Exception as e:
 		nuke.message("Submission file cannot be saved to: %s. Press OK to cancel." % (submit_file))
-		print e
+		print(e)
 		return None
 
 ## Write the Deadline_Submit_Script.py file...	
@@ -129,11 +129,11 @@ def read_deadline_submit_file():
 			submit_read.close()
 		except Exception as e:
 			nuke.message("File cannot be read:\n\n Press OK to continue.")
-			print e
+			print(e)
 			submit_read.close()
 		finally:
-			print "Submit file loaded successfully."
-			print submit_read
+			print("Submit file loaded successfully.")
+			print(submit_read)
 			return submit_read	
 	else:
 		return None

@@ -149,7 +149,7 @@ class JoinViewsSwitch(QtGui.QWidget):
 
 	def _accept(self):
 		'''When the user clicks OK, create the JoinViewsSwitchGroup...'''
-		print 'OK'
+		print('OK')
 		if nuke:
 			# Start the Group node.
 			##self.JoinViewsSwitchGroup = nuke.nodes.Group(name='JoinViewsSwitchGroup')
@@ -172,7 +172,7 @@ class JoinViewsSwitch(QtGui.QWidget):
 
 	def _reject(self):
 		''''''
-		print 'Cancelled.'
+		print('Cancelled.')
 		self.close()
 
 
@@ -207,25 +207,25 @@ class JoinViewsSwitch(QtGui.QWidget):
 		'''Check to see which JoinViews input names (viewnames) match the Filter. Connect them if they do.'''
 		# Make a list of all of the user's logic op choices...
 		self.LogicOpList = []
-		for key in sorted(self.DropdownsDict.iterkeys()):
+		for key in sorted(self.DropdownsDict.keys()):
 			#print "%s: %s" % (key, self.DropdownsDict[key])
 			LogicOp = str(self.DropdownsDict[key].currentText())
 			self.LogicOpList.append(LogicOp)
 		# Make a list of all of the user's text filters...	
 		self.ExpressionList = []
-		for key in sorted(self.TextFiltersDict.iterkeys()):
+		for key in sorted(self.TextFiltersDict.keys()):
 			#print "%s: %s" % (key, self.TextFiltersDict[key])
 			LogicOp = str(self.TextFiltersDict[key].text())
 			self.ExpressionList.append(LogicOp)
 		# Combine the text filter list with the associated Logic Ops list...
-		self.Expressions_LogicOps_List = zip(self.ExpressionList, self.LogicOpList)
+		self.Expressions_LogicOps_List = list(zip(self.ExpressionList, self.LogicOpList))
 		# Make a dictionary that has both the Nodes To Connect To (Input Nodes) and the Filters (Text and Logic Ops) that the user has typed for each node...	
-		self.ConnectionDict = dict(zip(self.InputNodes, self.Expressions_LogicOps_List))
+		self.ConnectionDict = dict(list(zip(self.InputNodes, self.Expressions_LogicOps_List)))
 		# Iterate through the ConnectionDict, checking to see which JoinViews input names (viewnames) match the Filter/Logic Op combo...
 		# Connect them to the NoOp if they match...
-		for NodeToConnectTo, Filter in self.ConnectionDict.iteritems():
+		for NodeToConnectTo, Filter in self.ConnectionDict.items():
 			# Make the connections based on the text Filter and logical operator...
-			for index, name in self.InputsDict.iteritems():
+			for index, name in self.InputsDict.items():
 				if Filter[1] == 'CONTAINS':
 					NodeToConnectTo['name'].setValue('CONTAINS_' + Filter[0])
 					if Filter[0] in name:
@@ -255,11 +255,11 @@ class JoinViewsSwitch(QtGui.QWidget):
 	def _check_for_unconnected_Input_Nodes(self):
 		''''''
 		self.UnConnectedInputNodes = []
-		for Node, Filter in self.ConnectionDict.iteritems():
+		for Node, Filter in self.ConnectionDict.items():
 			if not Node.dependent():
 				self.UnConnectedInputNodes.append(Node)
 		if self.UnConnectedInputNodes:
-			print 'WARNING: Unconnected nodes: ', self.UnConnectedInputNodes
+			print('WARNING: Unconnected nodes: ', self.UnConnectedInputNodes)
 			nuke.message("WARNING: Some inputs are not connected!\n\n"
 			             "The logic filters might be overlapping and cause connections to be stolen from one input to another.\n\n"
 			             "You can open the Group node and try to fix the problem yourself or start over with a different set of filters...")

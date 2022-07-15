@@ -15,7 +15,7 @@ def bakeExpressions(startFrame = nuke.root().firstFrame(), endFrame = nuke.root(
 	if not nuke.selectedNodes():
 		return
 	for node in nuke.selectedNodes():
-		for knob in node.knobs().values():
+		for knob in list(node.knobs().values()):
 			if knob.hasExpression():
 				if knob.singleValue():
 					aSize = 1

@@ -123,11 +123,11 @@ class CompBuilder(object):
 		#### Try to create the prefs directory and cope with the directory already existing by ignoring that exception...
 		try:
 			os.makedirs(self.prefs_dir)
-		except OSError, e:
+		except OSError as e:
 			if e.errno != errno.EEXIST:
 				raise
 		finally:
-			print "Created output directory: %s " % (self.prefs_dir)
+			print("Created output directory: %s " % (self.prefs_dir))
 		try:
 			self.prefs_save = open(self.prefs_file, 'w')
 			pickle.dump(self.prefs, self.prefs_save)
@@ -154,7 +154,7 @@ class CompBuilder(object):
 				nuke.message("Prefs file cannot be read:\n %s\n\n Press OK to continue.\n\n You will need to save a new Prefs file.\n On the next panel, check the box for  [x] <----- SAVE PREFS." % (self.prefs_file))
 				self.prefs_read.close()
 			finally:
-				print "exr_CompBuilder Prefs file loaded successfully."
+				print("exr_CompBuilder Prefs file loaded successfully.")
 				return self.saved_prefs
 		else:
 			return None
@@ -399,7 +399,7 @@ class CompBuilder(object):
 		RemoveTotalLight = ''
 			
 		#### Loop through the "BaseSet" list...
-		for k, v in layersDict.iteritems():
+		for k, v in layersDict.items():
 			if k in self.Base:
 				testbase_comp_layer.append(k)
 				self.base_comp_layer.append(v)
@@ -410,17 +410,17 @@ class CompBuilder(object):
 		self.base_comp_layer = []
 
 		#### Loop through the "DiffuseSet" list...
-		for k, v in layersDict.iteritems():
+		for k, v in layersDict.items():
 			if k in self.DiffuseSet:
 				if k == 'VRayGlobalIllumination':
 					testdiffuse_comp_layers.append(k)
 					self.diffuse_comp_layers.append(v)
-		for k, v in layersDict.iteritems():
+		for k, v in layersDict.items():
 			if k in self.DiffuseSet:
 				if k == 'VRayDiffuseFilter':
 					testdiffuse_comp_layers.append(k)
 					self.diffuse_comp_layers.append(v)
-		for k, v in layersDict.iteritems():
+		for k, v in layersDict.items():
 			if k in self.DiffuseSet:
 				if k == 'VRayLighting':
 					testdiffuse_comp_layers.append(k)
@@ -433,18 +433,18 @@ class CompBuilder(object):
 		self.diffuse_comp_layers = []
 
 		#### Loop through the "RawSet" list...
-		for k, v in layersDict.iteritems():
+		for k, v in layersDict.items():
 			if k in self.RawSet:
 				if k == 'VRayRawGlobalIllumination':
 					testraw_comp_layers.append(k)
 					self.raw_comp_layers.append(v)
-		for k, v in layersDict.iteritems():
+		for k, v in layersDict.items():
 			if k in self.RawSet:
 				#print "THIS IS k------------->>>>>>>>", k
 				if k == 'VRayDiffuseFilter':
 					testraw_comp_layers.append(k)
 					self.raw_comp_layers.append(v)
-		for k, v in layersDict.iteritems():
+		for k, v in layersDict.items():
 			if k in self.RawSet:
 				if k == 'VRayRawLighting':
 					testraw_comp_layers.append(k)
@@ -473,7 +473,7 @@ class CompBuilder(object):
 			#### The testing for minimum requirements is over, now check the layers to see what we found...
 			
 			#### Loop through the "BaseSet" list...
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.Base:
 					testbase_comp_layer.append(k)
 					self.base_comp_layer.append(v)
@@ -482,7 +482,7 @@ class CompBuilder(object):
 				self.base_found = True
 	
 			#### Loop through the "PlusSet" list...
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.PlusSet:
 					if k == 'VRayTotalLighting':
 						testplus_comp_layers.append(k)
@@ -498,17 +498,17 @@ class CompBuilder(object):
 				self.plus_set_found = True
 
 			#### Loop through the "DiffuseSet" list...
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.DiffuseSet:
 					if k == 'VRayGlobalIllumination':
 						testdiffuse_comp_layers.append(k)
 						self.diffuse_comp_layers.append(v)
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.DiffuseSet:
 					if k == 'VRayDiffuseFilter':
 						testdiffuse_comp_layers.append(k)
 						self.diffuse_comp_layers.append(v)
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.DiffuseSet:
 					if k == 'VRayLighting':
 						testdiffuse_comp_layers.append(k)
@@ -528,18 +528,18 @@ class CompBuilder(object):
 					self.plus_set_found = False
 			
 			#### Loop through the "RawSet" list...
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.RawSet:
 					if k == 'VRayRawGlobalIllumination':
 						testraw_comp_layers.append(k)
 						self.raw_comp_layers.append(v)
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.RawSet:
 					#print "THIS IS k------------->>>>>>>>", k
 					if k == 'VRayDiffuseFilter':
 						testraw_comp_layers.append(k)
 						self.raw_comp_layers.append(v)
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.RawSet:
 					if k == 'VRayRawLighting':
 						testraw_comp_layers.append(k)
@@ -561,21 +561,21 @@ class CompBuilder(object):
 					self.plus_set_found = False
 			
 			#### Loop through the"CarBodySet" list...
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.CarBodySet:
 					if k == 'Paint_Window_Rimz':
 						testcar_body_comp_layers.append(k)
-			for k, v in layersDict.iteritems():	
+			for k, v in layersDict.items():	
 				if k in self.CarBodySet:
 					if k == 'VRayMtlSelect_Car_Paint':
 						testcar_body_comp_layers.append(k)
 						self.car_body_comp_layers.append(v)
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.CarBodySet:
 					if k == 'VRayMtlSelect_Metalic':
 						testcar_body_comp_layers.append(k)
 						self.car_body_comp_layers.append(v)
-			for k, v in layersDict.iteritems():
+			for k, v in layersDict.items():
 				if k in self.CarBodySet:
 					if k == 'VRayMtlSelect_Clearcoat':
 						testcar_body_comp_layers.append(k)
@@ -723,25 +723,25 @@ class CompBuilder(object):
 		'''
 		Create the node schematic by taking a list of EXR file layers, using a number of additional variables that cause the node graph to be built in one of a number of predetermined ways.
 		'''			
-		print "--------------------------------"
-		print "CompBuilder VARIABLES:"
-		print "--------------------------------"
-		print "Layout:", self.Layout					#### Orientation of node tree - "Horizontal", "Vertical". Currently, only Horizontal is available.
-		print "spacing_x:", self.spacing_x				#### Pixel tiling values to change the spacing of nodes...
-		print "spacing_y:", self.spacing_y				#### Pixel tiling values to change the spacing of nodes...
-		print "Basic:", self.Basic					#### Flag to turn on creation of a basic additive comp...
-		print "ShuffleLayers:", self.ShuffleLayers			#### List of layers to use when creating the additive Shuffle nodes...
-		print "Diffuse:", self.Diffuse					#### Flag to turn on creation of the Diffuse comp section that builds a TotalLighting pass...
-		print "DiffuseLayers:", self.DiffuseLayers		#### Flag to turn on creation of the Diffuse comp section that builds a TotalLighting pass...
-		print "Raw:", self.Raw						#### Flag to turn on creation of the Raw Diffuse comp section that builds a TotalLighting pass...
-		print "RawLayers:", self.RawLayers				#### List of the raw GI and raw lighting layers used to build the TotalLighting pass, if found...
-		print "CarBody:", self.CarBody				#### Flag to turn on creation of a separate CarBody node section...
-		print "CarBodyAlpha:", self.CarBodyAlpha		#### List of the channel that holds the CarBody Paint alpha...
-		print "BodyLayers:", self.BodyLayers			#### List of the layers used to build the CarBody nodes, if found...
-		print "postage_stamps:", self.postage_stamps	#### Flag to turn on/off the Postage Stamp icons for Shuffle nodes...
-		print "backdrop_off:", self.backdrop_off			#### Flag to turn on/off the automatic backdrop creation...
-		print "rand_color:", self.rand_color			#### Flag to turn on/off the random color setting for backdrops created with the "auto_backdrop" method...
-		print "--------------------------------"
+		print("--------------------------------")
+		print("CompBuilder VARIABLES:")
+		print("--------------------------------")
+		print("Layout:", self.Layout)					#### Orientation of node tree - "Horizontal", "Vertical". Currently, only Horizontal is available.
+		print("spacing_x:", self.spacing_x)				#### Pixel tiling values to change the spacing of nodes...
+		print("spacing_y:", self.spacing_y)				#### Pixel tiling values to change the spacing of nodes...
+		print("Basic:", self.Basic)					#### Flag to turn on creation of a basic additive comp...
+		print("ShuffleLayers:", self.ShuffleLayers)			#### List of layers to use when creating the additive Shuffle nodes...
+		print("Diffuse:", self.Diffuse)					#### Flag to turn on creation of the Diffuse comp section that builds a TotalLighting pass...
+		print("DiffuseLayers:", self.DiffuseLayers)		#### Flag to turn on creation of the Diffuse comp section that builds a TotalLighting pass...
+		print("Raw:", self.Raw)						#### Flag to turn on creation of the Raw Diffuse comp section that builds a TotalLighting pass...
+		print("RawLayers:", self.RawLayers)				#### List of the raw GI and raw lighting layers used to build the TotalLighting pass, if found...
+		print("CarBody:", self.CarBody)				#### Flag to turn on creation of a separate CarBody node section...
+		print("CarBodyAlpha:", self.CarBodyAlpha)		#### List of the channel that holds the CarBody Paint alpha...
+		print("BodyLayers:", self.BodyLayers)			#### List of the layers used to build the CarBody nodes, if found...
+		print("postage_stamps:", self.postage_stamps)	#### Flag to turn on/off the Postage Stamp icons for Shuffle nodes...
+		print("backdrop_off:", self.backdrop_off)			#### Flag to turn on/off the automatic backdrop creation...
+		print("rand_color:", self.rand_color)			#### Flag to turn on/off the random color setting for backdrops created with the "auto_backdrop" method...
+		print("--------------------------------")
 		
 		selNodes = nuke.selectedNodes()
 		if (len(selNodes) < 1):
@@ -1775,8 +1775,8 @@ class CompBuilder(object):
 					else:
 						#### Run the"build_type" method to find out what kind of node layout template we can build...
 						BuildType = self.build_type()
-						print "--------------------------------"
-						print "BuildType:", BuildType
+						print("--------------------------------")
+						print("BuildType:", BuildType)
 						
 						#### Check to see what layers we have found and then set variables for the exr_shuffle command...
 						if BuildType == "Basic":
@@ -1894,8 +1894,8 @@ class CompBuilder(object):
 						#### Run "build_type" to find out what kind of node layout template we can build...
 						BuildType = self.build_type()
 						
-						print "--------------------------------"
-						print "BuildType:", BuildType
+						print("--------------------------------")
+						print("BuildType:", BuildType)
 						
 						#### Check to see what layers we have found and then set variables for the exr_shuffle command...
 						if BuildType == "Basic":

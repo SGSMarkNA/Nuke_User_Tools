@@ -15,7 +15,7 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 
 		# Photoshop Executable - OS-specific...
 		if os.name == 'nt':
-			import _winreg
+			import winreg
 			# Set the Photoshop application to run...
 			self.PS_APP = 'start photoshop.exe'
 
@@ -69,7 +69,7 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 							OLD_PNG_DIR = OLD_PNG_DIR.strip("'")
 							#print 'OLD_PNG_DIR --->> ', repr(OLD_PNG_DIR)
 			except:
-				print "Error: Data file cannot be read!"
+				print("Error: Data file cannot be read!")
 				if nuke:            
 					nuke.critical("Data file cannot be read!")
 				data_read.close()
@@ -105,12 +105,12 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 				with open(self.data_file, 'w') as out_file:
 					out_file.write(''.join(NEW_DATA))			
 			except:
-				print "Error: Data file cannot be updated!"
+				print("Error: Data file cannot be updated!")
 				if nuke:
 					nuke.critical("Data file cannot be updated!")
 					return None		
 		else:
-			print "Error: Data file does not exist!"
+			print("Error: Data file does not exist!")
 			if nuke:        
 				nuke.critical("Data file does not exist!")
 			return None		
@@ -154,7 +154,7 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 		# Try to create the directory and cope with the directory already existing by ignoring that exception...
 		try:
 			os.makedirs(self.data_location_dir)
-		except OSError, e:
+		except OSError as e:
 			if e.errno != errno.EEXIST:
 				raise
 		#finally:
@@ -171,7 +171,7 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 			self.Data_Location_Save_Success = True
 		except Exception as e:
 			self.Data_Location_Save_Success = False
-			print e
+			print(e)
 			nuke.message("Data File cannot be saved to %s!" % (self.data_location_file))	
 
 
@@ -196,7 +196,7 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 				process = subprocess.call(self.target, shell=True)
 				# Start checking loop...
 				while not os.path.exists(self.jsx_script_status_file):
-					print 'Checking...'
+					print('Checking...')
 					time.sleep(5)
 				# The file exists. Let's see if we can read it...
 				if os.path.isfile(self.jsx_script_status_file):
@@ -204,11 +204,11 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 						with open(self.jsx_script_status_file, 'r') as data_read:
 							for line in data_read:
 								if "Complete." in line:
-									print line
-									print process
+									print(line)
+									print(process)
 									return 0
 					except:
-						print "Error: JSX Script Status File cannot be read!"
+						print("Error: JSX Script Status File cannot be read!")
 						data_read.close()
 						return 1
 
@@ -220,7 +220,7 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 				process = subprocess.call(self.target, shell=True)
 				# Start checking loop...
 				while not os.path.exists(self.jsx_script_status_file):
-					print 'Checking...'
+					print('Checking...')
 					time.sleep(5)
 				# The file exists. Let's see if we can read it...
 				if os.path.isfile(self.jsx_script_status_file):
@@ -228,11 +228,11 @@ class NukePSD_PostProcess_Deadline_Dependent_Job(object):
 						with open(self.jsx_script_status_file, 'r') as data_read:
 							for line in data_read:
 								if "Complete." in line:
-									print line
-									print process
+									print(line)
+									print(process)
 									return 0
 					except:
-						print "Error: JSX Script Status File cannot be read!"
+						print("Error: JSX Script Status File cannot be read!")
 						data_read.close()
 						return 1
 

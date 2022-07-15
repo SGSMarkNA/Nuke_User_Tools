@@ -2,7 +2,7 @@
 # In your Write node, in the Python tab - in the "after render" field, type "TagImages()"
 # This function will be executed after all of the renders have finished.
 
-import nuke, sys, os, string, shutil, commands, subprocess
+import nuke, sys, os, string, shutil, subprocess, subprocess
 
 def TagImages():
 

@@ -11,10 +11,10 @@ for trim in trim_dirs:
 	for base in base_folders:
 		match = re.findall(trim, base)
 		if match:
-			print ''
-			print trim
-			print base
-			print ''
+			print('')
+			print(trim)
+			print(base)
+			print('')
 
 
 #####################################################################################################
@@ -28,7 +28,7 @@ base_folders = "Base_Red Base_Green Base_Blue Base_SL_Red Base_SL_Green Base_SL_
 
 trim = 'Limited'
 match = re.findall(trim, base_folders)
-print match
+print(match)
 
 #####################################################################################################
 
@@ -41,7 +41,7 @@ base_folders = "Base_Red [P] Base_Green [/P] Base_Blue [P] Base_SL_Red [/P] Base
 
 trim = 'Limited'
 match = re.findall(trim, base_folders)
-print match
+print(match)
 
 #####################################################################################################
 

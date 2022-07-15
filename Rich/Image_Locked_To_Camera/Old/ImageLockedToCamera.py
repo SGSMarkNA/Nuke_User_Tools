@@ -27,7 +27,7 @@ class ImageLockedToCameraPanel(nukescripts.PythonPanel):
 	def knobChanged(self, knob):
 		if self.cameraChoiceKnob:
 			self.SelectedCamera = self.cameraChoiceKnob.value()
-			print self.SelectedCamera
+			print(self.SelectedCamera)
 
 ##########################################
 ## TESTING IN Nuke...

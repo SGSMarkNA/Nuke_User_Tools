@@ -80,17 +80,17 @@ class PrefsFileUtils(object):
 		
 		# Try to create the prefs directory and cope with the directory already existing by ignoring that exception...
 		if os.path.isdir(self.dir_to_create):
-			print "Directory %s already exists..." % (self.dir_to_create)
+			print("Directory %s already exists..." % (self.dir_to_create))
 		else:
 			try:
 				os.makedirs(self.dir_to_create)
-			except OSError, e:
+			except OSError as e:
 				if e.errno != errno.EEXIST:
 					raise
 			if os.path.isdir(self.dir_to_create):
-				print "Created output directory: %s " % (self.dir_to_create)
+				print("Created output directory: %s " % (self.dir_to_create))
 			else:
-				print "ERROR: Directory %s cannot be created." % (self.dir_to_create)
+				print("ERROR: Directory %s cannot be created." % (self.dir_to_create))
 				if nuke:
 					nuke.message("Directory cannot be created. Press OK to cancel." % (self.dir_to_create))
 		# Try to save the file...
@@ -98,11 +98,11 @@ class PrefsFileUtils(object):
 			self.prefs_save = open(self.prefs_file, 'w')
 			pickle.dump(self.prefs, self.prefs_save)
 			self.prefs_save.close()
-			print "Prefs File saved to: %s" % (self.prefs_file)
+			print("Prefs File saved to: %s" % (self.prefs_file))
 			if nuke:		
 				nuke.message("Prefs File saved to: %s" % (self.prefs_file))
 		except:
-			print "ERROR: Prefs cannot be saved to: %s" % (self.prefs_file)
+			print("ERROR: Prefs cannot be saved to: %s" % (self.prefs_file))
 			if nuke:		
 				nuke.message("Prefs cannot be saved to: %s Press OK to cancel." % (self.prefs_file))
 			return
@@ -136,18 +136,18 @@ class PrefsFileUtils(object):
 				self.saved_prefs = pickle.load(self.prefs_read)
 				self.prefs_read.close()
 			except:
-				print "Sorry - Prefs file %s cannot be read." % (self.prefs_file)
+				print("Sorry - Prefs file %s cannot be read." % (self.prefs_file))
 				if nuke:			
 					nuke.message("Prefs file cannot be read:\n %s\n\n Press OK to continue.\n\n You will need to save a new Prefs file.\n On the next panel, check the box for  [x] <----- SAVE PREFS." % (self.prefs_file))
 				self.prefs_read.close()
 			finally:
-				print "Prefs file loaded successfully from %s" % (self.prefs_file)
-				print "self.saved_prefs --------->", self.saved_prefs
+				print("Prefs file loaded successfully from %s" % (self.prefs_file))
+				print("self.saved_prefs --------->", self.saved_prefs)
 				saved_prefs = self.saved_prefs
 				return saved_prefs
 			
 		else:
-			print "Sorry - Prefs file %s does not seem to exist." % (self.prefs_file)
+			print("Sorry - Prefs file %s does not seem to exist." % (self.prefs_file))
 			if nuke:		
 				nuke.message("Prefs file cannot be read:\n %s\n\n Press OK to continue.\n\n You will need to save a new Prefs file.\n On the next panel, check the box for  [x] <----- SAVE PREFS." % (self.prefs_file))
 			return None

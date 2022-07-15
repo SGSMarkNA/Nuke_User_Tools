@@ -19,7 +19,7 @@ def invertSelection_checkbox_knobs():
     regex = re.compile(r"\WBoolean_Knob\W")   # \W is anything but a word character...
     # Start with a list of all the Group's knobs...
     AllKnobs = GroupNode.knobs()
-    for name, knob in AllKnobs.iteritems():
+    for name, knob in AllKnobs.items():
         if bool(regex.search(str(type(knob)))):
             if knob.name() not in knobs_to_ignore:
                 name = knob.name()

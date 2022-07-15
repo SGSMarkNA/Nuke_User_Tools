@@ -117,7 +117,7 @@ def create_new_image_format():
     NewFormatName = str(DisplayKnobWidth.value()) + 'x' + str(DisplayKnobHeight.value())
     NewFormat = (" %s %s 1.0 %s") % (int(ResultKnobWidth.value()), int(ResultKnobHeight.value()), NewFormatName )
     nuke.addFormat(NewFormat)
-    print NewFormat
+    print(NewFormat)
     nuke.message("Created new format: " + NewFormatName)
 
 create_new_image_format()

@@ -12,7 +12,7 @@ def build_sorted_trim_scores(view, Trims_List):
 		##print str(ratio) +  '--->   ' + trim
 		# Make a dict of the matching trims and their match scores...
 		scores_dict[trim] = ratio
-		Sorted_Scores = sorted(scores_dict.items(), key=lambda (key,value): value, reverse=True)
+		Sorted_Scores = sorted(list(scores_dict.items()), key=lambda key_value: key_value[1], reverse=True)
 		##print Sorted_Scores
 		return Sorted_Scores
 
@@ -24,11 +24,11 @@ def find_best_match(Sorted_Scores):
 		else:
 			pass
 	if BestScoresList:
-		print BestScoresList
+		print(BestScoresList)
 		Match = max(BestScoresList)
-		print Match
-		print view
-		print ''
+		print(Match)
+		print(view)
+		print('')
 
 
 ## EXAMPLE USAGE:

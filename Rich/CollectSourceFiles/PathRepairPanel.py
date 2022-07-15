@@ -3,7 +3,7 @@ import nukescripts
 import os
 import itertools
 from pprint import pprint
-from SourceNodeInfo import NodeInfo
+from .SourceNodeInfo import NodeInfo
 # Need to be able to find the Node_Tools folder, which is relative to this file...
 NodeToolsDir = os.path.realpath(os.path.dirname(__file__) + '/..') + '/Node_Tools'
 os.sys.path.append(NodeToolsDir)
@@ -144,7 +144,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 		self.PathFileKnobs = {}
 		# Knob index number for naming...
 		num = 1
-		for path, nodeslist in self.shortest_path_dict.iteritems():
+		for path, nodeslist in self.shortest_path_dict.items():
 			try:
 				#---------------------------------
 				name1 = 'pathknob_' + str(num)
@@ -225,7 +225,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 				#---------------------------------				
 				num += 1
 			except Exception as e:
-				print e
+				print(e)
 		OK_button = nuke.PyScript_Knob('ok', 'OK', '')
 		self.addKnob(OK_button)
 		self.knobs_to_delete.append(OK_button)
@@ -251,7 +251,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 			try:
 				self.removeKnob(knob)
 			except:
-				print 'Knob %s could not be removed...' % knob.name()
+				print('Knob %s could not be removed...' % knob.name())
 
 	def _create_node_filepath_dict(self, Nodes):
 		'''Make a dictionary of all the nodes in the script and their filepaths...'''
@@ -273,7 +273,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 	def _create_shortest_common_path_dict(self, STOP):
 		'''Find the shortest matching parent directory for each of the Read nodes' paths...'''
 		ShortestCommonPathDict = {}	
-		for node, pathcomponents in self.NodePathlistDict.iteritems():
+		for node, pathcomponents in self.NodePathlistDict.items():
 			##---------------------------------------------------------
 			try:
 				self.Progress.setMessage("ShortestCommonPathDict:" + node.name())
@@ -310,7 +310,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 		#print '================================================================================'
 		#print node.name() + ':'
 		#print CurrentString		
-		for NODE, PATHSTRING in self.NodePathlistDict.iteritems():
+		for NODE, PATHSTRING in self.NodePathlistDict.items():
 			PATH = PATHSTRING['path']
 			common = self._common_prefix_path(CurrentString, PATH, STOP)
 			common = common.replace('\\', '/')
@@ -344,7 +344,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 		buttons [ - ] [ + ] to add or subtract path segments. The STOP values for each path are stored in the NodePathlistDict.
 		"""
 		COUNTER = 0
-		for (elmt0, elmt1) in itertools.izip(iter0, iter1):
+		for (elmt0, elmt1) in zip(iter0, iter1):
 			#print 'Compare----> : ', elmt0, elmt1
 			if elmt0 != elmt1 and COUNTER >= STOP:
 				#print 'BREAK       : ', elmt0, elmt1
@@ -380,14 +380,14 @@ class PathReplacePanel(nukescripts.PythonPanel):
 	def _create_shortest_path_dict(self):
 		'''Make a dictionary of all the shortest paths and a list of the common nodes.'''
 		self.shortest_path_dict = {}
-		for node, path in self.ShortestCommonPathDict.iteritems():
+		for node, path in self.ShortestCommonPathDict.items():
 			##---------------------------------------------------------
 			try:
 				self.Progress.setMessage("shortest_path_dict:" + node.name())
 			except:
 				self.RescanProgress.setMessage("shortest_path_dict:" + node.name())
 			##---------------------------------------------------------				
-			if path not in self.shortest_path_dict.iterkeys():
+			if path not in iter(self.shortest_path_dict.keys()):
 				self.shortest_path_dict[path] = []
 			if node not in self.shortest_path_dict[path]:
 				self.shortest_path_dict[path].append(node)
@@ -435,7 +435,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 	def _get_path_replacements(self):
 		# Build dict of the numbered pathknobs, their corresponding numbered dirknobs and the list of nodes to have their paths replaced..
 		self.DirReplacements = {}
-		for knob_name, knob in self.PathFileKnobs.iteritems():
+		for knob_name, knob in self.PathFileKnobs.items():
 			if 'pathknob_' in knob_name:
 				self.path_knob = knob_name
 				#print 'self.path_knob - - - - >> ', self.path_knob
@@ -446,7 +446,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 				self.dir_knob_path = self.PathFileKnobs[self.dir_knob].value().rstrip('/')
 				#print 'self.dir_knob_path ----->', self.dir_knob_path
 				self.ref_node = self.PathFileKnobs.get(self.path_knob)[1]
-				for path, nodes in self.shortest_path_dict.iteritems():
+				for path, nodes in self.shortest_path_dict.items():
 					if self.ref_node in nodes:
 						self.nodes = nodes
 						#print 'self.nodes ----', self.nodes
@@ -466,7 +466,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 
 	def _replace_paths(self):
 		''''''
-		for knob_key in self.DirReplacements.iterkeys():
+		for knob_key in self.DirReplacements.keys():
 			#print ''
 			#if 'pathknob_' in knob_key:
 				#print 'STOP value -->>>>> ', self.PathFileKnobs[knob_key][2]
@@ -493,7 +493,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 
 				if NEW_Filepath is not None:
 					if NEW_Filepath == Filepath:
-						print node.name() + ' FAIL'
+						print(node.name() + ' FAIL')
 					else:
 						try:
 							node['file'].setValue(NEW_Filepath)
@@ -502,7 +502,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 							node['vfield_file'].setValue(NEW_Filepath)
 							#print node.name() + ' SUCCESS'
 				else:
-					print node.name() + ' PASS - No dir. replacement selected.'
+					print(node.name() + ' PASS - No dir. replacement selected.')
 					pass
 
 		# Recheck to see if there are still nodes with errors...
@@ -512,13 +512,13 @@ class PathReplacePanel(nukescripts.PythonPanel):
 			errors = str(error_nodes)
 			message = 'There are still nodes with broken file path links:\n\n' + errors + '\n\n\nCheck for non-existant paths or other errors.\n\nYou can run repair nodes again, if necessary.'
 			nuke.message(message)
-			print message
+			print(message)
 			# Return False for when this is used with CollectSourceFiles...
 			return False
 		else:
 			message = 'All broken paths repaired.'
 			nuke.message(message)
-			print message
+			print(message)
 			# Return True for when this is used with CollectSourceFiles...
 			return True
 
@@ -552,7 +552,7 @@ class PathReplacePanel(nukescripts.PythonPanel):
 			##---------------------------------------------------------			
 			# Update the global STOP value...
 			STOP = self.PathSegmentsKnob.value()
-			for knobname, valueslist in self.PathFileKnobs.iteritems():
+			for knobname, valueslist in self.PathFileKnobs.items():
 				if 'pathknob_' in knobname:
 					self.PathFileKnobs[knobname][2] = STOP
 			# Use the NodePathlistDict dictionary of nodes and paths to create a new dict of the longest common paths...

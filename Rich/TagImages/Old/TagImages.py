@@ -45,7 +45,7 @@ class TagImages(object):
 					return EXECUTABLE
 				self.EXECUTABLE = get_exiftool_executable()
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return	
 		# Test for MacOS location of exiftool executable...
@@ -61,7 +61,7 @@ class TagImages(object):
 					#print 'Found exiftool at /usr/local/bin/exiftool'
 					pass
 			else:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 
@@ -92,7 +92,7 @@ class TagImages(object):
 			#print "Args file saved to: ", self.args_file_path
 			pass
 		else:
-			print "ERROR: Tags file not saved!"
+			print("ERROR: Tags file not saved!")
 			if nuke.GUI:	
 				nuke.critical("Tags file not saved!\n Something went wrong with the image metadata tagging!")
 			return	
@@ -190,7 +190,7 @@ class TagImages(object):
 		try:
 			os.system(exec_string)
 		except:
-			print "ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!"
+			print("ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			if nuke.GUI:	
 				nuke.critical("Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			return
@@ -201,7 +201,7 @@ class TagImages(object):
 				os.remove(dup_frame)
 				# Check to see if we removed the file...And, if not....
 				if os.path.isfile(dup_frame):
-					print "INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself..."
+					print("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					if nuke.GUI:	
 						nuke.message("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					return
@@ -224,13 +224,13 @@ class TagImages(object):
 			else:
 				try:
 					os.makedirs(self.dir_to_create)
-				except OSError, e:
+				except OSError as e:
 					if e.errno != errno.EEXIST:
 						raise
 				if os.path.isdir(self.dir_to_create):
-					print "Created output directory: %s " % (self.dir_to_create)
+					print("Created output directory: %s " % (self.dir_to_create))
 				else:
-					print "ERROR: Directory %s cannot be created." % (self.dir_to_create)
+					print("ERROR: Directory %s cannot be created." % (self.dir_to_create))
 					if nuke.GUI:
 						nuke.message("Directory cannot be created. Press OK to cancel." % (self.dir_to_create))		
 			# Build pieces for new frame file path...

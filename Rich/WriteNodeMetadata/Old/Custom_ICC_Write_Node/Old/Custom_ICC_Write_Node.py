@@ -39,7 +39,7 @@ def create_TagImages_args_file():
 	'''
 	from TagImages import TagImages
 	TagImages.TagImages().create_args_file()
-	print 'Executing create_TagImages_args_file' 
+	print('Executing create_TagImages_args_file') 
 
 def do_TagImages_tagging():
 	'''
@@ -47,7 +47,7 @@ def do_TagImages_tagging():
 	'''
 	from TagImages import TagImages
 	TagImages.TagImages().tag_images()
-	print 'Executing do_TagImages_tagging'
+	print('Executing do_TagImages_tagging')
 
 def do_TagImages_Hyundai_folder_rearrangment():
 	'''
@@ -55,7 +55,7 @@ def do_TagImages_Hyundai_folder_rearrangment():
 	'''
 	from TagImages import TagImages
 	TagImages.TagImages().create_nested_color_and_trim_folders()
-	print 'Executing do_TagImages_Hyundai_folder_rearrangment'
+	print('Executing do_TagImages_Hyundai_folder_rearrangment')
 
 ############################################################################################################
 ## Remove Callbacks...
@@ -71,10 +71,10 @@ def remove_existing_ICC_callbacks():
 		for callback in nuke.afterFrameRenders['Write']:
 			if callback[0] == add_selected_ICC_profile:
 				argitems_ICC_afterFrameRenders.append(callback[1])
-				print 'argitems_ICC -->', argitems_ICC_afterFrameRenders
+				print('argitems_ICC -->', argitems_ICC_afterFrameRenders)
 		for arg_ICC in argitems_ICC_afterFrameRenders:
 			nuke.removeAfterFrameRender(add_selected_ICC_profile, arg_ICC, {}, nodeClass='Write')
-			print 'Removed ', callback[0], arg_ICC
+			print('Removed ', callback[0], arg_ICC)
 
 def remove_existing_TagImages_callbacks():
 	'''
@@ -85,10 +85,10 @@ def remove_existing_TagImages_callbacks():
 		for callback in nuke.beforeRenders['Write']:
 			if callback[0] == create_TagImages_args_file:
 				argitems_TagImages_beforeRenders.append(callback[1])
-				print 'argitems_TagImages -->', argitems_TagImages_beforeRenders
+				print('argitems_TagImages -->', argitems_TagImages_beforeRenders)
 		for arg_TagImages in argitems_TagImages_beforeRenders:
 			nuke.removeBeforeRender(create_TagImages_args_file, arg_TagImages, {}, nodeClass='Write')
-			print 'Removed ', callback[0], arg_TagImages
+			print('Removed ', callback[0], arg_TagImages)
 
 def remove_existing_Tagging_callbacks():
 	''''''
@@ -97,11 +97,11 @@ def remove_existing_Tagging_callbacks():
 		for callback in nuke.afterFrameRenders['Write']:
 			if callback[0] == do_TagImages_tagging:
 				argitems_TagImages_afterFrameRenders.append(callback[1])
-				print 'argitems_Tagging -->', argitems_TagImages_afterFrameRenders			
+				print('argitems_Tagging -->', argitems_TagImages_afterFrameRenders)			
 		for arg_tagging in argitems_TagImages_afterFrameRenders:
 			nuke.removeAfterFrameRender(do_TagImages_tagging, arg_tagging, {}, nodeClass='Write')
-			print 'Removed ', callback[0], arg_tagging
-			print 'DOING IT NOW!'
+			print('Removed ', callback[0], arg_tagging)
+			print('DOING IT NOW!')
 
 def remove_existing_Hyundai_callbacks():
 	'''
@@ -112,10 +112,10 @@ def remove_existing_Hyundai_callbacks():
 		for callback in nuke.afterFrameRenders['Write']:
 			if callback[0] == do_TagImages_Hyundai_folder_rearrangment:
 				argitems_TagImages_Hyundai_afterFrameRenders.append(callback[1])
-				print 'argitems_TagImages_Hyundai -->', argitems_TagImages_Hyundai_afterFrameRenders			
+				print('argitems_TagImages_Hyundai -->', argitems_TagImages_Hyundai_afterFrameRenders)			
 		for arg_Hyundai in argitems_TagImages_Hyundai_afterFrameRenders:
 			nuke.removeAfterFrameRender(do_TagImages_Hyundai_folder_rearrangment, arg_Hyundai, {}, nodeClass='Write')
-			print 'Removed ', callback[0], arg_Hyundai
+			print('Removed ', callback[0], arg_Hyundai)
 
 
 ############################################################################################################
@@ -169,21 +169,21 @@ def initialize_TagImages_Knob_Callbacks():
 			# Add the code for for the callbacks...
 			nuke.addBeforeRender(create_TagImages_args_file, (), {}, nodeClass='Write')
 			nuke.addAfterFrameRender(do_TagImages_tagging, (), {}, nodeClass='Write')
-			print 'INIT: Added TagImages callbacks'
+			print('INIT: Added TagImages callbacks')
 		elif TagImages_Knob.value() == False:
 			# Remove any existing callbacks...
 			remove_existing_TagImages_callbacks()
-			print 'INIT: Removed existing TagImages callbacks'
+			print('INIT: Removed existing TagImages callbacks')
 
 	if Hyundai_Knob:
 		if Hyundai_Knob.value() == True:
 			# Add the code for for the callbacks...
 			nuke.addAfterFrameRender(do_TagImages_Hyundai_folder_rearrangment, (), {}, nodeClass='Write')
-			print 'INIT: Added Hyundai callbacks'
+			print('INIT: Added Hyundai callbacks')
 		elif Hyundai_Knob.value() == False:
 			# Remove any existing callbacks...
 			remove_existing_Hyundai_callbacks()
-			print 'INIT: Removed existing Hyundai callbacks'
+			print('INIT: Removed existing Hyundai callbacks')
 
 ############################################################################################################
 ## knobChanged
@@ -207,8 +207,8 @@ def knobChanged():
 	KNOBS = (ICC_KNOB, TAGIMAGES_KNOB, HYUNDAI_KNOB)
 
 	if Knob in KNOBS:
-		print Knob.name()
-		print Knob.value()
+		print(Knob.name())
+		print(Knob.value())
 		## FIRST, REMOVE ALL EXISTING CALLBACKS...
 		remove_existing_ICC_callbacks()
 		remove_existing_TagImages_callbacks()
@@ -220,7 +220,7 @@ def knobChanged():
 			if Knob == ICC_KNOB:
 				# Get the selected ICC profile name from the dropdown knob... 
 				ICC_Profile_Name = Knob.value()
-				print ICC_Profile_Name 
+				print(ICC_Profile_Name) 
 				if ICC_Profile_Name != 'Empty':
 					# Add the code for for the new AfterFrameRender callback...
 					nuke.addAfterFrameRender(add_selected_ICC_profile, ICC_Profile_Name, {}, nodeClass='Write')
@@ -229,7 +229,7 @@ def knobChanged():
 					Node['note_font'].setValue('Verdana Bold')
 					Node['note_font_size'].setValue(14.0)
 					Node['label'].setValue('ICC Profile: ' + ICC_Profile_Name)
-					print 'Added ICC callbacks'
+					print('Added ICC callbacks')
 				else:
 					# Remove any existing callbacks of the type "Custom_ICC_Write_Node.add_selected_ICC_profile...
 					remove_existing_ICC_callbacks()
@@ -256,7 +256,7 @@ def knobChanged():
 					nuke.addBeforeRender(create_TagImages_args_file, (), {}, nodeClass='Write')
 					nuke.addAfterFrameRender(do_TagImages_tagging, (), {}, nodeClass='Write')
 					Node.knob('hyundai_knob').setEnabled(True)
-					print 'Added TagImages callbacks'
+					print('Added TagImages callbacks')
 				else:
 					Node.knob('hyundai_knob').setEnabled(False)
 
@@ -264,7 +264,7 @@ def knobChanged():
 				if Knob.value() == True and Node.knob('tagimages_knob').value() == True:				
 					# Add the code for for the callbacks...
 					nuke.addAfterFrameRender(do_TagImages_Hyundai_folder_rearrangment, (), {}, nodeClass='Write')
-					print 'Added Hyundai callbacks'
+					print('Added Hyundai callbacks')
 				else:
 					# If there's not tagging going on, then we don't need to rearrange any folders...
 					Knob.setValue(False)

@@ -14,7 +14,7 @@ import Deadline_Command_Access
 # ----------------------------------------------------------------------------
 try:
 	import traceback
-	import ConfigParser	
+	import configparser	
 except:
 	print( "Could not load ConfigParser module, sticky settings will not be loaded/saved" )
 # ----------------------------------------------------------------------------
@@ -398,7 +398,7 @@ class Nuke_to_PSD_SubmitPanel(nukescripts.PythonPanel):
 			plugin_info_save.close()
 		except Exception as e:
 			nuke.message("Submission files cannot be saved to: %s. Press OK to cancel." % (Parent_Dir))
-			print e
+			print(e)
 			return None
 
 
@@ -408,7 +408,7 @@ class Nuke_to_PSD_SubmitPanel(nukescripts.PythonPanel):
 		# Write Sticky Settings...
 		try:
 			print( "Writing sticky settings..." )
-			config = ConfigParser.ConfigParser()
+			config = configparser.ConfigParser()
 
 			config.add_section( "Sticky" )
 			# config.set( "Sticky", "FrameListMode", dialog.frameListMode.value() )
@@ -446,16 +446,16 @@ class Nuke_to_PSD_SubmitPanel(nukescripts.PythonPanel):
 
 		except:
 			print( "Could not write sticky settings!" )
-			print( traceback.format_exc() )
+			print(( traceback.format_exc() ))
 
 	def read_sticky_settings(self, configFile):
 		"""Use Deadline ConfigParser module to read sticky panel settings from configFile. """
 
 		# Read Sticky Settings...
 		try:
-			print( "Reading sticky settings from %s" % self.configFile )
+			print(( "Reading sticky settings from %s" % self.configFile ))
 			if os.path.isfile( self.configFile ):
-				config = ConfigParser.ConfigParser()
+				config = configparser.ConfigParser()
 				config.read( self.configFile )
 
 				if config.has_section( "Sticky" ):
@@ -527,7 +527,7 @@ class Nuke_to_PSD_SubmitPanel(nukescripts.PythonPanel):
 						# DeadlineGlobals.initSmartVectorOnly = config.get( "Sticky", "SmartVectorOnly" )
 		except Exception:
 			print("Could not read sticky settings!")
-			print(traceback.format_exc())
+			print((traceback.format_exc()))
 
 	def submit_to_deadline(self):
 		"""Submit script to Deadline via CommandLine plugin. Called when the user presses the "Submit to Deadline" button..."""
@@ -545,7 +545,7 @@ class Nuke_to_PSD_SubmitPanel(nukescripts.PythonPanel):
 		try:
 			result, jobid, out = Deadline_Command_Access.Submit_Deadline_Job(self.job_info_file, self.plugin_info_file)	
 			if result:				
-				print result, jobid, out
+				print(result, jobid, out)
 		except:
 			raise
 
@@ -668,7 +668,7 @@ class Nuke_to_PSD_SubmitPanel(nukescripts.PythonPanel):
 			plugin_info_dependent_save.close()
 		except Exception as e:
 			nuke.message("Submission files cannot be saved to: %s. Press OK to cancel." % (Parent_Dir))
-			print e
+			print(e)
 			return None
 
 	def submit_to_deadline_dependent(self):
@@ -684,7 +684,7 @@ class Nuke_to_PSD_SubmitPanel(nukescripts.PythonPanel):
 		try:
 			result, jobid, out = Deadline_Command_Access.Submit_Deadline_Job(self.job_info_file_dependent, self.plugin_info_file_dependent)	
 			if result == True:
-				print result, jobid, out
+				print(result, jobid, out)
 		except:
 			raise
 

@@ -1,5 +1,5 @@
 import os
-if os.environ.has_key("AW_GLOBAL_SYSTEMS"):
+if "AW_GLOBAL_SYSTEMS" in os.environ:
 	if not os.environ["AW_GLOBAL_SYSTEMS"] in os.sys.path:
 		os.sys.path.append(os.environ["AW_GLOBAL_SYSTEMS"])
 from Environment_Access import System_Settings
@@ -16,15 +16,15 @@ class Add_sRGB_Preview_Tools(object):
 		# Build path to sRGB Photoshop LUT...
 		try:
 			LUT = 'Nuke_Round_Trip.3dl'
-			print LUT
+			print(LUT)
 			LUT_DIR = System_Settings.LUT_FILES
-			print LUT_DIR
+			print(LUT_DIR)
 			LUT_PATH = os.path.join(LUT_DIR, LUT)
-			print LUT_PATH
+			print(LUT_PATH)
 			self.PATH = self.filenameFix(LUT_PATH)
-			print 'self.PATH ---> ', self.PATH
+			print('self.PATH ---> ', self.PATH)
 		except:
-			print "ERROR: Cannot find path to LUT file! Exiting now."
+			print("ERROR: Cannot find path to LUT file! Exiting now.")
 			nuke.message('ERROR: Cannot find path to LUT file!\nExiting now.')
 			return
 

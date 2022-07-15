@@ -8,7 +8,7 @@ import os
 import errno
 import shutil
 import socket
-import tag_data_file
+from . import tag_data_file
 # Rename the imported utils class from the tag_data_file...
 TagsFileUtils = tag_data_file.TagsFileUtils
 # Make a global variable for self.args_file_path in the main module.
@@ -45,7 +45,7 @@ class TagImages(object):
 					return EXECUTABLE
 				self.EXECUTABLE = get_exiftool_executable()
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return	
 		# Test for MacOS location of exiftool executable...
@@ -54,12 +54,12 @@ class TagImages(object):
 			# If I'm at home testing, this is the binary location... Also would be for a local Mac OS X system - just wouldn't need the home_dir test, of course...
 			if home_dir == "/Users/richbobo":			
 				if os.path.exists('/usr/local/bin/exiftool'):
-					print 'Found exiftool at /usr/local/bin/exiftool'
+					print('Found exiftool at /usr/local/bin/exiftool')
 			elif home_dir == "/Users/rbobo":			
 				if os.path.exists('/usr/local/bin/exiftool'):
-					print 'Found exiftool at /usr/local/bin/exiftool'
+					print('Found exiftool at /usr/local/bin/exiftool')
 			else:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 
@@ -90,7 +90,7 @@ class TagImages(object):
 			#print "Args file saved to: ", self.args_file_path
 			pass
 		else:
-			print "ERROR: Tags file not saved!"
+			print("ERROR: Tags file not saved!")
 			if nuke.GUI:	
 				nuke.critical("Tags file not saved!\n Something went wrong with the image metadata tagging!")
 			return	
@@ -172,22 +172,22 @@ class TagImages(object):
 			home_dir = os.environ.get('HOMEPATH')
 			# Operates on a single frame. This works well on the farm.
 			exec_string = self.EXECUTABLE + ' -@ ' + self.args_file_path + " " + self.current_frame_path
-			print 'exec_string ---------->', exec_string
+			print('exec_string ---------->', exec_string)
 		elif os.name == 'posix':
 			home_dir = os.environ.get('HOME')
 			# If I'm at home testing, this is the binary location... Also would be for a local Mac OS X system - just wouldn't need the home_dir test, of course...
 			if home_dir == "/Users/richbobo":
 				exec_string = "/usr/local/bin/exiftool -@ " + self.args_file_path + " " + self.current_frame_path
-				print 'exec_string ---------->', exec_string
+				print('exec_string ---------->', exec_string)
 			else:
 				# Operates on a single frame. This works well on the farm.
 				exec_string = 'exiftool -@ ' + self.args_file_path + " " + self.current_frame_path
-				print 'exec_string ---------->', exec_string
+				print('exec_string ---------->', exec_string)
 		# Run the exiftool command on the rendered files, with arguments supplied by self.args_file_path...
 		try:
 			os.system(exec_string)
 		except:
-			print "ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!"
+			print("ERROR: Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			if nuke.GUI:	
 				nuke.critical("Metadata Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			return
@@ -198,7 +198,7 @@ class TagImages(object):
 				os.remove(dup_frame)
 				# Check to see if we removed the file...And, if not....
 				if os.path.isfile(dup_frame):
-					print "INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself..."
+					print("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					if nuke.GUI:	
 						nuke.message("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					return
@@ -221,13 +221,13 @@ class TagImages(object):
 			else:
 				try:
 					os.makedirs(self.dir_to_create)
-				except OSError, e:
+				except OSError as e:
 					if e.errno != errno.EEXIST:
 						raise
 				if os.path.isdir(self.dir_to_create):
-					print "Created output directory: %s " % (self.dir_to_create)
+					print("Created output directory: %s " % (self.dir_to_create))
 				else:
-					print "ERROR: Directory %s cannot be created." % (self.dir_to_create)
+					print("ERROR: Directory %s cannot be created." % (self.dir_to_create))
 					if nuke.GUI:
 						nuke.message("Directory cannot be created. Press OK to cancel." % (self.dir_to_create))		
 			# Build pieces for new frame file path...

@@ -30,7 +30,7 @@ def run_it():
     GroupNodeKnobs = GroupNode.allKnobs()
 
     ConnectedNode = _input_check()
-    print ConnectedNode
+    print(ConnectedNode)
     #----------------------------------------------------------------------
     #                 LAYER DETECTION
     #----------------------------------------------------------------------
@@ -69,9 +69,9 @@ def run_it():
         try:
             GroupNode.removeKnob(Knobs[knobname])
         except ValueError:
-            print 'Knob %s could not be removed...' % knobname
+            print('Knob %s could not be removed...' % knobname)
         except KeyError:
-            print 'Knob %s could not be removed...' % knobname    
+            print('Knob %s could not be removed...' % knobname)    
 
     # Also delete these additional knobs, so they don't multiply like rabbits... Removed in inverse creation order!
     more_knobs_to_remove = ['do_it2', 'press_the_button', 'newline5', 'icc_profile2', 'exr_consolidate2', 'filetype2', 'dest_dir2', 'step_three', 'newline2', 'invert_selection', 'select_all']
@@ -79,9 +79,9 @@ def run_it():
         try:
             GroupNode.removeKnob(Knobs[knobname])
         except ValueError:
-            print 'Knob %s could not be removed...' % knobname
+            print('Knob %s could not be removed...' % knobname)
         except KeyError:
-            print 'Knob %s could not be removed...' % knobname
+            print('Knob %s could not be removed...' % knobname)
 
     #----------------------------------------------------------------------
     #            ADD KNOBS
@@ -154,7 +154,7 @@ invertSelection_checkbox_knobs()
                 Knob.setFlag(nuke.STARTLINE)
                 # Keep a list of all the created knobs for re-use...
                 checkboxKnobs.append(Knob)
-                print 'checkboxKnobs -->', checkboxKnobs
+                print('checkboxKnobs -->', checkboxKnobs)
     except NameError:
         nuke.message("No image channels found.")
 

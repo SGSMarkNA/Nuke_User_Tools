@@ -101,7 +101,7 @@ def knobChanged():
 	Knob = nuke.thisKnob()
 
 	try:
-		if Node.knobs().has_key('ICC_knob'):
+		if 'ICC_knob' in Node.knobs():
 			# NOTE: I added this sanity check because deleting a Write node via nuke.delete() can trigger the knobChanged callback after the node is already gone,
 			# resulting in a ValueError when the knob variable names are assigned...
 
@@ -135,7 +135,7 @@ def knobChanged():
 								Node['label'].setValue('ICC Profile: ' + ICC_Profile_Name)
 							elif Node.knob('file_type').value() == 'exr':
 								Node.knob('ICC_knob').setValue('Empty')
-								print 'ERROR:\nTurning Off ICC Profile tagging!\n\nEXR file format not supported.\nRenders will fail on the render farm.'
+								print('ERROR:\nTurning Off ICC Profile tagging!\n\nEXR file format not supported.\nRenders will fail on the render farm.')
 								if nuke.GUI:
 									nuke.critical('\nTurning Off ICC Profile tagging!\n\nEXR file format not supported.\nRenders will fail on the render farm.')
 						else:
@@ -154,7 +154,7 @@ def knobChanged():
 					elif Knob == FILE_TYPE:
 						if Node.knob('file_type').value() == 'exr' and ICC_Profile_Name != 'Empty':
 							Node.knob('ICC_knob').setValue('Empty')
-							print 'ERROR:\nTurning Off ICC Profile tagging!\n\nEXR file format not supported.\nRenders will fail on the render farm.'
+							print('ERROR:\nTurning Off ICC Profile tagging!\n\nEXR file format not supported.\nRenders will fail on the render farm.')
 							if nuke.GUI:
 								nuke.critical('\nTurning Off ICC Profile tagging!\n\nEXR file format not supported.\nRenders will fail on the render farm.')
 	except ValueError:
@@ -179,7 +179,7 @@ Write_ICC_profile.Write_ICC_Profile().copy_ICC_profile_to_image()'''
 		if NodeNameToCompare in Node.name() and PyKnob.value() == ValueToCompare:
 			PyKnob.setValue('')
 			ICCKnob.setValue('sRGB_profile_from_Photoshop.icc')
-			print "Converted old style sRGB Write node."
+			print("Converted old style sRGB Write node.")
 	except Exception:
 		# Something went wrong, so we should just leave things as they are, to preserve any existing functionality...
 		pass

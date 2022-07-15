@@ -20,9 +20,9 @@ except Exception:
 try:
 	# Import the main module for adding a Metadata tab to Write nodes and running code...
 	# Callbacks to run the functions are added below..
-	from WriteNodeMetadata import WriteNodeMetadata
+	from .WriteNodeMetadata import WriteNodeMetadata
 except Exception as e:
-	print "Can't import WriteNodeMetadata because... ", e
+	print("Can't import WriteNodeMetadata because... ", e)
 #except Exception:
 	#pass
 
@@ -37,7 +37,7 @@ try:
 	nuke.addAfterFrameRender(WriteNodeMetadata.Run_IPTC_Code, nodeClass = 'Write')
 	nuke.addAfterFrameRender(WriteNodeMetadata.Run_Hyundai_Folder_Restructuring, nodeClass = 'Write')
 except Exception as e:
-	print "Did not add WriteNodeMetadata callbacks because... ", e
+	print("Did not add WriteNodeMetadata callbacks because... ", e)
 #except Exception:
 	#pass
 

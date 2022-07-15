@@ -72,7 +72,7 @@ def _cleanup_nodes():
             else:
                 nuke.delete(Node)      
     except ValueError:
-        print 'Value Error: Check in Group for nodes that were not deleted...'        
+        print('Value Error: Check in Group for nodes that were not deleted...')        
 
 def _write_layers_to_separate_files(ConnectedNode, destDir, FileType=''):
     ''''''

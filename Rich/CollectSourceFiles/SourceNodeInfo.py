@@ -221,7 +221,7 @@ class NodeInfo(object):
 		                   self.lastFile]        
 
 		# Combine the key and value lists as a paired sequence...
-		self.zipped = zip(self.InfoKeys, self.InfoValues)
+		self.zipped = list(zip(self.InfoKeys, self.InfoValues))
 
 		# Populate the SourceInfoDict dictionary with the keys and values from the zipped sequence...
 		for Key, Value in self.zipped:

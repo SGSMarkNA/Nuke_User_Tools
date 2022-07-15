@@ -3,6 +3,7 @@ import nukescripts
 import nuke
 import TagImages.TagImages
 import Nodes_Master_Control_Panel.MasterControlNodes
+import importlib
 
 Major = nuke.NUKE_VERSION_MAJOR 
 #Release = nuke.NUKE_VERSION_RELEASE
@@ -205,7 +206,7 @@ def Create_Gamma_2point2_for_sRGB_alpha():
 #   shift_tooltip:Automatically builds a vehicle comp from the selected EXR Read node.\nProvides the ability to associate existing VRay layer names and creates a comp for an exterior or interior image sequence.
 def exr_CompBuilder(option=1):
 	import CompBuilder.CompBuilder
-	reload(CompBuilder.CompBuilder)
+	importlib.reload(CompBuilder.CompBuilder)
 	CompBuilder.CompBuilder.exr_CompBuilder(option)
 
 
@@ -433,7 +434,7 @@ def MultiSubmitterPanel():
 ##   tooltip:Create a new EXR image using only the selected layers.
 def ExportSelectedEXRLayersGroup():
 	path = os.environ["AW_USER_TOOLS"] + "/Nuke_User_Tools/Rich/EXR_Layer_Exporter/Layer_Exporter_GROUP.nk"
-	print path
+	print(path)
 	nuke.nodePaste(path)
 
 
@@ -693,7 +694,7 @@ def addLFPanel():
 			myPanel = Localize_Read_Nodes_Panel.LocalizeFilesPanel_Nuke10.LocalizeFilesPanel_Nuke10()
 			return myPanel.addToPane()
 		except:
-			print "NOPE, couldn't find it...."
+			print("NOPE, couldn't find it....")
 			pass
 
 # Menu_Item

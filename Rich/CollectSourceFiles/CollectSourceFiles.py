@@ -6,9 +6,9 @@ import re
 import glob
 import subprocess
 #------------------------------------------------------------
-from SourceNodeInfo import NodeInfo
+from .SourceNodeInfo import NodeInfo
 #from SourceNodePathRepair import SourceNodePathRepair
-import PathRepairPanel
+from . import PathRepairPanel
 ## Need this to find the Node_Tools folder, which is relative to this file...
 NodeToolsDir = os.path.realpath(os.path.dirname(__file__) + '/..') + '/Node_Tools'
 os.sys.path.append(NodeToolsDir)
@@ -196,9 +196,9 @@ class CollectSourceFiles(object):
 			shutil.copy2(self.fileNodePath, self.newMovieFilePath)
 			task.setMessage('Copying %s' % self.Filename)
 			if (os.path.exists(self.newMovieFilePath)):
-				print self.newMovieFilePath + ' movie file COPIED...'
+				print(self.newMovieFilePath + ' movie file COPIED...')
 			else:
-				print 'ERROR: ' + self.newMovieFilePath + ' movie file MISSING!'
+				print('ERROR: ' + self.newMovieFilePath + ' movie file MISSING!')
 
 	def _relink_movie_file(self, sourceNode):
 		# Store the original raw contents of the source file knob in the label knob. We might need to know where
@@ -227,9 +227,9 @@ class CollectSourceFiles(object):
 			# Update the progress bar message...
 			task.setMessage('Copying %s' % self.Filename)
 			if (os.path.exists(self.newSingleFrameFilePath)):
-				print self.newSingleFrameFilePath + ' single frame file COPIED...'
+				print(self.newSingleFrameFilePath + ' single frame file COPIED...')
 			else:
-				print 'ERROR: ' + self.newSingleFrameFilePath + ' single frame file MISSING!'
+				print('ERROR: ' + self.newSingleFrameFilePath + ' single frame file MISSING!')
 
 	def _relink_single_frame_file(self, sourceNode):
 		# Store the original raw contents of the source file knob in the label knob. We might need to know where
@@ -257,9 +257,9 @@ class CollectSourceFiles(object):
 			shutil.copy2(self.fileNodePath, self.newSingleSourceFilePath)
 			task.setMessage('Copying %s' % self.Filename)
 			if (os.path.exists(self.newSingleSourceFilePath)):
-				print self.newSingleSourceFilePath + ' single source file COPIED...'
+				print(self.newSingleSourceFilePath + ' single source file COPIED...')
 			else:
-				print 'ERROR: ' + self.newSingleSourceFilePath + ' single source file MISSING!'
+				print('ERROR: ' + self.newSingleSourceFilePath + ' single source file MISSING!')
 
 	def _relink_single_source_file(self, sourceNode):
 		# Store the original raw contents of the source file knob in the label knob. We might need to know where
@@ -383,15 +383,15 @@ class CollectSourceFiles(object):
 				#print ''
 				#print 'Duplicate directory created --> ' + self.newDir
 			except Exception as e:
-				print e
-				print "Cannot make directory " + self.newDir
+				print(e)
+				print("Cannot make directory " + self.newDir)
 				raise
 		else:
 			try:
 				os.mkdir(self.newDir)
 				#print 'Created --> ' + self.newDir
 			except Exception as e:
-				print "Cannot make directory " + self.newDir
+				print("Cannot make directory " + self.newDir)
 				raise
 
 		# This version just copies into the existing directory if it's the same name...
@@ -453,8 +453,8 @@ class CollectSourceFiles(object):
 
 						self.newScriptPath = self.targetPath + self.scriptName
 						nuke.scriptSaveAs(self.newScriptPath)
-						print ''
-						print 'Saved new script to ------>', self.newScriptPath
+						print('')
+						print('Saved new script to ------>', self.newScriptPath)
 						print ('Collect Source Files COMPLETE.')
 						nuke.message('Collect Source Files COMPLETE.')
 			else:
@@ -477,8 +477,8 @@ class CollectSourceFiles(object):
 
 							self.newScriptPath = self.targetPath + self.scriptName
 							nuke.scriptSaveAs(self.newScriptPath)
-							print ''
-							print 'Saved new script to ------>', self.newScriptPath
+							print('')
+							print('Saved new script to ------>', self.newScriptPath)
 							print ('Collect Source Files COMPLETE.')
 							nuke.message('Collect Source Files COMPLETE.')
 				else:
@@ -505,8 +505,8 @@ class CollectSourceFiles(object):
 			if sourceNode.hasError():
 				# Skip copying and relinking this sourceNode, it still .hasError()...
 				#print 'sourceNode ------>>>>', sourceNode.name(), sourceNode.hasError()
-				print ''
-				print 'SKIPPING sourceNode ' + sourceNode.name()
+				print('')
+				print('SKIPPING sourceNode ' + sourceNode.name())
 				#pass			
 			else:
 				if self.mainTask.isCancelled():

@@ -7,7 +7,7 @@ import nuke
 ####### TO DO: Integrate nuke script picking into GUI...
 def select_nuke_scripts():
 	NukeScriptsList = nuke.getFilename('Select Multiple Nuke Files to be Rendered.', pattern='*.nk', type='select', multiple=True)
-	print NukeScriptsList
+	print(NukeScriptsList)
 	return NukeScriptsList
 ####### FOR TESTING...
 ##NukeScriptsList = ['R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x001.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x002.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x003.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x004.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x005.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x006.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x007.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x008.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x009.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x010.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x011.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x012.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x013.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x014.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x015.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x016.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x017.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x018.nk', 'R:/Jobs/SGS/Archive/Archive_2016/SGSC-16-004_Bud_Light_Sample/work/budLight/_common/2d/_workarea/Old/Bud_Light_Comps_v001_x019.nk']
@@ -98,8 +98,8 @@ def write_deadline_submit_file():
 	# Write the Submit.py file...
 	try:
 		os.makedirs(Submit_Dir)
-		print "Created Deadline_Submit Directory: %s " % (Submit_Dir)
-	except OSError, e:
+		print("Created Deadline_Submit Directory: %s " % (Submit_Dir))
+	except OSError as e:
 		if e.errno != errno.EEXIST:
 			raise
 	try:
@@ -110,7 +110,7 @@ def write_deadline_submit_file():
 		submit_save.close()
 	except Exception as e:
 		nuke.message("Submission file cannot be saved to: %s. Press OK to cancel." % (Submit_Script))
-		print e
+		print(e)
 		return None
 
 ## Write the Script.py file...	
@@ -126,11 +126,11 @@ def read_deadline_submit_file():
 			submit_read.close()
 		except Exception as e:
 			nuke.message("File cannot be read:\n\n Press OK to continue.")
-			print e
+			print(e)
 			submit_read.close()
 		finally:
-			print "Submit file loaded successfully."
-			print submit_read
+			print("Submit file loaded successfully.")
+			print(submit_read)
 			return submit_read	
 	else:
 		return None
@@ -164,8 +164,8 @@ def write_deadline_execute_file():
 	# Write the Execute.py file...
 	try:
 		os.makedirs(Submit_Dir)
-		print "Created Deadline_Submit Directory: %s " % (Submit_Dir)
-	except OSError, e:
+		print("Created Deadline_Submit Directory: %s " % (Submit_Dir))
+	except OSError as e:
 		if e.errno != errno.EEXIST:
 			raise
 	try:
@@ -198,7 +198,7 @@ def write_deadline_execute_file():
 		execute_save.close()
 	except Exception as e:
 		nuke.message("Execute file cannot be saved to: %s. Press OK to cancel." % (Execute_Script))
-		print e
+		print(e)
 		return None
 
 ## Write the Execute.py file...	

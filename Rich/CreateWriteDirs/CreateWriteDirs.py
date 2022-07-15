@@ -11,27 +11,27 @@ def Create_Write_Dirs_For_All_Write_Nodes():
 			name = nuke.Node.name(w)
 			file = nuke.filename(w)
 			if w['disable'].value() == True:
-				print "%s is disabled, skipping..." % (name)
+				print("%s is disabled, skipping..." % (name))
 				skipped.append("%s -- disabled" % (name))
 			elif not w.inputs():
-				print "%s has no input, skipping..." % (name)
+				print("%s has no input, skipping..." % (name))
 				skipped.append("%s -- no input connected" % (name))
 			elif not file:
-				print "%s has an empty output path, skipping..." % (name)
+				print("%s has an empty output path, skipping..." % (name))
 				skipped.append("%s -- empty output path" % (name))
 			elif (os.path.isdir(os.path.dirname(file))):
-				print "%s path exists, skipping..." %(name)
+				print("%s path exists, skipping..." %(name))
 				skipped.append("%s -- directory exists" % (name))
 			else:
 				dir = os.path.dirname(file)
 				osdir = nuke.callbacks.filenameFilter(dir)
 				try:
 					os.makedirs(osdir)
-				except OSError, e:
+				except OSError as e:
 					if e.errno != errno.EEXIST:
 						raise
 				finally:
-					print "%s - created output directory:\n %s" % (name,osdir)
+					print("%s - created output directory:\n %s" % (name,osdir))
 					created.append((w.name(), osdir))
 		result = []
 		if created:

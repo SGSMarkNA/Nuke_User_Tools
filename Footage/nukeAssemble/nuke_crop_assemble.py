@@ -59,7 +59,7 @@ def findEXRS(dir):
 
 def nukeStuff(dir):
     if dimentions == [0,0]:
-        print "WARNING!!! There are no cropped files here"
+        print("WARNING!!! There are no cropped files here")
         return
     outFileName = figureOutName(dir)
     ### Set format
@@ -85,7 +85,7 @@ def nukeStuff(dir):
         new_trans['translate'].setValue(translate) 
         new_trans.connectInput(0, reformat)
         merges.append(new_trans)
-        print "merges", len(merges)
+        print("merges", len(merges))
     mainMerge = nuke.createNode('Merge2')
     mainMerge['also_merge'].setValue('all')
     mainMerge['metainput'].setValue('All')

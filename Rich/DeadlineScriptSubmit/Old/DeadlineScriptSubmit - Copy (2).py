@@ -97,8 +97,8 @@ def write_deadline_submit_file():
 	# Write the Submit.py file...
 	try:
 		os.makedirs(Submit_Dir)
-		print "Created Deadline_Submit Directory: %s " % (Submit_Dir)
-	except OSError, e:
+		print("Created Deadline_Submit Directory: %s " % (Submit_Dir))
+	except OSError as e:
 		if e.errno != errno.EEXIST:
 			raise
 	try:
@@ -109,7 +109,7 @@ def write_deadline_submit_file():
 		submit_save.close()
 	except Exception as e:
 		nuke.message("Submission file cannot be saved to: %s. Press OK to cancel." % (Submit_Script))
-		print e
+		print(e)
 		return None
 
 ## Write the Script.py file...	
@@ -125,11 +125,11 @@ def read_deadline_submit_file():
 			submit_read.close()
 		except Exception as e:
 			nuke.message("File cannot be read:\n\n Press OK to continue.")
-			print e
+			print(e)
 			submit_read.close()
 		finally:
-			print "Submit file loaded successfully."
-			print submit_read
+			print("Submit file loaded successfully.")
+			print(submit_read)
 			return submit_read	
 	else:
 		return None
@@ -146,8 +146,8 @@ def write_deadline_execute_file():
 	# Write the Execute.py file...
 	try:
 		os.makedirs(Submit_Dir)
-		print "Created Deadline_Submit Directory: %s " % (Submit_Dir)
-	except OSError, e:
+		print("Created Deadline_Submit Directory: %s " % (Submit_Dir))
+	except OSError as e:
 		if e.errno != errno.EEXIST:
 			raise
 	try:
@@ -158,7 +158,7 @@ def write_deadline_execute_file():
 		execute_save.close()
 	except Exception as e:
 		nuke.message("Execute file cannot be saved to: %s. Press OK to cancel." % (Execute_Script))
-		print e
+		print(e)
 		return None
 
 ## Write the Execute.py file...	

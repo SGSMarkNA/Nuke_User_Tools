@@ -135,7 +135,7 @@ class RenderViewsSelectorPanel( nukescripts.PythonPanel ):
 		#-----------------------------------------------------------------------------------
 		self.StartsWithString = self.partStartsWith_knob.value()
 		self.StartsWithString = self.StartsWithString.split()
-		print 'self.StartsWithString ----> ', self.StartsWithString
+		print('self.StartsWithString ----> ', self.StartsWithString)
 
 		# For clearing filters...
 		self.StartsWithList = [self.StartsWithString]

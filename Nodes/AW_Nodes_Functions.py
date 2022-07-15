@@ -1,4 +1,5 @@
 import nuke
+import importlib
 
 # Menu_Item
 #  [menu_item]
@@ -13,7 +14,7 @@ import nuke
 #   arg:"v"
 def Aline_Nodes(direction):
 	import Nuke_Scripts.NodeGraphFns.transforms
-	reload(Nuke_Scripts.NodeGraphFns.transforms)
+	importlib.reload(Nuke_Scripts.NodeGraphFns.transforms)
 	undo = nuke.Undo()
 	undo.begin()
 	Nuke_Scripts.NodeGraphFns.transforms.aline_Avarage(direction=direction)
@@ -25,7 +26,7 @@ def Aline_Nodes(direction):
 #   tooltip:Scale The Selected Nodes From Collective Center
 def aw_nodes_scale_From_Center():
 	import Nuke_Scripts.NodeGraphFns.transforms
-	reload(Nuke_Scripts.NodeGraphFns.transforms)
+	importlib.reload(Nuke_Scripts.NodeGraphFns.transforms)
 	Nuke_Scripts.NodeGraphFns.transforms.scale_from_center()
 
 # Menu_Item
@@ -34,7 +35,7 @@ def aw_nodes_scale_From_Center():
 #   tooltip:Declone Selected Nodes
 def Multi_Node_Declone():
 	import Nuke_Scripts.NodeFns.declone
-	reload(Nuke_Scripts.NodeFns.declone)
+	importlib.reload(Nuke_Scripts.NodeFns.declone)
 	Nuke_Scripts.NodeFns.declone.multi_declone()
 
 # Menu_Item
@@ -42,7 +43,7 @@ def Multi_Node_Declone():
 #   label:Multi Input Connect
 def Multi_Input_connect():
 	import Nuke_Scripts.NodeFns.connections
-	reload(Nuke_Scripts.NodeFns.connections)
+	importlib.reload(Nuke_Scripts.NodeFns.connections)
 	Nuke_Scripts.NodeFns.connections.multi_input_connect()
 
 # Menu_Item
@@ -50,7 +51,7 @@ def Multi_Input_connect():
 #   label:Multi Output Connect
 def Multi_Output_connect():
 	import Nuke_Scripts.NodeFns.connections
-	reload(Nuke_Scripts.NodeFns.connections)
+	importlib.reload(Nuke_Scripts.NodeFns.connections)
 	Nuke_Scripts.NodeFns.connections.multi_output_connect()
 
 	

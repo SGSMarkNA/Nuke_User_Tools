@@ -1,4 +1,4 @@
-import thread
+import _thread
 import threading
 
 
@@ -9,7 +9,7 @@ import threading
 def _execute_ICC_Code(Knob):
 	# Main function...
 	Knob.execute()
-	print Knob.name() + ' executing...'
+	print(Knob.name() + ' executing...')
 
 def _thread_ICC_Code():
 	# Thread callable version...
@@ -38,7 +38,7 @@ def _do_reload(self, node):
 
 def _do_reload_with_thread(self, node):
 	nuke.executeInMainThread(self._do_reload, (node,))
-	print node.name() + ' reloaded'
+	print(node.name() + ' reloaded')
 
 def _reload_all_footage(self):
 	'''Runs the threaded function, _do_reload_with_thread, on a list of nodes (gathered inside this method)...'''
@@ -48,5 +48,5 @@ def _reload_all_footage(self):
 		# Push the reload button on all of the selected nodes.
 		# Do it as a thread, though, because Nuke complains saying,
 		# "I'm already executing something..."
-		thread.start_new_thread(self._do_reload_with_thread, (node,))
+		_thread.start_new_thread(self._do_reload_with_thread, (node,))
 ##---------------------------------------------------------------------------------

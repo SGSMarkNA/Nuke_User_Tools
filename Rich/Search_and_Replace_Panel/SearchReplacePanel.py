@@ -63,7 +63,7 @@ class SearchReplacePanel( nukescripts.PythonPanel ):
 
     def loadHistory(self):
         '''load history file to update knob'''
-        print 'loading search&replace history'
+        print('loading search&replace history')
         # GET EXISTING HISTORY
         if not os.path.isfile(self.historyFile):
             return []
@@ -105,7 +105,7 @@ class SearchReplacePanel( nukescripts.PythonPanel ):
                 ElementTree.SubElement(root, 'ITEM', attrib=i)
             tree = ElementTree.ElementTree(root)
             # DUMP XML TREE
-            print 'WRITING TO:', self.historyFile
+            print('WRITING TO:', self.historyFile)
             tree.write(self.historyFile)
 
     def recursiveFindNodes(self, nodeClass, startNode):
@@ -287,7 +287,7 @@ class SearchReplacePanel( nukescripts.PythonPanel ):
         elif knob is self.replace and self.matches is not None:
             if nuke.ask("Really replace all the listed file paths?"):
                 # PERFORM REPLACE AND UPDATE HISTORY
-                print 'replacing'
+                print('replacing')
                 for k in self.matches:
                     k.setValue(self.__doReplace( k ))
                 # Update the search history...

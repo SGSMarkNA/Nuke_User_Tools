@@ -74,7 +74,7 @@ class RestaurantRandomizer(QWidget):
 
 		##----------------------------------------------------------------------##
 		# Add an AW logo image...
-		print __file__
+		print(__file__)
 		if os.name == 'nt':
 			filepath = __file__
 			parent_dir = os.path.abspath(os.path.join(filepath, os.pardir))
@@ -83,7 +83,7 @@ class RestaurantRandomizer(QWidget):
 			filepath = __file__
 			parent_dir = os.path.abspath(os.path.join(filepath, os.pardir))
 			self.curr_dir = parent_dir + '/' + 'spaceLOGOS_100px.png'
-		print self.curr_dir
+		print(self.curr_dir)
 			
 		self.pixmap = QPixmap(str(self.curr_dir))
 		self.logo = QLabel(self)
@@ -134,13 +134,13 @@ class RestaurantRandomizer(QWidget):
 	@Slot()
 	def show_result(self):
 		''' Show the constructed greeting. '''
-		self.suggestion = random.choice(self.choicesDict.keys())
+		self.suggestion = random.choice(list(self.choicesDict.keys()))
 
 		self.URL.setText(self.choicesDict.get(self.suggestion))
 
 		self.empty_row.setText('')
 
-		print("Today, we will eat " + self.suggestion + " for lunch!")
+		print(("Today, we will eat " + self.suggestion + " for lunch!"))
 
 
 

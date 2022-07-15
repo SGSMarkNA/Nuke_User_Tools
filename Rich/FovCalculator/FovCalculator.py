@@ -17,7 +17,7 @@
 #  nukescripts.registerPanel( 'com.ohufx.FovCalculator', addFovCalc )
 ##################
 
-from __future__ import with_statement
+
 import math
 import nuke
 import nukescripts
@@ -59,7 +59,7 @@ class FovCalculator( nukescripts.PythonPanel ):
         self.focal.setRange( 5, 200 )
         self.focal.setDefaultValue( [50] )
         div1 = nuke.Text_Knob('')
-        self.apNames = self.apDict.keys()
+        self.apNames = list(self.apDict.keys())
         self.apNames.sort()
         self.apNames.insert( 0, 'custom')
         self.apList = nuke.Enumeration_Knob( 'ap', 'aperture @Grid.png', self.apNames )
@@ -149,7 +149,7 @@ class FovCalculator( nukescripts.PythonPanel ):
                     self.vaperture.value() ))
 
     def driveApList( self ):
-        for k, v in self.apDict.iteritems():
+        for k, v in self.apDict.items():
             if v == [self.haperture.value(), self.vaperture.value()]:
                 # PRESET FOUND
                 self.apList.setValue( k )

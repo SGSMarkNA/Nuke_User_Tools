@@ -36,7 +36,7 @@ class Write_ICC_Profile(object):
 				self.ICC_FilePath = get_ICC_profile_path()
 				#print 'self.ICC_FilePath ---------->', self.ICC_FilePath
 			except:
-				print "ERROR: Cannot find path to ICC Profile! Exiting now."
+				print("ERROR: Cannot find path to ICC Profile! Exiting now.")
 				nuke.message('ERROR: Cannot find path to ICC Profile!\nExiting now.')
 				return
 		elif os.name == 'posix':
@@ -44,15 +44,15 @@ class Write_ICC_Profile(object):
 			if home_dir == "/Users/richbobo":			
 				if os.path.exists('/Users/richbobo/Dropbox/CODE/aw_LIVE_CODE/Git_Live_Code/Nuke/ICC_Profiles/sRGB_profile_from_Photoshop.icc'):
 					self.ICC_FilePath = '/Users/richbobo/Dropbox/CODE/aw_LIVE_CODE/Git_Live_Code/Nuke/ICC_Profiles/sRGB_profile_from_Photoshop.icc'
-					print self.ICC_FilePath
+					print(self.ICC_FilePath)
 			elif home_dir == "/Users/rbobo":
 				if os.path.exists('/Volumes/app_config/Git_Live_Code/Nuke/ICC_Profiles/sRGB_profile_from_Photoshop.icc'):
 					self.ICC_FilePath = '/Volumes/app_config/Git_Live_Code/Nuke/ICC_Profiles/sRGB_profile_from_Photoshop.icc'				
 				#if os.path.exists('/Users/rbobo/Dropbox/CODE/aw_LIVE_CODE/Git_Live_Code/Nuke/ICC_Profiles/sRGB_profile_from_Photoshop.icc'):
 					#self.ICC_FilePath = '/Users/rbobo/Dropbox/CODE/aw_LIVE_CODE/Git_Live_Code/Nuke/ICC_Profiles/sRGB_profile_from_Photoshop.icc'
-					print self.ICC_FilePath
+					print(self.ICC_FilePath)
 			else:
-				print "ERROR: Cannot find path to sRGB_profile_from_Photoshop.icc! Exiting now."
+				print("ERROR: Cannot find path to sRGB_profile_from_Photoshop.icc! Exiting now.")
 				nuke.message('ERROR: Cannot find path to sRGB_profile_from_Photoshop.icc!\nExiting now.')
 				return			
 
@@ -68,7 +68,7 @@ class Write_ICC_Profile(object):
 					return EXECUTABLE
 				self.EXECUTABLE = get_exiftool_executable()
 			except:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return	
 		# Test for MacOS location of exiftool executable...
@@ -77,12 +77,12 @@ class Write_ICC_Profile(object):
 			# If I'm at home testing, this is the binary location... Also would be for a local Mac OS X system - just wouldn't need the home_dir test, of course...
 			if home_dir == "/Users/richbobo":			
 				if os.path.exists('/usr/local/bin/exiftool'):
-					print 'Found exiftool at /usr/local/bin/exiftool'
+					print('Found exiftool at /usr/local/bin/exiftool')
 			elif home_dir == "/Users/rbobo":			
 				if os.path.exists('/usr/local/bin/exiftool'):
-					print 'Found exiftool at /usr/local/bin/exiftool'
+					print('Found exiftool at /usr/local/bin/exiftool')
 			else:
-				print "ERROR: Cannot find path to exiftool executable! Exiting now."
+				print("ERROR: Cannot find path to exiftool executable! Exiting now.")
 				nuke.message('ERROR: Cannot find path to exiftool executable!\nExiting now.')
 				return
 
@@ -97,22 +97,22 @@ class Write_ICC_Profile(object):
 			ARGS = '"' + '-icc_profile<=' + self.ICC_FilePath + '"'
 			#print 'ARGS ---------->', ARGS
 			exec_string = self.EXECUTABLE.strip('"') + ' ' + ARGS + ' ' + self.current_frame_path
-			print 'exec_string ---------->', exec_string
+			print('exec_string ---------->', exec_string)
 		elif os.name == 'posix':
 			home_dir = os.environ.get('HOME')
 			# If I'm at home testing, this is the binary location... Also would be for a local Mac OS X system - just wouldn't need the home_dir test, of course...
 			if home_dir == "/Users/richbobo":
 				exec_string = '/usr/local/bin/exiftool ' + '"-icc_profile<=' + self.ICC_FilePath + '"' + ' ' + self.current_frame_path
-				print 'exec_string ---------->', exec_string
+				print('exec_string ---------->', exec_string)
 			elif home_dir == "/Users/rbobo":
 				# Operates on a single frame. This works well on the farm.
 				exec_string = '/usr/local/bin/exiftool ' + '"-icc_profile<=' + self.ICC_FilePath + '"' + ' ' + self.current_frame_path
-				print 'This is the AW iMac exec_string -->', exec_string
+				print('This is the AW iMac exec_string -->', exec_string)
 		# Run the exiftool command on the rendered files, with arguments supplied by self.args_file_path...
 		try:
 			os.system(exec_string)
 		except:
-			print "ERROR: ICC Profile Tagging Failed!\n Something went wrong with the image metadata tagging!"
+			print("ERROR: ICC Profile Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			if nuke.GUI:	
 				nuke.critical("ICC Profile Tagging Failed!\n Something went wrong with the image metadata tagging!")
 			return
@@ -123,7 +123,7 @@ class Write_ICC_Profile(object):
 				os.remove(dup_frame)
 				# Check to see if we removed the file...And, if not....
 				if os.path.isfile(dup_frame):
-					print "INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself..."
+					print("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					if nuke.GUI:	
 						nuke.message("INFO: Tagging probably suceeded, but the removal of duplicate images failed.\n You will have to remove any images ending with _original, yourself...")
 					return

@@ -2,7 +2,7 @@ from . import USER_MODULES_NAMES,USER_MENUS,USER_TOOLS_MENU
 
 def find_User_Module_Name(function):
 	for name in function.__module__.split("."):
-		if name in USER_MENUS.keys():
+		if name in list(USER_MENUS.keys()):
 			return USER_MENUS[name]
 
 def make_Nice_Function_Name(function):

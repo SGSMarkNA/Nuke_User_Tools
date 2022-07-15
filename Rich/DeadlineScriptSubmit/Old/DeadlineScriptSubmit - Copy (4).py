@@ -7,7 +7,7 @@ import nuke
 ####### TO DO: Integrate nuke script picking into GUI...
 def select_nuke_scripts():
     NukeScriptsList = nuke.getFilename('Select Multiple Nuke Files to be Rendered.', pattern='*.nk', type='select', multiple=True)
-    print NukeScriptsList
+    print(NukeScriptsList)
     return NukeScriptsList
 
 #----------------------------------------------------------
@@ -101,8 +101,8 @@ def write_deadline_submit_file():
     # Write the Submit.py file...
     try:
         os.makedirs(Submit_Dir)
-        print "Created Deadline_Submit Directory: %s " % (Submit_Dir)
-    except OSError, e:
+        print("Created Deadline_Submit Directory: %s " % (Submit_Dir))
+    except OSError as e:
         if e.errno != errno.EEXIST:
             raise
     try:
@@ -113,7 +113,7 @@ def write_deadline_submit_file():
         submit_save.close()
     except Exception as e:
         nuke.message("Submission file cannot be saved to: %s. Press OK to cancel." % (Submit_Script))
-        print e
+        print(e)
         return None
 
 #----------------------------------------------------------
@@ -144,8 +144,8 @@ def write_deadline_execute_file():
     # Create and save the Execute.py file...
     try:
         os.makedirs(Submit_Dir)
-        print "Created Deadline_Submit Directory: %s " % (Submit_Dir)
-    except OSError, e:
+        print("Created Deadline_Submit Directory: %s " % (Submit_Dir))
+    except OSError as e:
         if e.errno != errno.EEXIST:
             raise
     try:
@@ -182,7 +182,7 @@ def write_deadline_execute_file():
         execute_save.close()
     except Exception as e:
         nuke.message("Execute file cannot be saved to: %s. Press OK to cancel." % (Execute_Script))
-        print e
+        print(e)
         return None
 
 

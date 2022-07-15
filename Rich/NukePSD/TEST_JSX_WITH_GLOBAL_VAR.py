@@ -16,7 +16,7 @@ process = subprocess.call(target, shell=True)
 
 # Start checking loop...
 while not os.path.exists(jsx_script_status_file):
-	print 'Checking...'
+	print('Checking...')
 	time.sleep(5)
 # File exists. Let's see if we can read it...
 if os.path.isfile(jsx_script_status_file):
@@ -24,9 +24,9 @@ if os.path.isfile(jsx_script_status_file):
 		with open(jsx_script_status_file, 'r') as data_read:
 			for line in data_read:
 				if "Complete." in line:
-					print line
+					print(line)
 	except:
-		print "Error: JSX Script Status File cannot be read!"
+		print("Error: JSX Script Status File cannot be read!")
 		data_read.close()
 
-print process
+print(process)

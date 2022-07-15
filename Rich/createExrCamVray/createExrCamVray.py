@@ -15,14 +15,14 @@ def createExrCamVray(node=None):
 	try:
 		node = nuke.selectedNode()
 	except ValueError:
-		print 'No Read node selected.'
+		print('No Read node selected.')
 		nuke.message('No Read node selected.')
 		return
 
 	mDat = node.metadata()
 	reqFields = ['exr/camera%s' % i for i in ('FocalLength', 'Aperture', 'Transform')]
 	if not set(reqFields).issubset(mDat):
-		print 'No metadata for camera found.'
+		print('No metadata for camera found.')
 		nuke.message('No metadata for camera found.')
 		return
 

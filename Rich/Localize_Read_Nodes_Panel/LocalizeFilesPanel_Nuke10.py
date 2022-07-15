@@ -5,7 +5,7 @@ import shutil
 import re
 import errno
 
-import thread
+import _thread
 
 from Node_Tools.Node_Tools import Node_Tools
 
@@ -296,7 +296,7 @@ class LocalizeFilesPanel_Nuke10(nukescripts.PythonPanel):
 
 	def _do_reload_with_thread(self, node):
 		nuke.executeInMainThread(self._do_reload, (node,))
-		print node.name() + ' reloaded'
+		print(node.name() + ' reloaded')
 
 	def _reload_all_footage(self):
 		'''Runs the threaded function, _do_reload_with_thread, on a list of nodes (gathered inside this method)...'''
@@ -306,7 +306,7 @@ class LocalizeFilesPanel_Nuke10(nukescripts.PythonPanel):
 			# Push the reload button on all of the selected nodes.
 			# Do it as a thread, though, because Nuke complains saying,
 			# "I'm already executing something..."
-			thread.start_new_thread(self._do_reload_with_thread, (node,))
+			_thread.start_new_thread(self._do_reload_with_thread, (node,))
 	#---------------------------------------------------------------------------------
 
 
@@ -332,7 +332,7 @@ class LocalizeFilesPanel_Nuke10(nukescripts.PythonPanel):
 				for node in self.ReadNodes:
 					node.knob("localizationPolicy").setValue("on")
 			else:
-				print "No Read Nodes Selected..."
+				print("No Read Nodes Selected...")
 				nuke.message("No Read Nodes Selected...")
 		# Set localizationPolicy knobs of the Read nodes in the self.ReadNodes list to "off"...
 		if knob is self.setCacheValueOff:
@@ -341,7 +341,7 @@ class LocalizeFilesPanel_Nuke10(nukescripts.PythonPanel):
 				for node in self.ReadNodes:
 					node.knob("localizationPolicy").setValue("off")
 			else:
-				print "No Read Nodes Selected..."
+				print("No Read Nodes Selected...")
 				nuke.message("No Read Nodes Selected...")
 		# Set localizationPolicy knobs of the Read nodes in the self.ReadNodes list to "auto" -- the default...
 		if knob is self.setCacheValueToAuto:
@@ -351,7 +351,7 @@ class LocalizeFilesPanel_Nuke10(nukescripts.PythonPanel):
 					for node in self.ReadNodes:
 						node.knob("localizationPolicy").setValue("auto")
 				else:
-					print "No Read Nodes Selected..."
+					print("No Read Nodes Selected...")
 					nuke.message("No Read Nodes Selected...")
 			else:
 				pass
