@@ -54,7 +54,7 @@ def LockImageToCamera():
 #-------------------------------------------------------------------
 # Menu_Item
 ##  [menu_item]
-##   parent_menus:Nuke/RCHIVING
+##   parent_menus:Nuke/ARCHIVING
 ##   label:Collect Source Files
 ##   tooltip:Copies all Nuke script source files to a folder, creates a copy of the script with links to the copies.\nAlso, offers to repair any broken source file path links.
 def collect_source_files_and_repair_links():
